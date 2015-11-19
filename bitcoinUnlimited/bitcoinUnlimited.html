@@ -1,0 +1,73 @@
+<head>
+  <title>Bitcoin Unlimited</title>
+</head>
+
+<template name="main">
+  <h1></h1>
+  {{> header}}
+  {{> yield}}
+  <br/>
+  <img class="footerImage" src="/images/buIcon256.png" width="64">
+</template>
+
+<template name="header">
+  <div class="header">
+  <div id="logowrapper"><img src="/images/bubannerx.png" width="100%"></div>
+  <div class="headerMenu">
+  <a href="{{pathFor route='home'}}">home</a><br/>
+  <a href="{{pathFor route='faq'}}">FAQ</a><br/>
+  <a href="{{pathFor route='software'}}">software</a><br/>
+  <a href="{{pathFor route='proposals'}}">proposals</a><br/>
+  <a href="{{pathFor route='members'}}">members</a><br/>
+  </div>
+  <div class="horizR">
+  <a href="{{pathFor route='articles'}}">Federation Articles</a><br/>
+  <a href="{{pathFor route='feeMarketPaper'}}">Fee Market</a><br/>
+  <a href="{{pathFor route='satoshiPaper'}}">Bitcoin Whitepaper</a><br/>
+  </div></div>
+</template>
+
+
+<template name="viewPaper">
+{{{display}}}
+</template>
+
+<template name="members">
+<br/>
+<center><h2>Members</h2></center>
+<br/><br/>
+<p id="memberContent">
+TBD
+</p>
+</template>
+
+<template name="proposals">
+<br/>
+<center><h2>Bitcoin Unlimited Improvement Proposals</h2></center>
+<br/><br/>
+<p id="buipContent">
+No current proposals
+</p>
+</template>
+
+<template name="software">
+<br/><br/>
+<p style="text-align: center">
+The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core "Satoshi" client.  
+</p><p style="text-align: center">
+Source code is available <a href="https://github.com/gandrewstone/BitcoinUnlimited">here</a>.
+We are currently supporting the 0.11.2 and 0.12 releases.
+</p>
+</template>
+
+
+<template name="home">
+<br/><br/>
+<p id="homeContent">
+The Bitcoin Unlimited project seeks to provide a voice, in terms of code and hash power, to all stakeholders in the Bitcoin ecosystem. 
+</p><p id="homeContent">
+As a foundational principle, we assert that Bitcoin is and should be whatever its users define by the code they run, and the rules they vote for with their hash power. 
+</p><p id="homeContent">
+This project seeks to remove existing practical barriers to stakeholders expressing their views in these ways.
+</p>
+</template>

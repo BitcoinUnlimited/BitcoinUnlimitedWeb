@@ -1,0 +1,41 @@
+<template name="faq">
+<div class="faq">
+<ul>
+<li><p class="faqQ">Will unlimited size blocks actually result in gigantic blocks and no fee market?</p>
+<p class="faqA">
+No.  Intuitively you can understand this by realizing that it will take a lot longer to propagate a gigantic block across the network than a small one.  Therefore a gigantic block has a higher likelihood of being "orphaned" -- that is, a competing block will be found, propagated across the network and supplant the gigantic block.  In this case the miner of the gigantic block will lose the block subsidy and transaction fees.  Therefore miners are <i>incentivised by limitations in the underlying physical network</i> to produce smaller blocks, and <i>incentivized by transaction fees</i> to produce larger ones.  Finding the balance between these forces is what the free market excels at.  And as underlying physical networks improve or fees increase, miners will naturally be able to produce larger blocks.  The transaction "supply" (space in a block) therefore depends directly on the fundamental capacity, rather than relying on some centralized "steering committee" to properly set maximum block size.  Bitcoin is all about disintermediation, and this is another example of it working.
+<br><br>
+For a formal treatment of this subject see <a href="/feeMarket">A Transaction Fee Market Exists Without a Block Size Limit</a>.
+</p>
+</li>
+<li><p class="faqQ">Why is a formal <i>Bitcoin Unlimited Articles of Federation</i> necessary?</p>
+<p class="faqA">
+It is completely unknown whether the majority of Bitcoin users support block sizes greater than 1 MB or not.  No formal debate or vote has occurred.  In contrast, debate is censored on the two most popular Bitcoin community sites.  A majority of miners have "voted" for the unimplemented BIP100 proposal (this proposal would then allow miners to vote on block size), yet nothing has been done to implement this proposal.  The existence of BIP100, BIP101 and other proposals may be "splitting" the large max-block community -- yet there is no mechanism (AFAIK) to authoritatively retire a proposal so the community can converge on a single proposal.  People who have put vast amounts of time and energy into a particular implementation's "brand" find themselves without recourse.  The power to add or remove features rests solely with individuals who possess technical skills and were at the right place at the right time.
+<br><br>
+<i>When you switch to the Bitcoin Unlimited client, the Articles of Federation will ensure that your voice is heard, and your vote counted.</i>
+<br><br>
+Proposals are made, debated, and then resolved (voted on) and the Proposer and BU officers have the power to force this process to occur in a timely fashion.  The Articles also ensure that passed, implemented proposals are committed to the code repository in a timely fashion.
+<br><br>
+For more information please read the <a href="/articlesOfFederation">Bitcoin Unlimited Articles of Federation</a>
+</p>
+</li>
+<li><p class="faqQ">Is BU going to fork the Blockchain?</p>
+<p class="faqA">
+No.  But if some other entity causes a fork, if for example miners start producing > 1MB blocks, then Bitcoin Unlimited nodes will follow the most-work (generally the longest) fork.  This means that your BU node will track the mining majority rather then a specific choice.  
+<br><br>
+Right now, the only event that will trigger this behavior is a block size fork because we believe that the block size is NOT part of blockchain consensus.  If other events that are currently part of "consensus layer" should also trigger this behavior they may be added based on the outcome of a BUIP (Bitcoin Unlimited Implementation Proposal) submission, debate and vote.
+</p>
+</li>
+<li><p class="faqQ">Does BU open up a new Sybil attack vector?  Say some entity launches thousands of nodes, 60,000 for example (100x the current network levels). Then sets a super small blocksize. Does this not end up holding the network hostage and thus also the blocksize cap?</p>
+<p class="faqA">
+Nodes have this power and therefore the network is vulnerable to this kind of attack with or without BU.  If you have the resources and desire to launch 60,000 nodes, a few changes to the source code will not put you off -- having access to BU is irrelevant.
+</p>
+</li>
+<li><p class="faqQ">Can miners run BU, select a very small block limit and therefore reduce transaction supply below 1MB?</p>
+<p class="faqA">
+If 51% of the miners want smaller blocks they can have them today without BU. They can simply limit the size of their generated blocks -- the max mined block size is a command line option. Also, the max block size to accept is a constant defined in a header file. So 1 simple line of code needs to be changed for miners to ignore blocks bigger than N in all the "Satoshi-derived" clients.
+</p>
+</li>
+</ul>
+</div>
+</template>
