@@ -78,6 +78,38 @@ ul {
   text-align: justify;
 }
 
-#downloads {
+.twocolwrapper {
+  margin-left: 10%;
+  margin-right: 10%;
+  /* background-color: yellow; */
+  }
+
+.colsep {
+ background-color: orange;
+ width: 5px;
+ padding: 0px 
+}
+
+.colsepblank {
+ width: 3%;
+ padding: 0px 
+}
+
+.twocol {
+  display:table-row;
+}
+
+.twocol>div {
+  display:table-cell
+}
+
+#officialDownloads {
   text-align: center;
 }
+
+
+#experimentalDownloads {
+  text-align: center;
+}
+
+
