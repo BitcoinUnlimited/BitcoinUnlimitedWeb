@@ -9,7 +9,11 @@ Router.route("/", {
 
 Router.route("/software", { 
     name: "software",
-    template: "software"
+    template: "software",
+    onBeforeAction: function () {
+          Meteor.call('getLinuxImages', "*", function(err, response) { Session.set('linuxImages', response); });
+          this.next();
+    }
 })
 
 Router.route("/faq", { 
@@ -90,13 +94,64 @@ if (Meteor.isClient) {
       }
   });
 
+  Template.software.helpers({
+    linuxImages: function()
+      {
+          console.log('display ');
+          return Session.get("linuxImages");
+      }
+  });
+
+
+
 }
 
 if (Meteor.isServer) {
+  var fs = Npm.require('fs');
+  
+  var fail = function(response) {
+  response.statusCode = 404;
+  response.end();
+  };
+
+var dataFile = function() {
+  console.log('feed file', this.params.id);
+  // TODO write a function to translate the id into a file path -- but don't let any .. etc thru!
+    var file = process.env.PWD + "/public/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz"; // fileFromId(this.params.id);
+
+  // Attempt to read the file size
+  var stat = null;
+  try {
+    stat = fs.statSync(file);
+  } catch (_error) {
+    console.log('file not found', file);
+    return fail(this.response);
+  }
+
+  // The hard-coded attachment filename
+  var attachmentFilename = 'filename-for-user.zip';
+
+  // Set the headers
+  this.response.writeHead(200, {
+    'Content-Type': 'application/zip',
+      'Content-Disposition': 'attachment; filename=' + attachmentFilename,
+    'Content-Length': stat.size
+  });
+
+  // Pipe the file contents to the response
+  fs.createReadStream(file).pipe(this.response);
+};
+
   Meteor.startup(function () {
       // code to run on server at startup
       //var fs = Npm.require("fs");
       Meteor.methods({
+          //dataFile: function(id) { return dataFile(id); },
+          getLinuxImages: function(name) {
+              console.log('on server, getLinuxImages ', name);
+              // http://stackoverflow.com/questions/29327993/how-to-list-files-in-folder
+              return '64-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
+          },
           getPaper: function(name) {
               console.log('on server, getPaper ', name);
               if (name == "satoshi")
@@ -119,4 +174,6 @@ if (Meteor.isServer) {
           },
       });
   });
+
+  Router.route('/download/:id', dataFile, {where: 'server'});
 }
