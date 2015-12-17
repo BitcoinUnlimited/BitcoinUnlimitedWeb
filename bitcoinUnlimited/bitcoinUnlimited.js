@@ -62,6 +62,16 @@ Router.route("/bitcoinWhitepaper", {
     }
 })
 
+Router.route("/1txn", {
+    name: "onetxnPaper",
+    template: "viewPaper",
+    onBeforeAction: function () {
+          Session.set('paper', "onetxnPaper")
+          Meteor.call('getPaper', "onetxnPaper", function(err, response) { Session.set('paperContents', response); });
+          this.next();
+    }
+})
+
 
 if (Meteor.isClient) {
   // counter starts at 0
@@ -157,6 +167,11 @@ var dataFile = function() {
               if (name == "satoshi")
               {
                   var data = Assets.getText("bitcoin.html"); //fs.readFileSync("bitcoin.htm");
+                  return data;
+              }
+              if (name == "onetxnPaper")
+              {
+                  var data = Assets.getText("btc_1txn.html"); //fs.readFileSync("bitcoin.htm");
                   return data;
               }
               if (name == "BUarticles")
