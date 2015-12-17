@@ -145,13 +145,13 @@ is approximately R for R < .1.  One can therefore see that this equation is appr
 
 <div class="chapter">
 <h2>Analysis</h2>
-<p>Let us hypothesize that there exists a relationship between prior block size and the length of time 1-txn blocks are generated.  The null hypothesis is therefore that no such relationship exists.  The p-value of the interval method (figure 2) is calculated to be 6.20e-15, and that of the ratio method (figure 3) is 1.89e-12.  These results strongly indicate that the null hypothesis is not valid.</p>
+<p>Let us hypothesize that there exists a relationship between prior block size and the length of time 1-txn blocks are generated.  The null hypothesis is therefore that no such relationship exists.  The p-value of the interval method (figure 2) is calculated to be 6.20e-15, and that of the ratio method (figure 3) is 1.89e-12.  These results therefore reject the null hypothesis.</p>
 <p>Therefore the slope of the regression lines in these two graphs indicate the relationship between prior block size and the length of time 1-txn blocks are generated.  The slope in figure 2 is 17.14 seconds/MB, and in figure 3 is 17.94 seconds/MB.  Figure 2 shows a ~30 second baseline cost to move network-wide mining infrastructure from one block to the next one.  However, this result is likely positively biased because negative time intervals were dropped.  Figure 3 shows an approximate 10 second cost to move network-wide mining infrastructure from one block to the next one.  It cannot be determined from the data why this is the case.
 
 <p>While data shows a clear relationship between block size and generation of 1-txn blocks.  Unfortunately the quality of the data does not allow us to eliminate the possibility that it may actually be nonlinear<span class="footnote_ref"><a href="#fn3" id="note3_back">3</a></span>.  Given the data collection errors, modifications to the Bitcoin client to produce more accurate data is necessary to fully investigate this relationship.</p>
 
 <h3>Effect on Network Throughput</h3>
-<p>Since the network cannot typically produce transaction-committing blocks until the prior blocks are validated, the network's transaction bandwidth is limited in an upper bound by its ability to validate these blocks.  But it is a common conceptual error to imagine that discovery of a 1-txn block influences the discovery time of subsequent blocks because the network is often described as finding blocks "every 10 minutes".  In fact, mining is simply a independent probabilistic operation, similar to rolling dice multiple times.</p>
+<p>Since the network cannot typically produce transaction-committing blocks until the prior blocks are validated, the network's transaction bandwidth is limited in an upper bound by its ability to validate these blocks.  This idea was first proposed in <span class="footnote_ref"><a href="#ref8" id="ref8_back">[8]</a></span>.  But it is a common conceptual error to imagine that discovery of a 1-txn block influences the discovery time of subsequent blocks because the network is often described as finding blocks "every 10 minutes".  In fact, mining is simply a independent probabilistic operation, similar to rolling dice multiple times.</p>
 <p>So with validation rates of 17 seconds/MB, the maximum theoretical network bandwidth (propagation impedence "z" in [1]) is therefore naturally limited to 1/17 or ~60KB/sec of transactions (if a single infinitely sized block was submitted and so all available time was spent validating it).  Actual bandwidth will be significantly lower and varies with maximum block size as shown next.</p>
 <p>Given a block size Q, a propagation impedence z, and an average block discovery time T, the time to produce a "useful" (not a 1-txn) block Tu is going to be the block validation time plus the average time to discover a block or:
 <div class="equ"><math>
@@ -481,13 +481,14 @@ Proposals to insert explicit maximum block size voting (BIP-100) or an artificia
 <div class="references">
 <p class="reference" id="fee_market">[1] Peter R: <a href="https://scalingbitcoin.org/papers/feemarket.pdf">A Transaction Fee Market Exists Without a Block Size Limit</a> (2015)</p>
 <p class="reference" id="ghost">[2] Yonatan Sompolinsky, Aviv Zohar: <a href="http://www.cs.huji.ac.il/~avivz/pubs/15/btc_ghost.pdf">Secure High-Rate Transaction Processing in Bitcoin</a> (2014)</p>
-<p class="reference" id="bip100">[3] <a href="https://github.com/jgarzik/bip100/blob/master/bip-0100.mediawiki">BIP-100</a></p>
+<p class="reference" id="bip100">[3] Jeff Garzik: <a href="https://github.com/jgarzik/bip100/blob/master/bip-0100.mediawiki">BIP-100</a> (2015)</p>
 <p class="reference" id="deckerWattenhofer">[4] Christian Decker, Roger WattenHofer: <a href="http://diyhpl.us/~bryan/papers2/bitcoin/Information%20propagation%20in%20the%20Bitcoin%20network.pdf">Information Propagation in the Bitcoin Network</a> (2013)</p>
 
-<p class="reference" id="ref5">[5] <a href="https://www.reddit.com/r/Bitcoin/comments/34ytwb/block_size_and_miner_fees_again_gavin_andresen/cqzeage?context=3">Flexible transaction space supply, based on fees</a></p>
-<p class="reference" id="ref6">[6] <a href="https://bitcointalk.org/index.php?topic=1078521">Elastic Block Cap</a></p>
-<p class="reference" id="ref7">[7] <a href="https://github.com/bitcoin/bips/blob/master/bip-0105.mediawiki">BIP-105</a></p>
-
+<p class="reference" id="ref5">[5] Andrew Stone: <a href="https://www.reddit.com/r/Bitcoin/comments/34ytwb/block_size_and_miner_fees_again_gavin_andresen/cqzeage?context=3">Flexible transaction space supply, based on fees</a>(2015)</p>
+<p class="reference" id="ref6">[6] Meni Rosenfeld: <a href="https://bitcointalk.org/index.php?topic=1078521">Elastic Block Cap</a>(2015)</p>
+<p class="reference" id="ref7">[7] BtcDrak: <a href="https://github.com/bitcoin/bips/blob/master/bip-0105.mediawiki">BIP-105</a> (2015)</p>
+<p class="reference" id="ref8">[8] Peter R: <a href="https://bitcointalk.org/index.php?topic=68655.msg11791889#msg11791889">Evidence of an effective blocksize limit: no protocol-enforced limit required</a> (2015)</p>
+<p class="reference" id="ref8">[9] TradeBlock: <a href="https://tradeblock.com/blog/bitcoin-network-capacity-analysis-part-6-data-propagation">Bitcoin Network Capacity Analysis – Part 6: Data Propagation</a> (2015)</p>
 
 </div>
 <div class="chapter" id="appendix">
