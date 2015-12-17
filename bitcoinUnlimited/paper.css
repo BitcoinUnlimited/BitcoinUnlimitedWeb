@@ -1,0 +1,191 @@
+#title {
+  margin: 5% 15% 0% 15%;
+  color: black;
+  font-size: 160%;
+  text-align: center;
+  counter-reset: eqn;
+}
+#author {
+  margin-top: 1em;
+  color: black;
+  font-size: 110%;
+  text-align: center;
+  counter-reset: appendixCnt;
+}
+#author_contact {
+  color: black;
+  font-size: 100%;
+  text-align: center;
+}
+#author_affiliation {
+  color: black;
+  font-size: 100%;
+  text-align: center;
+}
+
+.fullpaper {
+  margin: 10%;
+  counter-reset: chapterCnt;
+}
+
+.fullpaper ul { 
+  list-style-image: initial;
+  list-style-type: disc;
+}
+
+#abstract:before {
+  content: "Abstract. ";
+  font-weight: bold;
+}
+
+
+.chapter {
+  margin: 5% 15% 0% 15%;
+  font-weight: normal;
+  text-align: justify;
+}
+
+.figure {
+}
+
+.figure_caption {
+  font-size: 80%;
+  margin-top: 1em;
+  margin-left: 5%;
+  font-style: italic;
+}
+
+.figure_title {
+  font-size: 90%;
+  margin-top: 1em;
+  margin-left: 5%;
+  font-style: italic;
+}
+
+.chapter h2:before {
+   counter-increment: chapterCnt;
+   content: counter(chapterCnt) " ";
+}
+
+.chapter h2 {
+  font-weight: bold;
+  font-size: 125%;
+}
+
+.chapter h3 {
+  color: black;
+  margin: 2em 0% 1em 0%;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+
+.footnote_ref {
+  vertical-align: super;
+  font-size: 75%;
+}
+
+
+#abstract {
+  margin: 5% 25% 0% 25%;
+  font-weight: normal;
+  font-size: 90%;
+  text-align: justify;
+}
+
+#appendix:before {
+  content: "Appendix";
+  font-weight: bold;
+  font-size: 150%;
+}
+#appendix {
+  margin: 5% 15% 0% 15%;
+  font-weight: normal;
+}
+
+#appendix h2 {
+  color: black;
+  /* margin: 5% 20% 2% 15%; */
+  font-weight: bold;
+  font-size: 110%;
+}
+#appendix h2:before {
+   counter-increment: appendixCnt;
+   content: counter(appendixCnt,upper-roman) ". ";
+}
+
+.footnotes:before {
+  content: "Notes";
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.footnotes {
+  margin: 5% 15% 0% 15%;
+  font-weight: normal;
+}
+
+.footnote {
+/*  margin: 1% 15% 1% 15%; */
+  font-weight: normal;
+  font-size: 75%;
+}
+
+.references:before {
+  content: "References";
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.references {
+  margin: 5% 15% 0% 15%;
+  font-weight: normal;
+}
+
+
+/* math { */
+.equ {
+  margin: 1em 10% 1em 5%;
+  text-align: center;
+  display: block;
+  font-size: 120%;
+}
+
+.hide {
+  display: none;
+}
+
+
+/* math::after { */
+.equ:after {
+   content: "(" counter(eqn, decimal) ")";
+   counter-increment: eqn;
+   font-weight: bold;
+/*   # position: absolute;
+   # float: right;
+   # right: 200px; */
+   float: right;
+   display: inline;
+   text-align: right;
+}
+
+.blockchain {
+border-collapse: collapse;
+margin: 2em 2em 2em 2em;
+ font-size: 90%;
+}
+.blockchain th, .blockchain td {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+#block_timing {
+    counter-reset: blocktiming -1;
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+}
+#block_timing li:before {
+   content: "T" counter(blocktiming, decimal) ": ";
+   counter-increment: blocktiming;
+}
