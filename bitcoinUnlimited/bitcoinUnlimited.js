@@ -4,31 +4,47 @@ Router.configure({
 
 Router.route("/", { 
     name: "home",
-    template: "home"
+    template: "home",
+    onBeforeAction: function () {
+    Session.set('varMenu', "");
+    }
 })
 
 Router.route("/software", { 
     name: "software",
     template: "software",
     onBeforeAction: function () {
-          Meteor.call('getLinuxImages', "*", function(err, response) { Session.set('linuxImages', response); });
+          Meteor.call('getOfficialLinuxImages', "*", function(err, response) { Session.set('officialLinuxImages', response); });
+          Meteor.call('getExpLinuxImages', "*", function(err, response) { Session.set('expLinuxImages', response); });
           this.next();
+    },
+    BeforeAction: function () {
+    Session.set('varMenu', "");
     }
 })
 
 Router.route("/faq", { 
     name: "faq",
-    template: "faq"
+    template: "faq",
+    BeforeAction: function () {
+    Session.set('varMenu', "");
+    }
 })
 
 Router.route("/proposals", { 
     name: "proposals",
-    template: "proposals"
+    template: "proposals",
+    BeforeAction: function () {
+    Session.set('varMenu', "");
+    }
 })
 
 Router.route("/members", { 
     name: "members",
-    template: "members"
+    template: "members",
+    BeforeAction: function () {
+    Session.set('varMenu', "");
+    }
 })
 
 
@@ -37,6 +53,7 @@ Router.route("/articlesOfFederation", {
     template: "viewPaper",
     onBeforeAction: function () {
           Session.set('paper', "articles")
+          Session.set("varMenu","<a href='/downloads/BUarticles.pdf'>Download PDF</a>");
           Meteor.call('getPaper', "BUarticles", function(err, response) { Session.set('paperContents', response); });
           this.next();
     }
@@ -47,6 +64,7 @@ Router.route("/feeMarket", {
     template: "viewPaper",
     onBeforeAction: function () {
           Session.set('paper', "feemarket")
+          Session.set("varMenu","<a href='/downloads/feemarket.pdf'>Download PDF</a>");
           Meteor.call('getPaper', "feemarket", function(err, response) { Session.set('paperContents', response); });
           this.next();
     }
@@ -57,6 +75,7 @@ Router.route("/bitcoinWhitepaper", {
     template: "viewPaper",
     onBeforeAction: function () {
           Session.set('paper', "satoshi")
+          Session.set("varMenu","<a href='/downloads/bitcoin.pdf'>Download PDF</a>");
           Meteor.call('getPaper', "satoshi", function(err, response) { Session.set('paperContents', response); });
           this.next();
     }
@@ -67,6 +86,7 @@ Router.route("/1txn", {
     template: "viewPaper",
     onBeforeAction: function () {
           Session.set('paper', "onetxnPaper")
+          Session.set("varMenu","<a href='/downloads/btc_1txn.pdf'>Download PDF</a>");
           Meteor.call('getPaper', "onetxnPaper", function(err, response) { Session.set('paperContents', response); });
           this.next();
     }
@@ -75,25 +95,20 @@ Router.route("/1txn", {
 
 if (Meteor.isClient) {
   // counter starts at 0
-  Session.setDefault('counter', 0);
   Session.setDefault("page", "home");
 
   Template.header.helpers({
+    alert: function()
+      {
+          return Session.get("alert");
+      },
+    varMenu: function()
+      {
+          return Session.get("varMenu");
+      }
   });
 
   Template.header.events({
-      'click #home': function () {
-          Session.set('page', "home") 
-      },
-      'click #proposals': function () {
-          Session.set('page', "proposals") 
-      },
-      'click #software': function () {
-          Session.set('page', "software") 
-      },
-      'click #members': function () {
-          Session.set('page', "members") 
-      }
   });
 
   Template.viewPaper.helpers({
@@ -105,10 +120,13 @@ if (Meteor.isClient) {
   });
 
   Template.software.helpers({
-    linuxImages: function()
+    expLinuxImages: function()
       {
-          console.log('display ');
-          return Session.get("linuxImages");
+          return Session.get("expLinuxImages");
+      },
+    officialLinuxImages: function()
+      {
+          return Session.get("officialLinuxImages");
       }
   });
 
@@ -124,10 +142,17 @@ if (Meteor.isServer) {
   response.end();
   };
 
+var fileFromId = function(fname) {
+  var n = fname.search("/");
+  if (n == -1) return ("");
+  return fname;
+  };
+
 var dataFile = function() {
   console.log('feed file', this.params.id);
   // TODO write a function to translate the id into a file path -- but don't let any .. etc thru!
-    var file = process.env.PWD + "/public/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz"; // fileFromId(this.params.id);
+  //  var file = process.env.PWD + "/public/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz"; // fileFromId(this.params.id);
+  var file = fileFromId(this.params.id);
 
   // Attempt to read the file size
   var stat = null;
@@ -157,12 +182,17 @@ var dataFile = function() {
       //var fs = Npm.require("fs");
       Meteor.methods({
           //dataFile: function(id) { return dataFile(id); },
-          getLinuxImages: function(name) {
-              console.log('on server, getLinuxImages ', name);
+          getExpLinuxImages: function(name) {
+              console.log('on server, getExpLinuxImages ', name);
               // http://stackoverflow.com/questions/29327993/how-to-list-files-in-folder
-              return '64-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
+              return 'test'; // 64-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
           },
-          getPaper: function(name) {
+          getOfficialLinuxImages: function(name) {
+              console.log('on server, getOfficialLinuxImages ', name);
+              // http://stackoverflow.com/questions/29327993/how-to-list-files-in-folder
+              return '64-bit: Version: 0.11.2, Dec 18, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 18, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
+          },
+           getPaper: function(name) {
               console.log('on server, getPaper ', name);
               if (name == "satoshi")
               {

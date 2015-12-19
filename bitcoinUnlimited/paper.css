@@ -46,13 +46,20 @@
 }
 
 .figure {
+  margin: 0 auto;
 }
+
+.figure img {
+  margin: 0 auto;
+}
+
 
 .figure_caption {
   font-size: 80%;
   margin-top: 1em;
   margin-left: 5%;
   font-style: italic;
+  text-align: center;
 }
 
 .figure_title {
@@ -60,6 +67,7 @@
   margin-top: 1em;
   margin-left: 5%;
   font-style: italic;
+  text-align: center;
 }
 
 .chapter h2:before {
