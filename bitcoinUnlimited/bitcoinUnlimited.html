@@ -12,19 +12,27 @@
 
 <template name="header">
   <div class="header">
-  <div id="logowrapper"><img src="/images/bubannerx.png" width="100%"></div>
-  <div class="headerMenu">
-  <a href="{{pathFor route='home'}}">home</a><br/>
-  <a href="{{pathFor route='faq'}}">FAQ</a><br/>
-  <a href="{{pathFor route='software'}}">software</a><br/>
-  <a href="{{pathFor route='proposals'}}">proposals</a><br/>
-  <a href="{{pathFor route='members'}}">members</a><br/>
+    <div id="logowrapper"><img src="/images/bubannerx.png" width="100%"></div>
+    <div class="headerMenu">
+      <a href="{{pathFor route='home'}}">home</a><br/>
+      <a href="{{pathFor route='faq'}}">FAQ</a><br/>
+      <a href="{{pathFor route='software'}}">software</a><br/>
+      <a href="{{pathFor route='proposals'}}">proposals</a><br/>
+      <a href="{{pathFor route='members'}}">members</a><br/>
+    </div>
+    <div class="horizR">
+      <a href="{{pathFor route='articles'}}">Federation Articles</a><br/>
+      <a href="{{pathFor route='feeMarketPaper'}}">Fee Market</a><br/>
+      <a href="{{pathFor route='satoshiPaper'}}">Bitcoin Whitepaper</a><br/>
+    </div>
+    <!-- div class="alert">
+    {{{alert}}}
+    </div -->  
+    <div class="varMenu">
+    {{{varMenu}}}
+    </div>  
+    
   </div>
-  <div class="horizR">
-  <a href="{{pathFor route='articles'}}">Federation Articles</a><br/>
-  <a href="{{pathFor route='feeMarketPaper'}}">Fee Market</a><br/>
-  <a href="{{pathFor route='satoshiPaper'}}">Bitcoin Whitepaper</a><br/>
-  </div></div>
 </template>
 
 
@@ -33,20 +41,119 @@
 </template>
 
 <template name="members">
-<br/>
-<center><h2>Members</h2></center>
-<br/><br/>
-<p id="memberContent">
-TBD
-</p>
+  <br/>
+  <center><h2>Members</h2></center>
+  <center><a href="https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2">join us</a></center>
+  <br/><br/>
+  <div id="memberContent">
+    <div class="member">
+      <div class="memberName">Andrew Stone (theZerg)</div>
+      <div class="memberStmt">
+The Bitcoin Unlimited client allows Bitcoin to realise the vision presented by Satoshi Nakamoto in his original whitepaper and subsequent writings of a trustless peer-to-peer network -- a vision of individual worldwide directly transacting without a need for intermediaries.
+</div>
+    </div>
+    <div class="member">
+      <div class="memberName">awemany</div>
+      <div class="memberStmt"></div>
+    </div>
+    <div class="member">
+      <div class="memberName">solex</div>
+      <div class="memberStmt"></div>
+    </div>
+    <div class="member">
+      <div class="memberName">Inca</div>
+      <div class="memberStmt"></div>
+    </div>
+    <div class="member">
+      <div class="memberName">Melbustus</div>
+      <div class="memberStmt">I support Bitcoin Unlimited because:
+        <ol>
+          <li>It gives control of blocksize back to the free-market and doesn't try to unnecessarily engineer economic outcomes.</li>
+          <li>It supports one of the core theses of Bitcoin; namely, that the system is defined by the code its users in aggregate run.</li>
+          <li>It is inherently supportive of larger blocksize, which I think is critical for bitcoin's longterm security and success. Larger blocks will allow a larger volume of on-chain fee-generating transactions, and bitcoin can only be secure and succeed as the dominant cryptocurrency if it can scale to accommodate demand for transactions both large and small.</li>
+          <li>It provides another outlet for users to voice their opinion, both through running the Bitcoin Unlimited node software, and potentially through participating in or supporting the Bitcoin Unlimited mining pool. There are increasing numbers of bitcoin users who do not participate in running node software nor hashing, and the Bitcoin Unlimited project provides more options for all participants.</li>
+      </ol></div>
+    </div>
+    <div class="member">
+      <div class="memberName">cypherdoc</div>
+      <div class="memberStmt">"i think i've already said enough."</div>
+    </div>
+    <div class="member">
+      <div class="memberName">Peter R</div>
+      <div class="memberStmt">I want to be a member because I believe in Bitcoin Unlimited's vision. For Bitcoin to be successful, it must be able to evolve through a bottom-up organic process. Bitcoin Unlimited gives additional power to the user to control its evolution in a fully decentralized fashion.
+
+        I can help by developing analytic theory, empirical data analysis, visualizations, and scientific writing. </div>
+    </div>
+    <div class="member">
+      <div class="memberName">sickpig</div>
+      <div class="memberStmt">the protocol has to be decoupled from any particular implementation.
+
+        the more choices users have the better. </div>
+    </div>
+    <div class="member">
+      <div class="memberName">mintymark</div>
+      <div class="memberStmt">I feel strongly that this proposal is the right way to go and that eventually this will be clear to everyone.
+        Consensus does not need to built into the software and may even be a liability if it is, far better to let people express consensus by making it a command line option.
+      </div>
+    </div>
+    <div class="member">
+      <div class="memberName">Zangelbert Bingledack</div>
+      <div class="memberStmt">The paternalistic view of having devs spoonfeed all consensus-related choices to the user seems like it won't be viable at the much higher market caps Bitcoin is destined to reach. Gradually users will have to be given more explicit fine-grained control in order to enable Bitcoin to react nimbly to general threats, as well as specifically to scenarios where developers are compromised.
+
+        The addition of XT as an alternative to Core is an improvement over just Core, because it at least lets users choose who spoonfeeds them consensus packages; BU (at least the version with user-selectable blocksize) takes it to the next level and gives users more of a "line-item veto" on these dev-created consensus packages. It doesn't overly baby the user but instead encourages miners and nodes to perform their own profit-loss calculations, expanding the scope of the free market by removing the centrally planned blocksize cap that has been retained for paternalistic reasons. Consensus becomes an emergent phenomenon.
+
+        I believe we have in fact always been trusting the free market from the beginning in Bitcoin, so BU just lays bare the underlying reality without entertaining the pretense that blockspace economic knowledge *or even real control* lies with the Core devs.
+
+        In short, it's time for Honey Badger to grow up and assume its true form as a creature of the market.</div>
+    </div>
+    <div class="member">
+      <div class="memberName">Erdogan</div>
+      <div class="memberStmt">I campaign for bitcoin as free market money, the market will decide everything. I like the market. Unfortunately, I am lazy... </div>
+    </div>
+    <div class="member">
+      <div class="memberName">seweso</div>
+      <div class="memberStmt"></div>
+    </div>
+    <div class="member">
+      <div class="memberName">VeritasSapere</div>
+      <div class="memberStmt">I support the vision of Bitcoin Unlimited. I support an increased blocksize and multiple implementations of the Bitcoin protocol. If we need to rely on a centralized authority for Bitcoin to survive then we should consider this experiment to have failed to prove its intended theory at least in the form of Bitcoin, trust without centralized authority. So sign me up, there is more I could say on the subject but I will leave it at that for now.
+      </div>
+    </div>
+    <div class="member">
+      <div class="memberName">steffen</div>
+      <div class="memberStmt">I would like to be a member because I am a market anarchist and the block size limit serves no constructive use. I can help financially and can help spread awareness. </div>
+    </div>
+    <div class="member">
+      <div class="memberName">lebing</div>
+      <div class="memberStmt"></div>
+    </div>
+    <div class="member">
+      <div class="memberName">bitcartel</div>
+      <div class="memberStmt"></div>
+    </div>
+    <div class="member">
+      <div class="memberName">lunarboy</div>
+      <div class="memberStmt"></div>
+    </div>
+
+  </div>
 </template>
 
 <template name="proposals">
 <br/>
 <center><h2>Bitcoin Unlimited Improvement Proposals</h2></center>
-<br/><br/>
+<br/>
 <p id="buipContent">
-No current proposals
+<div class="buipTableWrapper">
+<table class="buipTable">
+  <tr width="100%">
+    <td><a href="https://bitco.in/forum/threads/buip001-unlimited-inspired-extensions-to-the-bitcoin-client.222">BUIP-001</a></td>
+    <td>"Unlimited" inspired extensions to the Bitcoin Client</td>
+    <td class="passed">PASSED</td>
+    <td>13/2</td>
+  </tr>
+</table>
+</div>
 </p>
 </template>
 
@@ -62,11 +169,13 @@ No current proposals
       <h1 style="color:green">Official Releases</h1>
       <h2>Binary Downloads</h2>
       <h3>Linux</h3>
-      TBD
+      {{{officialLinuxImages}}}
       <h3>Windows</h3>
       TBD
       <h2>Source Code</h2>
-      TBD
+      <p style="text-align: center">
+        Github branch 0.11cfg_stats <a href="https://github.com/gandrewstone/BitcoinUnlimited/tree/0.11cfg_stats">here</a>.
+      </p>
     </div>
     <div class="colsepblank"></div>
     <div class="colsep"></div>
@@ -75,14 +184,12 @@ No current proposals
       <h1 style="color:red">Experimental Releases</h1>
       <h2>Binary Downloads</h2>
       <h3>Linux</h3>
-      {{{linuxImages}}}
+      {{{expLinuxImages}}}
       <h3>Windows</h3>
       TBD
       <h2>Source Code</h2>
       <p style="text-align: center">
-        The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core "Satoshi" client.  
-      </p><p style="text-align: center">
-        Source code is available <a href="https://github.com/gandrewstone/BitcoinUnlimited">here</a>.
+        Github <a href="https://github.com/gandrewstone/BitcoinUnlimited">here</a>.
       </p>
     </div>
   </div>

@@ -95,7 +95,7 @@ The denominator of this equation is simply 1 because
           <mi>dt</mi>
           <mo>=</mo><mn>1</mn>
 </math>
-for all &lambda; > 0.  This makes intuitive sense; the sum of all the probabilities of finding a block must be 1 because given infinite time a block will always be found.  Solving equation 2 for S yields:
+for all &lambda; > 0.  This makes intuitive sense; the sum of all the probabilities of finding a block must be 1 because given infinite time a block will always be found.  Solving equation 2 for S (with lambda = 1/600seconds) yields:
 
 <div class="equ">
   <math> 
@@ -423,7 +423,7 @@ The following chart graphs this equation given transaction fees per MB within th
 </p>
 <div id="fig6" class="figure">
 <div class="figure_title">Figure 6: Miner revenue in BTC as block size increases</div>
-<img src="1txn/miner_revenue_large_blocks_25reward.png" />
+<img src="1txn/miner_revenue_large_blocks_25reward.png" width="100%" />
 </div>
 <p>
 The maxima in these curves show that the network's average block validation rate will limit the size of a particular mining pool's blocks regardless of how much that pool's block validation capacity exceeds other pools.  Therefore, an individual mining pool cannot increase average network block sizes to arbitrary size by "voting" with huge blocks.  Given rational mining pools, attempting to do so will simply be an expensive lesson in how quickly a pool's blocks can be deliberately orphaned. 
@@ -445,7 +445,7 @@ As shown by the green lines, there is actually a disincentive for miners to to i
 <p>The final figure shows what will happen when the block validation times change.  Since block validation includes the time to receive the full block and the time to check it for errors, this rate can be increased by more efficient software, faster CPUs and disks, and lower latency / higher bandwidth network connections.  This chart was generated with a constant .5 BTC fee per MB and a 25 BTC coinbase reward. Note that the chart is denoted in seconds per megabyte so a smaller number is a faster validation time.
 <div id="fig9" class="figure">
 <div class="figure_title">Figure 9: Miner revenue as validation speed changes</div>
-<img src="1txn/validation_speed_differences.png" width="80%" />
+<center><img src="1txn/validation_speed_differences.png" width="80%" /></center>
 </div>
 <h3>Effect on Network Security</h3>
 <p>
