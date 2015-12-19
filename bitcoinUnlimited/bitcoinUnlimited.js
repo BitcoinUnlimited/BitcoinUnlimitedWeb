@@ -7,6 +7,7 @@ Router.route("/", {
     template: "home",
     onBeforeAction: function () {
     Session.set('varMenu', "");
+    this.next();
     }
 })
 
@@ -20,6 +21,7 @@ Router.route("/software", {
     },
     BeforeAction: function () {
     Session.set('varMenu', "");
+    this.next();
     }
 })
 
@@ -28,6 +30,7 @@ Router.route("/faq", {
     template: "faq",
     BeforeAction: function () {
     Session.set('varMenu', "");
+    this.next();
     }
 })
 
@@ -36,6 +39,7 @@ Router.route("/proposals", {
     template: "proposals",
     BeforeAction: function () {
     Session.set('varMenu', "");
+    this.next();
     }
 })
 
@@ -44,6 +48,7 @@ Router.route("/members", {
     template: "members",
     BeforeAction: function () {
     Session.set('varMenu', "");
+    this.next();
     }
 })
 
