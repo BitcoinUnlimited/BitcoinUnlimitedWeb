@@ -1,5 +1,5 @@
 #title {
-  margin: 5% 15% 0% 15%;
+  margin: 2% 0% 1% 0%;
   color: black;
   font-size: 160%;
   text-align: center;
@@ -40,7 +40,7 @@
 
 
 .chapter {
-  margin: 5% 15% 0% 15%;
+  margin: 5% 0% 1% 0%;
   font-weight: normal;
   text-align: justify;
 }
@@ -95,7 +95,7 @@
 
 
 #abstract {
-  margin: 5% 25% 0% 25%;
+  margin: 5% 10% 0% 10%;
   font-weight: normal;
   font-size: 90%;
   text-align: justify;
@@ -107,7 +107,7 @@
   font-size: 150%;
 }
 #appendix {
-  margin: 5% 15% 0% 15%;
+  margin: 5% 0% 3% 0%;
   font-weight: normal;
 }
 
@@ -129,7 +129,7 @@
 }
 
 .footnotes {
-  margin: 5% 15% 0% 15%;
+  margin: 5% 0% 2% 0%;
   font-weight: normal;
 }
 
@@ -146,7 +146,7 @@
 }
 
 .references {
-  margin: 5% 15% 0% 15%;
+  margin: 5% 0% 2% 0%;
   font-weight: normal;
 }
 
