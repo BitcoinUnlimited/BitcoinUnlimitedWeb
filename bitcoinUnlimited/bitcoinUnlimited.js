@@ -17,11 +17,8 @@ Router.route("/software", {
     onBeforeAction: function () {
           Meteor.call('getOfficialLinuxImages', "*", function(err, response) { Session.set('officialLinuxImages', response); });
           Meteor.call('getExpLinuxImages', "*", function(err, response) { Session.set('expLinuxImages', response); });
+          Session.set('varMenu', "");
           this.next();
-    },
-    BeforeAction: function () {
-    Session.set('varMenu', "");
-    this.next();
     }
 })
 
@@ -125,6 +122,10 @@ if (Meteor.isClient) {
   });
 
   Template.software.helpers({
+    showSignatures: function()
+      {
+          return Session.get("showSignatures");;
+      },
     expLinuxImages: function()
       {
           return Session.get("expLinuxImages");
@@ -135,6 +136,14 @@ if (Meteor.isClient) {
       }
   });
 
+  Template.software.events({
+    'click #sigOfficial112': function(){
+    Session.set("showSignatures", true)
+},
+    'click #close': function(){
+    Session.set("showSignatures", false)
+}
+  });
 
 
 }
