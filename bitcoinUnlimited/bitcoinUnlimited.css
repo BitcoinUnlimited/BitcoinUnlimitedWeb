@@ -211,10 +211,10 @@ table.buipTable td {
   display: block;
   position: fixed;
   padding: 2em;
-  top: 25%;
+  top: 20%;
   left: 25%;
   width: 50%;
-  height: 40%;
+  height: 60%;
   border-radius: 15%;
   /* background-image: url("/images/coins1.png"); */
   background-size: 100%;

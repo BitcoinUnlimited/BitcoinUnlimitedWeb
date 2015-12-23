@@ -17,6 +17,8 @@ Router.route("/software", {
     onBeforeAction: function () {
           Meteor.call('getOfficialLinuxImages', "*", function(err, response) { Session.set('officialLinuxImages', response); });
           Meteor.call('getExpLinuxImages', "*", function(err, response) { Session.set('expLinuxImages', response); });
+          Meteor.call('getOfficialWindowsImages', "*", function(err, response) { Session.set('officialWindowsImages', response); });
+          Meteor.call('getExpWindowsImages', "*", function(err, response) { Session.set('expWindowsImages', response); });
           Session.set('varMenu', "");
           this.next();
     }
@@ -133,6 +135,14 @@ if (Meteor.isClient) {
     officialLinuxImages: function()
       {
           return Session.get("officialLinuxImages");
+      },
+    expWindowsImages: function()
+      {
+          return Session.get("expWindowsImages");
+      },
+    officialWindowsImages: function()
+      {
+          return Session.get("officialWindowsImages");
       }
   });
 
@@ -199,12 +209,22 @@ var dataFile = function() {
           getExpLinuxImages: function(name) {
               console.log('on server, getExpLinuxImages ', name);
               // http://stackoverflow.com/questions/29327993/how-to-list-files-in-folder
-              return 'test'; // 64-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
+              return 'Nothing right now'; // 64-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
           },
           getOfficialLinuxImages: function(name) {
               console.log('on server, getOfficialLinuxImages ', name);
               // http://stackoverflow.com/questions/29327993/how-to-list-files-in-folder
-              return '64-bit: Version: 0.11.2, Dec 18, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 18, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
+              return '64-bit: Version: 0.11.2, Dec 22, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 22, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
+          },
+          getExpWindowsImages: function(name) {
+              console.log('on server, getExpLinuxImages ', name);
+              // http://stackoverflow.com/questions/29327993/how-to-list-files-in-folder
+              return 'Nothing right now'; // 64-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz">bitcoinUnlimited-0.11.2-linux64.tar.gz</a><br/>32-bit: Version: 0.11.2, Dec 1, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz">bitcoinUnlimited-0.11.2-linux32.tar.gz</a>';
+          },
+          getOfficialWindowsImages: function(name) {
+              console.log('on server, getOfficialLinuxImages ', name);
+              // http://stackoverflow.com/questions/29327993/how-to-list-files-in-folder
+              return '64-bit: Version: 0.11.2, Dec 22, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-win64-setup.exe">bitcoinUnlimited-0.11.2-win64-setup.exe</a> (<a href="/downloads/bitcoinUnlimited-0.11.2-win64.zip">zip</a>)<br/>32-bit: Version: 0.11.2, Dec 22, 2015: <a href="/downloads/bitcoinUnlimited-0.11.2-win32-setup.exe">bitcoinUnlimited-0.11.2-win32-setup.exe</a> (<a href="/downloads/bitcoinUnlimited-0.11.2-win32.zip">zip</a>)';
           },
            getPaper: function(name) {
               console.log('on server, getPaper ', name);
