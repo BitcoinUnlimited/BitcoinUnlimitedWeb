@@ -231,7 +231,7 @@ table.buipTable td {
   font-size: 70%;
   overflow: hidden;
   position: absolute;
-  bottom: 2em;
+  bottom: 3em;
 }
 
 .signatures #close {
@@ -253,4 +253,35 @@ table.buipTable td {
   position: absolute;
   top: -3em;
   left: 20px;
+}
+
+
+#linuxInstallation {
+  display: block;
+  position: fixed;
+  padding: 2em;
+  top: 35%;
+  left: 25%;
+  width: 50%;
+  height: 30%;
+  border-radius: 15%;
+  background-size: 100%;
+  background-color: white;
+  border: 3px solid #90cfa0;
+}
+
+.linuxInstallationText {
+  font-size: 100%;
+  overflow: hidden;
+}
+
+#linuxInstallation #close {
+  background-image: url("/images/close-button.svg");
+  background-size: 100%;
+  position: absolute;
+  top: -1%;
+  left: 1%;
+  width: 30px;
+  height: 35px;
+  border-radius: 25%;
 }
