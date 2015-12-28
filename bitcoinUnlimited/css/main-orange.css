@@ -1909,7 +1909,12 @@ span.color-red {
 #sequence > .sequence-canvas > li.bg1 {
   background-image: url(../img/homepage-slider/website-background.png);
 }
-
+#sequence > .sequence-canvas > li.bg2 {
+background-image: url(../img/homepage-slider/blockchain.png);
+}
+#sequence > .sequence-canvas > li.bg3 {
+  background-image: url(../img/homepage-slider/node.png);
+}
 #sequence > .sequence-canvas > li img {
   height: 100%;
 }
@@ -2063,7 +2068,7 @@ span.color-red {
   transition-duration: 0.5s;
 }
 .subtitle {
-  color: #000 !important;
+  color: #000;
   font-size: 2em;
   left: 45%;
   width: 35%;
@@ -2649,6 +2654,9 @@ span.color-red {
 .red {color: red;}
 .green {color: green;}
 
-.vision {margin: 20px 20px 20px 10px;}
+.vision {margin: 20px 20px 20px 10px;
+color: black;
+width: 60%;
+text-align:justify;}
 
 
