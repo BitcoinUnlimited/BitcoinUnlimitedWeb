@@ -1,38 +1,40 @@
 <html>
 <head>
 <link rel="stylesheet" href="paper.css">
-<title>An Examination of Single Transaction Blocks and Their Effect on Network Throughput and Block Size</title>
+<title>An Examination of Single-Transaction Blocks and Their Effect on Network Throughput and Block Size</title>
 </head>
 <body>
 <div class="fullpaper">
-<div id="title">An Examination of Single Transaction Blocks and Their Effect on Network Throughput and Block Size</div>
+<div id="title">An Examination of Single-Transaction Blocks and Their Effect on Network Throughput and Block Size</div>
 <div id="author">Andrew Stone</div>
 <div id="author_contact">g.andrew.stone@gmail.com</div>
 <div id="author_affiliation">www.bitcoinunlimited.info</div>
-<div id="abstract">The Bitcoin Network's creation of single (coinbase-only) transaction and normal blocks is analyzed using multiple empirical approaches.  A maximum bitcoin network transaction commitment throughput of 60KB/sec is derived.  The significant role of single transaction blocks in limiting this throughput is then shown.  The miner revenue equation in an unlimited-block environment is derived  and it is shown that the optimum strategy for mining pools is to mine competing short blocks when presented with a block that is so large that its validation time will affect fee revenue.  It is shown how this strategy naturally discourages large block sizes as a function of transaction throughput, coinbase reward and average transaction fees, and how is encourages larger blocks as fees increase, but asymptotically.  In fact given today's network, typical transaction fees of .1 to .4 BTC/MB actually discourage block growth, and the optimum-profit block size will not exceed about 30MB regardless of fee spent.<p>Therefore, the choice of block size is a de-facto hash-power weighted "vote" controlling average block size and can replace proposed schemes that use explicit voting and/or flexible capacity.</p>
+<div id="abstract">The Bitcoin network's creation of normal blocks and single (coinbase-only) transaction blocks is analyzed using multiple empirical approaches.  A maximum Bitcoin network transaction commitment throughput of 60KB/sec is derived.  The significant role of single-transaction blocks in limiting this throughput is then shown.  The miner revenue equation in an unlimited-block environment is derived, and it is shown that the optimum strategy for mining pools is to mine competing small blocks when presented with a block that is so large that its validation time will affect fee revenue.  It is shown how this strategy naturally discourages large block sizes as a function of transaction throughput, coinbase reward and average transaction fees, and how is encourages larger blocks as fees increase, but in an asymptotic manner.  In fact given today's network metrics, typical transaction fees of 0.1 to 0.4 BTC/MB actually discourage block growth, and the optimum-profit block size will not exceed about 30MB regardless of fee spent.Therefore, the choice of block size is a de-facto hash-power weighted "vote" controlling average block size and can replace proposed schemes that use explicit voting and/or flexible capacity.</p>
 </div>
 <div class="chapter">
-<h2>Introduction: The mystery of the 1 transaction block</h2>
-<p>To produce a valid block, a miner must include the hash of the prior block in the blockchain, a coinbase transaction, and may include any transactions that are not any ancestor blocks.  Since miners gain fees from included transactions, at first glance it makes sense to include as many transactions as possible.  However, miners sometimes only include the coinbase transaction even though there are available uncommitted transactions in the network.  Understanding why this occurs offers a technique to analyze the network.
-</p><p>When a new block is discovered by a miner on the network, several steps must be undertaken before a miner can mine on top of it:
+<h2 id="intro">Introduction: The mystery of the 1 transaction block</h2>
+<p>To produce a valid block, a miner must include the hash of the prior block in the blockchain, a coinbase transaction, and may include any transactions that are not in any ancestor blocks.  Since miners gain fees from included transactions, at first glance it makes sense to include as many transactions as possible.  However, miners sometimes only include the coinbase transaction even though there are uncommitted transactions available in the network.  Understanding why this occurs offers a technique to analyze the network.
+</p><p>When a new block is discovered by a miner on the network, five steps must be undertaken before another miner can mine on top of it:
 <ul>
-<li>It must be propagated to the miners</li>
-<li>The miner must validate the transactions in the block (validate the block), and remove them from its memory pool.</li>
-<li>The miner can then create a new block candidate using the block's hash and transactions still in its memory pool, and submit this candidate to its hashing ASICs to begin the mining process.</li>
+<li>The block must be propagated to the mining pool.</li>
+<li>The pool must validate the proof-of-work and each transaction in the block</li>
+<li>The pool must update his mempool by removing the transactions included in the block</li>
+<li>The pool can then create a new block candidate using the block's hash and the remaining transactions in its memory pool.</li>
+<li>This candidate block must be submitted to the pool's hashing infrastructure to begin the mining process.</li>
 </ul>
-This process is time consuming; there is network latency and bandwidth limiting propagation speed and validation requires intense CPU use and possible disk access.  
-</p><p>	However, there is a shortcut.  If a miner constructs a block candidate containing only the coinbase transaction and transactions that it is certain cannot exist in the newly mined block<span class="footnote_ref"><a href="#footnote_1txn" id="footnote_1txn_src">1</a></span>, it only needs the hash of the prior block.  At 256 bits, this hash can be transmitted across the network extremely quickly.  Since miners maximize profit by maximizing the time their ASICs are hashing, some miners use this technique to construct a 1 transaction block candidate to mine while they are waiting for their hardware to receive and validate the newly found block.  When the block is validated, miners typically use the available transactions to construct a block candidate containing as many transactions as available and switch their ASICs mine that candidate<span class="footnote_ref"><a href="#footnote_asic" id="footnote_asic_src">2</a></span>.
+This process is time consuming; there is network latency and bandwidth limiting propagation speed, and validation requires intense CPU use and possible disk access.  
+</p><p>	However, there is a shortcut.  If a mining pool constructs a block candidate containing only the coinbase transaction (and transactions that it is certain cannot exist in the newly mined block<span class="fn"><a href="#footnote_1txn" id="footnote_1txn_src">1</a></span>), it only needs the hash of the prior block.  At 256 bits, this hash can be transmitted across the network extremely quickly.  Since mining pools maximize profit by maximizing the time their ASICs are hashing blocks likely to be added to the chain, some pools use this technique to construct a single-transaction block candidate to mine while they are waiting to fully receive and validate the newly found block.  When the block is validated, mining pools typically use the available transactions to construct a block candidate that maximizes profitability<span class="ref"><a href="#fee_market">[1]</a></span> and then switch their ASICs to mine that candidate<span class="footnote_ref"><a href="#footnote_asic" id="footnote_asic_src">2</a></span>.
 </p><p>	Therefore, by examining relationships between the 1 transaction and many-transaction blocks, we can discover properties of the Bitcoin network.</p>
 </div>
 <div class="chapter">
 <h2>Observations</h2>
-<p>Data was collected and analyzed from approximately the middle of October 2014 until 19 November, 2015.  The following figure will help to illustrate the observation methodologies:</p>
+<p>Data was collected and analyzed from approximately the middle of October 2014 until 19 November 2015.  Figure 1 will help to illustrate the observation methodologies:</p>
 
 <div id="fig1" class="figure">
 <div class="figure_title" >Figure 1: Block discovery interval showing 1-txn and full block regions</div>
 <img src="1txn/1_txn_obs_theory.png" width="100%"/>
 </div>
-<p>The red line marks the probability that a block is found at a particular time (shown in minutes on the x axis).  That this is not constant can be unintuitive to people who know that the likelihood of a block being found at any random time t (given constant hash rate) is the same as any other time.  However, this is not what is being measured.  We are measuring the likelihood that NO block was found during the interval [0,t) combined with the likelihood of finding a block at time t.  This is the Poisson process equation:
+<p>The red line marks the probability that a block is found at a particular time (shown in minutes on the horizontal axis).  That this is not constant can be unintuitive to people who know that the likelihood of a block being found at any random time t (given constant hash rate) is the same as any other time.  However, this is not what is being measured.  We are measuring the likelihood that NO block was found during the interval [0, <i>t</i>) combined with the likelihood of finding a block at time <i>t</i>.  This is the Poisson process equation:
 <div class="equ">
 <math> <!-- poisson process equation -->
   <mrow>
@@ -43,7 +45,7 @@ This process is time consuming; there is network latency and bandwidth limiting 
 &lambda; refers to the inverse of the expected time for an event occurence.  In this paper we will ignore difficulty adjustments and so &lambda; is 1/the average block discovery time or 1/10 minutes.
 </p>
 <p>
-In the first data set, the time interval between mining a 1 transaction block and its predecessor was compared to the size of the predecessor block.  It is hypothesized that larger blocks will create a longer time for empty blocks to be mined (S in the figure).  Therefore the average time interval (Savg in the figure) will increase as the switchover time S increases.
+In the first data set, the time interval between mining a 1 transaction block and its predecessor was compared to the size of the predecessor block.  It is hypothesized that larger blocks will create a longer time for empty blocks to be mined (<i>S</i> in the figure).  Therefore the average time interval (Savg in the figure) will increase as the switchover time <i>S</i> increases.
 </p>
 <div id="fig2" class="figure">
 <div class="figure_title">Figure 2: </div>
@@ -53,10 +55,7 @@ In the first data set, the time interval between mining a 1 transaction block an
 <p>
 Unfortunately blocks are time-stamped by their creator, and CPU clocks are not synchronized across the Bitcoin network so this dataset has significant errors.  For example, there are many blocks that claim they were mined before their predecessor, which is causally impossible.  To clean up the data, negative time intervals and intervals greater than 120 seconds were ignored.  If time errors follow a symmetric distribution, this clean up effectively shifts the reported average time higher because all the negative errors are eliminated, yet positive errors remain.
 </p>
-<p>To eliminate data errors, it is necessary to not use the block time stamp.  The second graph was generated by observing the ratio of the grey area in figure 1 to the total number of samples (R) for particular block sizes.  This can be used to determine S.  Since a block is found on average every 10 minutes and the chance of finding a block is independent of time or prior work, the average time a 1 transaction block was being mined is simply:
-</p>
-
-<p> However the chance of finding a block at a particular time follows the poisson process equation so, R is:
+<p>Another methodology exists that does not rely on the block time stamp.  The second graph was generated by observing the ratio (<i>R</i>) of the grey area in figure 1 to the total number of samples for particular block sizes.  This can be used to determine <i>S</i>.  Since the chance of finding a block at a particular time follows the poisson process equation <i>R</i> is:
   <div class="equ">
     <math> 
       <mi>R</mi><mo>=</mo>
@@ -95,18 +94,21 @@ The denominator of this equation is simply 1 because
           <mi>dt</mi>
           <mo>=</mo><mn>1</mn>
 </math>
-for all &lambda; > 0.  This makes intuitive sense; the sum of all the probabilities of finding a block must be 1 because given infinite time a block will always be found.  Solving equation 2 for S (with lambda = 1/600seconds) yields:
+for all &lambda; > 0.  This makes intuitive sense; the sum of all the probabilities of finding a block must be 1 because given infinite time a block will always be found.  Solving equation 2 for <i>S</i> yields:
 
 <div class="equ">
   <math> 
     <mi>S</mi><mo>=</mo>
-    <mn>600</mn>
+    <mfrac>
+    <mn>1</mn>
+    <mi>&lambda;</mi>
+    </mfrac>
     <mo>*</mo>
     <mtext>log</mtext>
     <mfence>
     <mfrac>
-      <mn>-1</mn>
-      <mfence><mi>R</mi><mo>-</mo><mn>1</mn></mfence>
+      <mn>1</mn>
+      <mfence><mn>1</mn><mo>-</mo><mi>R</mi></mfence>
     </mfrac>
     </mfence>
   </math>
@@ -116,12 +118,12 @@ To understand this equation, note that
     <mtext>log</mtext>
     <mfence>
     <mfrac>
-      <mn>-1</mn>
-      <mfence><mi>R</mi><mo>-</mo><mn>1</mn></mfence>
+      <mn>1</mn>
+      <mfence><mn>1</mn><mo>-</mo><mi>R</mi></mfence>
     </mfrac>
     </mfence>
   </math>
-is approximately R for R < .1.  One can therefore see that this equation is approximately equal to the much more intuitive equation
+is approximately R for R < 0.1.  One can therefore see that this equation is approximately equal (given Bitcoin's expected block discovery of 10 minutes or &lambda; = 1/600) to the much more intuitive equation
 <math>
   <mrow>
     <mi>S</mi>
@@ -133,24 +135,24 @@ is approximately R for R < .1.  One can therefore see that this equation is appr
     </mfrac>
   </mrow>
 </math>
- that could be used if the block discovery probability was constant.
+ that could be used if the block discovery probability was constant.  This approximation was NOT used in the following charts, it is only included here expository reasons.
 
 <p>In the following chart, samples were divided into 50 bins ranging from 0 to 1MB corresponding to the size of the prior block (block sizes in each bin can vary by 20000 bytes) so that the ratio of 1-txn blocks to all blocks could be taken.  Without some kind of binning (or more accurately if the bin size was 1 byte), millions of samples would be necessary to calculate ratios.  Sequential 1-txn blocks were handled specially, please see Appendix 1 for details.  Given the samples in a particular block size range, R was calculated and then equation 3 was applied to find S. This results in the following chart:
 </p>
-<div id="fig1" class="figure">
+<div id="fig3" class="figure">
 <div class="figure_title">Figure 3:</div>
 <img src="1txn/blkPrepRatioMethod.svg"/>
 </div>
 </div>
 
 <div class="chapter">
-<h2>Analysis</h2>
-<p>Let us hypothesize that there exists a relationship between prior block size and the length of time 1-txn blocks are generated.  The null hypothesis is therefore that no such relationship exists.  The p-value of the interval method (figure 2) is calculated to be 6.20e-15, and that of the ratio method (figure 3) is 1.89e-12.  These results therefore reject the null hypothesis.</p>
-<p>Therefore the slope of the regression lines in these two graphs indicate the relationship between prior block size and the length of time 1-txn blocks are generated.  The slope in figure 2 is 17.14 seconds/MB, and in figure 3 is 17.94 seconds/MB.  Figure 2 shows a ~30 second baseline cost to move network-wide mining infrastructure from one block to the next one.  However, this result is likely positively biased because negative time intervals were dropped.  Figure 3 shows an approximate 10 second cost to move network-wide mining infrastructure from one block to the next one.  It cannot be determined from the data why this is the case.
+<h2 id="analysis">Analysis</h2>
+<p>Figures 2 and 3 appear to indicate a relationship between the length of time miners generate empty blocks and the size of the preceding block. To determine whether the relationship was statistically significant, we calculated the probability that the *no* relationship existed and that the resulting data points were a result of randomness (the null hypothesis). The p-values for each method were 6.2 x 10^-15 and 1.9 x 10^-12, respectively, allowing us to confidently reject the null hypothesis. Indeed, there is a significant relationship between prior block size and the frequency of empty blocks</p>
+<p>Therefore the slope of the regression lines in these two graphs indicate the relationship between prior block size and the length of time 1-txn blocks are generated.  The slope in Figure 2 is 17.14 sec/MB, and in Figure 3 is 17.94 seconds/MB.  Figure 2 shows a ~30 second baseline cost to move network-wide mining infrastructure from one block to the next one.  However, this result is likely positively biased because negative time intervals were dropped.  Figure 3 shows an approximate 10 second cost to move network-wide mining infrastructure from one block to the next one.  It cannot be determined from the data why this is the case.
 
-<p>While data shows a clear relationship between block size and generation of 1-txn blocks.  Unfortunately the quality of the data does not allow us to eliminate the possibility that it may actually be nonlinear<span class="footnote_ref"><a href="#fn3" id="note3_back">3</a></span>.  Given the data collection errors, modifications to the Bitcoin client to produce more accurate data is necessary to fully investigate this relationship.</p>
+<p>While this data shows a clear relationship between block size and generation of 1-txn blocks, unfortunately the quality of the data does not allow us to eliminate the possibility that it may actually be nonlinear<span class="footnote_ref"><a href="#fn3" id="note3_back">3</a></span>.  Given the data collection errors, modifications to the Bitcoin client to produce more accurate data is necessary to fully investigate this relationship.</p>
 
-<h3>Effect on Network Throughput</h3>
+<h3 id="throughput">Effect on Network Throughput</h3>
 <p>Since the network cannot typically produce transaction-committing blocks until the prior blocks are validated, the network's transaction bandwidth is limited in an upper bound by its ability to validate these blocks.  This idea was first proposed in <span class="footnote_ref"><a href="#ref8" id="ref8_back">[8]</a></span>.  But it is a common conceptual error to imagine that discovery of a 1-txn block influences the discovery time of subsequent blocks because the network is often described as finding blocks "every 10 minutes".  In fact, mining is simply a independent probabilistic operation, similar to rolling dice multiple times.</p>
 <p>So with validation rates of 17 seconds/MB, the maximum theoretical network bandwidth (propagation impedence "z" in [1]) is therefore naturally limited to 1/17 or ~60KB/sec of transactions (if a single infinitely sized block was submitted and so all available time was spent validating it).  Actual bandwidth will be significantly lower and varies with maximum block size as shown next.</p>
 <p>Given a block size Q, a propagation impedence z, and an average block discovery time T, the time to produce a "useful" (not a 1-txn) block Tu is going to be the block validation time plus the average time to discover a block or:
@@ -174,15 +176,15 @@ So the maximum network throughput (Th) is the block size (Q) divided by the usef
 </math></div>
 
 With today's rate of z=1/17 MB/sec and T = 10 minutes the following plot can be drawn:
-<div id="fig3" class="figure">
-<div class="figure_title">Figure 3: Bitcoin Network Throughput as block size increases</div>
+<div id="fig4" class="figure">
+<div class="figure_title">Figure 4: Bitcoin network Throughput as block size increases</div>
 <img src="1txn/throughput_by_blocksize.png"/>
 </div>
 
 <p>For example, 32MB blocks would require approximately 10 minutes of validation (1-txn block generation) time.  Since it subsequently takes (on average) 10 minutes to find a new block, we end up with a network with a 50% duty cycle (i.e. half the blocks are 1-txn half are carrying useful data), and ~30KB/sec of transaction throughput.</p>
 <p>Therefore the average block validation time naturally limits the maximum rate that transactions can be committed to the block chain.  Although the rate of transaction submission to the network is not directly related to the commitment rate, it is related for honest participants (participants will leave the network if their transactions are not being committed).  Qualitatively, it becomes increasingly important to optimize block validation and creation times as blocks grow large, but is unnecessary today.</p>
 
-<h3>Effect on Block Discovery</h3>
+<h3 id="discovery">Effect on Block Discovery</h3>
 <p>Let us imagine the sequence of events that a miner/mining pool undergoes during network operation, noting event times:</p>
 <ol id="block_timing">
   <li>Block found by someone on the network
@@ -206,23 +208,23 @@ Let us call the "full block mining interval" (T5,T6) even though the blocks mine
 </p>
 <p>Due the the inaccuracy of the self-reported block discovery times in the blockchain, another method was needed to examine block discovery intervals.  The Bitcoin Relay Network<span class="footnote_ref"><a href="#footnote_relay" id="footnote_relay_src">4</a></span> is a fast, centralized block solution distribution network.  A Relay Network client was modified to log the time blocks were received.  Given the architecture of the Relay Network, it is likely that the client received the blocks with sub-second latency and with a consistent error (that is, the time interval from when a block is discovered to when the client receives it is approximately equal for every block of similar size due to the architecture of the Relay Network)<span class="footnote_ref"><a href="#footnote_relay_stats" id="footnote_relay_stats_src">5</a></span>.  
 </p><p>The following graph overlays both the theoretical and actual block discovery intervals, using data from the Relay Network for a period of N days from Dec 6,2015 to Dec 15,2015:
-<div id="fig4" class="figure">
-<div class="figure_title">Figure 4: Block Discovery Intervals</div>
+<div id="fig5" class="figure">
+<div class="figure_title">Figure 5: Block Discovery Intervals</div>
 <img src="1txn/block_discovery_intervals.png"/>
 </div>
 Visually, there is no evidence of an unexpected decrease in block discovery due to block propagation time.
 </p>
 <p>We can simulate a network where miners do not generate 1-txn blocks by ignoring intervals where the second block was a 1-txn block.  In the next chart, light blue bars show the block discovery likelihood if no blocks were being generated during the validation time interval (T0,T5), and yellow shows the contribution of the 1-txn blocks.
-<div id="fig5" class="figure">
-<div class="figure_title">Figure 5: Block Discovery Intervals with 1-txn blocks</div>
+<div id="fig6" class="figure">
+<div class="figure_title">Figure 6: Block Discovery Intervals with 1-txn blocks</div>
 <img src="1txn/block_discovery_intervals_1txn.png"/>
 </div>
 </p><p>
 This results in a graph whose first minute is significantly affected by block propagation and validation times.  This result is consistent with the results of the other methods and our hypothesis that 1-txn blocks are created during the block validation interval.
 </p>
 
-<h3>Effect on Block Size</h3>
-What would be the effect on the network if the 1MB limit did not exist?
+<h3 id="blocksize">Effect on Block Size</h3>
+What would be the effect on the network if the 1 MB limit did not exist?
 Let us assume that there is an unlimited transaction pool so that every block can be completely filled.  Every miner can mine its maximum block Mi.  Furthermore, let us define the hash power of every miner producing blocks as a fraction of the total hash power Hi.  So SUM(Hi) = 1.  The network's average block production size B is therefore the sum of every mining pool's block size times the likelihood that that miner will find a block:
 <div class="equ">
 <math>
@@ -241,12 +243,12 @@ Let us assume that there is an unlimited transaction pool so that every block ca
 A mining pool can therefore reduce the overall network throughput by mining 1-txn blocks (Mi = 0 for one pool).  This is in effect a hash power weighted vote for smaller blocks, but unlike ceasing to mine this vote does not carry significant financial penalties since the coinbase reward is much higher than the transaction fees.
 Given this model, a mining pool could also increase overall network throughput to any value D by mining blocks where (Mi = D/Hi), essentially by compensating for lack of hash power by mining a proportionally larger block.  This means that a single mining pool can produce a block so large that the other pools never fully validate it and instead produce 1-txn block or orphans until the original pool is is able to produce another block so large that all other pools never fully validate, forever.  This attack is easily defeated (see Appendix II), however, it shows that a pool can in theory spend the entire inter-block discovery time building/validating the next block and therefore drive the overall network's transaction processing capacity to this mining pool's maximum transaction processing capacity, regardless of his fraction of the hash rate.  However, this is not the full story.
 </p>
-<p>This transaction monopolization can only happen IF all the other mining pools choose to mine on top of that monopolizing mining pool's blocks.  Yet, doing so will result in lower profitability for the other (the majority) of pools since they (having smaller validation capacity) must always mine 1-txn blocks and are therefore unable to reap transaction fees.  This is an unstable situation - if a single mining pool chooses to ignore the large block and is able to find a short competing block while other pools are still validating a large block, it is in the other pools best interest to switch to this new sibling<span class="footnote_ref"><a href="#miner_interest" id="miner_interest_back">6</a></span>.  By switching, the other pools reduce the risk that they are mining on top of an invalid block, and can mine blocks with transactions.  But if mining pools know that the majority will switch to a discovered sibling, it is rational for all pools except for the producer of the large block to search for a sibling rather than produce a 1-txn block.
+<p>This transaction monopolization can only happen IF all the other mining pools choose to mine on top of that monopolizing mining pool's blocks.  Yet, doing so will result in lower profitability for the other (the majority) of pools since they (having smaller validation capacity) must always mine 1-txn blocks and are therefore unable to reap transaction fees.  This is an unstable situation - if a single mining pool chooses to ignore the large block and is able to find a small competing block while other pools are still validating a large block, it is in the other pools best interest to switch to this new sibling<span class="footnote_ref"><a href="#miner_interest" id="miner_interest_back">6</a></span>.  By switching, the other pools reduce the risk that they are mining on top of an invalid block, and can mine blocks with transactions.  But if mining pools know that the majority will switch to a discovered sibling, it is rational for all pools except for the producer of the large block to search for a sibling rather than produce a 1-txn block.
 
 </p><p>	In practice, other mining pools may not act in their own rational best interest for a variety of reasons beyond the capability of this game-theory based analysis.  For example they may not have upgraded to software capable of doing so.  However, mining pools can easily signal their intention and ability to switch via a tag in the coinbase transaction.  This allows mining pools to communicate their intention and ability to competitively mine large blocks and also to only activate this strategy when a majority of the hashing power has also signaled its ability to do so. 
-</p><p>How short does the competing block need to be?  It should be shorter in length than what remains to validate on the large block for each validating miner.  If this is the case, then the validating miner will be able to finish validating the small block before the large block and therefore switch to mining its own fee-paying block faster.<span class="footnote_ref"><a href="#fn2" id="ref2">7</a></span></p>
+</p><p>How small does the competing block need to be?  It should be shorter in length than what remains to validate on the large block for each validating miner.  If this is the case, then the validating miner will be able to finish validating the small block before the large block and therefore switch to mining its own fee-paying block faster.<span class="footnote_ref"><a href="#fn2" id="ref2">7</a></span></p>
 
-</p><p class="hide">In theory the penalty associated with mining a sibling is that at best you can reasonably expect that half the network hash power will extend your block verses its sibling - but in practice there is no incentive to switch so the only mining pools on your block will be those that see it first.  However, this reasoning changes when pools have an incentive to switch.  And there are two; first, a short block allows pools to mine 1-txn (no fee) blocks for a shorter time, and second, a short block is quickly validated reducing the time a pool may be hashing on an invalid chain.  Therefore, it makes sense for all pools to continue to mine a short sibling as compared to a 1-txn child on top of an unverified large block.  We do not see this optimal behavior today because block validation times are a few seconds compared to the expected block discovery time of 10 minutes.  However, if miners started losing revenue due to extensive block validation times, it is likely that this behavior would be implemented.
+</p><p class="hide">In theory the penalty associated with mining a sibling is that at best you can reasonably expect that half the network hash power will extend your block verses its sibling - but in practice there is no incentive to switch so the only mining pools on your block will be those that see it first.  However, this reasoning changes when pools have an incentive to switch.  And there are two; first, a small block allows pools to mine 1-txn (no fee) blocks for a shorter time, and second, a small block is quickly validated reducing the time a pool may be hashing on an invalid chain.  Therefore, it makes sense for all pools to continue to mine a small sibling as compared to a 1-txn child on top of an unverified large block.  We do not see this optimal behavior today because block validation times are a few seconds compared to the expected block discovery time of 10 minutes.  However, if miners started losing revenue due to extensive block validation times, it is likely that this behavior would be implemented.
 
 </p><p>So a miner's optimal strategy is to produce a block that the majority of the miners will switch to.   Let us presume that the miner produces a block of size Bc to compete with the large block of size Bl.  Let us define V sec/MB as the average miner validation rate. Therefore:
 <div class="equ">
@@ -419,10 +421,10 @@ Note that this equation assumes that if the large block mining pool finds anothe
 </p><p>This assumption causes a rising tail in the equation (beyond the end of the included figures but addressed here in case you generate your own graphs) where the fees for gigantic blocks exceed all revenue lost by orphaned blocks which is unlikely to occur in practice.</p>
 <p>Another unrealistic but conservative assumption is that the model assumes an infinite quantity of fee paying transactions.  To be more accurate, the constant fee model in equation 8 (Bl*Fm) should be replaced by a function fee(b) that models the sum of all fees in a block of size b.  Since rational miners will include more valuable fees first, the actual fee/MB must decrease as block sizes increase.  Although it would be interesting to gather fee data and accurately model this function, the effect can only reduce block sizes and has been theoretically investigated in [1] so will not be addressed here.</p>
 <p>
-The following chart graphs this equation given transaction fees per MB within the typical ranges we see today (.1 to .4 BTC) and for 1, 2, and 3 BTC fees.
+The following chart graphs this equation given transaction fees per MB within the typical ranges we see today (0.1 to 0.4 BTC) and for 1, 2, and 3 BTC fees.
 </p>
-<div id="fig6" class="figure">
-<div class="figure_title">Figure 6: Miner revenue in BTC as block size increases</div>
+<div id="fig7" class="figure">
+<div class="figure_title">Figure 7: Miner revenue in BTC as block size increases</div>
 <img src="1txn/miner_revenue_large_blocks_25reward.png" width="100%" />
 </div>
 <p>
@@ -434,32 +436,32 @@ It is also interesting to note that as as transaction fees increase, the optimum
 <p>
 The situation is similar when the block reward halves to 12.5 BTC, and in the ultimate case 0 BTC.
 </p>
-<div id="fig7" class="figure">
-<div class="figure_title">Figure 7 and 8: Miner revenue in BTC as block size increases, with block rewards of 12.5 and 0 BTC respectively</div>
+<div id="fig8" class="figure">
+<div class="figure_title">Figure 8 and 9: Miner revenue in BTC as block size increases, with block rewards of 12.5 and 0 BTC respectively</div>
 <img src="1txn/miner_revenue_large_blocks_12reward.png" width="48%" />
 <img src="1txn/miner_revenue_large_blocks_0reward.png" width="48%" />
 </div>
 <p>
-As shown by the green lines, there is actually a disincentive for miners to to include transactions in blocks, given today's 25 BTC reward and typical transaction fees (Figure 6).  Yet as we move to 12.5 BTC reward (figure 7), this incentive turns slightly positive at .4 BTC transaction fees/MB for block sizes up to about 5MB.  While this small disincentive will serve to keep block sizes relatively small, it is unlikely to cause mining pools to consistently mine blocks without any transactions due to long term effects that are not captured in this model -- in particular, if transactions are not committed, Bitcoin ceases to be a value transfer network, and therefore the value of the Bitcoins mined would drop dramatically.
+As shown by the green lines, there is actually a disincentive for miners to to include transactions in blocks, given today's 25 BTC reward and typical transaction fees (Figure 7).  Yet as we move to 12.5 BTC reward (Figure 8), this incentive turns slightly positive at .4 BTC transaction fees/MB for block sizes up to about 5MB.  While this small disincentive will serve to keep block sizes relatively small, it is unlikely to cause mining pools to consistently mine blocks without any transactions due to long term effects that are not captured in this model -- in particular, if transactions are not committed, Bitcoin ceases to be a value transfer network, and therefore the value of the Bitcoins mined would drop dramatically.
 </p>
 <p>The final figure shows what will happen when the block validation times change.  Since block validation includes the time to receive the full block and the time to check it for errors, this rate can be increased by more efficient software, faster CPUs and disks, and lower latency / higher bandwidth network connections.  This chart was generated with a constant .5 BTC fee per MB and a 25 BTC coinbase reward. Note that the chart is denoted in seconds per megabyte so a smaller number is a faster validation time.
-<div id="fig9" class="figure">
-<div class="figure_title">Figure 9: Miner revenue as validation speed changes</div>
+<div id="fig10" class="figure">
+<div class="figure_title">Figure 10: Miner revenue as validation speed changes</div>
 <center><img src="1txn/validation_speed_differences.png" width="80%" /></center>
 </div>
 <h3>Effect on Network Security</h3>
 <p>
 In 2014  Yonatan Sompolinsky, Aviv Zohar showed how an increase in orphans reduces effective network-wide hash rate and how an increasing block size increases orphans<a class="ref" href="ghost" id="ghost_back">[2]</a></span>.  They suggested the GHOST subtree weighting algorithm to resolve these issues.  However, the market found another solution by mining 1-txn blocks on top of unverified blocks in order to optimize profitability.  In this environment, increasing block size does not increase orphan rate since the quantity of data required to begin mining is constant and so propagates through the bitcoin network at the same rate independently of block size.  Therefore, 1-txn blocks actually all network security to be maintained as the block size increases.
 </p><p>
-However, this solution is not as effective as GHOST.  If an attacker could efficiently generate and inject invalid blocks into the Bitcoin Relay (fast-propagation) network, it could divert a significant amount of hash power onto an invalid fork (invalid blocks cannot be injected into the P2P network because they are validated before being forwarded).   The attacker's fraction of the network's hash power increases by the fraction of miners it manages to divert onto the invalid fork.  In this manner an attacker may temporarily gain the mining majority necessary to execute a double spend.  However, it should be noted that over the short term diverting hash power will not allow the miner to discover blocks faster, it simply denies block discovery to other miners.  This means that this attack cannot be used to mine more bitcoins, unless it is sustained for enough time to trigger a difficulty reduction (2 weeks).  But at these time scales it is easy to imagine that the network will respond by identifying and isolating the attacker, or creating block relay trust relationships between honest mining pools.
+However, this solution is not as effective as GHOST.  If an attacker could efficiently generate and inject invalid blocks into the Bitcoin Relay (fast-propagation) network, it could divert a significant amount of hash power onto an invalid fork (invalid blocks cannot be injected into the P2P network because they are validated before being forwarded).   The attacker's fraction of the network's hash power increases by the fraction of miners it manages to divert onto the invalid fork.  In this manner an attacker may temporarily gain the mining majority necessary to execute a double spend.  However, it should be noted that over the short term diverting hash power will not allow the miner to discover blocks faster, it simply denies block discovery to other miners.  This means that this attack cannot be used to mine more bitcoins, unless it is sustained for enough time to trigger a difficulty reduction (two weeks).  But at these time scales it is easy to imagine that the network will respond by identifying and isolating the attacker, or creating block relay trust relationships between honest mining pools.
 </p><p>
 To defeat this attack, some entity should verify the hash and difficulty of a block before full block validation.  This will force attackers to deliberately mine an invalid block which will make the attacker's cost significant (equal to the block reward and fees).  Hash validation is extremely fast compared to transaction verification and could be done by each mining pool or as blocks enter the Bitcoin Relay network.  This will limit time spent mining an invalid fork to the hash validation time.
 </p>
 </div>
 <div class="chapter" id="conclusion">
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>
-The Bitcoin Network is naturally limited by block validation and construction times.  This  puts an upper limit on the network bandwidth of 60KB/sec to transmit the block data to one other peer.  Of course, the retransmission of transactions both in and outside of blocks doubles this rate (proposals exist to address this issue) and your node may be transmitting to multiple peers depending on its location within the peer to peer network and your node's capability and configuration.  However, these multiples remain easily within the capabilities of corporate Internet connections and affordable hosting solutions, and is also within the capability of many residences. 
+The Bitcoin network is naturally limited by block validation and construction times.  This  puts an upper limit on the network bandwidth of 60KB/sec to transmit the block data to one other peer.  Of course, the retransmission of transactions both in and outside of blocks doubles this rate (proposals exist to address this issue) and your node may be transmitting to multiple peers depending on its location within the peer to peer network and your node's capability and configuration.  However, these multiples remain easily within the capabilities of corporate Internet connections and affordable hosting solutions, and is also within the capability of many residences. 
 </p>
 <p>The existence of 1-txn blocks allows a mining pool to slow down the average transaction throughput without significant financial impact.  At the same time, if you believe that it benefits the network to increase or maintain current transaction commitment capacity, the unequal financial reward of a “smaller” vs “larger” block size "vote" (caused by transaction fees) is an incentive for mining pools to increase network capacity, so long as demand (fee-paying transactions) exist.  As the network matures, the (coinbase) reward for merely being a participant declines and so mining pools must begin to accomplish valuable work (transaction validation and commitment) to profit.</p>
 <p>
@@ -468,21 +470,24 @@ If the maximum block size restriction was removed, rational mining pools would q
 Proposals to insert explicit maximum block size voting (BIP-100) or an artificial variable maximum block size based on transaction-fees (flex-cap) are unnecessary.  A mining pool's decision to create competitive siblings or 1-txn blocks rather than "full" blocks is a de-facto hash power weighted vote and simultaneous implementation of his choice to reduce or increase the average block size, based on his and the network's block validation capacity.  Higher transaction fees naturally encourage mining pools to increase block size, despite the fact that these blocks have a higher chance of the block being orphaned in a manner similar to flex-cap schemes.  At the same time, a single mining pool cannot "force the vote" by dramatically exceeding the rest of the network's transaction processing capacity without making it more profitable for the rest of the network to orphan this pool's blocks and effectively reject its vote. 
 </p>
 </div>
-
+<div class="chapter" id="acknowledgements">
+<h2>Acknowledgements</h2>
+We would like to thank Peter R and Zangelbert Bingledack (note these are pseudonyms on the www.bitco.in forums) for their careful review of this paper.
+</div>
 <div class="footnotes">
-<p class="footnote" id="footnote_1txn">[1] This paper uses the term "1 transaction" or "1-txn" blocks to refer to blocks that predominately contain only the coinbase transaction, but actually may contain a few more.  For example, a miner may put private (unrelayed) transactions in a 1-txn block.  We do not use the term "SPV mining" (a practice that also may produce 1-txn blocks) primarily because this term implies WHY these blocks are created, which is an assumption that .  Additionally, it seems that some miners who practice "SPV mining" never fully validate blocks.  However the production of 1-txn blocks may occur for other reasons.</p>
-<p class="footnote" id="footnote_asic">[2] This is just one hypothesis explaining the existence of these blocks, included here so the reader can understand how 1-txn blocks might reveal network function</p>
-<p class="footnote" id="fn3">[3] Examination of the actual block verification algorithm could tell us, however this section of the paper focus on empirical observations.</p>
+<p class="footnote" id="footnote_1txn">[1] This paper uses the term "1 transaction" or "1-txn" blocks to refer to blocks that predominantly contain only the coinbase transaction, but actually may contain a few more.  For example, a miner may put private (unrelayed) transactions in a 1-txn block.  We do not use the term "SPV mining" (a practice that also may produce 1-txn blocks) primarily because this term implies WHY these blocks are created, which is an assumption that an empirical analysis cannot determine.  It seems that some miners who practice "SPV mining" never fully validate blocks, however the production of 1-txn blocks may occur for other reasons.</p>
+<p class="footnote" id="footnote_asic">[2] This is just one hypothesis explaining the existence of these blocks, included here so the reader can understand how 1-txn blocks might reveal network function.</p>
+<p class="footnote" id="fn3">[3] Examination of the actual block verification algorithm could tell us, however this section of the paper focuses on empirical observations.</p>
 <p class="footnote" id="footnote_relay">[4] <a href="https://github.com/TheBlueMatt/RelayNode">Bitcoin Relay Network</a>
 <p class="footnote" id="footnote_relay_stats">[5] <a href="http://bitcoinrelaynetwork.org/stats.html">Bitcoin Relay Network Statistics</a>
-<p class="footnote" id="miner_interest">[6]From the perspective of a 3rd miner, it is irrelevant when 2 sibling block solutions were found.  To maximize profitability all that is relevant is when can the miner begin mining full-transaction blocks.  Therefore miner should stop verifying a large block and start verifying a small block if the work needed to verify the small block is smaller than the work left to complete the large block</p>
-<p class="footnote" id="fn2">[7] This analysis makes the game-theory assumptions.  In particular, that mining pools are rational and attempt maximize their profitability.  One caveat is of course that mining pools would need to be aware of this analysis and implement this behavior.</p>
+<p class="footnote" id="miner_interest">[6] From the perspective of a third miner, it is irrelevant when two sibling block solutions were found.  To maximize profitability all that is relevant is when the miner can begin mining full-transaction blocks.  Therefore the miner should stop verifying a large block and start verifying a small block if the work needed to verify the small block is smaller than the work left to complete the large block.</p>
+<p class="footnote" id="fn2">[7] This analysis makes the game-theoretic assumption that mining pools are rational and attempt to maximize their profitability.  One caveat is of course that mining pools would need to be aware of this analysis and implement this behavior.</p>
 </div>
 <div class="references">
 <p class="reference" id="fee_market">[1] Peter R: <a href="https://scalingbitcoin.org/papers/feemarket.pdf">A Transaction Fee Market Exists Without a Block Size Limit</a> (2015)</p>
 <p class="reference" id="ghost">[2] Yonatan Sompolinsky, Aviv Zohar: <a href="http://www.cs.huji.ac.il/~avivz/pubs/15/btc_ghost.pdf">Secure High-Rate Transaction Processing in Bitcoin</a> (2014)</p>
 <p class="reference" id="bip100">[3] Jeff Garzik: <a href="https://github.com/jgarzik/bip100/blob/master/bip-0100.mediawiki">BIP-100</a> (2015)</p>
-<p class="reference" id="deckerWattenhofer">[4] Christian Decker, Roger WattenHofer: <a href="http://diyhpl.us/~bryan/papers2/bitcoin/Information%20propagation%20in%20the%20Bitcoin%20network.pdf">Information Propagation in the Bitcoin Network</a> (2013)</p>
+<p class="reference" id="deckerWattenhofer">[4] Christian Decker, Roger WattenHofer: <a href="http://diyhpl.us/~bryan/papers2/bitcoin/Information%20propagation%20in%20the%20Bitcoin%20network.pdf">Information Propagation in the Bitcoin network</a> (2013)</p>
 
 <p class="reference" id="ref5">[5] Andrew Stone: <a href="https://www.reddit.com/r/Bitcoin/comments/34ytwb/block_size_and_miner_fees_again_gavin_andresen/cqzeage?context=3">Flexible transaction space supply, based on fees</a>(2015)</p>
 <p class="reference" id="ref6">[6] Meni Rosenfeld: <a href="https://bitcointalk.org/index.php?topic=1078521">Elastic Block Cap</a>(2015)</p>
