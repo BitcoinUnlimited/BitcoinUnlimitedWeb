@@ -1,0 +1,2467 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Bitcoin Unlimited: Fee Market</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/icomoon-social.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="css/leaflet.css" />
+		<!--[if lte IE 8]>
+		    <link rel="stylesheet" href="css/leaflet.ie.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="css/main-orange.css">
+
+        <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+
+        <!-- Navigation & Logo-->
+        <div class="mainmenu-wrapper">
+	        <div class="container">
+	        	<div class="menuextras">
+					
+							
+					</div>
+		        </div>
+		        <nav id="mainmenu" class="mainmenu">
+					<ul>
+						<li class="logo-wrapper"><a href="index.html"><img src="img/bitcoin-unlimited.jpg" width="100%" height="100%""Bitcoin Unlimited Logo"></a></li>
+						
+						<li class="active"><a href="index.html">Home</a></li>
+						
+						<li><a href="download.html">Download</a></li>
+							
+						<li><a href="faq.html">FAQ</a></li>
+						
+						<li><a href="buip.html">Proposals</a></li>
+							
+						<li><a href="members.html">Members</a></li>
+							
+						<li><a href="resources.html">Resources</a></li>
+						
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+        <!-- Page Title -->
+		<div class="section section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Bitcoin Unlimited: Fee Market </h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="papers">
+<TITLE>A Transaction Fee Market Exists Without a Block Size Limit</TITLE>
+<STYLE type="text/css">
+
+body {margin-top: 0px;margin-left: 0px;}
+
+#page_1 {position:relative; overflow: hidden;margin: 103px 0px 74px 117px;padding: 0px;border: none;width: 699px;}
+#page_1 #id_1 {border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 699px;overflow: hidden;}
+#page_1 #id_2 {border:none;margin: 24px 0px 0px 9px;padding: 0px;border:none;width: 690px;overflow: hidden;}
+
+#page_1 #dimg1 {position:absolute;top:826px;left:99px;z-index:-1;width:384px;height:1px;font-size: 1px;line-height:nHeight;}
+#page_1 #dimg1 #img1 {width:384px;height:1px;}
+
+
+
+
+#page_2 {position:relative; overflow: hidden;margin: 57px 0px 61px 117px;padding: 0px;border: none;width: 699px;}
+
+
+
+
+
+#page_3 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+#page_3 #id_1 {border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 699px;overflow: hidden;}
+#page_3 #id_1 #id_1_1 {float:left;border:none;margin: 171px 0px 0px 0px;padding: 0px;border:none;width: 78px;overflow: hidden;}
+#page_3 #id_1 #id_1_2 {float:left;border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 621px;overflow: hidden;}
+#page_3 #id_1 #id_1_2 #id_1_2_1 {border:none;margin: 0px 0px 0px 70px;padding: 0px;border:none;width: 551px;overflow: hidden;}
+#page_3 #id_1 #id_1_2 #id_1_2_2 {border:none;margin: 20px 0px 0px 0px;padding: 0px;border:none;width: 621px;overflow: hidden;}
+#page_3 #id_1 #id_1_2 #id_1_2_2 #id_1_2_2_1 {float:left;border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 242px;overflow: hidden;}
+#page_3 #id_1 #id_1_2 #id_1_2_2 #id_1_2_2_2 {float:left;border:none;margin: 74px 0px 0px 0px;padding: 0px;border:none;width: 65px;overflow: hidden;}
+#page_3 #id_1 #id_1_2 #id_1_2_2 #id_1_2_2_3 {float:left;border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 314px;overflow: hidden;}
+#page_3 #id_2 {border:none;margin: 14px 0px 0px 0px;padding: 0px;border:none;width: 699px;overflow: hidden;}
+
+#page_3 #dimg1 {position:absolute;top:47px;left:320px;z-index:-1;width:8px;height:1px;font-size: 1px;line-height:nHeight;}
+#page_3 #dimg1 #img1 {width:8px;height:1px;}
+
+
+
+
+#page_4 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+#page_4 #dimg1 {position:absolute;top:220px;left:68px;z-index:-1;width:446px;height:338px;}
+#page_4 #dimg1 #img1 {width:446px;height:338px;}
+
+
+
+
+#page_5 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+#page_5 #dimg1 {position:absolute;top:140px;left:6px;z-index:-1;width:569px;height:673px;}
+#page_5 #dimg1 #img1 {width:569px;height:673px;}
+
+
+
+
+#page_6 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+#page_6 #id_1 {border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 699px;overflow: hidden;}
+#page_6 #id_2 {border:none;margin: 9px 0px 0px 0px;padding: 0px;border:none;width: 699px;overflow: hidden;}
+#page_6 #id_2 #id_2_1 {float:left;border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 558px;overflow: hidden;}
+#page_6 #id_2 #id_2_2 {float:left;border:none;margin: 14px 0px 0px 0px;padding: 0px;border:none;width: 141px;overflow: hidden;}
+#page_6 #id_3 {border:none;margin: 1px 0px 0px 0px;padding: 0px;border:none;width: 699px;overflow: hidden;}
+
+#page_6 #dimg1 {position:absolute;top:465px;left:62px;z-index:-1;width:458px;height:276px;}
+#page_6 #dimg1 #img1 {width:458px;height:276px;}
+
+
+
+
+#page_7 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+#page_7 #dimg1 {position:absolute;top:173px;left:51px;z-index:-1;width:480px;height:427px;}
+#page_7 #dimg1 #img1 {width:480px;height:427px;}
+
+
+
+
+#page_8 {position:relative; overflow: hidden;margin: 57px 0px 63px 0px;padding: 0px;border: none;width: 816px;}
+#page_8 #id_1 {border:none;margin: 0px 0px 0px 265px;padding: 0px;border:none;width: 551px;overflow: hidden;}
+#page_8 #id_2 {border:none;margin: 15px 0px 0px 0px;padding: 0px;border:none;width: 816px;overflow: hidden;}
+#page_8 #id_2 #id_2_1 {float:left;border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 409px;overflow: hidden;}
+#page_8 #id_2 #id_2_2 {float:left;border:none;margin: 5px 0px 0px 6px;padding: 0px;border:none;width: 401px;overflow: hidden;}
+#page_8 #id_3 {border:none;margin: 17px 0px 0px 117px;padding: 0px;border:none;width: 699px;overflow: hidden;}
+
+#page_8 #dimg1 {position:absolute;top:101px;left:121px;z-index:-1;width:574px;height:582px;}
+#page_8 #dimg1 #img1 {width:574px;height:582px;}
+
+
+
+
+#page_9 {position:relative; overflow: hidden;margin: 57px 0px 63px 110px;padding: 0px;border: none;width: 706px;}
+
+#page_9 #dimg1 {position:absolute;top:59px;left:0px;z-index:-1;width:596px;height:453px;}
+#page_9 #dimg1 #img1 {width:596px;height:453px;}
+
+
+
+
+#page_10 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+#page_10 #dimg1 {position:absolute;top:188px;left:52px;z-index:-1;width:478px;height:541px;}
+#page_10 #dimg1 #img1 {width:478px;height:541px;}
+
+
+
+
+#page_11 {position:relative; overflow: hidden;margin: 57px 0px 63px 109px;padding: 0px;border: none;width: 707px;}
+
+#page_11 #dimg1 {position:absolute;top:484px;left:1px;z-index:-1;width:596px;height:203px;}
+#page_11 #dimg1 #img1 {width:596px;height:203px;}
+
+
+
+
+#page_12 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+#page_12 #dimg1 {position:absolute;top:34px;left:52px;z-index:-1;width:527px;height:786px;}
+#page_12 #dimg1 #img1 {width:527px;height:786px;}
+
+
+
+
+#page_13 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+
+
+
+
+#page_14 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+
+
+
+
+#page_15 {position:relative; overflow: hidden;margin: 57px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+
+
+
+
+#page_16 {position:relative; overflow: hidden;margin: 56px 0px 63px 117px;padding: 0px;border: none;width: 699px;}
+
+#page_16 #dimg1 {position:absolute;top:218px;left:235px;z-index:-1;width:10px;height:1px;font-size: 1px;line-height:nHeight;}
+#page_16 #dimg1 #img1 {width:10px;height:1px;}
+
+
+
+
+.ft0{font: 13px 'Times New Roman';line-height: 15px;}
+.ft1{font: 32px 'Times New Roman';line-height: 36px;}
+.ft2{font: 11px 'Times New Roman';line-height: 14px;position: relative; bottom: 7px;}
+.ft3{font: 17px 'Times New Roman';line-height: 19px;}
+.ft4{font: bold 13px 'Times New Roman';line-height: 17px;}
+.ft5{font: italic 13px 'Times New Roman';line-height: 17px;}
+.ft6{font: 13px 'Times New Roman';line-height: 17px;}
+.ft7{font: bold 17px 'Times New Roman';line-height: 19px;}
+.ft8{font: italic 15px 'Times New Roman';line-height: 17px;}
+.ft9{font: 10px 'Times New Roman';line-height: 12px;position: relative; bottom: 5px;}
+.ft10{font: 15px 'Times New Roman';line-height: 17px;}
+.ft11{font: 8px 'Times New Roman';line-height: 10px;position: relative; bottom: 5px;}
+.ft12{font: 10px 'Times New Roman';line-height: 12px;}
+.ft13{font: 11px 'Times New Roman';line-height: 14px;}
+.ft14{font: 1px 'Times New Roman';line-height: 1px;}
+.ft15{font: 15px 'Cambria Math';line-height: 22px;position: relative; bottom: 3px;}
+.ft16{font: 11px 'Cambria Math';line-height: 22px;}
+.ft17{font: 1px 'Times New Roman';line-height: 14px;}
+.ft18{font: 15px 'Times New Roman';line-height: 14px;}
+.ft19{font: 15px 'Cambria Math';line-height: 18px;}
+.ft20{font: 11px 'Cambria Math';line-height: 61px;position: relative; bottom: 6px;}
+.ft21{font: 1px 'Times New Roman';line-height: 15px;}
+.ft22{font: 15px 'Times New Roman';line-height: 15px;}
+.ft23{font: 15px 'Cambria Math';line-height: 19px;}
+.ft24{font: 1px 'Times New Roman';line-height: 16px;}
+.ft25{font: 15px 'Times New Roman';line-height: 16px;}
+.ft26{font: bold 15px 'Times New Roman';line-height: 17px;}
+.ft27{font: 15px 'Cambria Math';line-height: 20px;}
+.ft28{font: 11px 'Cambria Math';line-height: 16px;}
+.ft29{font: 11px 'Cambria Math';line-height: 15px;}
+.ft30{font: 15px 'Times New Roman';line-height: 20px;}
+.ft31{font: 15px 'Cambria Math';line-height: 21px;}
+.ft32{font: 15px 'Cambria Math';line-height: 24px;}
+.ft33{font: 15px 'Cambria Math';line-height: 25px;}
+.ft34{font: 15px 'Cambria Math';line-height: 17px;}
+.ft35{font: 11px 'Cambria Math';line-height: 19px;position: relative; bottom: -2px;}
+.ft36{font: 11px 'Cambria Math';line-height: 25px;position: relative; bottom: -2px;}
+.ft37{font: 1px 'Times New Roman';line-height: 17px;}
+.ft38{font: 1px 'Times New Roman';line-height: 8px;}
+.ft39{font: 11px 'Cambria Math';line-height: 30px;position: relative; bottom: -2px;}
+.ft40{font: 11px 'Cambria Math';line-height: 30px;position: relative; bottom: 7px;}
+.ft41{font: 15px 'Cambria Math';line-height: 30px;}
+.ft42{font: 11px 'Cambria Math';line-height: 12px;}
+.ft43{font: 1px 'Times New Roman';line-height: 20px;}
+.ft44{font: 1px 'Times New Roman';line-height: 2px;}
+.ft45{font: 1px 'Times New Roman';line-height: 3px;}
+.ft46{font: 1px 'Times New Roman';line-height: 18px;}
+.ft47{font: 11px 'Cambria Math';line-height: 18px;position: relative; bottom: -2px;}
+.ft48{font: 11px 'Cambria Math';line-height: 19px;position: relative; bottom: -3px;}
+.ft49{font: italic 13px 'Times New Roman';line-height: 15px;}
+.ft50{font: 15px 'Cambria Math';line-height: 0px;}
+.ft51{font: 11px 'Cambria Math';line-height: 61px;position: relative; bottom: 7px;}
+.ft52{font: 11px 'Cambria Math';text-decoration: underline;line-height: 13px;}
+.ft53{font: 1px 'Times New Roman';line-height: 11px;}
+.ft54{font: 1px 'Times New Roman';line-height: 4px;}
+.ft55{font: 1px 'Times New Roman';line-height: 10px;}
+.ft56{font: 10px 'Cambria Math';line-height: 10px;}
+.ft57{font: 1px 'Times New Roman';line-height: 5px;}
+.ft58{font: 9px 'Cambria Math';line-height: 11px;}
+.ft59{font: 15px 'Times New Roman';line-height: 10px;}
+.ft60{font: 15px 'Cambria Math';line-height: 10px;}
+.ft61{font: 1px 'Times New Roman';line-height: 7px;}
+.ft62{font: 11px 'Cambria Math';line-height: 17px;}
+.ft63{font: 13px 'Cambria Math';line-height: 16px;}
+.ft64{font: 9px 'Cambria Math';line-height: 16px;position: relative; bottom: -2px;}
+.ft65{font: 9px 'Cambria Math';line-height: 15px;position: relative; bottom: -2px;}
+.ft66{font: 13px 'Cambria Math';line-height: 15px;}
+.ft67{font: 13px 'Cambria Math';line-height: 22px;}
+.ft68{font: 9px 'Cambria Math';line-height: 22px;position: relative; bottom: -2px;}
+.ft69{font: 11px 'Cambria Math';line-height: 19px;position: relative; bottom: 6px;}
+.ft70{font: 9px 'Cambria Math';line-height: 17px;position: relative; bottom: -2px;}
+.ft71{font: 9px 'Cambria Math';line-height: 17px;position: relative; bottom: 6px;}
+.ft72{font: 10px 'Times New Roman';line-height: 13px;position: relative; bottom: 5px;}
+.ft73{font: italic 15px 'Times New Roman';line-height: 18px;}
+.ft74{font: 11px 'Cambria Math';line-height: 62px;position: relative; bottom: -2px;}
+.ft75{font: 15px 'Times New Roman';line-height: 18px;}
+.ft76{font: 1px 'Times New Roman';line-height: 6px;}
+.ft77{font: 15px 'Cambria Math';line-height: 11px;}
+.ft78{font: 10px 'Cambria Math';line-height: 17px;}
+.ft79{font: 11px 'Cambria Math';line-height: 20px;position: relative; bottom: -2px;}
+.ft80{font: 15px 'Cambria Math';line-height: 23px;}
+.ft81{font: 11px 'Cambria Math';line-height: 23px;position: relative; bottom: -2px;}
+.ft82{font: 11px 'Cambria Math';line-height: 25px;position: relative; bottom: 6px;}
+.ft83{font: 12px 'Times New Roman';line-height: 15px;}
+.ft84{font: 9px 'Times New Roman';line-height: 12px;position: relative; bottom: 5px;}
+.ft85{font: 8px 'Cambria Math';line-height: 10px;}
+.ft86{font: 13px 'Cambria Math';line-height: 17px;}
+.ft87{font: 9px 'Cambria Math';line-height: 12px;position: relative; bottom: 2px;}
+.ft88{font: 8px 'Cambria Math';line-height: 12px;}
+.ft89{font: 1px 'Times New Roman';line-height: 13px;}
+.ft90{font: 13px 'Times New Roman';line-height: 14px;}
+.ft91{font: 13px 'Cambria Math';line-height: 14px;}
+.ft92{font: 9px 'Cambria Math';line-height: 7px;}
+.ft93{font: 11px 'Cambria Math';line-height: 37px;position: relative; bottom: -15px;}
+.ft94{font: 11px 'Cambria Math';line-height: 37px;position: relative; bottom: 6px;}
+.ft95{font: 15px 'Cambria Math';line-height: 37px;}
+.ft96{font: 15px 'Cambria Math';line-height: 20px;position: relative; bottom: 13px;}
+.ft97{font: 11px 'Cambria Math';line-height: 20px;}
+.ft98{font: 11px 'Cambria Math';line-height: 18px;}
+.ft99{font: 11px 'Cambria Math';line-height: 18px;position: relative; bottom: 6px;}
+.ft100{font: 15px 'Cambria Math';line-height: 84px;position: relative; bottom: 10px;}
+.ft101{font: 1px 'Times New Roman';line-height: 21px;}
+.ft102{font: 15px 'Cambria Math';line-height: 22px;}
+.ft103{font: 9px 'Cambria Math';line-height: 19px;position: relative; bottom: -4px;}
+.ft104{font: 9px 'Cambria Math';line-height: 19px;position: relative; bottom: 6px;}
+.ft105{font: 13px 'Cambria Math';line-height: 0px;position: relative; bottom: -4px;}
+.ft106{font: 13px 'Cambria Math';line-height: 73px;position: relative; bottom: -4px;}
+.ft107{font: italic 10px 'Times New Roman';line-height: 12px;}
+.ft108{font: 12px 'Times New Roman';line-height: 14px;}
+.ft109{font: 1px 'Times New Roman';line-height: 9px;}
+.ft110{font: 9px 'Cambria Math';line-height: 51px;position: relative; bottom: 6px;}
+.ft111{font: 11px 'Cambria Math';line-height: 13px;}
+.ft112{font: 15px 'Cambria Math';line-height: 84px;position: relative; bottom: -3px;}
+.ft113{font: 10px 'Cambria Math';line-height: 3px;}
+.ft114{font: 15px 'Cambria Math';line-height: 14px;}
+.ft115{font: 10px 'Cambria Math';line-height: 13px;}
+.ft116{font: 10px 'Cambria Math';line-height: 18px;}
+.ft117{font: 15px 'Times New Roman';margin-left: 6px;line-height: 17px;}
+.ft118{font: 11px 'Cambria Math';line-height: 11px;}
+.ft119{font: 11px 'Cambria Math';line-height: 25px;position: relative; bottom: 7px;}
+.ft120{font: 15px 'Cambria Math';line-height: 12px;}
+.ft121{font: 11px 'Cambria Math';line-height: 10px;}
+.ft122{font: 1px 'Times New Roman';line-height: 23px;}
+.ft123{font: 11px 'Cambria Math';line-height: 14px;position: relative; bottom: 7px;}
+.ft124{font: 11px 'Cambria Math';line-height: 5px;}
+.ft125{font: 11px 'Cambria Math';text-decoration: underline;line-height: 9px;}
+.ft126{font: 11px 'Cambria Math';line-height: 21px;position: relative; bottom: 6px;}
+.ft127{font: 1px 'Times New Roman';line-height: 12px;}
+.ft128{font: 11px 'Cambria Math';line-height: 0px;position: relative; bottom: 5px;}
+.ft129{font: 10px 'Cambria Math';text-decoration: underline;line-height: 13px;}
+.ft130{font: 11px 'Cambria Math';line-height: 12px;position: relative; bottom: 7px;}
+.ft131{font: 1px 'Times New Roman';line-height: 22px;}
+.ft132{font: 1px 'Times New Roman';line-height: 24px;}
+.ft133{font: 9px 'Times New Roman';line-height: 12px;}
+.ft134{font: 13px 'Times New Roman';margin-left: 3px;line-height: 15px;}
+.ft135{font: 13px 'Times New Roman';margin-left: 5px;line-height: 15px;}
+.ft136{font: 13px 'Times New Roman';margin-left: 4px;line-height: 15px;}
+.ft137{font: 8px 'Times New Roman';line-height: 10px;}
+.ft138{font: bold 13px 'Times New Roman';line-height: 15px;}
+.ft139{font: 13px 'Times New Roman';text-decoration: underline;line-height: 15px;}
+.ft140{font: 13px 'Arial';line-height: 15px;}
+.ft141{font: 13px 'Arial';line-height: 16px;}
+.ft142{font: 13px 'Times New Roman';line-height: 0px;}
+.ft143{font: 9px 'Cambria Math';line-height: 5px;}
+.ft144{font: 8px 'Cambria Math';line-height: 17px;position: relative; bottom: 5px;}
+
+.p0{text-align: left;padding-left: 148px;margin-top: 0px;margin-bottom: 0px;}
+.p1{text-align: left;padding-left: 12px;margin-top: 12px;margin-bottom: 0px;}
+.p2{text-align: left;padding-left: 182px;margin-top: 1px;margin-bottom: 0px;}
+.p3{text-align: left;padding-left: 264px;margin-top: 12px;margin-bottom: 0px;}
+.p4{text-align: left;padding-left: 240px;margin-top: 3px;margin-bottom: 0px;}
+.p5{text-align: justify;padding-left: 46px;padding-right: 162px;margin-top: 16px;margin-bottom: 0px;}
+.p6{text-align: left;padding-left: 252px;margin-top: 15px;margin-bottom: 0px;}
+.p7{text-align: left;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p8{text-align: left;margin-top: 19px;margin-bottom: 0px;}
+.p9{text-align: justify;padding-right: 117px;margin-top: 12px;margin-bottom: 0px;}
+.p10{text-align: justify;padding-right: 117px;margin-top: 23px;margin-bottom: 0px;text-indent: 23px;}
+.p11{text-align: left;padding-left: 97px;padding-right: 126px;padding-top: 3px;margin-top: 0px;margin-bottom: 0px;text-indent: -97px;}
+.p12{text-align: left;padding-left: 171px;margin-top: 4px;margin-bottom: 0px;}
+.p13{text-align: justify;padding-right: 117px;margin-top: 20px;margin-bottom: 0px;}
+.p14{text-align: justify;padding-right: 117px;margin-top: 3px;margin-bottom: 0px;text-indent: 23px;}
+.p15{text-align: justify;padding-right: 117px;margin-top: 7px;margin-bottom: 0px;text-indent: 23px;}
+.p16{text-align: left;margin-top: 25px;margin-bottom: 0px;}
+.p17{text-align: left;margin-top: 12px;margin-bottom: 0px;}
+.p18{text-align: left;padding-left: 33px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p19{text-align: left;padding-left: 44px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p20{text-align: left;padding-left: 2px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p21{text-align: left;margin-top: 0px;margin-bottom: 0px;}
+.p22{text-align: left;padding-left: 12px;margin-top: 87px;margin-bottom: 0px;}
+.p23{text-align: left;padding-left: 12px;margin-top: 41px;margin-bottom: 0px;}
+.p24{text-align: left;padding-right: 85px;margin-top: 0px;margin-bottom: 0px;}
+.p25{text-align: left;margin-top: 5px;margin-bottom: 0px;}
+.p26{text-align: left;padding-right: 59px;margin-top: 22px;margin-bottom: 0px;}
+.p27{text-align: left;padding-right: 36px;margin-top: 5px;margin-bottom: 0px;}
+.p28{text-align: left;padding-right: 65px;margin-top: 4px;margin-bottom: 0px;}
+.p29{text-align: left;margin-top: 6px;margin-bottom: 0px;}
+.p30{text-align: left;padding-right: 35px;margin-top: 22px;margin-bottom: 0px;}
+.p31{text-align: left;padding-right: 43px;margin-top: 6px;margin-bottom: 0px;}
+.p32{text-align: left;padding-right: 82px;margin-top: 5px;margin-bottom: 0px;}
+.p33{text-align: left;padding-right: 75px;margin-top: 5px;margin-bottom: 0px;}
+.p34{text-align: left;padding-left: 6px;margin-top: 63px;margin-bottom: 0px;}
+.p35{text-align: left;padding-left: 11px;margin-top: 65px;margin-bottom: 0px;}
+.p36{text-align: left;padding-left: 8px;margin-top: 41px;margin-bottom: 0px;}
+.p37{text-align: left;padding-right: 164px;margin-top: 0px;margin-bottom: 0px;}
+.p38{text-align: left;padding-right: 140px;margin-top: 5px;margin-bottom: 0px;}
+.p39{text-align: left;padding-right: 129px;margin-top: 5px;margin-bottom: 0px;}
+.p40{text-align: left;padding-right: 151px;margin-top: 5px;margin-bottom: 0px;}
+.p41{text-align: left;padding-right: 129px;margin-top: 4px;margin-bottom: 0px;}
+.p42{text-align: left;padding-right: 147px;margin-top: 6px;margin-bottom: 0px;}
+.p43{text-align: left;padding-right: 156px;margin-top: 5px;margin-bottom: 0px;}
+.p44{text-align: left;padding-right: 124px;margin-top: 23px;margin-bottom: 0px;}
+.p45{text-align: justify;padding-right: 119px;margin-top: 22px;margin-bottom: 0px;}
+.p46{text-align: justify;padding-right: 117px;margin-top: 0px;margin-bottom: 0px;}
+.p47{text-align: left;margin-top: 20px;margin-bottom: 0px;}
+.p48{text-align: justify;padding-right: 117px;margin-top: 8px;margin-bottom: 0px;}
+.p49{text-align: right;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p50{text-align: justify;padding-right: 117px;margin-top: 2px;margin-bottom: 0px;}
+.p51{text-align: justify;padding-right: 117px;margin-top: 2px;margin-bottom: 0px;text-indent: 23px;}
+.p52{text-align: justify;padding-right: 117px;margin-top: 9px;margin-bottom: 0px;text-indent: 23px;}
+.p53{text-align: left;padding-left: 289px;margin-top: 34px;margin-bottom: 0px;}
+.p54{text-align: justify;padding-right: 117px;margin-top: 15px;margin-bottom: 0px;}
+.p55{text-align: center;padding-right: 1px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p56{text-align: left;padding-left: 46px;padding-right: 162px;margin-top: 276px;margin-bottom: 0px;}
+.p57{text-align: left;padding-left: 23px;margin-top: 27px;margin-bottom: 0px;}
+.p58{text-align: left;padding-left: 11px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p59{text-align: justify;padding-right: 117px;margin-top: 7px;margin-bottom: 0px;}
+.p60{text-align: left;margin-top: 38px;margin-bottom: 0px;}
+.p61{text-align: left;padding-left: 289px;margin-top: 27px;margin-bottom: 0px;}
+.p62{text-align: justify;padding-right: 117px;margin-top: 15px;margin-bottom: 0px;text-indent: 23px;}
+.p63{text-align: justify;padding-left: 46px;padding-right: 162px;margin-top: 138px;margin-bottom: 0px;}
+.p64{text-align: left;padding-left: 23px;margin-top: 24px;margin-bottom: 0px;}
+.p65{text-align: left;padding-left: 12px;margin-top: 0px;margin-bottom: 0px;}
+.p66{text-align: left;padding-left: 11px;margin-top: 0px;margin-bottom: 0px;}
+.p67{text-align: justify;padding-right: 116px;margin-top: 0px;margin-bottom: 0px;}
+.p68{text-align: justify;padding-right: 117px;margin-top: 5px;margin-bottom: 0px;}
+.p69{text-align: justify;padding-left: 46px;padding-right: 162px;margin-top: 337px;margin-bottom: 0px;}
+.p70{text-align: left;padding-left: 289px;margin-top: 32px;margin-bottom: 0px;}
+.p71{text-align: left;padding-left: 3px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p72{text-align: right;padding-right: 4px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p73{text-align: left;padding-left: 55px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p74{text-align: left;margin-top: 8px;margin-bottom: 0px;}
+.p75{text-align: center;padding-right: 39px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p76{text-align: left;padding-left: 4px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p77{text-align: left;padding-left: 12px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p78{text-align: left;margin-top: 57px;margin-bottom: 0px;}
+.p79{text-align: justify;padding-left: 46px;padding-right: 163px;margin-top: 324px;margin-bottom: 0px;}
+.p80{text-align: justify;padding-left: 46px;padding-right: 162px;margin-top: 0px;margin-bottom: 0px;}
+.p81{text-align: justify;padding-left: 46px;padding-right: 162px;margin-top: 1px;margin-bottom: 0px;}
+.p82{text-align: left;padding-left: 289px;margin-top: 40px;margin-bottom: 0px;}
+.p83{text-align: justify;padding-right: 117px;margin-top: 6px;margin-bottom: 0px;}
+.p84{text-align: justify;padding-left: 46px;padding-right: 162px;padding-top: 33px;margin-top: 455px;margin-bottom: 0px;}
+.p85{text-align: justify;padding-left: 46px;padding-right: 162px;padding-top: 41px;margin-top: 1px;margin-bottom: 0px;}
+.p86{text-align: justify;padding-right: 117px;margin-top: 28px;margin-bottom: 0px;text-indent: 23px;}
+.p87{text-align: left;padding-left: 6px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p88{text-align: right;padding-right: 5px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p89{text-align: left;padding-left: 23px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p90{text-align: left;padding-left: 8px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p91{text-align: left;padding-left: 14px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p92{text-align: left;padding-left: 289px;margin-top: 50px;margin-bottom: 0px;}
+.p93{text-align: left;padding-left: 129px;padding-right: 3px;padding-top: 42px;margin-top: 0px;margin-bottom: 0px;text-indent: -11px;}
+.p94{text-align: right;margin-top: 18px;margin-bottom: 0px;}
+.p95{text-align: left;padding-left: 32px;margin-top: 37px;margin-bottom: 0px;}
+.p96{text-align: left;padding-left: 214px;margin-top: 8px;margin-bottom: 0px;}
+.p97{text-align: justify;padding-right: 117px;padding-top: 42px;margin-top: 6px;margin-bottom: 0px;}
+.p98{text-align: left;margin-top: 22px;margin-bottom: 0px;}
+.p99{text-align: justify;padding-right: 117px;margin-top: 11px;margin-bottom: 0px;}
+.p100{text-align: justify;padding-left: 46px;padding-right: 162px;margin-top: 302px;margin-bottom: 0px;}
+.p101{text-align: justify;padding-right: 117px;margin-top: 29px;margin-bottom: 0px;text-indent: 23px;}
+.p102{text-align: left;padding-left: 289px;margin-top: 33px;margin-bottom: 0px;}
+.p103{text-align: left;padding-left: 155px;margin-top: 0px;margin-bottom: 0px;}
+.p104{text-align: left;padding-left: 94px;margin-top: 19px;margin-bottom: 0px;}
+.p105{text-align: center;padding-right: 7px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p106{text-align: center;padding-right: 19px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p107{text-align: center;padding-right: 24px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p108{text-align: center;padding-right: 43px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p109{text-align: center;padding-right: 22px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p110{text-align: center;padding-right: 6px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p111{text-align: center;padding-right: 23px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p112{text-align: center;padding-right: 44px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p113{text-align: center;padding-right: 18px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p114{text-align: center;padding-left: 11px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p115{text-align: center;padding-right: 8px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p116{text-align: right;padding-right: 23px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p117{text-align: left;padding-left: 7px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p118{text-align: left;padding-left: 5px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p119{text-align: justify;padding-left: 7px;padding-right: 117px;margin-top: 13px;margin-bottom: 0px;text-indent: 23px;}
+.p120{text-align: left;padding-left: 193px;margin-top: 18px;margin-bottom: 0px;}
+.p121{text-align: justify;padding-left: 7px;padding-right: 117px;margin-top: 5px;margin-bottom: 0px;text-indent: 23px;}
+.p122{text-align: justify;padding-left: 7px;padding-right: 117px;margin-top: 8px;margin-bottom: 0px;text-indent: 23px;}
+.p123{text-align: left;padding-left: 30px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p124{text-align: justify;padding-left: 7px;padding-right: 117px;margin-top: 0px;margin-bottom: 0px;}
+.p125{text-align: justify;padding-left: 7px;padding-right: 117px;padding-top: 50px;margin-top: 0px;margin-bottom: 0px;text-indent: 23px;}
+.p126{text-align: justify;padding-left: 7px;padding-right: 116px;margin-top: 0px;margin-bottom: 0px;}
+.p127{text-align: left;padding-left: 296px;margin-top: 55px;margin-bottom: 0px;}
+.p128{text-align: right;padding-right: 18px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p129{text-align: right;padding-right: 89px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p130{text-align: justify;padding-left: 46px;padding-right: 162px;margin-top: 460px;margin-bottom: 0px;}
+.p131{text-align: left;padding-right: 117px;margin-top: 29px;margin-bottom: 0px;text-indent: 23px;}
+.p132{text-align: left;padding-left: 289px;margin-top: 53px;margin-bottom: 0px;}
+.p133{text-align: left;padding-left: 156px;margin-top: 0px;margin-bottom: 0px;}
+.p134{text-align: justify;padding-left: 8px;padding-right: 117px;margin-top: 20px;margin-bottom: 0px;}
+.p135{text-align: left;padding-left: 101px;margin-top: 20px;margin-bottom: 0px;}
+.p136{text-align: left;padding-left: 208px;margin-top: 3px;margin-bottom: 0px;}
+.p137{text-align: left;padding-left: 16px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p138{text-align: center;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p139{text-align: center;padding-left: 44px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p140{text-align: center;padding-right: 4px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p141{text-align: center;padding-right: 3px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p142{text-align: right;padding-right: 3px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p143{text-align: right;padding-right: 49px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p144{text-align: center;padding-right: 17px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p145{text-align: right;padding-right: 6px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p146{text-align: left;padding-left: 8px;margin-top: 17px;margin-bottom: 0px;}
+.p147{text-align: justify;padding-left: 8px;padding-right: 117px;margin-top: 12px;margin-bottom: 0px;}
+.p148{text-align: left;padding-left: 8px;margin-top: 5px;margin-bottom: 0px;}
+.p149{text-align: justify;padding-left: 8px;padding-right: 116px;margin-top: 0px;margin-bottom: 0px;text-indent: 23px;}
+.p150{text-align: left;padding-left: 122px;margin-top: 24px;margin-bottom: 0px;}
+.p151{text-align: center;padding-right: 15px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p152{text-align: center;padding-left: 3px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p153{text-align: center;padding-left: 7px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p154{text-align: center;padding-right: 5px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p155{text-align: center;padding-right: 2px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p156{text-align: center;padding-left: 2px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p157{text-align: center;padding-right: 16px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p158{text-align: center;padding-left: 6px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p159{text-align: right;padding-right: 29px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p160{text-align: left;padding-left: 297px;margin-top: 86px;margin-bottom: 0px;}
+.p161{text-align: justify;padding-left: 46px;padding-right: 162px;margin-top: 462px;margin-bottom: 0px;}
+.p162{text-align: justify;padding-right: 117px;margin-top: 4px;margin-bottom: 0px;}
+.p163{text-align: left;padding-left: 289px;margin-top: 54px;margin-bottom: 0px;}
+.p164{text-align: right;padding-right: 39px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p165{text-align: left;padding-left: 48px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p166{text-align: left;padding-left: 9px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p167{text-align: center;padding-right: 21px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p168{text-align: justify;padding-right: 117px;margin-top: 5px;margin-bottom: 0px;text-indent: 23px;}
+.p169{text-align: justify;padding-left: 47px;padding-right: 117px;margin-top: 23px;margin-bottom: 0px;text-indent: -24px;}
+.p170{text-align: justify;padding-left: 47px;padding-right: 117px;margin-top: 4px;margin-bottom: 0px;text-indent: -24px;}
+.p171{text-align: justify;padding-left: 47px;padding-right: 117px;margin-top: 20px;margin-bottom: 0px;text-indent: -24px;}
+.p172{text-align: left;padding-left: 289px;margin-top: 98px;margin-bottom: 0px;}
+.p173{text-align: left;padding-left: 11px;margin-top: 6px;margin-bottom: 0px;}
+.p174{text-align: left;padding-left: 54px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p175{text-align: left;margin-top: 9px;margin-bottom: 0px;}
+.p176{text-align: right;padding-right: 10px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p177{text-align: left;padding-left: 17px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p178{text-align: right;padding-right: 9px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p179{text-align: right;padding-right: 12px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p180{text-align: left;padding-left: 25px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p181{text-align: right;padding-right: 20px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p182{text-align: left;padding-left: 26px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p183{text-align: left;padding-left: 1px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p184{text-align: left;padding-left: 46px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p185{text-align: right;padding-right: 14px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p186{text-align: right;padding-right: 1px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p187{text-align: left;padding-left: 108px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p188{text-align: justify;padding-right: 117px;margin-top: 1px;margin-bottom: 0px;}
+.p189{text-align: left;margin-top: 21px;margin-bottom: 0px;}
+.p190{text-align: left;padding-left: 289px;margin-top: 133px;margin-bottom: 0px;}
+.p191{text-align: justify;padding-right: 117px;margin-top: 13px;margin-bottom: 0px;}
+.p192{text-align: justify;padding-right: 116px;margin-top: 9px;margin-bottom: 0px;}
+.p193{text-align: justify;padding-right: 117px;margin-top: 9px;margin-bottom: 0px;}
+.p194{text-align: justify;margin-top: 9px;margin-bottom: 0px;}
+.p195{text-align: left;padding-right: 117px;margin-top: 1px;margin-bottom: 0px;}
+.p196{text-align: justify;padding-right: 117px;margin-top: 10px;margin-bottom: 0px;}
+.p197{text-align: justify;padding-right: 118px;margin-top: 9px;margin-bottom: 0px;}
+.p198{text-align: justify;margin-top: 8px;margin-bottom: 0px;}
+.p199{text-align: justify;margin-top: 2px;margin-bottom: 0px;}
+.p200{text-align: left;padding-left: 289px;margin-top: 67px;margin-bottom: 0px;}
+.p201{text-align: left;padding-left: 78px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p202{text-align: left;padding-left: 178px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p203{text-align: justify;margin-top: 7px;margin-bottom: 0px;}
+.p204{text-align: left;padding-left: 289px;margin-top: 432px;margin-bottom: 0px;}
+
+.td0{padding: 0px;margin: 0px;width: 79px;vertical-align: bottom;}
+.td1{padding: 0px;margin: 0px;width: 125px;vertical-align: bottom;}
+.td2{padding: 0px;margin: 0px;width: 163px;vertical-align: bottom;}
+.td3{padding: 0px;margin: 0px;width: 109px;vertical-align: bottom;}
+.td4{padding: 0px;margin: 0px;width: 78px;vertical-align: bottom;}
+.td5{padding: 0px;margin: 0px;width: 209px;vertical-align: bottom;}
+.td6{padding: 0px;margin: 0px;width: 98px;vertical-align: bottom;}
+.td7{padding: 0px;margin: 0px;width: 194px;vertical-align: bottom;}
+.td8{padding: 0px;margin: 0px;width: 224px;vertical-align: bottom;}
+.td9{padding: 0px;margin: 0px;width: 138px;vertical-align: bottom;}
+.td10{padding: 0px;margin: 0px;width: 199px;vertical-align: bottom;}
+.td11{padding: 0px;margin: 0px;width: 146px;vertical-align: bottom;}
+.td12{padding: 0px;margin: 0px;width: 0px;vertical-align: bottom;}
+.td13{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 12px;vertical-align: bottom;}
+.td14{padding: 0px;margin: 0px;width: 175px;vertical-align: bottom;}
+.td15{padding: 0px;margin: 0px;width: 102px;vertical-align: bottom;}
+.td16{padding: 0px;margin: 0px;width: 12px;vertical-align: bottom;}
+.td17{padding: 0px;margin: 0px;width: 223px;vertical-align: bottom;}
+.td18{padding: 0px;margin: 0px;width: 123px;vertical-align: bottom;}
+.td19{padding: 0px;margin: 0px;width: 99px;vertical-align: bottom;}
+.td20{padding: 0px;margin: 0px;width: 11px;vertical-align: bottom;}
+.td21{padding: 0px;margin: 0px;width: 19px;vertical-align: bottom;}
+.td22{padding: 0px;margin: 0px;width: 143px;vertical-align: bottom;}
+.td23{padding: 0px;margin: 0px;width: 107px;vertical-align: bottom;}
+.td24{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 7px;vertical-align: bottom;}
+.td25{padding: 0px;margin: 0px;width: 136px;vertical-align: bottom;}
+.td26{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 11px;vertical-align: bottom;}
+.td27{padding: 0px;margin: 0px;width: 7px;vertical-align: bottom;}
+.td28{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 19px;vertical-align: bottom;}
+.td29{padding: 0px;margin: 0px;width: 45px;vertical-align: bottom;}
+.td30{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 20px;vertical-align: bottom;}
+.td31{padding: 0px;margin: 0px;width: 86px;vertical-align: bottom;}
+.td32{padding: 0px;margin: 0px;width: 32px;vertical-align: bottom;}
+.td33{padding: 0px;margin: 0px;width: 26px;vertical-align: bottom;}
+.td34{padding: 0px;margin: 0px;width: 20px;vertical-align: bottom;}
+.td35{padding: 0px;margin: 0px;width: 30px;vertical-align: bottom;}
+.td36{padding: 0px;margin: 0px;width: 44px;vertical-align: bottom;}
+.td37{padding: 0px;margin: 0px;width: 72px;vertical-align: bottom;}
+.td38{padding: 0px;margin: 0px;width: 63px;vertical-align: bottom;}
+.td39{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 24px;vertical-align: bottom;}
+.td40{padding: 0px;margin: 0px;width: 39px;vertical-align: bottom;}
+.td41{padding: 0px;margin: 0px;width: 24px;vertical-align: bottom;}
+.td42{padding: 0px;margin: 0px;width: 48px;vertical-align: bottom;}
+.td43{padding: 0px;margin: 0px;width: 18px;vertical-align: bottom;}
+.td44{padding: 0px;margin: 0px;width: 101px;vertical-align: bottom;}
+.td45{padding: 0px;margin: 0px;width: 93px;vertical-align: bottom;}
+.td46{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 10px;vertical-align: bottom;}
+.td47{padding: 0px;margin: 0px;width: 2px;vertical-align: bottom;}
+.td48{padding: 0px;margin: 0px;width: 95px;vertical-align: bottom;}
+.td49{padding: 0px;margin: 0px;width: 17px;vertical-align: bottom;}
+.td50{padding: 0px;margin: 0px;width: 115px;vertical-align: bottom;}
+.td51{padding: 0px;margin: 0px;width: 62px;vertical-align: bottom;}
+.td52{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 99px;vertical-align: bottom;}
+.td53{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 95px;vertical-align: bottom;}
+.td54{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 17px;vertical-align: bottom;}
+.td55{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 109px;vertical-align: bottom;}
+.td56{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 115px;vertical-align: bottom;}
+.td57{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 62px;vertical-align: bottom;}
+.td58{padding: 0px;margin: 0px;width: 47px;vertical-align: bottom;}
+.td59{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 41px;vertical-align: bottom;}
+.td60{padding: 0px;margin: 0px;width: 68px;vertical-align: bottom;}
+.td61{padding: 0px;margin: 0px;width: 41px;vertical-align: bottom;}
+.td62{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 47px;vertical-align: bottom;}
+.td63{padding: 0px;margin: 0px;width: 25px;vertical-align: bottom;}
+.td64{padding: 0px;margin: 0px;width: 84px;vertical-align: bottom;}
+.td65{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 48px;vertical-align: bottom;}
+.td66{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 42px;vertical-align: bottom;}
+.td67{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 16px;vertical-align: bottom;}
+.td68{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 68px;vertical-align: bottom;}
+.td69{padding: 0px;margin: 0px;width: 89px;vertical-align: bottom;}
+.td70{padding: 0px;margin: 0px;width: 27px;vertical-align: bottom;}
+.td71{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 18px;vertical-align: bottom;}
+.td72{padding: 0px;margin: 0px;width: 5px;vertical-align: bottom;}
+.td73{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 8px;vertical-align: bottom;}
+.td74{padding: 0px;margin: 0px;width: 3px;vertical-align: bottom;}
+.td75{padding: 0px;margin: 0px;width: 8px;vertical-align: bottom;}
+.td76{padding: 0px;margin: 0px;width: 158px;vertical-align: bottom;}
+.td77{padding: 0px;margin: 0px;width: 120px;vertical-align: bottom;}
+.td78{padding: 0px;margin: 0px;width: 105px;vertical-align: bottom;}
+.td79{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 27px;vertical-align: bottom;}
+.td80{padding: 0px;margin: 0px;width: 83px;vertical-align: bottom;}
+.td81{padding: 0px;margin: 0px;width: 31px;vertical-align: bottom;}
+.td82{padding: 0px;margin: 0px;width: 112px;vertical-align: bottom;}
+.td83{padding: 0px;margin: 0px;width: 124px;vertical-align: bottom;}
+.td84{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 19px;vertical-align: bottom;}
+.td85{padding: 0px;margin: 0px;width: 18px;vertical-align: bottom;background: #000000;}
+.td86{padding: 0px;margin: 0px;width: 11px;vertical-align: bottom;background: #000000;}
+.td87{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 159px;vertical-align: bottom;}
+.td88{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 118px;vertical-align: bottom;}
+.td89{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 79px;vertical-align: bottom;}
+.td90{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 10px;vertical-align: bottom;}
+.td91{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 62px;vertical-align: bottom;}
+.td92{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 47px;vertical-align: bottom;}
+.td93{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 44px;vertical-align: bottom;}
+.td94{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 77px;vertical-align: bottom;}
+.td95{padding: 0px;margin: 0px;width: 159px;vertical-align: bottom;}
+.td96{padding: 0px;margin: 0px;width: 10px;vertical-align: bottom;}
+.td97{border-right: #000000 1px solid;padding: 0px;margin: 0px;width: 44px;vertical-align: bottom;}
+.td98{padding: 0px;margin: 0px;width: 77px;vertical-align: bottom;}
+.td99{padding: 0px;margin: 0px;width: 118px;vertical-align: bottom;}
+.td100{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 159px;vertical-align: bottom;}
+.td101{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 118px;vertical-align: bottom;}
+.td102{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 79px;vertical-align: bottom;}
+.td103{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 72px;vertical-align: bottom;}
+.td104{border-right: #000000 1px solid;border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 44px;vertical-align: bottom;}
+.td105{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 77px;vertical-align: bottom;}
+.td106{padding: 0px;margin: 0px;width: 151px;vertical-align: bottom;}
+.td107{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 356px;vertical-align: bottom;}
+.td108{border-right: #000000 1px solid;border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 91px;vertical-align: bottom;}
+.td109{padding: 0px;margin: 0px;width: 428px;vertical-align: bottom;}
+.td110{padding: 0px;margin: 0px;width: 169px;vertical-align: bottom;}
+.td111{padding: 0px;margin: 0px;width: 257px;vertical-align: bottom;}
+.td112{padding: 0px;margin: 0px;width: 114px;vertical-align: bottom;}
+.td113{padding: 0px;margin: 0px;width: 153px;vertical-align: bottom;}
+.td114{padding: 0px;margin: 0px;width: 64px;vertical-align: bottom;}
+.td115{padding: 0px;margin: 0px;width: 76px;vertical-align: bottom;}
+.td116{padding: 0px;margin: 0px;width: 82px;vertical-align: bottom;}
+.td117{padding: 0px;margin: 0px;width: 66px;vertical-align: bottom;}
+.td118{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 153px;vertical-align: bottom;}
+.td119{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 64px;vertical-align: bottom;}
+.td120{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 76px;vertical-align: bottom;}
+.td121{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 82px;vertical-align: bottom;}
+.td122{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 66px;vertical-align: bottom;}
+.td123{padding: 0px;margin: 0px;width: 40px;vertical-align: bottom;}
+.td124{padding: 0px;margin: 0px;width: 54px;vertical-align: bottom;}
+.td125{padding: 0px;margin: 0px;width: 21px;vertical-align: bottom;}
+.td126{padding: 0px;margin: 0px;width: 51px;vertical-align: bottom;}
+.td127{padding: 0px;margin: 0px;width: 52px;vertical-align: bottom;}
+.td128{padding: 0px;margin: 0px;width: 20px;vertical-align: bottom;background: #000000;}
+.td129{padding: 0px;margin: 0px;width: 13px;vertical-align: bottom;}
+.td130{padding: 0px;margin: 0px;width: 70px;vertical-align: bottom;}
+.td131{padding: 0px;margin: 0px;width: 191px;vertical-align: bottom;}
+.td132{padding: 0px;margin: 0px;width: 29px;vertical-align: bottom;}
+.td133{padding: 0px;margin: 0px;width: 34px;vertical-align: bottom;}
+.td134{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 12px;vertical-align: bottom;}
+.td135{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 20px;vertical-align: bottom;}
+.td136{padding: 0px;margin: 0px;width: 96px;vertical-align: bottom;}
+.td137{padding: 0px;margin: 0px;width: 9px;vertical-align: bottom;}
+.td138{padding: 0px;margin: 0px;width: 15px;vertical-align: bottom;}
+.td139{padding: 0px;margin: 0px;width: 55px;vertical-align: bottom;}
+.td140{padding: 0px;margin: 0px;width: 42px;vertical-align: bottom;}
+.td141{padding: 0px;margin: 0px;width: 137px;vertical-align: bottom;}
+.td142{border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 3px;vertical-align: bottom;}
+.td143{padding: 0px;margin: 0px;width: 4px;vertical-align: bottom;}
+.td144{padding: 0px;margin: 0px;width: 16px;vertical-align: bottom;}
+.td145{padding: 0px;margin: 0px;width: 14px;vertical-align: bottom;}
+.td146{padding: 0px;margin: 0px;width: 248px;vertical-align: bottom;}
+.td147{padding: 0px;margin: 0px;width: 50px;vertical-align: bottom;}
+.td148{padding: 0px;margin: 0px;width: 106px;vertical-align: bottom;}
+.td149{padding: 0px;margin: 0px;width: 65px;vertical-align: bottom;}
+.td150{padding: 0px;margin: 0px;width: 69px;vertical-align: bottom;}
+.td151{padding: 0px;margin: 0px;width: 33px;vertical-align: bottom;}
+.td152{padding: 0px;margin: 0px;width: 28px;vertical-align: bottom;}
+.td153{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 5px;vertical-align: bottom;}
+.td154{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 14px;vertical-align: bottom;}
+.td155{border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 4px;vertical-align: bottom;}
+.td156{padding: 0px;margin: 0px;width: 464px;vertical-align: bottom;}
+.td157{padding: 0px;margin: 0px;width: 215px;vertical-align: bottom;}
+.td158{padding: 0px;margin: 0px;width: 249px;vertical-align: bottom;}
+
+.tr0{height: 17px;}
+.tr1{height: 27px;}
+.tr2{height: 14px;}
+.tr3{height: 23px;}
+.tr4{height: 24px;}
+.tr5{height: 15px;}
+.tr6{height: 16px;}
+.tr7{height: 50px;}
+.tr8{height: 25px;}
+.tr9{height: 34px;}
+.tr10{height: 9px;}
+.tr11{height: 8px;}
+.tr12{height: 30px;}
+.tr13{height: 20px;}
+.tr14{height: 41px;}
+.tr15{height: 2px;}
+.tr16{height: 3px;}
+.tr17{height: 18px;}
+.tr18{height: 29px;}
+.tr19{height: 7px;}
+.tr20{height: 11px;}
+.tr21{height: 4px;}
+.tr22{height: 10px;}
+.tr23{height: 5px;}
+.tr24{height: 26px;}
+.tr25{height: 6px;}
+.tr26{height: 21px;}
+.tr27{height: 12px;}
+.tr28{height: 13px;}
+.tr29{height: 22px;}
+.tr30{height: 53px;}
+.tr31{height: 32px;}
+.tr32{height: 1px;}
+.tr33{height: 40px;}
+.tr34{height: 19px;}
+.tr35{height: 37px;}
+
+.t0{width: 476px;margin-left: 53px;margin-top: 11px;font: 13px 'Times New Roman';}
+.t1{width: 579px;margin-top: 10px;font: 15px 'Times New Roman';}
+.t2{width: 362px;margin-left: 214px;margin-top: 10px;font: 15px 'Times New Roman';}
+.t3{width: 345px;margin-left: 231px;margin-top: 9px;font: 15px 'Times New Roman';}
+.t4{width: 387px;margin-left: 189px;margin-top: 10px;font: 15px 'Cambria Math';}
+.t5{width: 346px;margin-left: 230px;margin-top: 12px;font: 15px 'Cambria Math';}
+.t6{width: 379px;margin-left: 197px;margin-top: 6px;font: 15px 'Cambria Math';}
+.t7{width: 337px;margin-left: 130px;font: 15px 'Cambria Math';}
+.t8{width: 179px;margin-left: 199px;margin-top: 6px;font: 15px 'Cambria Math';}
+.t9{width: 406px;margin-left: 170px;margin-top: 9px;font: 15px 'Cambria Math';}
+.t10{width: 596px;margin-top: 16px;font: 13px 'Times New Roman';}
+.t11{width: 209px;margin-left: 191px;margin-top: 5px;font: 15px 'Cambria Math';}
+.t12{width: 383px;margin-left: 200px;margin-top: 2px;font: 15px 'Cambria Math';}
+.t13{width: 361px;margin-left: 215px;margin-top: 9px;font: 15px 'Cambria Math';}
+.t14{width: 597px;margin-top: 12px;font: 13px 'Times New Roman';}
+.t15{width: 371px;margin-left: 213px;margin-top: 16px;font: 15px 'Times New Roman';}
+.t16{width: 596px;margin-left: 1px;margin-top: 15px;font: 13px 'Times New Roman';}
+.t17{width: 215px;margin-left: 181px;margin-top: 24px;font: 15px 'Cambria Math';}
+.t18{width: 478px;margin-left: 98px;margin-top: 7px;font: 15px 'Cambria Math';}
+.t19{width: 304px;margin-left: 114px;margin-top: 6px;font: 15px 'Cambria Math';}
+.t20{width: 576px;margin-top: 6px;font: 15px 'Cambria Math';}
+.t21{width: 582px;font: 13px 'Times New Roman';}
+
+</STYLE>
+</HEAD>
+
+<BODY>
+<DIV id="page_1">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket1x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p1 ft1">A Transaction Fee Market Exists Without a</P>
+<P class="p2 ft1">Block Size Limit</P>
+<P class="p3 ft3">Peter R<SPAN class="ft2">†</SPAN></P>
+<P class="p4 ft3">August 4, 2015</P>
+<P class="p5 ft6"><SPAN class="ft4">Abstract. </SPAN>This paper shows how a rational Bitcoin miner should select transactions from his node’s mempool, when creating a new block, in order to maximize his profit in the absence of a block size limit. To show this, the paper introduces the <SPAN class="ft5">block space supply curve </SPAN>and the <SPAN class="ft5">mempool demand curve</SPAN>. The former describes the cost for a miner to supply block space by accounting for orphaning risk. The latter represents the fees offered by the transactions in mempool, and is expressed versus the minimum block size required to claim a given portion of the fees. The paper explains how the supply and demand curves from classical economics are related to the derivatives of these two curves, and proves that producing the quantity of block space indicated by their intersection point maximizes the miner’s profit. The paper then shows that an unhealthy fee <NOBR>market—where</NOBR> miners are incentivized to produce arbitrarily large <NOBR>blocks—cannot</NOBR> exist since it requires communicating information at an arbitrarily fast rate. The paper concludes by considering the conditions under which a rational miner would produce big, small or empty blocks, and by estimating the cost of a spam attack.</P>
+<P class="p6 ft0">KEY WORDS</P>
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR>
+	<TD class="tr0 td0"><P class="p7 ft0">1. Bitcoin.</P></TD>
+	<TD class="tr0 td1"><P class="p7 ft0">2. Block size limit.</P></TD>
+	<TD class="tr0 td2"><P class="p7 ft0">3. Transaction fee market.</P></TD>
+	<TD class="tr0 td3"><P class="p7 ft0">4. Blockchain spam.</P></TD>
+</TR>
+</TABLE>
+<P class="p8 ft7">1. Introduction</P>
+<P class="p9 ft10">A pressing concern exists over the ramifications of changing (or not) a Bitcoin protocol rule called the <SPAN class="ft8">block size limit</SPAN>. This rule sets an upper bound on the network’s transactional capacity, <NOBR>or—more</NOBR> <NOBR>simply—the</NOBR> number of transactions the network can confirm per second. Its origins date back to the late summer of 2010, when Satoshi <NOBR>Nakamoto—worried</NOBR> about a spam attack on the fledgling Bitcoin <NOBR>network—modified</NOBR> the source code<SPAN class="ft9">1 </SPAN>to set a maximum permissible size for new blocks appended to the Blockchain. The limit was set at one megabyte, corresponding roughly to three transactions per second. Although this was only a sliver of Visa’s transactional capacity,<SPAN class="ft9">2 </SPAN>it was over eight hundred times greater than what was required at the time.<SPAN class="ft9">3 </SPAN>Nakamoto said that the limit could be raised in the future when the need arrived.<SPAN class="ft9">4</SPAN></P>
+<P class="p10 ft10">Between July 8 and July 15, 2015, a backlog cresting at over sixty thousand pending transactions formed.<SPAN class="ft9">5 </SPAN>Blocks were filled near capacity<SPAN class="ft9">6 </SPAN>and users experienced delays.<SPAN class="ft9">7 </SPAN>At the time of writing, the transaction rate is over three hundred times larger than when the block size limit was introduced,<SPAN class="ft9">8 </SPAN>and raising the limit is now being seriously considered. However, concerns regarding whether the network can support larger block sizes have been voiced. One of the concerns in particular is <NOBR>whether—in</NOBR> the absence of a limit or if the limit is far above the transactional <NOBR>demand—a</NOBR> healthy transaction fee market would develop which charges</P>
+</DIV>
+<DIV id="id_2">
+<P class="p11 ft12"><SPAN class="ft11">† </SPAN>Peter R is from Vancouver, Canada and may be reached by email at peter_r@gmx.com or by personal message at bitcointalk.org. The original PDF version of this document has been <NOBR>time-stamped</NOBR> in the Blockchain.</P>
+<P class="p12 ft13">1BWZe6XkGLcf6DWC3TFXiEtZmcyAoNq5BW</P>
+</DIV>
+</DIV>
+<DIV id="page_2">
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p13 ft10">users the full cost to post transactions (the term <SPAN class="ft8">healthy transaction fee market </SPAN>is defined in Section 7). The <NOBR>fear—if</NOBR> this is not the <NOBR>case—is</NOBR> that the resulting subsidy to users would incentivize spamming and precipitate a <NOBR>“tragedy-of-the-commons”-type</NOBR> failure where network support costs spiral out of control. The object of this paper is to consider whether or not such a fee market is likely to emerge if miners, rather than the protocol, limit the block size.</P>
+<P class="p14 ft10">Related efforts have been made. Houy showed that if the marginal cost to a miner to add a transaction to a block was zero, then a miner would “[include] all transactions whatever the fee attached.” He concluded that either a minimum fee or a limited block size was required.<SPAN class="ft9">9 </SPAN>Andresen explained, however, that due to the increased chances of orphaning a block, the marginal cost was <SPAN class="ft8">not </SPAN>zero; a rational miner should only include a given transaction if its fee is sufficient to cover the added risk of orphaning.<SPAN class="ft9">10 </SPAN>Extending on the work of Houy, we account for Andresen’s orphaning factor and show that a rational miner will <SPAN class="ft8">not </SPAN>in general include all <NOBR>fee-paying</NOBR> transactions, and that a healthy fee market is, in fact, the expected outcome of rational miner behavior, if block size is unconstrained by the protocol (and notwithstanding the assumptions stated explicitly in Section 10).</P>
+<P class="p10 ft10">In Section 3, we derive the <SPAN class="ft8">miner’s profit </SPAN><NOBR><SPAN class="ft8">equation</SPAN>—a</NOBR> simple analytical model for the expectation value of a miner’s profit per block that accounts for orphaning risk. We then introduce two novel concepts called the <SPAN class="ft8">mempool demand curve </SPAN>and the <SPAN class="ft8">block space supply curve</SPAN>, in Sections 4 and 5, respectively. We illustrate how the demand curve can be constructed from the transactions in a node’s mempool, while we derive the supply curve by differentiating the miner’s profit equation with respect to block size, setting the result equal to zero, and then solving the ensuing differential equation. We find that the cost to supply block space <SPAN class="ft8">increases exponentially </SPAN>with the size of the block. We explain that the supply curve is useful because it specifies the miner’s cost of producing a given quantity of block space; and we suggest that the demand curve is useful because it represents the maximum fees that a miner can claim versus the block size he might consider producing.</P>
+<P class="p15 ft10">In Section 6, we use the two curves to visualize the size of the block that maximizes the miner’s profit. We also explain how the two curves relate to the more familiar supply and demand curves from economics. In Section 7, we show that an unhealthy fee <NOBR>market—one</NOBR> where a miner would be incentivized to produce an arbitrarily large <NOBR>block—is</NOBR> not possible because it requires communicating information over a channel at an arbitrarily high bit rate, thereby violating the <NOBR>Shannon-Hartley</NOBR> theorem.<SPAN class="ft9">11 </SPAN>This result applies whether block solutions are communicated in full, or first compressed (<SPAN class="ft8">e.g., </SPAN>using invertible bloom <NOBR>look-up</NOBR> tables). In Section 8, we consider the transaction fee market in more detail; and lastly, in Section 9, we estimate the cost of a spam attack. Let us begin by defining the symbols we use.</P>
+<P class="p16 ft7">2. List of Symbols</P>
+<P class="p17 ft10">For the remainder of this manuscript, the following symbols have the specified meanings.</P>
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr1 td4"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr1 td5"><P class="p7 ft10">bandwidth of a communication</P></TD>
+	<TD class="tr1 td6"><P class="p18 ft16"><SPAN class="ft15">ℙ</SPAN>orphan</P></TD>
+	<TD class="tr1 td7"><P class="p7 ft10">probability that a given block is</P></TD>
+</TR>
+<TR>
+	<TD class="tr2 td4"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td5"><P class="p7 ft18">channel</P></TD>
+	<TD class="tr2 td6"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td7"><P class="p7 ft18">orphaned</P></TD>
+</TR>
+<TR>
+	<TD class="tr3 td4"><P class="p7 ft19">ℬ</P></TD>
+	<TD class="tr3 td5"><P class="p7 ft10">the set of transactions included in</P></TD>
+	<TD class="tr3 td6"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr3 td7"><P class="p7 ft10">block size or block space in</P></TD>
+</TR>
+<TR>
+	<TD class="tr0 td4"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr0 td5"><P class="p7 ft10">a block</P></TD>
+	<TD class="tr0 td6"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr0 td7"><P class="p7 ft10">bytes</P></TD>
+</TR>
+<TR>
+	<TD class="tr4 td4"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr4 td5"><P class="p7 ft10">number of transaction included in</P></TD>
+	<TD class="tr4 td6"><P class="p19 ft20">∗</P></TD>
+	<TD class="tr4 td7"><P class="p7 ft10">the block size that maximizes</P></TD>
+</TR>
+<TR>
+	<TD class="tr5 td4"><P class="p7 ft21">&nbsp;</P></TD>
+	<TD class="tr5 td5"><P class="p7 ft22">a block</P></TD>
+	<TD class="tr5 td6"><P class="p7 ft21">&nbsp;</P></TD>
+	<TD class="tr5 td7"><P class="p7 ft22">the miner’s expected profit</P></TD>
+</TR>
+<TR>
+	<TD class="tr3 td4"><P class="p7 ft23">〈 〉</P></TD>
+	<TD class="tr3 td5"><P class="p7 ft10">expectation value of a miner’s</P></TD>
+	<TD class="tr3 td6"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr3 td7"><P class="p7 ft10">block reward (presently 25 Ƀ)</P></TD>
+</TR>
+<TR>
+	<TD class="tr6 td4"><P class="p7 ft24">&nbsp;</P></TD>
+	<TD class="tr6 td5"><P class="p7 ft25">hashing cost per block</P></TD>
+	<TD class="tr6 td6"><P class="p7 ft24">&nbsp;</P></TD>
+	<TD class="tr6 td7"><P class="p7 ft24">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr7 td4"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr7 td5"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr7 td6"><P class="p20 ft26">2</P></TD>
+	<TD class="tr7 td7"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV id="page_3">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket3x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<DIV id="id_1_1">
+<P class="p21 ft27">ℎ</P>
+<P class="p22 ft28">demand</P>
+<P class="p23 ft29">supply</P>
+</DIV>
+<DIV id="id_1_2">
+<DIV id="id_1_2_1">
+<P class="p21 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+</DIV>
+<DIV id="id_1_2_2">
+<DIV id="id_1_2_2_1">
+<P class="p24 ft10">channel capacity (bits per second)</P>
+<P class="p25 ft10">speed of light</P>
+<P class="p26 ft10">distance over which the block solution is communicated</P>
+<P class="p27 ft30">total hash rate of Bitcoin network miner’s individual hash rate</P>
+<P class="p28 ft10">index used to innumerate the transactions in mempool</P>
+<P class="p29 ft10">money (bitcoins)</P>
+<P class="p30 ft10">partial sum of the transaction fees in mempool in order of descending fee density</P>
+<P class="p31 ft10">miner’s cost due to orphaning to produce a certain block size</P>
+<P class="p32 ft10">the set of transactions in a miner’s mempool</P>
+<P class="p33 ft10">number of transactions in a miner’s mempool</P>
+</DIV>
+<DIV id="id_1_2_2_2">
+<P class="p21 ft27">〈 〉</P>
+<P class="p34 ft31"> 〈Π〉</P>
+<P class="p35 ft28">demand</P>
+<P class="p36 ft29">supply</P>
+</DIV>
+<DIV id="id_1_2_2_3">
+<P class="p37 ft10"><NOBR>signal-to-noise</NOBR> ratio of a communication channel</P>
+<P class="p38 ft10">expected block interval time (~10 min)</P>
+<P class="p39 ft10">expectation value of a miner’s revenue per block</P>
+<P class="p40 ft30">block solution coding gain amortized cost per hash</P>
+<P class="p41 ft10">expectation value of a miner’s profit per block</P>
+<P class="p42 ft10">fee density, or the price per byte for block space</P>
+<P class="p43 ft10">fee density bid by a given transaction in mempool</P>
+<P class="p44 ft10">miner’s cost per byte to produce additional block space</P>
+<P class="p25 ft10">block solution propagation time</P>
+<P class="p45 ft10">block solution propagation time minus the time to communicate the block header</P>
+</DIV>
+</DIV>
+</DIV>
+</DIV>
+<DIV id="id_2">
+<P class="p46 ft10">The symbol $ refers to <SPAN class="ft8">US dollars</SPAN>; price conversions between bitcoin and US dollars assume that 1 Ƀ = $300.</P>
+<P class="p47 ft7">3. The Miner’s Profit Equation and the Effect of Orphaning</P>
+<P class="p48 ft10">By attempting to mine a block, the miner expects to generate revenue <SPAN class="ft23">〈 〉 </SPAN>at hashing cost <SPAN class="ft23">〈 〉 </SPAN>to earn a profit per block</P>
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR>
+	<TD class="tr4 td8"><P class="p7 ft32">〈Π〉 = 〈 〉 − 〈 〉.</P></TD>
+	<TD class="tr4 td9"><P class="p49 ft10">(1)</P></TD>
+</TR>
+</TABLE>
+<P class="p50 ft10">The miner’s expected hashing cost is equal to the product of his hardware’s amortized price per hash,<SPAN class="ft9">12 </SPAN>, his hash rate, <SPAN class="ft23">ℎ</SPAN>, and the length of time he expects to work on the block (typically the block time ). This can be expressed as the following equation:</P>
+<TABLE cellpadding=0 cellspacing=0 class="t3">
+<TR>
+	<TD class="tr8 td10"><P class="p7 ft33">〈 〉 = ℎ .</P></TD>
+	<TD class="tr8 td11"><P class="p49 ft10">(2)</P></TD>
+</TR>
+</TABLE>
+<P class="p51 ft10">The miner’s expected revenue is equal to the amount he would earn if he won the block multiplied by his probability of winning. The amount he would earn is the sum of the block reward, , and the transaction fees, . His probability of winning, assuming all blocks propagate instantly, is equal to the ratio of his hash rate <SPAN class="ft34">(ℎ</SPAN>) to the total hash rate of the Bitcoin network <SPAN class="ft34">(</SPAN>). Putting this together, his expected revenue would be <SPAN class="ft34">〈 〉 = ( + ) ℎ⁄ </SPAN>.</P>
+<P class="p52 ft10">The problem with this equation is that it does not reflect the miner’s diminished chances of winning if he chooses to publish a block that propagates slowly to the other miners. Even though he may find the first valid block, if his solution is received after most miners are working on another, then his block will likely be discarded. This effect is called <SPAN class="ft8">orphaning</SPAN>.</P>
+<P class="p53 ft26">3</P>
+</DIV>
+</DIV>
+<DIV id="page_4">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket4x1.jpg" id="img1">
+</DIV>
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p54 ft10">It makes including <NOBR>low-fee</NOBR> transactions unappealing if the added fee revenue is not sufficient to offset the increased risk. With this effect in mind, our equation for the miner’s expected revenue gets discounted by the chances that his block is orphaned, <SPAN class="ft23">ℙ</SPAN><SPAN class="ft35">orphan</SPAN>, becoming</P>
+<TABLE cellpadding=0 cellspacing=0 class="t4">
+<TR>
+	<TD class="tr4 td12"></TD>
+	<TD rowspan=2 class="tr9 td6"><P class="p7 ft27">〈 〉 = ( + )</P></TD>
+	<TD class="tr4 td13"><P class="p55 ft23">ℎ</P></TD>
+	<TD rowspan=2 class="tr9 td14"><P class="p20 ft33">(1 − ℙ<SPAN class="ft36">orphan</SPAN>).</P></TD>
+	<TD rowspan=2 class="tr9 td15"><P class="p49 ft10">(3)</P></TD>
+</TR>
+<TR>
+	<TD class="tr10 td12"></TD>
+	<TD rowspan=2 class="tr0 td16"><P class="p7 ft37">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td12"></TD>
+	<TD class="tr11 td6"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td14"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td15"><P class="p7 ft38">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p15 ft10">It is intuitive that the chance of orphaning should be low if the propagation time is short, and should be high if the propagation time is long. Using the fact that block times follow a Poisson distribution, Andresen approximated<SPAN class="ft9">10 </SPAN>the orphaning probability as</P>
+<TABLE cellpadding=0 cellspacing=0 class="t5">
+<TR>
+	<TD class="tr11 td17"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td18"><P class="p7 ft38">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr12 td17"><P class="p7 ft41">ℙ<SPAN class="ft39">orphan </SPAN>= 1 − <SPAN class="ft40">− </SPAN>,</P></TD>
+	<TD class="tr12 td18"><P class="p49 ft10">(4)</P></TD>
+</TR>
+</TABLE>
+<P class="p46 ft10">where is the block propagation time. Fig. 1 visualizes this effect. It must be emphasized that is the total time between when a miner has found a solution and when that solution has been communicated and accepted by his peers.<SPAN class="ft9">13</SPAN></P>
+<P class="p56 ft0">Fig. 1. The chance that a block gets orphaned increases with the amount of time it takes the block to propagate to the other miners.</P>
+<P class="p57 ft10">By substituting Eqs. (2 - 4) into Eq. (1), we can now write the <SPAN class="ft8">miner’s profit equation</SPAN>:</P>
+<TABLE cellpadding=0 cellspacing=0 class="t6">
+<TR>
+	<TD class="tr13 td12"></TD>
+	<TD rowspan=4 class="tr14 td19"><P class="p7 ft32">〈Π〉 = ( + )</P></TD>
+	<TD rowspan=2 class="tr3 td20"><P class="p55 ft19">ℎ</P></TD>
+	<TD rowspan=2 class="tr3 td21"><P class="p58 ft42">−</P></TD>
+	<TD colspan=2 class="tr13 td22"><P class="p7 ft43">&nbsp;</P></TD>
+	<TD rowspan=4 class="tr14 td23"><P class="p49 ft10">(5)</P></TD>
+</TR>
+<TR>
+	<TD class="tr15 td12"></TD>
+	<TD class="tr15 td24"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr16 td25"><P class="p7 ft45">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr16 td12"></TD>
+	<TD class="tr16 td26"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr17 td21"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr17 td22"><P class="p58 ft19">− ℎ .</P></TD>
+</TR>
+<TR>
+	<TD class="tr2 td12"></TD>
+	<TD rowspan=2 class="tr0 td20"><P class="p7 ft37">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr16 td12"></TD>
+	<TD class="tr16 td19"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td21"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td27"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td25"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td23"><P class="p7 ft45">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p59 ft10">A <SPAN class="ft8">rational miner </SPAN>selects which transactions to include in his block in a manner that maximizes the expectation value of his profit. To better understand how he would make this selection, we will next introduce the concepts of the <SPAN class="ft8">mempool demand curve </SPAN>and the <SPAN class="ft8">block space supply curve.</SPAN></P>
+<P class="p60 ft7">4. The Mempool Demand Curve</P>
+<P class="p59 ft10"><SPAN class="ft8">Mempool </SPAN>is the name given to the set of valid transactions that the miner is aware of but that have not yet been included in a block. We denote this set as and the number of transactions contained within it as . In the absence of a block size limit, the miner is free to select <SPAN class="ft19">≤ </SPAN>transactions from to create a new block <SPAN class="ft19">ℬ ⊂ </SPAN>.</P>
+<P class="p61 ft26">4</P>
+</DIV>
+<DIV id="page_5">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket5x1.jpg" id="img1">
+</DIV>
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p62 ft10">To construct the mempool demand curve, we first imagine sorting the mempool from greatest <SPAN class="ft8">fee density </SPAN>(<SPAN class="ft8">i.e.</SPAN>, the fee per size of the transaction in bytes) to least, and then associating an index <SPAN class="ft19">{ ∶ 1, 2, … , − 1, } </SPAN>with each transaction in the resulting list. As illustrated in Fig. 2, each transaction can be thought of as a triangle whose height represents its fee, whose width represents its size in bytes, and whose slope represents its fee density.</P>
+<P class="p63 ft0">Fig. 2. A transaction can be visualized as a right triangle: its height represents its fee, its width represents its size in bytes, and its slope represents its fee density. To construct the mempool demand curve, we first sort the transactions in mempool in order of descending fee density.</P>
+<P class="p64 ft10">Define <SPAN class="ft47">demand</SPAN><SPAN class="ft19">( ) </SPAN>as the sum of the fees offered by each transaction in this sorted list:</P>
+<P class="p65 ft10"><SPAN class="ft35">demand</SPAN><SPAN class="ft23">( ) ≡ ∑ </SPAN><SPAN class="ft48">=1 </SPAN><SPAN class="ft23">fee </SPAN>; and define <SPAN class="ft23">(</SPAN>) as the sum of each transaction’s size in bytes:</P>
+<P class="p66 ft10"><SPAN class="ft23">( ) ≡ ∑ </SPAN><SPAN class="ft48">=1 </SPAN><SPAN class="ft23">size </SPAN>. The mempool demand curve is then described parametrically as the</P>
+<P class="p67 ft10">sequence of points in the <NOBR>-plane,</NOBR> <SPAN class="ft19">[ ( ), </SPAN><SPAN class="ft47">demand</SPAN><SPAN class="ft19">( )]</SPAN>, as is incremented from 1 to <SPAN class="ft8">n</SPAN>. It can be visualized by stacking the triangles from Fig. 2 <NOBR>corner-to-corner</NOBR> as shown in Fig. 3. A</P>
+<P class="p68 ft10">point on the curve represents the <SPAN class="ft8">maximum </SPAN>fees a miner can claim by producing a given quantity of block space. This mempool demand curve helps us reduce a <NOBR>multi-dimensional</NOBR> selection problem into a <NOBR>one-dimensional</NOBR> one.</P>
+<P class="p69 ft0">Fig. 3. The mempool demand curve describes the <SPAN class="ft49">maximum </SPAN>fees a miner can claim from his mempool, , as a function of the quantity of block space, , he might produce. To construct this curve, the triangles representing the sorted transactions in mempool are stacked <NOBR>vertex-to-vertex</NOBR> as shown.</P>
+<P class="p70 ft26">5</P>
+</DIV>
+<DIV id="page_6">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket6x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p47 ft7">5. The Block Space Supply Curve</P>
+<P class="p59 ft10">The size of the block a miner elects to produce controls the fees he attempts to claim, <SPAN class="ft34">( ), </SPAN>and the propagation time he chooses to risk, <SPAN class="ft34">(</SPAN>). Both these variables affect the expectation value of his profit.</P>
+<P class="p51 ft10">To investigate this in more detail, we define the <SPAN class="ft8">neutral profit </SPAN>as the profit (or loss) the miner would earn by publishing an empty block. We can construct a fee curve, <SPAN class="ft35">supply</SPAN><SPAN class="ft23">( )</SPAN>, in the <NOBR>-plane</NOBR> where all points on the curve return the neutral profit by requiring that the miner’s profit (<SPAN class="ft8">cf</SPAN>. Eq. 5) remain constant for any block size:</P>
+</DIV>
+<DIV id="id_2">
+<DIV id="id_2_1">
+<TABLE cellpadding=0 cellspacing=0 class="t7">
+<TR>
+	<TD class="tr17 td12"></TD>
+	<TD rowspan=2 class="tr4 td28"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr18 td29"><P class="p71 ft19">〈 〉 =</P></TD>
+	<TD rowspan=2 class="tr4 td30"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr18 td31"><P class="p71 ft23"><SPAN class="ft50">{[ + </SPAN></P></TD>
+	<TD rowspan=3 class="tr18 td32"><P class="p7 ft19">( )]</P></TD>
+	<TD rowspan=2 class="tr4 td26"><P class="p55 ft23">ℎ</P></TD>
+	<TD rowspan=3 class="tr18 td21"><P class="p58 ft51">−</P></TD>
+	<TD class="tr17 td33"><P class="p72 ft52">( )</P></TD>
+	<TD rowspan=3 class="tr18 td0"><P class="p7 ft23">− ℎ } = 0.</P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td12"></TD>
+	<TD rowspan=2 class="tr20 td33"><P class="p7 ft53">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td12"></TD>
+	<TD class="tr21 td21"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td34"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td20"><P class="p7 ft54">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr22 td12"></TD>
+	<TD rowspan=2 class="tr5 td21"><P class="p7 ft21">&nbsp;</P></TD>
+	<TD class="tr22 td29"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr5 td34"><P class="p7 ft21">&nbsp;</P></TD>
+	<TD class="tr22 td31"><P class="p73 ft56">supply</P></TD>
+	<TD class="tr22 td32"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr5 td35"><P class="p7 ft21">&nbsp;</P></TD>
+	<TD class="tr22 td33"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td0"><P class="p7 ft55">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td12"></TD>
+	<TD class="tr23 td29"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td31"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td32"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td33"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td0"><P class="p7 ft57">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p74 ft10">Eq. (6) is an ordinary differential equation that we show in the Appendix has solution</P>
+<TABLE cellpadding=0 cellspacing=0 class="t8">
+<TR>
+	<TD class="tr6 td36"><P class="p7 ft24">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr24 td37"><P class="p7 ft23">( ) = (</P></TD>
+	<TD colspan=2 class="tr6 td38"><P class="p75 ft58">∆( )</P></TD>
+</TR>
+<TR>
+	<TD rowspan=2 class="tr22 td36"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr15 td39"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr22 td40"><P class="p76 ft60">− 1)<SPAN class="ft59">,</SPAN></P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td41"><P class="p7 ft61">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr0 td36"><P class="p77 ft62">supply</P></TD>
+	<TD class="tr0 td37"><P class="p7 ft37">&nbsp;</P></TD>
+	<TD class="tr0 td41"><P class="p7 ft37">&nbsp;</P></TD>
+	<TD class="tr0 td40"><P class="p7 ft37">&nbsp;</P></TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV id="id_2_2">
+<P class="p21 ft10">(6)</P>
+<P class="p78 ft10">(7)</P>
+</DIV>
+</DIV>
+<DIV id="id_3">
+<P class="p46 ft10">where <SPAN class="ft19">∆( ) ≡ ( ) − (0). </SPAN>We call this the <SPAN class="ft8">block space supply curve</SPAN>. It represents the fees a miner requires to cover the additional cost of supplying block space (Fig. 4); these costs grow <SPAN class="ft8">exponentially </SPAN>with the propagation time. If a block can be constructed with - coordinates above the curve, the miner has a <SPAN class="ft8">surplus</SPAN>; if not, he has a <SPAN class="ft8">deficit </SPAN>and would be better off mining an empty block. We next consider how he can use this curve, along with the mempool demand curve, to maximize his profit.</P>
+<P class="p79 ft0">Fig. 4. The block space supply curve describes the cost for a miner to produce a block of a certain size. Consider the three blocks of size shown: <SPAN class="ft63">ℬ</SPAN><SPAN class="ft64">+</SPAN>, <SPAN class="ft63">ℬ </SPAN>and <SPAN class="ft63">ℬ</SPAN><SPAN class="ft64">−</SPAN>. Since <SPAN class="ft63">ℬ</SPAN><SPAN class="ft64">+ </SPAN>lies</P>
+<P class="p80 ft0"><SPAN class="ft49">above </SPAN>the curve, the miner would expect a surplus equal to <SPAN class="ft65">fees+ </SPAN><SPAN class="ft66">− </SPAN><SPAN class="ft65">cost </SPAN>by mining it. The block <SPAN class="ft66">ℬ </SPAN>lies <SPAN class="ft49">on </SPAN>the curve, and hence the miner would be indifferent to mining that</P>
+<P class="p81 ft0">block over an empty block. The block <SPAN class="ft67">ℬ</SPAN><SPAN class="ft68">−</SPAN>, on the other hand, lies below the curve and the miner would expect to incur a deficit if he mined it (and thus would prefer to mine an empty block). Note that the block <SPAN class="ft67">ℬ</SPAN><SPAN class="ft68">− </SPAN>would result in a surplus with faster block propagation.</P>
+<P class="p82 ft26">6</P>
+</DIV>
+</DIV>
+<DIV id="page_7">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket7x1.jpg" id="img1">
+</DIV>
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p47 ft7">6. Maximizing the Miner’s Profit</P>
+<P class="p83 ft10">To maximize his profit, the miner constructs a mempool demand curve from the real transactions pending in his mempool, and constructs a block space supply curve from empirical data he has on propagation delay versus block size (to estimate ). The block size<SPAN class="ft69">∗ </SPAN>where the miner’s surplus, <SPAN class="ft35">demand </SPAN><SPAN class="ft23">− </SPAN><SPAN class="ft35">supply</SPAN>, is largest represents the point of maximum profit (Fig. 5a). This is the size of the block a rational miner should create.</P>
+<P class="p84 ft0">Fig. 5. The miner’s surplus is greatest when the gap between <SPAN class="ft70">demand </SPAN>and <SPAN class="ft70">supply </SPAN>is a maximum. This occurs when the derivatives of the curves intersect at <SPAN class="ft71">∗</SPAN>; or, in other</P>
+<P class="p85 ft0">words, when supply meets demand. Producing a smaller block than <SPAN class="ft71">∗ </SPAN>leaves profitable <NOBR>fee-paying</NOBR> transactions behind, while producing a larger block results in too high an orphan rate.</P>
+<P class="p86 ft75">We can draw a parallel to the traditional economic supply and demand curves<SPAN class="ft72">14 </SPAN>with only a bit more work. The traditional supply curve represents the <SPAN class="ft73">unit price </SPAN>of a commodity at a given level of production . However, so far our analysis has considered the price <SPAN class="ft73">per complete block</SPAN>. The price <SPAN class="ft73">per byte</SPAN>, ,<SPAN class="ft72">15 </SPAN>for the miner to produce a given quantity of block space follows by differentiating <SPAN class="ft74">supply </SPAN>with respect to :</P>
+<TABLE cellpadding=0 cellspacing=0 class="t9">
+<TR>
+	<TD class="tr17 td12"></TD>
+	<TD class="tr17 td40"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr18 td36"><P class="p7 ft23">( ) ≡</P></TD>
+	<TD class="tr17 td34"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td42"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td43"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD colspan=3 class="tr17 td32"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td20"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td44"><P class="p87 ft52">( )</P></TD>
+	<TD rowspan=3 class="tr18 td45"><P class="p49 ft10">(8)</P></TD>
+</TR>
+<TR>
+	<TD class="tr25 td12"></TD>
+	<TD rowspan=2 class="tr20 td40"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr25 td30"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr20 td42"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr20 td43"><P class="p88 ft77">=</P></TD>
+	<TD class="tr25 td46"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr19 td47"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr25 td30"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr20 td20"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr20 td44"><P class="p89 ft77">.</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td12"></TD>
+	<TD rowspan=2 class="tr26 td34"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=3 rowspan=2 class="tr26 td32"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr0 td12"></TD>
+	<TD class="tr0 td40"><P class="p90 ft78">supply</P></TD>
+	<TD class="tr0 td36"><P class="p7 ft37">&nbsp;</P></TD>
+	<TD class="tr0 td42"><P class="p91 ft62">supply</P></TD>
+	<TD class="tr0 td43"><P class="p7 ft37">&nbsp;</P></TD>
+	<TD class="tr0 td20"><P class="p7 ft37">&nbsp;</P></TD>
+	<TD class="tr0 td44"><P class="p7 ft37">&nbsp;</P></TD>
+	<TD class="tr0 td45"><P class="p7 ft37">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p92 ft26">7</P>
+</DIV>
+<DIV id="page_8">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket8x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<P class="p21 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+</DIV>
+<DIV id="id_2">
+<DIV id="id_2_1">
+<P class="p93 ft10">We can construct something similar to the<SPAN class="ft79">demand </SPAN>with respect to :</P>
+<P class="p94 ft81">demand<SPAN class="ft80">( ) ≡</SPAN></P>
+</DIV>
+<DIV id="id_2_2">
+<P class="p21 ft10">traditional demand curve by differentiating</P>
+<P class="p95 ft16">demand<SPAN class="ft15">.</SPAN></P>
+</DIV>
+</DIV>
+<DIV id="id_3">
+<P class="p21 ft10">As illustrated in Fig. 5 (b), the block size <SPAN class="ft20">∗ </SPAN>where the miner’s profit is greatest occurs when</P>
+<P class="p96 ft36">supply<SPAN class="ft33">( </SPAN><SPAN class="ft82">∗</SPAN><SPAN class="ft33">) = </SPAN>demand<SPAN class="ft33">( </SPAN><SPAN class="ft82">∗</SPAN><SPAN class="ft33">).</SPAN></P>
+<P class="p97 ft10">We can think of <SPAN class="ft35">supply </SPAN>and <SPAN class="ft35">demand </SPAN>as the <SPAN class="ft8">differentiated curves </SPAN>and <SPAN class="ft35">supply </SPAN>and <SPAN class="ft35">demand </SPAN>as the <SPAN class="ft8">integrated curves</SPAN>. Both are useful. Armed with these results, let us now consider the conditions under which a healthy fee market should emerge.</P>
+<P class="p98 ft7">7. Conditions for a Healthy Fee Market</P>
+<P class="p99 ft10">We consider three market conditions for Bitcoin transaction fees: <SPAN class="ft8">healthy</SPAN>, <SPAN class="ft8">unhealthy </SPAN>and <SPAN class="ft8">non- existent</SPAN>. In a healthy fee market, the miner’s surplus is maximized at a finite quantity of block space, and thus the miner is incentivized to produce a finite block (Fig. 6a). In an unhealthy market, the miner’s surplus continually increases with block space, and therefore a rational miner should produce an arbitrarily large block (Fig. 6b). In a <NOBR>non-existent</NOBR> market, including <SPAN class="ft8">any </SPAN>transactions results in a deficit to the miner, and so the miner is better off producing an empty block (Fig. 6c).</P>
+<P class="p100 ft0">Fig. 6. This chart illustrates healthy, unhealthy and <NOBR>non-existent</NOBR> transaction fee markets. In a healthy market, the miner’s surplus is maximized at a finite block size (a). In an unhealthy market, the miner’s surplus continually increases with block space suggesting that he should produce an infinite block (b). In a <NOBR>non-existent</NOBR> market, the miner cannot earn a surplus by including transactions and is thus better off producing an empty block (c).</P>
+<P class="p101 ft10">We can define the conditions for each type of market more rigorously if we make the assumption that block space is a normal economic commodity that obeys the <SPAN class="ft8">law of demand </SPAN>(<SPAN class="ft8">i.e.</SPAN>, the quantity of block space demanded increases monotonically as the unit price per byte decreases).<SPAN class="ft9">16 </SPAN>Although we will not prove it, it is straightforward to calculate the constraints on the supply curve and the propagation time for each type of market (Table 1).</P>
+<P class="p102 ft26">8</P>
+</DIV>
+</DIV>
+<DIV id="page_9">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket9x1.jpg" id="img1">
+</DIV>
+
+
+<P class="p103 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p104 ft0">Table 1. Healthy, unhealthy and <NOBR>non-existent</NOBR> fee markets (positive inflation)</P>
+<TABLE cellpadding=0 cellspacing=0 class="t10">
+<TR>
+	<TD class="tr5 td19"><P class="p105 ft0">Market</P></TD>
+	<TD class="tr5 td19"><P class="p106 ft0">Block size</P></TD>
+	<TD colspan=2 class="tr5 td48"><P class="p107 ft0">Demand</P></TD>
+	<TD class="tr5 td49"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=3 class="tr5 td3"><P class="p108 ft0">Supply</P></TD>
+	<TD class="tr5 td50"><P class="p109 ft0">Propagation time</P></TD>
+	<TD class="tr5 td51"><P class="p105 ft0">Physically</P></TD>
+</TR>
+<TR>
+	<TD class="tr26 td52"><P class="p110 ft83">type</P></TD>
+	<TD class="tr26 td52"><P class="p106 ft12">(maximizes profit)</P></TD>
+	<TD colspan=2 class="tr26 td53"><P class="p111 ft83">constraint<SPAN class="ft84">17</SPAN></P></TD>
+	<TD class="tr26 td54"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=3 class="tr26 td55"><P class="p112 ft83">constraint</P></TD>
+	<TD class="tr26 td56"><P class="p111 ft83">asymptote</P></TD>
+	<TD class="tr26 td57"><P class="p105 ft83">possible?</P></TD>
+</TR>
+<TR>
+	<TD rowspan=2 class="tr26 td19"><P class="p105 ft0">Healthy</P></TD>
+	<TD rowspan=2 class="tr26 td19"><P class="p113 ft0">Finite</P></TD>
+	<TD class="tr6 td58"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr6 td42"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr6 td49"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=2 class="tr5 td59"><P class="p114 ft85">supply</P></TD>
+	<TD rowspan=2 class="tr26 td60"><P class="p76 ft63">&gt; 0</P></TD>
+	<TD rowspan=2 class="tr26 td50"><P class="p109 ft86">( ) &gt; (log )</P></TD>
+	<TD rowspan=2 class="tr26 td51"><P class="p115 ft0">Yes</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td58"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td42"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td49"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr22 td61"><P class="p7 ft55">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td19"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td19"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td58"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td42"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td49"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td60"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td50"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td51"><P class="p7 ft57">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD rowspan=3 class="tr3 td19"><P class="p105 ft0">Unhealthy</P></TD>
+	<TD rowspan=3 class="tr3 td19"><P class="p113 ft0">Infinite</P></TD>
+	<TD class="tr27 td62"><P class="p55 ft88"><SPAN class="ft87">̅</SPAN>demand</P></TD>
+	<TD rowspan=2 class="tr6 td42"><P class="p116 ft63">&lt; 0</P></TD>
+	<TD class="tr28 td49"><P class="p7 ft89">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr5 td59"><P class="p114 ft85">supply</P></TD>
+	<TD rowspan=3 class="tr3 td60"><P class="p76 ft63">&lt; 0</P></TD>
+	<TD rowspan=3 class="tr3 td50"><P class="p109 ft86">( ) &lt; (log )</P></TD>
+	<TD rowspan=3 class="tr3 td51"><P class="p105 ft0">No</P></TD>
+</TR>
+<TR>
+	<TD class="tr16 td58"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td49"><P class="p7 ft45">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD colspan=2 class="tr19 td48"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td49"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr20 td61"><P class="p7 ft53">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td19"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td19"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td58"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td42"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td49"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td60"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td50"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td51"><P class="p7 ft54">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr2 td19"><P class="p105 ft90"><NOBR>Non-existent</NOBR></P></TD>
+	<TD class="tr2 td19"><P class="p113 ft90">Zero</P></TD>
+	<TD class="tr2 td58"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td42"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td49"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td63"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD colspan=2 class="tr2 td64"><P class="p7 ft91">&gt; ̅</P></TD>
+	<TD class="tr2 td50"><P class="p111 ft90">-</P></TD>
+	<TD class="tr2 td51"><P class="p115 ft90">Yes</P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td52"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td52"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td62"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td65"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD colspan=2 class="tr19 td66"><P class="p117 ft92">supply</P></TD>
+	<TD class="tr19 td67"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td68"><P class="p118 ft92">demand</P></TD>
+	<TD class="tr19 td56"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td57"><P class="p7 ft61">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p119 ft10">As described in Table 1, an unhealthy fee market requires a propagation time that grows asymptotically with block size <SPAN class="ft8">slower </SPAN>than <SPAN class="ft23">log </SPAN>. Using physical arguments, we can show that this is not possible. To proceed, expand <SPAN class="ft23">( ) </SPAN>in a power series around <SPAN class="ft23">= 0 </SPAN>to get</P>
+<P class="p120 ft95">( ) = (0) + |<SPAN class="ft93">=0 </SPAN>+ ( <SPAN class="ft94">2</SPAN>).</P>
+<P class="p121 ft10">The first term represents the communication channel’s <SPAN class="ft8">lag</SPAN>: for the purposes of this paper, it is the time it takes to communicate the block header across the channel. It has a physical lower bound due to the speed of light constraint <SPAN class="ft34">(0) ≥ /</SPAN>, where is the distance over which the information is communicated and is the speed of light.</P>
+<P class="p122 ft10">The second term partially relates to the channel’s <SPAN class="ft8">carrying capacity </SPAN>and has a lower bound described by the <NOBR><SPAN class="ft8">Shannon-Hartley</SPAN></NOBR><SPAN class="ft8"> theorem</SPAN>.<SPAN class="ft9">11 </SPAN>We can see this more clearly by setting</P>
+<TABLE cellpadding=0 cellspacing=0 class="t11">
+<TR>
+	<TD class="tr29 td43"><P class="p88 ft34">1</P></TD>
+	<TD class="tr29 td34"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=2 class="tr29 td63"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr29 td69"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=3 class="tr29 td35"><P class="p7 ft34"><SPAN class="ft50">1 </SPAN></P></TD>
+	<TD class="tr29 td70"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td71"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr13 td34"><P class="p72 ft27">=</P></TD>
+	<TD class="tr23 td30"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr13 td72"><P class="p49 ft27">|</P></TD>
+	<TD rowspan=2 class="tr13 td69"><P class="p123 ft27">⟶ =</P></TD>
+	<TD class="tr23 td73"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr25 td74"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr23 td28"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr13 td70"><P class="p7 ft97"><SPAN class="ft96">|</SPAN>=0</P></TD>
+</TR>
+<TR>
+	<TD class="tr2 td43"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td34"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD colspan=3 class="tr2 td35"><P class="p7 ft17">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr17 td43"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td34"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td34"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td72"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td69"><P class="p7 ft98">=0</P></TD>
+	<TD class="tr17 td75"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td74"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td21"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td70"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p124 ft10">where is the coding gain and is the channel capacity (with units of bits of information per second). The carrying capacity of a communication channel is limited to <SPAN class="ft23">= log</SPAN><SPAN class="ft35">2</SPAN><SPAN class="ft23">(1 + )</SPAN>, where is the channel’s bandwidth, is the signal power and is the channel’s noise power.</P>
+<P class="p125 ft10">The third term lumps together all the terms of order <SPAN class="ft99">2 </SPAN>and greater. In any practical implementation these terms will exist simply due to the messiness of the real world; however, the author is not aware of any physical reason they <SPAN class="ft8">must </SPAN>exist. <SPAN class="ft8">For the remainder of the paper, we will assume these terms are negligible compared to the constant and linear terms</SPAN>, in which case we can make the approximation</P>
+<TABLE cellpadding=0 cellspacing=0 class="t12">
+<TR>
+	<TD class="tr4 td12"></TD>
+	<TD rowspan=4 class="tr30 td76"><P class="p7 ft33">∆( ) = ( ) − (0) ≈</P></TD>
+	<TD colspan=2 class="tr4 td77"><P class="p58 ft23">/</P></TD>
+	<TD rowspan=3 class="tr31 td78"><P class="p49 ft10">(9)</P></TD>
+</TR>
+<TR>
+	<TD class="tr16 td12"></TD>
+	<TD class="tr16 td79"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr21 td45"><P class="p7 ft54">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td12"></TD>
+	<TD colspan=2 rowspan=2 class="tr8 td77"><P class="p123 ft100">.</P></TD>
+</TR>
+<TR>
+	<TD class="tr26 td12"></TD>
+	<TD class="tr26 td78"><P class="p7 ft101">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p126 ft10">This equation states that the extra propagation time is approximately equal to the size of the block produced, divided by the coding gain with which the block solution can be transmitted, and divided by the effective capacity of the communication channel. Since neither nor can be infinite, this term must be finite. Furthermore, there is no reason to expect or to be functions of to any appreciable extent, since is a physical property of the channel and since is the degree to which the transactional information within a block can be compressed. This means that no physical communication channel should have a block propagation time that grows asymptotically slower than <SPAN class="ft27">( ) </SPAN>. Since this is faster than the <SPAN class="ft27">(log ) </SPAN>requirement to achieve a healthy fee market (assuming <SPAN class="ft27">&gt; 0</SPAN>), <SPAN class="ft8">an unhealthy fee market is not physically possible.</SPAN></P>
+<P class="p127 ft26">9</P>
+</DIV>
+<DIV id="page_10">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket10x1.jpg" id="img1">
+</DIV>
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p47 ft7">8. Big Blocks, Small Blocks and Empty Blocks</P>
+<P class="p99 ft10">To put numbers to our analysis, we express Eq. (8) in terms of the coding gain and channel capacity (<SPAN class="ft8">cf. </SPAN>Eq. 9):</P>
+<TABLE cellpadding=0 cellspacing=0 class="t13">
+<TR>
+	<TD class="tr5 td12"></TD>
+	<TD class="tr5 td80"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=3 rowspan=2 class="tr3 td81"><P class="p128 ft19"><SPAN class="ft50">1 </SPAN></P></TD>
+	<TD class="tr5 td20"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=2 class="tr5 td82"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr5 td83"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td12"></TD>
+	<TD rowspan=3 class="tr3 td80"><P class="p90 ft81">supply<SPAN class="ft80">( ) ≈</SPAN></P></TD>
+	<TD rowspan=3 class="tr3 td20"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr29 td84"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr3 td45"><P class="p129 ft102">.</P></TD>
+	<TD rowspan=3 class="tr3 td83"><P class="p49 ft10">(10)</P></TD>
+</TR>
+<TR>
+	<TD class="tr32 td12"></TD>
+	<TD class="tr15 td85"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr15 td47"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr15 td86"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr27 td12"></TD>
+	<TD colspan=3 rowspan=2 class="tr0 td81"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td12"></TD>
+	<TD class="tr21 td80"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr21 td20"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr21 td21"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr21 td45"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr21 td83"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p68 ft10">This equation describes the marginal fee density required for a miner to profitably add <SPAN class="ft8">another </SPAN>transaction to a block of size . It is plotted in Fig. 7 (for <SPAN class="ft23">= </SPAN><SPAN class="ft103">10</SPAN><SPAN class="ft104">25Ƀ</SPAN><SPAN class="ft103">min</SPAN>) and illustrates the fee</P>
+<P class="p68 ft10">density required to incentivize a miner to produce big, small and empty blocks, at various block solution propagation rates. The important relationships to note are (1) that fees become exponentially more expensive if more transactions bid for space in a block, (2) that fees (measured in Ƀ) become cheaper with improvements in propagation rates, and (3) that a minimum fee density, below which rational miners will produce empty blocks, exists.</P>
+<P class="p130 ft0">Fig. 7. A rational miner will produce a big block if his mempool is full of high fee density transactions, and will produce an empty block if no transactions pay a fee sufficient to offset the orphaning risk. Transaction fees decline with improvements to the rate at which block solutions propagate across the network.</P>
+<P class="p131 ft10">The fee density is sensitive to the assumed value for the block propagation impedance. Table 2 summarizes four different estimates for the propagation impedance, along with the</P>
+<P class="p132 ft26">10</P>
+</DIV>
+<DIV id="page_11">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket11x1.jpg" id="img1">
+</DIV>
+
+
+<P class="p133 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p134 ft10">minimum fee density associated with each. In the next section, and for each of these four estimates, we calculate the cost to fill a block with 128 MB of spam.</P>
+<P class="p135 ft0">Table 2. Estimates for the Block Solution Propagation Impedance and the</P>
+<P class="p136 ft0">Associated Minimum Fee Density</P>
+<TABLE cellpadding=0 cellspacing=0 class="t14">
+<TR>
+	<TD class="tr17 td12"></TD>
+	<TD class="tr17 td87"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr24 td88"><P class="p137 ft0">Propagation</P></TD>
+	<TD class="tr17 td89"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td90"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td91"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td92"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td93"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td94"><P class="p137 ft0">Min. fee</P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td12"></TD>
+	<TD class="tr11 td95"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td0"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td96"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td51"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td58"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td97"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr5 td98"><P class="p138 ft83">density</P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td12"></TD>
+	<TD rowspan=2 class="tr5 td95"><P class="p115 ft0">Estimate name</P></TD>
+	<TD rowspan=2 class="tr5 td99"><P class="p107 ft0">impedance, <SPAN class="ft66">1⁄</SPAN></P></TD>
+	<TD colspan=2 rowspan=2 class="tr5 td69"><P class="p139 ft83">Method</P></TD>
+	<TD class="tr19 td51"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr5 td58"><P class="p117 ft0">Year</P></TD>
+	<TD rowspan=2 class="tr5 td97"><P class="p140 ft0">Ref.</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td12"></TD>
+	<TD class="tr11 td51"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr6 td98"><P class="p55 ft63">⁄</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td12"></TD>
+	<TD class="tr11 td95"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr6 td99"><P class="p109 ft0">(sec/MB)</P></TD>
+	<TD class="tr11 td0"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td96"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td51"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td58"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td97"><P class="p7 ft38">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td12"></TD>
+	<TD class="tr11 td95"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td0"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td96"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td51"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td58"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td97"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr5 td98"><P class="p55 ft0">(μɃ/kB)</P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td12"></TD>
+	<TD class="tr19 td95"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td99"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td0"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td96"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td51"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td58"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td97"><P class="p7 ft61">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td12"></TD>
+	<TD class="tr19 td100"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td101"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td102"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD colspan=2 class="tr19 td103"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td62"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td104"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td105"><P class="p7 ft61">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr5 td12"></TD>
+	<TD class="tr5 td95"><P class="p115 ft0">Decker and Wattenhofer</P></TD>
+	<TD class="tr5 td99"><P class="p111 ft0">80</P></TD>
+	<TD colspan=3 class="tr5 td106"><P class="p113 ft0">Direct measurement</P></TD>
+	<TD class="tr5 td58"><P class="p117 ft0">2013</P></TD>
+	<TD class="tr5 td97"><P class="p141 ft0">10</P></TD>
+	<TD class="tr5 td98"><P class="p55 ft0">3,333</P></TD>
+</TR>
+<TR>
+	<TD class="tr17 td12"></TD>
+	<TD class="tr17 td95"><P class="p115 ft0">Tradeblock</P></TD>
+	<TD class="tr17 td99"><P class="p111 ft0">17.1</P></TD>
+	<TD colspan=3 class="tr17 td106"><P class="p113 ft0">Direct measurement</P></TD>
+	<TD class="tr17 td58"><P class="p117 ft0">2015</P></TD>
+	<TD class="tr17 td97"><P class="p141 ft0">18</P></TD>
+	<TD class="tr17 td98"><P class="p55 ft0">713</P></TD>
+</TR>
+<TR>
+	<TD class="tr28 td12"></TD>
+	<TD rowspan=2 class="tr0 td95"><P class="p105 ft83">This study</P></TD>
+	<TD rowspan=2 class="tr0 td99"><P class="p111 ft0">7.6</P></TD>
+	<TD rowspan=2 class="tr0 td0"><P class="p91 ft0">Defined<SPAN class="ft84">a </SPAN>as</P></TD>
+	<TD class="tr28 td46"><P class="p142 ft85">1</P></TD>
+	<TD rowspan=2 class="tr0 td51"><P class="p143 ft106"><SPAN class="ft105">= </SPAN></P></TD>
+	<TD rowspan=2 class="tr0 td58"><P class="p117 ft0">2015</P></TD>
+	<TD rowspan=2 class="tr0 td97"><P class="p141 ft0">19</P></TD>
+	<TD rowspan=2 class="tr0 td98"><P class="p55 ft0">318</P></TD>
+</TR>
+<TR>
+	<TD class="tr16 td12"></TD>
+	<TD rowspan=2 class="tr20 td96"><P class="p7 ft53">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td12"></TD>
+	<TD class="tr11 td95"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td99"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td0"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td51"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td58"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td97"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td98"><P class="p7 ft38">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr5 td12"></TD>
+	<TD class="tr5 td95"><P class="p115 ft0">Relay network</P></TD>
+	<TD class="tr5 td99"><P class="p111 ft0">2.0</P></TD>
+	<TD colspan=3 class="tr5 td106"><P class="p144 ft0">Taken as T5 time to 99%</P></TD>
+	<TD class="tr5 td58"><P class="p117 ft0">2015</P></TD>
+	<TD class="tr5 td97"><P class="p141 ft0">20</P></TD>
+	<TD class="tr5 td98"><P class="p55 ft0">83</P></TD>
+</TR>
+<TR>
+	<TD class="tr15 td12"></TD>
+	<TD colspan=3 class="tr15 td107"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD colspan=2 class="tr15 td103"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD colspan=2 class="tr15 td108"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td105"><P class="p7 ft44">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr4 td12"></TD>
+	<TD colspan=5 class="tr4 td109"><P class="p145 ft12"><SPAN class="ft11">a </SPAN>The estimate shown in the table used <SPAN class="ft107">M </SPAN>and <SPAN class="ft107">Q </SPAN>values taken from the Blockchain over Q2 2015.</P></TD>
+	<TD colspan=3 class="tr4 td110"><P class="p7 ft13">Refer to note 19 for more details.</P></TD>
+</TR>
+</TABLE>
+<P class="p146 ft7">9. Cost of a Spam Attack</P>
+<P class="p147 ft10">We can interpret the block space supply curve as a minimum bound on the cost an attacker must bear to produce a significant quantity of blockchain spam. In the case where the attacker is a miner, it represents the cost imposed by orphaning risk (<SPAN class="ft8">e.g.</SPAN>, he may lose the block rewards for several spam blocks before one “sticks”). In the case where the attacker is not a miner, it represents the minimum fees necessary to entice a rational miner to publish a large block. The spam cost (<SPAN class="ft8">cf</SPAN>. Eqs. 7 and 9) is approximately</P>
+<TABLE cellpadding=0 cellspacing=0 class="t15">
+<TR>
+	<TD class="tr22 td111"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr33 td112"><P class="p49 ft10">(11)</P></TD>
+</TR>
+<TR>
+	<TD class="tr12 td111"><P class="p77 ft41"><SPAN class="ft39">spam</SPAN>( ) ≈ ( − 1).</P></TD>
+</TR>
+</TABLE>
+<P class="p148 ft10">The cost increases exponentially with the quantity of spam stuffed into a block.</P>
+<P class="p149 ft10">Fig. 8 plots contours of constant spam quantity; it illustrates how the cost to produce spam increases as an attacker attempts to fill a block with additional bytes of transactional data, and how the spam cost decreases as network interconnectivity improves. Table 3 lists the estimated spam costs, along with a comparison to the minimum fee densities calculated in Section 8. Due to the exponential in Eq. (10), producing an exceptionally large spam block requires an attacker to pay an effective fee significantly greater than the minimum fee.</P>
+<P class="p150 ft0">Table 3. Cost to Produce a Block That Contains 128 MB of Spam</P>
+<TABLE cellpadding=0 cellspacing=0 class="t16">
+<TR>
+	<TD class="tr5 td12"></TD>
+	<TD class="tr5 td113"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr5 td0"><P class="p151 ft83">Propagation</P></TD>
+	<TD class="tr5 td114"><P class="p151 ft0">Quantity</P></TD>
+	<TD class="tr5 td115"><P class="p152 ft0">Cost of</P></TD>
+	<TD class="tr5 td116"><P class="p153 ft0">Eff. fee</P></TD>
+	<TD class="tr5 td117"><P class="p154 ft0">Min. fee</P></TD>
+	<TD class="tr5 td115"><P class="p155 ft0">Eff. fee</P></TD>
+</TR>
+<TR>
+	<TD class="tr6 td12"></TD>
+	<TD rowspan=2 class="tr4 td113"><P class="p115 ft90">Estimate name</P></TD>
+	<TD class="tr6 td0"><P class="p151 ft90">impedance</P></TD>
+	<TD class="tr6 td114"><P class="p151 ft90">of spam</P></TD>
+	<TD class="tr6 td115"><P class="p156 ft90">spam</P></TD>
+	<TD class="tr6 td116"><P class="p153 ft108">density</P></TD>
+	<TD class="tr6 td117"><P class="p140 ft108">density</P></TD>
+	<TD class="tr6 td115"><P class="p155 ft108">divided by</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td12"></TD>
+	<TD rowspan=2 class="tr6 td0"><P class="p157 ft63">1⁄</P></TD>
+	<TD rowspan=2 class="tr6 td114"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr6 td115"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr6 td116"><P class="p153 ft63">/</P></TD>
+	<TD rowspan=2 class="tr6 td117"><P class="p154 ft63">⁄</P></TD>
+	<TD rowspan=2 class="tr6 td115"><P class="p141 ft0">min. fee</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td12"></TD>
+	<TD class="tr11 td113"><P class="p7 ft38">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr5 td12"></TD>
+	<TD class="tr5 td113"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr5 td0"><P class="p151 ft0">(sec/MB)</P></TD>
+	<TD class="tr5 td114"><P class="p151 ft0">(MB)</P></TD>
+	<TD class="tr5 td115"><P class="p156 ft0">(Ƀ)</P></TD>
+	<TD class="tr5 td116"><P class="p158 ft0">(μɃ/kB)</P></TD>
+	<TD class="tr5 td117"><P class="p140 ft0">(μɃ/kB)</P></TD>
+	<TD class="tr5 td115"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr25 td12"></TD>
+	<TD class="tr25 td118"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr25 td102"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr25 td119"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr25 td120"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr25 td121"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr25 td122"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr25 td120"><P class="p7 ft76">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr17 td12"></TD>
+	<TD class="tr17 td113"><P class="p115 ft0">Decker and Wattenhofer</P></TD>
+	<TD class="tr17 td0"><P class="p151 ft0">80</P></TD>
+	<TD class="tr17 td114"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td115"><P class="p152 ft0">646×10<SPAN class="ft84">6</SPAN></P></TD>
+	<TD class="tr17 td116"><P class="p153 ft0">5,043×10<SPAN class="ft84">6</SPAN></P></TD>
+	<TD class="tr17 td117"><P class="p140 ft0">3,333</P></TD>
+	<TD class="tr17 td115"><P class="p155 ft0">1.51×10<SPAN class="ft84">6</SPAN></P></TD>
+</TR>
+<TR>
+	<TD class="tr5 td12"></TD>
+	<TD class="tr5 td113"><P class="p115 ft0">Tradeblock</P></TD>
+	<TD class="tr5 td0"><P class="p151 ft0">17.1</P></TD>
+	<TD rowspan=2 class="tr4 td114"><P class="p159 ft0">128</P></TD>
+	<TD class="tr5 td115"><P class="p156 ft0">935</P></TD>
+	<TD class="tr5 td116"><P class="p158 ft0">7,304</P></TD>
+	<TD class="tr5 td117"><P class="p140 ft0">713</P></TD>
+	<TD class="tr5 td115"><P class="p155 ft0">10.3</P></TD>
+</TR>
+<TR>
+	<TD class="tr10 td12"></TD>
+	<TD rowspan=2 class="tr17 td113"><P class="p105 ft83">This study</P></TD>
+	<TD rowspan=2 class="tr17 td0"><P class="p151 ft0">7.6</P></TD>
+	<TD rowspan=2 class="tr17 td115"><P class="p156 ft0">101</P></TD>
+	<TD rowspan=2 class="tr17 td116"><P class="p158 ft0">793</P></TD>
+	<TD rowspan=2 class="tr17 td117"><P class="p140 ft0">318</P></TD>
+	<TD rowspan=2 class="tr17 td115"><P class="p155 ft0">2.50</P></TD>
+</TR>
+<TR>
+	<TD class="tr10 td12"></TD>
+	<TD class="tr10 td114"><P class="p7 ft109">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr17 td12"></TD>
+	<TD class="tr17 td113"><P class="p115 ft0">Relay network</P></TD>
+	<TD class="tr17 td0"><P class="p151 ft0">2.0</P></TD>
+	<TD class="tr17 td114"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td115"><P class="p152 ft0">13</P></TD>
+	<TD class="tr17 td116"><P class="p158 ft0">104</P></TD>
+	<TD class="tr17 td117"><P class="p154 ft0">83</P></TD>
+	<TD class="tr17 td115"><P class="p155 ft0">1.25</P></TD>
+</TR>
+<TR>
+	<TD class="tr16 td12"></TD>
+	<TD class="tr16 td118"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td102"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td119"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td120"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td121"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td122"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td120"><P class="p7 ft45">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p160 ft26">11</P>
+</DIV>
+<DIV id="page_12">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket12x1.jpg" id="img1">
+</DIV>
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p161 ft0">Fig. 8. This chart illustrates the cost to publish spam blocks of various sizes under past, current and future network conditions (labeled points refer to 128 MB blocks at various propagation speeds). The cost of a spam attack increases exponentially with the size of the spam block; however, improvements in the rate at which block solutions can be communicated to the other miners significantly decrease the cost of the attack.</P>
+<P class="p101 ft10">It is interesting to note that the <NOBR>four-week</NOBR> moving average for the price of one bitcoin at the time when the block size limit was introduced (September 6, 2010) was $0.068. The cost to add gigabytes of blockchain spam was thus measured in thousands of dollars, rather than millions as it is today. Since the spam cost is measured in <SPAN class="ft8">bitcoins</SPAN>, a high market value for a bitcoin is an effective <NOBR>anti-spam</NOBR> measure.</P>
+<P class="p98 ft7">10. Conclusion</P>
+<P class="p9 ft75">We showed that a transaction fee market should emerge without a block size limit if miners include transactions in a manner that maximizes the expectation value of their profit. A critical step in establishing this result was our calculation of the miner’s cost to supply additional block space by accounting for orphaning risk. Not unexpectedly, we showed that the cost of block space was proportional to both Bitcoin’s inflation rate, , and the amount of time it takes per uncompressed megabyte to propagate block solutions to the other miners, <SPAN class="ft110">1 </SPAN>.</P>
+<P class="p162 ft10">More interestingly, however, we showed that the orphan cost is not static, but rather increases exponentially with the block size, , demanded:</P>
+<P class="p163 ft26">12</P>
+</DIV>
+<DIV id="page_13">
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<TABLE cellpadding=0 cellspacing=0 class="t17">
+<TR>
+	<TD class="tr17 td123"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td124"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td43"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td43"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td47"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td20"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td125"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=3 class="tr17 td126"><P class="p7 ft111">Correction</P></TD>
+</TR>
+<TR>
+	<TD class="tr17 td123"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=4 class="tr12 td124"><P class="p7 ft19">( ) ≈</P></TD>
+	<TD class="tr17 td43"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=4 rowspan=2 class="tr34 td127"><P class="p164 ft19"><SPAN class="ft50">1 </SPAN></P></TD>
+	<TD colspan=3 class="tr17 td126"><P class="p58 ft19">⏞</P></TD>
+</TR>
+<TR>
+	<TD class="tr32 td123"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr32 td43"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr32 td43"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr32 td128"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr32 td129"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD rowspan=2 class="tr20 td123"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr19 td43"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr25 td71"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr19 td47"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr25 td26"><P class="p7 ft76">&nbsp;</P></TD>
+	<TD class="tr19 td125"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD colspan=3 rowspan=2 class="tr20 td126"><P class="p165 ft112">.</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td43"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD colspan=4 rowspan=2 class="tr19 td127"><P class="p7 ft61">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr16 td123"><P class="p166 ft113">supply</P></TD>
+	<TD class="tr16 td124"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td43"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td43"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td34"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td129"><P class="p7 ft45">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr2 td123"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td124"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td43"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD colspan=4 class="tr2 td127"><P class="p109 ft114">⏟</P></TD>
+	<TD class="tr2 td43"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td34"><P class="p7 ft17">&nbsp;</P></TD>
+	<TD class="tr2 td129"><P class="p7 ft17">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr28 td123"><P class="p7 ft89">&nbsp;</P></TD>
+	<TD class="tr28 td124"><P class="p7 ft89">&nbsp;</P></TD>
+	<TD class="tr28 td43"><P class="p7 ft89">&nbsp;</P></TD>
+	<TD colspan=4 class="tr28 td127"><P class="p167 ft115">Static</P></TD>
+	<TD class="tr28 td43"><P class="p7 ft89">&nbsp;</P></TD>
+	<TD class="tr28 td34"><P class="p7 ft89">&nbsp;</P></TD>
+	<TD class="tr28 td129"><P class="p7 ft89">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr17 td123"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td124"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=5 class="tr17 td130"><P class="p141 ft116">approximation</P></TD>
+	<TD class="tr17 td43"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td34"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td129"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p50 ft10">Not only is there a minimum fee density below which no rational miner should include <SPAN class="ft8">any </SPAN>transactions as Andresen observed,<SPAN class="ft9">10 </SPAN>but the required fee density also naturally increases if demand for space within a block is elevated.<SPAN class="ft9">21 </SPAN>Indeed, a rational miner will not include all <NOBR>fee-paying</NOBR> transactions, as urgent <NOBR>higher-paying</NOBR> transactions necessarily bump <NOBR>lower-fee</NOBR> transactions out, thereby bidding up the minimum fee density exponentially with demand. Analogously, an attacker who wishes to produce a large spam <NOBR>block—whether</NOBR> the attacker is the miner or a <NOBR>user—must</NOBR> pay an effective fee density significantly greater than the cost per byte he would pay for a modest amount of block space. A fee market naturally emerges.</P>
+<P class="p168 ft10">We made three important simplifying assumptions in this paper: (1) we assumed the probability of orphaning a block was well characterized by a single parameter that represented the time between when a miner had solved a block and when his solution had been communicated and accepted by his peers, (2) in Sections 7 to 9, we assumed that this time parameter had a lower bound, in part, due to the capacity of the channels used to communicate the solutions and by the coding gain with which they could be compressed, as described by the <NOBR>Shannon-Hartley</NOBR> theorem, and (3) we ignored the costs a miner bears when he commits transactions to a block beyond those due to orphaning. These simplifications bring up questions that deserve further study:</P>
+<P class="p169 ft10"><SPAN class="ft10">(1)</SPAN><SPAN class="ft117">The time it takes to propagate information to the other miners is not in general constant across the network, </SPAN><SPAN class="ft9">22 </SPAN>while the mempool is largely homogenous. This suggests that, assuming equal hashing costs, miners who can propagate their block solutions faster will earn a larger surplus. Relatedly, recent evidence also suggests that miners may begin mining prior to fully receiving and validating new blocks.<SPAN class="ft9">23 </SPAN>How do these phenomena affect the current analysis?</P>
+<P class="p170 ft10"><SPAN class="ft10">(2)</SPAN><SPAN class="ft117">Imagine the existence of a mining cartel, interconnected with </SPAN><NOBR>high-capacity</NOBR> relay channels and committed to standardized mempool policies (to facilitate dense compression of block solutions). Such a cartel could greatly reduce the time required to propagate solutions to its other members. Do we expect such cartels to form and what might be their effect?</P>
+<P class="p171 ft10"><SPAN class="ft10">(3)</SPAN><SPAN class="ft117">When a miner accepts a transaction that increases the set of unspent outputs (UTXO), he takes on a liability equal to the present value of the cost of storing those new outputs indefinitely far into the future. Is a healthy fee market expected to emerge that charges users the true cost of expanding Bitcoin’s UTXO set?</SPAN></P>
+<P class="p14 ft10">We conclude by noting that the analysis presented in this paper breaks down when the block reward falls to zero. It suggests that the cost of block space is zero; however, this would suggest zero hash power, which in turn would suggest that transactions would never be mined and, paradoxically, that no block space would be produced. Happily, questions about the <NOBR>post-block</NOBR> reward future can be explored at a leisurely pace, as we have a <NOBR>quarter-century</NOBR> before it begins to become a reality. Into the distant future then, a healthy transaction fee market is expected to exist without a block size limit.</P>
+<P class="p172 ft26">13</P>
+</DIV>
+<DIV id="page_14">
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p47 ft7">Appendix</P>
+<P class="p59 ft10">The block space supply curve can be derived by finding the function of block size, <SPAN class="ft47">supply</SPAN><SPAN class="ft19">( )</SPAN>, that describes the fees required to precisely compensate for orphaning risk. Mathematically, we require that the miner’s profit (<SPAN class="ft8">cf</SPAN>. Eq. 5) remain constant for any quantity of block space,</P>
+<P class="p173 ft10">:</P>
+<TABLE cellpadding=0 cellspacing=0 class="t18">
+<TR>
+	<TD class="tr17 td12"></TD>
+	<TD rowspan=2 class="tr8 td28"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr18 td29"><P class="p71 ft23">〈 〉 =</P></TD>
+	<TD rowspan=2 class="tr8 td30"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr18 td31"><P class="p71 ft23"><SPAN class="ft50">{[ + </SPAN></P></TD>
+	<TD rowspan=3 class="tr18 td32"><P class="p7 ft23">( )]</P></TD>
+	<TD rowspan=2 class="tr8 td26"><P class="p55 ft19">ℎ</P></TD>
+	<TD rowspan=3 class="tr18 td21"><P class="p58 ft51">−</P></TD>
+	<TD class="tr17 td33"><P class="p72 ft52">( )</P></TD>
+	<TD rowspan=3 class="tr18 td131"><P class="p7 ft23">− ℎ } = 0.</P></TD>
+	<TD rowspan=3 class="tr18 td132"><P class="p7 ft10">(A1)</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td12"></TD>
+	<TD rowspan=2 class="tr20 td33"><P class="p7 ft53">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr16 td12"></TD>
+	<TD class="tr16 td21"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td34"><P class="p7 ft45">&nbsp;</P></TD>
+	<TD class="tr16 td20"><P class="p7 ft45">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr20 td12"></TD>
+	<TD rowspan=2 class="tr6 td21"><P class="p7 ft24">&nbsp;</P></TD>
+	<TD class="tr20 td29"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr6 td34"><P class="p7 ft24">&nbsp;</P></TD>
+	<TD class="tr20 td31"><P class="p174 ft118">supply</P></TD>
+	<TD class="tr20 td32"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr6 td35"><P class="p7 ft24">&nbsp;</P></TD>
+	<TD class="tr20 td33"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td131"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td132"><P class="p7 ft53">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td12"></TD>
+	<TD class="tr23 td29"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td31"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td32"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td33"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td131"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td132"><P class="p7 ft57">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p74 ft10">Eq. (A1) can be <NOBR>re-written</NOBR></P>
+<TABLE cellpadding=0 cellspacing=0 class="t19">
+<TR>
+	<TD class="tr17 td12"></TD>
+	<TD colspan=3 rowspan=2 class="tr8 td133"><P class="p20 ft23"><SPAN class="ft50">ℎ </SPAN></P></TD>
+	<TD class="tr17 td31"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr12 td29"><P class="p7 ft33">( )]<SPAN class="ft119">−</SPAN></P></TD>
+	<TD class="tr17 td42"><P class="p87 ft52">( )</P></TD>
+	<TD rowspan=2 class="tr8 td21"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr12 td37"><P class="p71 ft19">{ℎ} = 0,</P></TD>
+</TR>
+<TR>
+	<TD class="tr19 td12"></TD>
+	<TD rowspan=2 class="tr27 td31"><P class="p71 ft120"><SPAN class="ft50">{[ + </SPAN></P></TD>
+	<TD rowspan=2 class="tr27 td42"><P class="p89 ft120">} −</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td12"></TD>
+	<TD class="tr21 td134"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr23 td47"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr21 td135"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr21 td84"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr22 td12"></TD>
+	<TD colspan=3 rowspan=2 class="tr5 td133"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr22 td31"><P class="p73 ft56">supply</P></TD>
+	<TD class="tr22 td29"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr22 td42"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr5 td21"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr22 td37"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td12"></TD>
+	<TD class="tr23 td31"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr23 td29"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr23 td42"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr23 td37"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p175 ft10">and then the terms that do not depend on eliminated:</P>
+<TABLE cellpadding=0 cellspacing=0 class="t20">
+<TR>
+	<TD class="tr17 td136"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td43"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td58"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr8 td67"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr17 td74"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td20"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td137"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td34"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td129"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td138"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td21"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD colspan=3 rowspan=3 class="tr12 td29"><P class="p55 ft33">( )]<SPAN class="ft119">−</SPAN></P></TD>
+	<TD colspan=3 class="tr17 td139"><P class="p118 ft52">( )</P></TD>
+	<TD class="tr17 td35"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td140"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td141"><P class="p7 ft46">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td136"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td43"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td58"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr19 td142"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD colspan=5 rowspan=2 class="tr27 td60"><P class="p159 ft120"><SPAN class="ft50">{[ + </SPAN></P></TD>
+	<TD class="tr11 td21"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td143"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td74"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr27 td4"><P class="p137 ft120">} = 0.</P></TD>
+	<TD class="tr11 td140"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td141"><P class="p7 ft38">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td136"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td43"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td58"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td144"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td74"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td21"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td143"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td74"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td140"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td141"><P class="p7 ft54">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr22 td136"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td43"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td58"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr5 td21"><P class="p7 ft21">&nbsp;</P></TD>
+	<TD class="tr22 td20"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td137"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td34"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td129"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD colspan=2 class="tr22 td133"><P class="p20 ft121">supply</P></TD>
+	<TD class="tr22 td33"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td72"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td145"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td143"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td74"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td42"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td35"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td140"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td141"><P class="p7 ft55">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td136"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td43"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td58"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td20"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td137"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td34"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td129"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td138"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td21"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td33"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td72"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td145"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td143"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td74"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td42"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td35"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td140"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td141"><P class="p7 ft57">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD colspan=10 class="tr8 td146"><P class="p7 ft10">By the fundamental theorem of calculus</P></TD>
+	<TD class="tr8 td21"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td33"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td72"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td145"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td143"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td74"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td42"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td35"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td140"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr8 td141"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr3 td136"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD rowspan=3 class="tr9 td71"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr3 td58"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td144"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td74"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td20"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td137"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td34"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td129"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr8 td133"><P class="p137 ft52">( )</P></TD>
+	<TD class="tr3 td33"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td72"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td145"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td143"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td74"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td42"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td35"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td140"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td141"><P class="p7 ft122">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr15 td136"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td58"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td144"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td74"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td20"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td137"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td34"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td129"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td33"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td72"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td145"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td143"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td74"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td42"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td35"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td140"><P class="p7 ft44">&nbsp;</P></TD>
+	<TD class="tr15 td141"><P class="p7 ft44">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD rowspan=2 class="tr2 td136"><P class="p176 ft114">∫</P></TD>
+	<TD colspan=2 rowspan=2 class="tr2 td38"><P class="p71 ft114"><SPAN class="ft50">{[ + </SPAN></P></TD>
+	<TD class="tr22 td74"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td20"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td137"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD colspan=3 rowspan=2 class="tr2 td42"><P class="p88 ft114">(  )]<SPAN class="ft123">−</SPAN></P></TD>
+	<TD colspan=3 rowspan=2 class="tr2 td147"><P class="p177 ft114"><SPAN class="ft50">} </SPAN></P></TD>
+	<TD class="tr22 td145"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td143"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td74"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td42"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td35"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td140"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td141"><P class="p7 ft55">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr21 td43"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td74"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td20"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td137"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td145"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td143"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td74"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td42"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td35"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td140"><P class="p7 ft54">&nbsp;</P></TD>
+	<TD class="tr21 td141"><P class="p7 ft54">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td136"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr6 td43"><P class="p7 ft24">&nbsp;</P></TD>
+	<TD class="tr23 td58"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD colspan=4 class="tr23 td40"><P class="p117 ft124">supply</P></TD>
+	<TD class="tr23 td34"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td129"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td138"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td21"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td33"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td72"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td145"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td143"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td74"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td42"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td35"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td140"><P class="p7 ft57">&nbsp;</P></TD>
+	<TD class="tr23 td141"><P class="p7 ft57">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr20 td136"><P class="p178 ft118">0</P></TD>
+	<TD class="tr20 td58"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td144"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td74"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td20"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td137"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td34"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td129"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td138"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td21"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td33"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td72"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td145"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td143"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td74"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td42"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td35"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td140"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr13 td141"><P class="p87 ft52">(0)</P></TD>
+</TR>
+<TR>
+	<TD class="tr10 td136"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td43"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td58"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td144"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td74"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td20"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td137"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td34"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td129"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td138"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td21"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD colspan=3 class="tr10 td29"><P class="p179 ft125">( )</P></TD>
+	<TD class="tr10 td143"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td74"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td42"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD class="tr10 td35"><P class="p7 ft109">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr26 td140"><P class="p7 ft31">(0)]<SPAN class="ft126">−</SPAN></P></TD>
+</TR>
+<TR>
+	<TD class="tr27 td136"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD class="tr27 td43"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD colspan=6 class="tr27 td148"><P class="p180 ft120"><SPAN class="ft50">= [ + </SPAN></P></TD>
+	<TD class="tr27 td129"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD colspan=4 class="tr27 td149"><P class="p181 ft120">( )]<SPAN class="ft128">− </SPAN></P></TD>
+	<TD colspan=4 class="tr27 td150"><P class="p87 ft120"><SPAN class="ft50">− [ + </SPAN></P></TD>
+	<TD class="tr27 td35"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD class="tr27 td141"><P class="p182 ft120">= 0</P></TD>
+</TR>
+<TR>
+	<TD class="tr22 td136"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td43"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td58"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td144"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td74"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td20"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td137"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD colspan=2 class="tr22 td151"><P class="p183 ft121">supply</P></TD>
+	<TD class="tr22 td138"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td21"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td33"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td72"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td145"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td143"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td74"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD colspan=2 class="tr22 td4"><P class="p184 ft121">supply</P></TD>
+	<TD class="tr22 td140"><P class="p7 ft55">&nbsp;</P></TD>
+	<TD class="tr22 td141"><P class="p7 ft55">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD colspan=10 class="tr35 td146"><P class="p7 ft10">and since by definition <SPAN class="ft36">supply</SPAN><SPAN class="ft33">(0) = 0</SPAN></P></TD>
+	<TD class="tr35 td21"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td33"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td72"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td145"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td143"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td74"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td42"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td35"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td140"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr35 td141"><P class="p7 ft14">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr3 td136"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td43"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td58"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td144"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td74"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td20"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td137"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td34"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD colspan=3 class="tr3 td58"><P class="p185 ft52">( )</P></TD>
+	<TD class="tr3 td33"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td72"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD colspan=4 class="tr3 td150"><P class="p87 ft52">( )</P></TD>
+	<TD class="tr3 td35"><P class="p178 ft129">(0)</P></TD>
+	<TD class="tr3 td140"><P class="p7 ft122">&nbsp;</P></TD>
+	<TD class="tr3 td141"><P class="p7 ft122">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr27 td136"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD class="tr27 td43"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD colspan=2 class="tr27 td38"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD class="tr27 td74"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD class="tr27 td20"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD colspan=3 class="tr27 td140"><P class="p7 ft120">( ) <SPAN class="ft130">−</SPAN></P></TD>
+	<TD class="tr27 td138"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD colspan=3 class="tr27 td147"><P class="p166 ft120">+ <SPAN class="ft130">−</SPAN></P></TD>
+	<TD colspan=3 class="tr27 td125"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD class="tr27 td42"><P class="p87 ft120">= <SPAN class="ft130">−</SPAN></P></TD>
+	<TD class="tr27 td35"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD class="tr27 td140"><P class="p7 ft127">&nbsp;</P></TD>
+	<TD class="tr27 td141"><P class="p7 ft127">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr20 td136"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td43"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD colspan=4 class="tr20 td98"><P class="p186 ft118">supply</P></TD>
+	<TD class="tr20 td137"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td34"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td129"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td138"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td21"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td33"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td72"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td145"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td143"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td74"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td42"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td35"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td140"><P class="p7 ft53">&nbsp;</P></TD>
+	<TD class="tr20 td141"><P class="p7 ft53">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr29 td136"><P class="p7 ft10">so</P></TD>
+	<TD class="tr29 td43"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td58"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td144"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td74"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td20"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td137"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td34"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td129"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td138"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td21"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td33"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td72"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td145"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td143"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td74"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td42"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td35"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td140"><P class="p7 ft131">&nbsp;</P></TD>
+	<TD class="tr29 td141"><P class="p7 ft131">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr4 td136"><P class="p7 ft132">&nbsp;</P></TD>
+	<TD class="tr4 td43"><P class="p7 ft132">&nbsp;</P></TD>
+	<TD class="tr4 td58"><P class="p7 ft132">&nbsp;</P></TD>
+	<TD class="tr4 td144"><P class="p7 ft132">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr31 td145"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD class="tr4 td137"><P class="p7 ft132">&nbsp;</P></TD>
+	<TD class="tr4 td34"><P class="p7 ft132">&nbsp;</P></TD>
+	<TD colspan=2 rowspan=2 class="tr31 td152"><P class="p72 ft19">( )</P></TD>
+	<TD colspan=2 rowspan=2 class="tr31 td29"><P class="p186 ft19">= (</P></TD>
+	<TD colspan=4 class="tr4 td33"><P class="p141 ft58">∆( )</P></TD>
+	<TD rowspan=2 class="tr31 td42"><P class="p183 ft19">− 1)<SPAN class="ft10">,</SPAN></P></TD>
+	<TD class="tr4 td35"><P class="p7 ft132">&nbsp;</P></TD>
+	<TD class="tr4 td140"><P class="p7 ft132">&nbsp;</P></TD>
+	<TD rowspan=2 class="tr31 td141"><P class="p187 ft10">(A2)</P></TD>
+</TR>
+<TR>
+	<TD class="tr11 td136"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td43"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td58"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td144"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td137"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td34"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr19 td153"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td154"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr19 td155"><P class="p7 ft61">&nbsp;</P></TD>
+	<TD class="tr11 td74"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td35"><P class="p7 ft38">&nbsp;</P></TD>
+	<TD class="tr11 td140"><P class="p7 ft38">&nbsp;</P></TD>
+</TR>
+<TR>
+	<TD class="tr17 td136"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td43"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td58"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td144"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td74"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD colspan=3 class="tr17 td123"><P class="p166 ft116">supply</P></TD>
+	<TD class="tr17 td129"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td138"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td21"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td33"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td72"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td145"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td143"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td74"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td42"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td35"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td140"><P class="p7 ft46">&nbsp;</P></TD>
+	<TD class="tr17 td141"><P class="p7 ft46">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p188 ft10">where <SPAN class="ft23">∆( ) ≡ ( ) − (0). </SPAN>Eq. (A2) thus describes the cost to produce block space accounting for orphaning risk. For the purposes of this paper, <SPAN class="ft23">(0) </SPAN>should be interpreted as the time it takes to propagate the block header.</P>
+<P class="p189 ft7">Acknowledgement</P>
+<P class="p99 ft10">The author gratefully acknowledges the kind review and suggestions of Dr. Christopher E. Wilmer. The author also wishes to thank the many thoughtful individuals from the Bitcoin Forum, whose ideas helped form the basis of this work, as well as the community of r/bitcoin for their encouragement and enthusiasm.</P>
+<P class="p190 ft26">14</P>
+</DIV>
+<DIV id="page_15">
+
+
+<P class="p0 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P>
+<P class="p60 ft7">Notes</P>
+<P class="p191 ft0"><SPAN class="ft133">1</SPAN><SPAN class="ft134">The block size limit was implemented with two Git commits. The first, on </SPAN><NOBR>14-Jul-2010,</NOBR> prevented clients from mining blocks larger than 1 MB (commit a30b56e), while the second, on <NOBR>06-Sep-2010,</NOBR> prevented the network from accepting blocks larger than 1 MB (commit 8c9479c). <SPAN class="ft49">Source: Github.</SPAN></P>
+<P class="p192 ft0"><SPAN class="ft133">2</SPAN><SPAN class="ft135">In 2010, the Visa network processed 2,000 transactions per second on average. </SPAN><SPAN class="ft49">Source: https://en.bitcoin.it/wiki/Scalability.</SPAN></P>
+<P class="p193 ft0"><SPAN class="ft133">3</SPAN><SPAN class="ft134">On September 6, 2010, the </SPAN><NOBR>4-week</NOBR> moving average for daily transactions was 354 per day. A 1 MB block size would permit 144 MB of transactional data per day. At an average transaction size of 500 bytes, this would allow 288,000 transactions per day to be logged to the Blockchain, or 288,000 / 354 = 814 times more than the demand at that time. <SPAN class="ft49">Source: blockchain.info.</SPAN></P>
+<P class="p193 ft0"><SPAN class="ft133">4</SPAN><SPAN class="ft134">Satoshi Nakamoto commented on </SPAN><NOBR>4-Oct-2010</NOBR> on the Bitcoin Forum that a larger blocksize limit "can be phased in, like: if (blocknumber &gt; 115000) maxblocksize = largerlimit.” <SPAN class="ft49">Source: bitcointalk.org.</SPAN></P>
+<P class="p193 ft0"><SPAN class="ft133">5</SPAN><SPAN class="ft136">The transaction backlog peaked at over 64,000 unconfirmed transactions on July 14, 2015. </SPAN><SPAN class="ft49">Source: statoshi.com.</SPAN></P>
+<P class="p48 ft0"><SPAN class="ft133">6</SPAN><SPAN class="ft134">The author has been tracking the moving </SPAN><NOBR>seven-day</NOBR> average of the block size, and recorded a surge to over 70% capacity the seven days beginning <NOBR>08-Jul-2014.</NOBR> <SPAN class="ft49">Source: https://bitcointalk.org /index.php?topic=68655.msg11982079.</SPAN></P>
+<P class="p193 ft0"><SPAN class="ft133">7</SPAN><SPAN class="ft134">J. Donnelly. “Bitcoin Network Still Backlogged With Tens of Thousands of Unconfirmed Transactions, Causing Delays.” </SPAN><SPAN class="ft49">Bitcoin Magazine. </SPAN><NOBR>07-Jul-2015.</NOBR></P>
+<P class="p194 ft0"><SPAN class="ft133">8</SPAN><SPAN class="ft134">The average number of transactions per day (4 week moving average) centered on September 6, 2010 was</SPAN></P>
+<P class="p195 ft0">335. The <NOBR>4-week</NOBR> moving average centered on <NOBR>01-Jul-2015</NOBR> was 133,225: 376x times greater. <SPAN class="ft49">Source: blockchain.info.</SPAN></P>
+<P class="p48 ft0"><SPAN class="ft133">9</SPAN><SPAN class="ft134">Nicolas Houy. “The economics of Bitcoin transaction fees.” Self published </SPAN><NOBR>24-Feb-2014</NOBR> (v0.1). The quote from Houy in the main text is taken from page 8, paragraph 3, last sentence. It is clear that he does not consider the orphan cost when he writes on p. 4 that “if an individual has hashing power <SPAN class="ft49">h </SPAN>and the total network hashing power is <SPAN class="ft49">H</SPAN>, he will earn, with a probability <SPAN class="ft49">h</SPAN>/<SPAN class="ft49">H</SPAN>, a reward <SPAN class="ft49">R </SPAN>plus the transaction fees given above.”</P>
+<P class="p196 ft0"><SPAN class="ft137">10</SPAN><SPAN class="ft134">In the winter of 2013, Gavin Andresen wrote a Gist “to come up with a </SPAN><NOBR>back-of-the-envelope</NOBR> estimate for how much it costs a miner to create larger, rather than smaller, blocks” where he presented the orphaning factor used in this paper. <SPAN class="ft49">Source: https://gist.github.com/gavinandresen/5044482.</SPAN></P>
+<P class="p193 ft0"><SPAN class="ft137">11</SPAN><SPAN class="ft134">Claude E. Shannon. "Communication in the presence of noise." </SPAN><SPAN class="ft49">Proc. Institute of Radio Engineers </SPAN><SPAN class="ft138">37 </SPAN>(1): <NOBR>10–21,</NOBR> January 1949.</P>
+<P class="p197 ft0"><SPAN class="ft137">12</SPAN><SPAN class="ft136">The hardware’s amortized price per hash, , includes its fully amortized cost as well as electricity, maintenance and the cost of supporting infrastructure.</SPAN></P>
+<P class="p193 ft0"><SPAN class="ft137">13</SPAN><SPAN class="ft134">We leave the precise definition of the propagation time “fuzzy” with regards to its homogeneity across the network or exactly what fraction of the hash power the solution should have reached in this time period.</SPAN></P>
+<P class="p198 ft0"><SPAN class="ft137">14</SPAN><SPAN class="ft134">Usually attributed to Alfred Marshall, </SPAN><SPAN class="ft139">Principles of Economics</SPAN>, 1890.</P>
+<P class="p193 ft0"><SPAN class="ft137">15</SPAN><SPAN class="ft134">We use the symbol because it is visually similar to the symbol </SPAN><SPAN class="ft49">P </SPAN>often used to denote the traditional supply and demand curves, while still reflecting that fact that what it is describing is the <SPAN class="ft49">fee density </SPAN>( is often used for density in physics and engineering).</P>
+<P class="p193 ft0"><SPAN class="ft137">16</SPAN><SPAN class="ft134">In economics, the law of demand states that, all else being equal, as the price of a product increases (</SPAN><SPAN class="ft140">↑</SPAN>), quantity demanded falls (<SPAN class="ft140">↓</SPAN>); likewise, as the price of a product decreases (<SPAN class="ft140">↓</SPAN>), quantity demanded increases (</P>
+<P class="p199 ft49"><SPAN class="ft141">↑</SPAN><SPAN class="ft0">). </SPAN>Source: https://en.wikipedia.org/wiki/Law_of_demand.</P>
+<P class="p200 ft26">15</P>
+</DIV>
+<DIV id="page_16">
+<DIV id="dimg1">
+<IMG src="feemarket_images/feemarket16x1.jpg" id="img1">
+</DIV>
+
+
+<TABLE cellpadding=0 cellspacing=0 class="t21">
+<TR>
+	<TD class="tr5 td99"><P class="p7 ft14">&nbsp;</P></TD>
+	<TD colspan=2 class="tr5 td156"><P class="p123 ft0">BLOCK SIZE LIMIT DEBATE WORKING PAPER</P></TD>
+</TR>
+<TR>
+	<TD class="tr7 td99"><P class="p7 ft0"><SPAN class="ft84">17 </SPAN>The curve <SPAN class="ft67">̅</SPAN></P></TD>
+	<TD class="tr7 td157"><P class="p7 ft0"><SPAN class="ft142">differs slightly from the curve </SPAN></P></TD>
+	<TD class="tr7 td158"><P class="p7 ft0">. The latter represents the empirical demand</P></TD>
+</TR>
+<TR>
+	<TD class="tr23 td99"><P class="p201 ft143">demand</P></TD>
+	<TD class="tr23 td157"><P class="p202 ft143">demand</P></TD>
+	<TD class="tr23 td158"><P class="p7 ft57">&nbsp;</P></TD>
+</TR>
+</TABLE>
+<P class="p46 ft0">measureable from a miner’s mempool, while the former represents the traditional demand curve that is less quantifiable (the demand that would exist if the price was different).</P>
+<P class="p48 ft0"><SPAN class="ft137">18</SPAN><SPAN class="ft134">Tradeblock performed a careful study where they measured the time it takes on average for new block solutions to be accepted by 50% of the nodes they were connected to. For our purposes, the time to reach 50% of the hashing power would be preferable; however, this number was not available. </SPAN><SPAN class="ft49">Source: </SPAN><NOBR><SPAN class="ft49">https://tradeblock.com/blog/bitcoin-network-capacity-analysis-part-6-data-propagation.</SPAN></NOBR></P>
+<P class="p162 ft0"><SPAN class="ft137">19</SPAN><SPAN class="ft134">Between </SPAN><NOBR>1-Apr-2015</NOBR> and <NOBR>30-Jun-2015,</NOBR> the Blockchain grew by <SPAN class="ft86">= </SPAN>5,100 MB while the total fees earned by miners over the same period averaged 17.82 Ƀ/day <SPAN class="ft141">× </SPAN>91 days <SPAN class="ft86">→ = </SPAN>1,621 Ƀ. An estimate for the propagation impedance can be made as <SPAN class="ft144">1 </SPAN><SPAN class="ft86">= = (</SPAN>600 s)(1621 Ƀ)/[(25 Ƀ)(5100 MB)] = 7.62 s/MB.</P>
+<P class="p25 ft49">Source: blockchain.info.</P>
+<P class="p203 ft49"><SPAN class="ft137">20</SPAN><SPAN class="ft134">Matt Corallo’s Relay Network Statistics. </SPAN>Source: http://bitcoinrelaynetwork.org/stats.html.</P>
+<P class="p193 ft0"><SPAN class="ft137">21</SPAN><SPAN class="ft134">It makes perfect sense that the cost to supply a kilobyte of block space increases with block size. Imagine that at some very large block size the probability that a miner’s block was orphaned was exactly 100%. If this is true, then just before this point, the cost of </SPAN><SPAN class="ft49">a bit more </SPAN>block size would be infinite: there is no transaction fee a miner would rationally accept in exchange for including an extra transaction because he would be guaranteed to have his block orphaned if he did. From this view point, then it is intuitive that as the probability of orphaning increases, the cost of adding another transaction must increase too.</P>
+<P class="p196 ft0"><SPAN class="ft137">22</SPAN><SPAN class="ft134">Peter Wuille showed via simulation that miners connected with fast channels can earn a greater profit per hash than miners connected over slower channels. This is </SPAN><NOBR>in-line</NOBR> with the results presented in this paper, as a miner with faster communication channels would have a lower cost of production yet select transactions from the essentially the same mempool demand curve, thereby earning a greater surplus. <SPAN class="ft49">Source: </SPAN><NOBR><SPAN class="ft49">http://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08161.html.</SPAN></NOBR></P>
+<P class="p193 ft0"><SPAN class="ft137">23</SPAN><SPAN class="ft134">For example, F2Pool was observed mining on invalid blocks on </SPAN><NOBR>3-Jul-2015,</NOBR> due to their use of SPV mining. <SPAN class="ft49">Source: https://www.reddit.com/r/Bitcoin/comments/3c2cfd/psa_f2pool_is_mining_invalid_blocks/</SPAN></P>
+<P class="p204 ft26">16</P>
+</DIV>
+<!-- Footer -->
+	    <div class="footer">
+	    	<div class="container">
+		    	<div class="row">
+		    		<div class="col-footer col-md-3 col-xs-6">
+		    			<h3>Our Latest Work</h3>
+		    			<div>
+							<div class="portfolio-image">
+						<ul class="no-list-style footer-navigate-section">
+		    				<li><a href="articles.html">Articles of Federation</a></li>
+		    				<li><a href="public/downloads/feemarket.pdf"> Fee Market</a></li>
+		    				<li><a href="public/downloads/subchains.pdf"> Subchains</a></li>
+		    				<li><a href="bitcoin-unlimited-analysis.html">Bitcoin Unlimited Analysis (1-txn)</a></li>
+		    				
+		    			</ul>
+		    			</ul>
+							</div>
+						</div>
+		    		</div>
+		    		<div class="col-footer col-md-3 col-xs-6">
+		    			<h3>Navigate</h3>
+		    			<ul class="no-list-style footer-navigate-section">
+		    				
+							<li><a href="index.html">Home</a></li>
+						
+							<li><a href="download.html">Download</a></li>
+							
+							<li><a href="faq.html">FAQ</a></li>
+						
+							<li><a href="buip.html">Proposals</a></li>
+							
+							<li><a href="members.html">Members</a></li>
+							
+							<li><a href="resources.html">Resources</a></li>
+
+						</ul>
+		    		</div>
+		    		
+		    		<div class="col-footer col-md-4 col-xs-6">
+		    			<h3>Join Us</h3>
+		    			<p class="contact-us-details">
+	        				<li><a href="http://www.bitco.in/forum">The Bitcoin Forum</a></li>
+	        				<li><a href="http://reddit.com/r/btc">Reddit r/btc</a></li>
+	        				<li><a href="#">#bitcoinunlimited on IRC</a></li>
+	        				
+	        			</p>
+		    		</div>
+		    		<div class="col-footer col-md-2 col-xs-6">
+		    			<h3>Articles:</h3>
+		    			<ul class="no-list-style footer-navigate-section">
+						
+							<li><a href="http://gavinandresen.ninja/time-to-roll-out-bigger-blocks">Time to roll out bigger blocks</a></li>
+		    				
+							<li><a href="https://medium.com/faith-and-future/why-is-bitcoin-forking-d647312d22c1">Why is Bitcoin forking?</a></li>
+						
+							<li><a href="https://medium.com/@octskyward/on-consensus-and-forks-c6a050c792e7#.s7d93q1a9">On consensus and forks</a></li>
+							
+							<li><a href="http://gavinandresen.ninja/designing-for-success">Designing for success</a></li>
+							
+
+						</ul>
+		    		</div>
+		    	</div>
+		    	<div class="row">
+		    		<div class="col-md-12">
+		    			<div class="footer-copyright">&copy; MIT License. No Rights Reserved.</div>
+		    		</div>
+		    	</div>
+		    </div>
+	    </div>
+
+        <!-- Javascripts -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+        <script src="js/jquery.fitvids.js"></script>
+        <script src="js/jquery.sequence-min.js"></script>
+        <script src="js/jquery.bxslider.js"></script>
+        <script src="js/main-menu.js"></script>
+        <script src="js/template.js"></script>
+
+    </body>
+</html>

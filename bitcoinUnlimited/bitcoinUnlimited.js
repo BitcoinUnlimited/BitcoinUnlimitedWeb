@@ -126,13 +126,8 @@ if (Meteor.isClient) {
   Template.software.helpers({
     showSignatures: function()
       {
-          return Session.get("showSignatures");
+          return Session.get("showSignatures");;
       },
-    showLinuxInstallationInstructions: function()
-      {
-          return Session.get("showLinuxInstallationInstructions");
-      },
-
     expLinuxImages: function()
       {
           return Session.get("expLinuxImages");
@@ -153,19 +148,11 @@ if (Meteor.isClient) {
 
   Template.software.events({
     'click #sigOfficial112': function(){
-    Session.set("showSignatures", true);
+    Session.set("showSignatures", true)
 },
     'click #close': function(){
-    Session.set("showSignatures", false);
-    Session.set("showLinuxInstallationInstructions", false);
-},
-    'click #linuxInstall': function(){
-    Session.set("showLinuxInstallationInstructions", true)
-},
-    'click #linuxInstallclose': function(){
-    Session.set("showLinuxInstallationInstructions", false)
-},
-
+    Session.set("showSignatures", false)
+}
   });
 
 
