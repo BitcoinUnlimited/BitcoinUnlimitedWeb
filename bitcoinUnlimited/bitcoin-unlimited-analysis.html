@@ -10,17 +10,17 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/icomoon-social.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/icomoon-social.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="css/leaflet.css" />
+        <link rel="stylesheet" href="/css/leaflet.css" />
 		<!--[if lte IE 8]>
 		    <link rel="stylesheet" href="css/leaflet.ie.css" />
 		<![endif]-->
-		<link rel="stylesheet" href="css/main-orange.css">
+		<link rel="stylesheet" href="/css/main-orange.css">
 		<link rel="stylesheet" href="paper.css">
-        <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -38,19 +38,19 @@
 		        </div>
 		        <nav id="mainmenu" class="mainmenu">
 					<ul>
-						<li class="logo-wrapper"><a href="index.html"><img src="img/bitcoin-unlimited.jpg" width="100%" height="100%""Bitcoin Unlimited Logo"></a></li>
+						<li class="logo-wrapper"><a href="/index.html"><img src="/img/bitcoin-unlimited.jpg" width="100%" height="100%""Bitcoin Unlimited Logo"></a></li>
 						
-						<li class="active"><a href="index.html">Home</a></li>
+						<li class="active"><a href="/index.html">Home</a></li>
 						
-						<li><a href="download.html">Download</a></li>
+						<li><a href="/download.html">Download</a></li>
 							
-						<li><a href="faq.html">FAQ</a></li>
+						<li><a href="/faq.html">FAQ</a></li>
 						
-						<li><a href="buip.html">Proposals</a></li>
+						<li><a href="/buip.html">Proposals</a></li>
 							
-						<li><a href="members.html">Members</a></li>
+						<li><a href="/members.html">Members</a></li>
 							
-						<li><a href="resources.html">Resources</a></li>
+						<li><a href="/resources.html">Resources</a></li>
 						
 					</ul>
 				</nav>
@@ -97,7 +97,7 @@ This process is time consuming; there is network latency and bandwidth limiting 
 
 <div id="fig1" class="figure">
 <div class="figure_title" >Figure 1: Block discovery interval showing 1-txn and full block regions</div>
-<img src="1txn/1_txn_obs_theory.png" width="100%"/>
+<img src="1_txn_obs_theory.png" width="100%"/>
 </div>
 <p>The red line marks the probability that a block is found at a particular time (shown in minutes on the x axis).  That this is not constant can be unintuitive to people who know that the likelihood of a block being found at any random time t (given constant hash rate) is the same as any other time.  However, this is not what is being measured.  We are measuring the likelihood that NO block was found during the interval [0,t) combined with the likelihood of finding a block at time t.  This is the Poisson process equation:
 <div class="equ">
@@ -114,7 +114,7 @@ In the first data set, the time interval between mining a 1 transaction block an
 </p>
 <div id="fig2" class="figure">
 <div class="figure_title">Figure 2: </div>
-<img src="1txn/chart1.svg"/>
+<img src="chart1.svg"/>
 <div class="figure_caption">In this figure, the X axis is the block size, ranging from 0 to 1MB and the y axis is seconds</div>
 </div>
 <p>
@@ -206,7 +206,7 @@ is approximately R for R < .1.  One can therefore see that this equation is appr
 </p>
 <div id="fig1" class="figure">
 <div class="figure_title">Figure 3:</div>
-<img src="1txn/blkPrepRatioMethod.svg"/>
+<img src="blkPrepRatioMethod.svg"/>
 </div>
 </div>
 
@@ -243,7 +243,7 @@ So the maximum network throughput (Th) is the block size (Q) divided by the usef
 With today's rate of z=1/17 MB/sec and T = 10 minutes the following plot can be drawn:
 <div id="fig3" class="figure">
 <div class="figure_title">Figure 3: Bitcoin Network Throughput as block size increases</div>
-<img src="1txn/throughput_by_blocksize.png"/>
+<img src="throughput_by_blocksize.png"/>
 </div>
 
 <p>For example, 32MB blocks would require approximately 10 minutes of validation (1-txn block generation) time.  Since it subsequently takes (on average) 10 minutes to find a new block, we end up with a network with a 50% duty cycle (i.e. half the blocks are 1-txn half are carrying useful data), and ~30KB/sec of transaction throughput.</p>
@@ -275,14 +275,14 @@ Let us call the "full block mining interval" (T5,T6) even though the blocks mine
 </p><p>The following graph overlays both the theoretical and actual block discovery intervals, using data from the Relay Network for a period of N days from Dec 6,2015 to Dec 15,2015:
 <div id="fig4" class="figure">
 <div class="figure_title">Figure 4: Block Discovery Intervals</div>
-<img src="1txn/block_discovery_intervals.png"/>
+<img src="block_discovery_intervals.png"/>
 </div>
 Visually, there is no evidence of an unexpected decrease in block discovery due to block propagation time.
 </p>
 <p>We can simulate a network where miners do not generate 1-txn blocks by ignoring intervals where the second block was a 1-txn block.  In the next chart, light blue bars show the block discovery likelihood if no blocks were being generated during the validation time interval (T0,T5), and yellow shows the contribution of the 1-txn blocks.
 <div id="fig5" class="figure">
 <div class="figure_title">Figure 5: Block Discovery Intervals with 1-txn blocks</div>
-<img src="1txn/block_discovery_intervals_1txn.png"/>
+<img src="block_discovery_intervals_1txn.png"/>
 </div>
 </p><p>
 This results in a graph whose first minute is significantly affected by block propagation and validation times.  This result is consistent with the results of the other methods and our hypothesis that 1-txn blocks are created during the block validation interval.
@@ -490,7 +490,7 @@ The following chart graphs this equation given transaction fees per MB within th
 </p>
 <div id="fig6" class="figure">
 <div class="figure_title">Figure 6: Miner revenue in BTC as block size increases</div>
-<img src="1txn/miner_revenue_large_blocks_25reward.png" width="100%" />
+<img src="miner_revenue_large_blocks_25reward.png" width="100%" />
 </div>
 <p>
 The maxima in these curves show that the network's average block validation rate will limit the size of a particular mining pool's blocks regardless of how much that pool's block validation capacity exceeds other pools.  Therefore, an individual mining pool cannot increase average network block sizes to arbitrary size by "voting" with huge blocks.  Given rational mining pools, attempting to do so will simply be an expensive lesson in how quickly a pool's blocks can be deliberately orphaned. 
@@ -503,8 +503,8 @@ The situation is similar when the block reward halves to 12.5 BTC, and in the ul
 </p>
 <div id="fig7" class="figure">
 <div class="figure_title">Figure 7 and 8: Miner revenue in BTC as block size increases, with block rewards of 12.5 and 0 BTC respectively</div>
-<img src="1txn/miner_revenue_large_blocks_12reward.png" width="48%" />
-<img src="1txn/miner_revenue_large_blocks_0reward.png" width="48%" />
+<img src="miner_revenue_large_blocks_12reward.png" width="48%" />
+<img src="miner_revenue_large_blocks_0reward.png" width="48%" />
 </div>
 <p>
 As shown by the green lines, there is actually a disincentive for miners to to include transactions in blocks, given today's 25 BTC reward and typical transaction fees (Figure 6).  Yet as we move to 12.5 BTC reward (figure 7), this incentive turns slightly positive at .4 BTC transaction fees/MB for block sizes up to about 5MB.  While this small disincentive will serve to keep block sizes relatively small, it is unlikely to cause mining pools to consistently mine blocks without any transactions due to long term effects that are not captured in this model -- in particular, if transactions are not committed, Bitcoin ceases to be a value transfer network, and therefore the value of the Bitcoins mined would drop dramatically.
@@ -512,7 +512,7 @@ As shown by the green lines, there is actually a disincentive for miners to to i
 <p>The final figure shows what will happen when the block validation times change.  Since block validation includes the time to receive the full block and the time to check it for errors, this rate can be increased by more efficient software, faster CPUs and disks, and lower latency / higher bandwidth network connections.  This chart was generated with a constant .5 BTC fee per MB and a 25 BTC coinbase reward. Note that the chart is denoted in seconds per megabyte so a smaller number is a faster validation time.
 <div id="fig9" class="figure">
 <div class="figure_title">Figure 9: Miner revenue as validation speed changes</div>
-<center><img src="1txn/validation_speed_differences.png" width="80%" /></center>
+<center><img src="validation_speed_differences.png" width="80%" /></center>
 </div>
 <h3>Effect on Network Security</h3>
 <p>
@@ -635,10 +635,10 @@ In this situation, a single miner controls all of the transactions committed to 
 		    			<div>
 							<div class="portfolio-image">
 						<ul class="no-list-style footer-navigate-section">
-		    				<li><a href="articles.html">Articles of Federation</a></li>
-		    				<li><a href="public/downloads/feemarket.pdf"> Fee Market</a></li>
-		    				<li><a href="public/downloads/subchains.pdf"> Subchains</a></li>
-		    				<li><a href="bitcoin-unlimited-analysis.html">Bitcoin Unlimited Analysis (1-txn)</a></li>
+		    				<li><a href="/articles.html">Articles of Federation</a></li>
+		    				<li><a href="/public/downloads/feemarket.pdf"> Fee Market</a></li>
+		    				<li><a href="/public/downloads/subchains.pdf"> Subchains</a></li>
+		    				<li><a href="/1txn">Bitcoin Unlimited Analysis (1-txn)</a></li>
 		    				
 		    			</ul>
 		    			</ul>
@@ -649,17 +649,17 @@ In this situation, a single miner controls all of the transactions committed to 
 		    			<h3>Navigate</h3>
 		    			<ul class="no-list-style footer-navigate-section">
 		    				
-							<li><a href="index.html">Home</a></li>
+							<li><a href="/index.html">Home</a></li>
 						
-							<li><a href="download.html">Download</a></li>
+							<li><a href="/download.html">Download</a></li>
 							
-							<li><a href="faq.html">FAQ</a></li>
+							<li><a href="/faq.html">FAQ</a></li>
 						
-							<li><a href="buip.html">Proposals</a></li>
+							<li><a href="/buip.html">Proposals</a></li>
 							
-							<li><a href="members.html">Members</a></li>
+							<li><a href="/members.html">Members</a></li>
 							
-							<li><a href="resources.html">Resources</a></li>
+							<li><a href="/resources.html">Resources</a></li>
 
 						</ul>
 		    		</div>
@@ -699,14 +699,14 @@ In this situation, a single miner controls all of the transactions committed to 
 
         <!-- Javascripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="js/bootstrap.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="/js/bootstrap.min.js"></script>
         <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-        <script src="js/jquery.fitvids.js"></script>
-        <script src="js/jquery.sequence-min.js"></script>
-        <script src="js/jquery.bxslider.js"></script>
-        <script src="js/main-menu.js"></script>
-        <script src="js/template.js"></script>
+        <script src="/js/jquery.fitvids.js"></script>
+        <script src="/js/jquery.sequence-min.js"></script>
+        <script src="/js/jquery.bxslider.js"></script>
+        <script src="/js/main-menu.js"></script>
+        <script src="/js/template.js"></script>
 
     </body>
 </html>
