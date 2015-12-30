@@ -100,6 +100,13 @@ No.  The effective network throughput is currently limited by the production of 
 For a formal treatment of these subjects see <a href="/1txn">An Examination of Single-Transaction Blocks and Their Effect on Network Throughput and Block Size</a>.
 </p>
 </li>
+<li><p class="faqQ">Will unlimited size blocks actually result in gigantic blocks?</p>
+<p class="faqA">
+No.  The effective network throughput is currently limited by the production of single transaction (empty except for the coinbase) blocks.  The larger blocks get, the more of these blocks are generated, resulting in a maximum average block size.  Additionally a rational miner should not accept a gigantic block since it denies him any chance to also produce transaction-containing blocks.  More specifically, if the expected time to find and validate a short block is lower than the time to validate the gigantic block, it maximizes revenue to continue to mine a sibling while simultaneously validating the gigantic block.
+<br><br>
+For a formal treatment of these subjects see <a href="/1txn">An Examination of Single-Transaction Blocks and Their Effect on Network Throughput and Block Size</a>.
+</p>
+</li>
 <li><p class="faqQ">Why is a formal <i>Bitcoin Unlimited Articles of Federation</i> necessary?</p>
 <p class="faqA">
 It is completely unknown whether the majority of Bitcoin users support block sizes greater than 1 MB or not.  No formal debate or vote has occurred.  In contrast, debate is censored on the two most popular Bitcoin community sites.  A majority of miners have "voted" for the unimplemented BIP100 proposal (this proposal would then allow miners to vote on block size), yet nothing has been done to implement this proposal.  The existence of BIP100, BIP101 and other proposals may be "splitting" the large max-block community -- yet there is no mechanism (AFAIK) to authoritatively retire a proposal so the community can converge on a single proposal.  People who have put vast amounts of time and energy into a particular implementation's "brand" find themselves without recourse.  The power to add or remove features rests solely with individuals who possess technical skills and were at the right place at the right time.
