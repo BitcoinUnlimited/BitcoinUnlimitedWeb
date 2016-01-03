@@ -1,0 +1,36 @@
+{
+  "name": "bitcoin-unlimited-web",
+  "version": "1.0.0",
+  "description": "The Bitcoin Unlimited web site",
+  "author": "Bitcoin Unlimited Developers",
+  "contributors": [
+    {
+      "name": "Andrew Quentson"
+    },
+    {
+      "name": "Andrew Stone"
+    },
+    {
+      "name": "Trevin Hofmann",
+      "email": "trevinhofmann@gmail.com"
+    }
+  ],
+  "scripts": {
+    "start": "node index.js"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gandrewstone/BitcoinUnlimitedWeb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gandrewstone/BitcoinUnlimitedWeb/issues"
+  },
+  "keywords": [
+    "bitcoin",
+    "unlimited",
+    "website"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/gandrewstone/BitcoinUnlimitedWeb#readme"
+}
