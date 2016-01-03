@@ -32,5 +32,8 @@
     "website"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/gandrewstone/BitcoinUnlimitedWeb#readme"
+  "homepage": "https://github.com/gandrewstone/BitcoinUnlimitedWeb#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
