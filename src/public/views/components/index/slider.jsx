@@ -4,6 +4,19 @@ import React from 'react';
 
 export default React.createClass({
 
+    componentDidMount() {
+        let options = {
+            nextButton: false,
+            prevButton: false,
+            pagination: true,
+            animateStartingFrameIn: true,
+            autoPlay: true,
+            autoPlayDelay: 3000,
+            preloader: true
+        };
+        $('#sequence').sequence(options).data('sequence');
+    },
+
     render: function () {
         return (
             <div className="homepage-slider">
