@@ -19,7 +19,7 @@
     height: 100%;
     z-index: -1;
     opacity: 0.2;
-    background-image: url('/images/coins1.png');
+    background-image: url('/img/coins1.png');
     background-repeat: repeat-y;
     background-position: 50% 0;
     -ms-background-size: cover;
@@ -49,7 +49,7 @@
 .header {
  /* border: 1px black solid; */
  display: block;
- background-image: url("/images/headerbkg.png");
+ background-image: url("/img/headerbkg.png");
  background-repeat: repeat-x;
  /* height: 130px; */
  background-size: 100% 100%;
@@ -74,7 +74,7 @@
 
 
 ul {
-    list-style-image: url('/images/buIcon24.png');
+    list-style-image: url('/img/buIcon24.png');
     vertical-align: middle;
 }
 
@@ -216,7 +216,7 @@ table.buipTable td {
   width: 50%;
   height: 60%;
   border-radius: 15%;
-  /* background-image: url("/images/coins1.png"); */
+  /* background-image: url("/img/coins1.png"); */
   background-size: 100%;
   background-color: orange;
   border: 3px solid #cf2D01;
@@ -235,7 +235,7 @@ table.buipTable td {
 }
 
 .signatures #close {
-  background-image: url("/images/close-button.svg");
+  background-image: url("/img/close-button.svg");
   background-size: 100%;
   position: absolute;
   top: -1%;

@@ -12,6 +12,18 @@ module.exports = function(grunt) {
         babel: {
             files: ['src/**/*.js'],
             tasks: ['babel']
+        },
+        copy: {
+            files: [
+                '**/*.html',
+                '**/*.css',
+                '**/*.png',
+                '**/*.jpg',
+                '**/*.jpeg',
+                '**/*.svg',
+                '**/*.pdf'
+            ],
+            tasks: ['copy']
         }
     };
 
