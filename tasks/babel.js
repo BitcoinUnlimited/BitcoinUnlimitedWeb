@@ -6,15 +6,11 @@ module.exports = function(grunt) {
 
     return {
         dist: {
-            options: {
-                compact: true,
-                comments: false
-            },
             files: [
                 {
                     expand: true,
                     cwd: 'src/',
-                    src: ['*.js'],
+                    src: ['**/*.js'],
                     dest: '.dist/'
                 }
             ]
