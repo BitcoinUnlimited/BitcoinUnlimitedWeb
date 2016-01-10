@@ -21,6 +21,7 @@ module.exports = function(grunt) {
                 '**/*.jpg',
                 '**/*.jpeg',
                 '**/*.svg',
+                '**/*.json',
                 '**/*.pdf'
             ],
             tasks: ['copy']

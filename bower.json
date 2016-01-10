@@ -3,6 +3,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.6",
-    "bxslider-4": "~4.2.5"
+    "bxslider-4": "~4.2.5",
+    "marked": "~0.3.5"
   }
 }

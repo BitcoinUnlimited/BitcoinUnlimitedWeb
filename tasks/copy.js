@@ -17,6 +17,7 @@ module.exports = function(grunt) {
                         '**/*.jpg',
                         '**/*.jpeg',
                         '**/*.svg',
+                        '**/*.json',
                         '**/*.pdf'
                     ],
                     dest: '.dist/'
