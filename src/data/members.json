@@ -7,6 +7,7 @@
   },
   {
     "name": "awemany",
+    "bitcoinAddress": "1BCnpopAZ4xFSxdX8NvVqUaSvsPffQhNRd",
     "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3892"
   },
   {
@@ -34,6 +35,7 @@
   },
   {
     "name": "sickpig",
+    "bitcoinKey": "1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G",
     "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3940",
     "statement": "[T]he protocol has to be decoupled from any particular implementation. [T]he more choices users have the better."
   },

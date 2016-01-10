@@ -22,7 +22,7 @@ export default React.createClass({
                     <p>Nothing right now</p>
                     <br />
                     <h4>Source Code</h4>
-                    <p>Github <a href='https://github.com/gandrewstone/BitcoinUnlimited'> here</a>.</p>
+                    <p>Github <a href='https://github.com/gandrewstone/BitcoinUnlimited'>here</a>.</p>
                 </div>
             </div>
         );

@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
 export default React.createClass({
 
@@ -41,7 +42,7 @@ export default React.createClass({
                             their hash power.</p>
                         <p>Bitcoin Unlimited seeks to remove existing practical barriers to stakeholders
                             expressing their views in these ways.</p>
-                        <p>For more details, read our <a href="articles.html">Articles of Federation</a>.</p>
+                        <p>For more details, read our <Link to='/articles'>Articles of Federation</Link>.</p>
                         <p>The Bitcoin Unlimited client is not a competitive block scaling
                             proposal like BIP-101, BIP-102, etc. Instead it tracks consensus.
                             This means that it tracks the blockchain that the hash power
@@ -50,8 +51,8 @@ export default React.createClass({
                             fields.</p>
                         <p>If you support an increase in the blocksize limit by any means -- or
                             just support Bitcoin conflict resolution as originally envisioned by
-                            its founder -- consider running a <a href="download.html">Bitcoin
-                                Unlimited</a> client.</p>
+                            its founder -- consider running a <Link to='/download'>Bitcoin
+                                Unlimited</Link> client.</p>
                     </div>
                 </div>
             </div>

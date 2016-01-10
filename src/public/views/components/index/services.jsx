@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
 export default React.createClass({
 
@@ -26,7 +27,7 @@ export default React.createClass({
                                     run a node, if you are a miner then join a mining pool, if you are a
                                     researcher then provide evidence and analysis and if you are a
                                     contributor then educate others with analysis and facts</p>
-                                <a href="buip.html" className="btn">Read more</a>
+                                <Link to='/buip' className="btn">Read more</Link>
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-6">

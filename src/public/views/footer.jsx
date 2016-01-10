@@ -70,7 +70,7 @@ export default React.createClass({
                             </p>
                         </div>
                         <div className="col-footer col-md-2 col-xs-6">
-                            <h3>Articles:</h3>
+                            <h3>Articles</h3>
                             <ul className="no-list-style footer-navigate-section">
                                 <li>
                                     <a href="http://gavinandresen.ninja/time-to-roll-out-bigger-blocks">Time to roll out bigger blocks</a>
