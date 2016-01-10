@@ -18,7 +18,10 @@ module.exports = function(grunt) {
                         '**/*.jpeg',
                         '**/*.svg',
                         '**/*.json',
-                        '**/*.pdf'
+                        '**/*.pdf',
+                        '**/*.exe',
+                        '**/*.zip',
+                        '**/*.gz'
                     ],
                     dest: '.dist/'
                 }

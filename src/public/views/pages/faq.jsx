@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
 import Header from '../header.jsx';
 import Footer from '../footer.jsx';
@@ -31,7 +32,7 @@ export default React.createClass({
                                                 <p className='faqQ'>Will unlimited size blocks actually result in no fee market?</p>
                                                 <p className='faqA'>
                                                     No. Intuitively you can understand this by realizing that it will take a lot longer to propagate a gigantic block across the network than a small one. Therefore a gigantic block has a higher likelihood of being "orphaned" -- that is, a competing block will be found, propagated across the network and supplant the gigantic block. In this case the miner of the gigantic block will lose the block subsidy and transaction fees. Therefore miners are incentivised by limitations in the underlying physical network to produce smaller blocks, and incentivized by transaction fees to produce larger ones. Finding the balance between these forces is what the free market excels at. And as underlying physical networks improve or fees increase, miners will naturally be able to produce larger blocks. The transaction "supply" (space in a block) therefore depends directly on the fundamental capacity, rather than relying on some centralized "steering committee" to properly set maximum block size. Bitcoin is all about disintermediation, and this is another example of it working.                                                    <br /><br />
-                                                    For a formal treatment of this subject see <a href='feemarket.html'>A Transaction Fee Market Exists Without a Block Size Limit</a>.
+                                                    For a formal treatment of this subject see <a href='/resources/feemarket.html'>A Transaction Fee Market Exists Without a Block Size Limit</a>.
                                                 </p>
                                             </li>
                                             <br />
@@ -41,7 +42,7 @@ export default React.createClass({
                                                 <p className='faqA'>
                                                     No.  The effective network throughput is currently limited by the production of single transaction (empty except for the coinbase) blocks.  The larger blocks get, the more of these blocks are generated, resulting in a maximum average block size.  Additionally a rational miner should not accept a gigantic block since it denies him any chance to also produce transaction-containing blocks.  More specifically, if the expected time to find and validate a short block is lower than the time to validate the gigantic block, it maximizes revenue to continue to mine a sibling while simultaneously validating the gigantic block.
                                                     <br /><br />
-                                                    For a formal treatment of these subjects see <a href='/1txn'>An Examination of Single-Transaction Blocks and Their Effect on Network Throughput and Block Size</a>.
+                                                    For a formal treatment of these subjects see <a href='/resources/1txn.pdf'>An Examination of Single-Transaction Blocks and Their Effect on Network Throughput and Block Size</a>.
                                                 </p>
                                             </li>
                                             <li>
@@ -52,7 +53,7 @@ export default React.createClass({
                                                     <br /><br />
                                                     Proposals are made, debated, and then resolved (voted on) and the Proposer and BU officers have the power to force this process to occur in a timely fashion.  The Articles also ensure that passed, implemented proposals are committed to the code repository in a timely fashion.
                                                     <br /><br />
-                                                    For more information please read the <a href='/articlesOfFederation'>Bitcoin Unlimited Articles of Federation</a>
+                                                    For more information please read the <Link to='/articles'>Bitcoin Unlimited Articles of Federation</Link>
                                                 </p>
                                             </li>
                                             <br />

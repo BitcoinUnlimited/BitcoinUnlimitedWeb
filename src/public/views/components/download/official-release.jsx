@@ -21,12 +21,12 @@ export default React.createClass({
                     <h3>Binary Downloads</h3>
                     <br />
                     <h4>Windows</h4>
-                    <p>64-bit: Version: 0.11.2, Dec 22, 2015: <a href='public/downloads/bitcoinUnlimited-0.11.2-win64-setup.exe'> bitcoinUnlimited-0.11.2-win64-setup.exe</a> <a href='public/downloads/bitcoinUnlimited-0.11.2-win64.zip'> (zip)</a></p>
-                    <p>32-bit: Version: 0.11.2, Dec 22, 2015: <a href='public/downloads/bitcoinUnlimited-0.11.2-win32-setup.exe'> bitcoinUnlimited-0.11.2-win32-setup.exe</a> <a href='public/downloads/bitcoinUnlimited-0.11.2-win32.zip'> (zip)</a></p>
+                    <p>64-bit: Version: 0.11.2, Dec 22, 2015: <a href='/downloads/bitcoinUnlimited-0.11.2-win64-setup.exe'> bitcoinUnlimited-0.11.2-win64-setup.exe</a> <a href='public/downloads/bitcoinUnlimited-0.11.2-win64.zip'> (zip)</a></p>
+                    <p>32-bit: Version: 0.11.2, Dec 22, 2015: <a href='/downloads/bitcoinUnlimited-0.11.2-win32-setup.exe'> bitcoinUnlimited-0.11.2-win32-setup.exe</a> <a href='public/downloads/bitcoinUnlimited-0.11.2-win32.zip'> (zip)</a></p>
                     <br />
                     <h4>Linux</h4>
-                    <p>64-bit: Version: 0.11.2, Dec 22, 2015:<a href='public/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz'> bitcoinUnlimited-0.11.2-linux64.tar.gz</a></p>
-                    <p>32-bit: Version: 0.11.2, Dec 22, 2015: <a href='public/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz'> bitcoinUnlimited-0.11.2-linux32.tar.gz</a></p>
+                    <p>64-bit: Version: 0.11.2, Dec 22, 2015:<a href='/downloads/bitcoinUnlimited-0.11.2-linux64.tar.gz'> bitcoinUnlimited-0.11.2-linux64.tar.gz</a></p>
+                    <p>32-bit: Version: 0.11.2, Dec 22, 2015: <a href='/downloads/bitcoinUnlimited-0.11.2-linux32.tar.gz'> bitcoinUnlimited-0.11.2-linux32.tar.gz</a></p>
                     <br />
                     <h4>Linux Installation Instructions</h4>
                     <p>Download the file and then open a terminal window. Type:</p>
