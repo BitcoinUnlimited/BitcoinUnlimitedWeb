@@ -1,0 +1,11 @@
+{
+    "verbose": true,
+    "ignore": [
+        "src/*",
+        "tasks/*",
+        "Gruntfile.js"
+    ],
+    "watch": [
+        ".dist/**/*.js"
+    ]
+}

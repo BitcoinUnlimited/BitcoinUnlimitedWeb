@@ -9,15 +9,12 @@ module.exports = function(grunt) {
             options: {
                 transform: [
                     [
-                        'babelify', {
-                            compact: true,
-                            comments: false
-                        }
+                        'babelify'
                     ]
                 ]
             },
             files: {
-                '.dist/public/bundle.js': 'src/public/views/index.jsx'
+                '.dist/public/bundle.js': 'src/public/views/main.jsx'
             }
         }
     };

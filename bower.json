@@ -2,6 +2,7 @@
   "name": "bitcoin-unlimited-web",
   "dependencies": {
     "jquery": "~2.1.4",
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "bxslider-4": "~4.2.5"
   }
 }
