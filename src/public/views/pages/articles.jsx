@@ -53,11 +53,11 @@ Bitcoin Unlimited adheres to Satoshi Nakamoto's vision for a system that could s
 <p>
 The guiding principle for Bitcoin Unlimited is that the evolution of the network is decided by the code people freely choose to run. Consensus is therefore an emergent property, objectively represented by the longest proof-of-work chain.  This fact is an unassailable property of Bitcoin and cannot be changed by fiat.
 </p><p>
-  The final sentence of the Bitcoin white paper states:
+  The final sentence of the Bitcoin white paper states:</p>
 <blockquote><p>
 They [nodes/miners] vote with their CPU power, expressing their acceptance of valid blocks by working on extending them and rejecting invalid blocks by refusing to work on them. Any needed rules and incentives can be enforced with this consensus mechanism.
-</blockquote></p>
-</p><p>
+</p></blockquote>
+<p>
 It is this mechanism of "voting with their CPU power" that keeps Bitcoin permissionless and uncensorable. Were it possible to compel miners to run a specific application with a specific set of rules then it would be trivial for the owner of the codebase to, for example, invalidate transactions, modify the inflation schedule, block certain bitcoin addresses or IP ranges, limit the quantity of transactions in a block, or implement any other centralized policies.
 </p><p>
 In other words, Bitcoin only maintains its intrinsically valuable properties of being permissionless, uncensorable, trustless, and uninflatable, precisely because the software is not, and should not be, controlled by any single governance entity.
@@ -124,7 +124,7 @@ Additional BUIP requirements on patches.
 If a BUIP contains a patch, the Developer may review the patch for acceptability (including but not limited to bugs, tests, coding standards) AFTER BUIP acceptance. The developer may work with the Proposer or other party for as long as necessary to ensure the patch is acceptable.  After 2 months, if the Proposer believes that this process is taking too long, the President, Secretary, or Proposer may propose that the patch be included "as is", via the same BUIP proposal channel and schedule a vote (normal BUIP majority rules).  This vote may not occur within one 1 week of the formal "commit as is" proposal.
 </p><p>
 If the BUIP does NOT contain a patch but suggests technical changes, it is the responsibility of the Proposer or any other party to produce this patch. After the patch is produced, the Developer reviews it as suggested in the preceding paragraph, except in the "as is" case, the normal BUIP schedule and process must be followed.  In the unfortunate situation where a patch is deliberately accepted which does not agree with the Proposer's BUIP, the Proposer's recourse is to resubmit the BUIP with a patch.
-</p><p>
+</p>
 </li><li><p>This document can be modified via a greater than 66% majority vote on a BUIP with at least 75% of the members voting.
 </p>
 </li><li><p>
@@ -220,7 +220,7 @@ I, the undersigned, substantially agree with the Bitcoin Unlimited Vision as def
 <br/>
 <br/>
 <br/>
-                                    </div>
+           </p>                         </div>
                                 </div>
                             </div>
                         </div>
