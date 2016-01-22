@@ -65,12 +65,15 @@ export default React.createClass({
                                     <a href="https://reddit.com/r/btc">Reddit /r/btc</a>
                                 </li>
                                 <li>
-                                    <a href="https://webchat.freenode.net/?channels=bitcoinunlimited">#bitcoinunlimited on IRC</a>
+                                    <a href="https://reddit.com/r/bitcoin_unlimited">Reddit /r/bitcoin_unlimited</a>
+                                </li>
+                                <li>
+                                    <a href="https://webchat.freenode.net/?channels=##btc">##btc on IRC</a>
                                 </li>
                             </p>
                         </div>
                         <div className="col-footer col-md-2 col-xs-6">
-                            <h3>Articles</h3>
+                            <h3>News</h3>
                             <ul className="no-list-style footer-navigate-section">
                                 <li>
                                     <a href="http://gavinandresen.ninja/time-to-roll-out-bigger-blocks">Time to roll out bigger blocks</a>
