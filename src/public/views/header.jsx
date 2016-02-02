@@ -19,7 +19,7 @@ export default React.createClass({
                     <ul>
                         <li className='logo-wrapper'>
                             <Link to='/'>
-                                <img src='img/bitcoin-unlimited.jpg' width='98%' height='100%' />
+                                <img src='img/bitcoin-unlimited.png' width='98%' height='100%' />
                             </Link>
                         </li>
                         <li className={this.getClassName('index')}>
