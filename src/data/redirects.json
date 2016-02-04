@@ -8,6 +8,10 @@
     "to": "/resources/bitcoin.pdf"
   },
   {
+    "from": "/bitcoinWhitepaper",
+    "to": "/resources/bitcoin.pdf"
+  },
+  {
     "from": "/bitcoin.pdf",
     "to": "/resources/bitcoin.pdf"
   },
