@@ -25,7 +25,7 @@
   },
   {
     "from": "/downloads/feemarket.pdf",
-    "to": "/resorces/feemarket.pdf"
+    "to": "/resources/feemarket.pdf"
   },
   {
     "from": "/downloads/subchains.pdf",
@@ -41,7 +41,7 @@
   },
   {
     "from": "/public/downloads/feemarket.pdf",
-    "to": "/resorces/feemarket.pdf"
+    "to": "/resources/feemarket.pdf"
   },
   {
     "from": "/public/downloads/subchains.pdf",
