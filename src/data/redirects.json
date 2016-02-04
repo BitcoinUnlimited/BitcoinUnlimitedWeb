@@ -1,0 +1,54 @@
+[
+  {
+    "from": "/bitcoin-unlimited-analysis.html",
+    "to": "/1txn"
+  },
+  {
+    "from": "/bitcoin-whitepaper.html",
+    "to": "/resources/bitcoin.pdf"
+  },
+  {
+    "from": "/bitcoin.pdf",
+    "to": "/resources/bitcoin.pdf"
+  },
+  {
+    "from": "/feemarket.html",
+    "to": "/resources/feemarket.pdf"
+  },
+  {
+    "from": "/downloads/BUarticles.pdf",
+    "to": "/resources/BUarticles.pdf"
+  },
+  {
+    "from": "/downloads/bitcoin.pdf",
+    "to": "/resources/bitcoin.pdf"
+  },
+  {
+    "from": "/downloads/feemarket.pdf",
+    "to": "/resorces/feemarket.pdf"
+  },
+  {
+    "from": "/downloads/subchains.pdf",
+    "to": "/resources/subchains.pdf"
+  },
+  {
+    "from": "/public/downloads/BUarticles.pdf",
+    "to": "/resources/BUarticles.pdf"
+  },
+  {
+    "from": "/public/downloads/bitcoin.pdf",
+    "to": "/resources/bitcoin.pdf"
+  },
+  {
+    "from": "/public/downloads/feemarket.pdf",
+    "to": "/resorces/feemarket.pdf"
+  },
+  {
+    "from": "/public/downloads/subchains.pdf",
+    "to": "/resources/subchains.pdf"
+  },
+  {
+    "from": "/articlesOfFederation",
+    "to": "/resources/BUarticles.pdf"
+  }
+]
