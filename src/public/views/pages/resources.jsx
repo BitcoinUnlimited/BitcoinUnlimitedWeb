@@ -23,7 +23,7 @@ const RESOURCES = [
     },
     {
         title: 'An Examination of Single Transaction Blocks and Their Effect on Network Throughput and Block Size',
-        pdf: 'resources/btc_1txn.pdf'
+        pdf: 'resources/1txn.pdf'
     },
     {
         title: 'Bitcoin: A Peer-to-Peer Electronic Cash System',

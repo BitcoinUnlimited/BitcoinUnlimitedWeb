@@ -1,7 +1,7 @@
 [
   {
     "from": "/bitcoin-unlimited-analysis.html",
-    "to": "/1txn"
+    "to": "/resources/1txn.pdf"
   },
   {
     "from": "/bitcoin-whitepaper.html",
@@ -16,12 +16,20 @@
     "to": "/resources/feemarket.pdf"
   },
   {
+    "from": "/1txn",
+    "to": "/resources/1txn.pdf"
+  },
+  {
     "from": "/downloads/BUarticles.pdf",
     "to": "/resources/BUarticles.pdf"
   },
   {
     "from": "/downloads/bitcoin.pdf",
     "to": "/resources/bitcoin.pdf"
+  },
+  {
+    "from": "/downloads/btc_1txn.pdf",
+    "to": "/resources/1txn.pdf"
   },
   {
     "from": "/downloads/feemarket.pdf",
@@ -38,6 +46,10 @@
   {
     "from": "/public/downloads/bitcoin.pdf",
     "to": "/resources/bitcoin.pdf"
+  },
+  {
+    "from": "/public/downloads/btc_1txn.pdf",
+    "to": "/resources/1txn.pdf"
   },
   {
     "from": "/public/downloads/feemarket.pdf",
