@@ -4,7 +4,15 @@ import path from 'path';
 import fs from 'fs';
 import express from 'express';
 
+import redirects from './data/redirects.json';
+
 let app = express();
+
+redirects.forEach(function(redirect) {
+    app.get(redirect.from, function(req, res) {
+        res.redirect(redirect.to);
+    });
+});
 
 fs.readdirSync(path.join(__dirname, '../src/public/views/pages')).forEach(function(pageFile) {
     let page = '/' + pageFile.slice(0, -4);
