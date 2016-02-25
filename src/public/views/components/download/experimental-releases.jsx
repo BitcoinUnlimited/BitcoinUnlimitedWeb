@@ -24,7 +24,7 @@ export default React.createClass({
                     <p>32-bit: Version: 0.12.0, Feb 24, 2015: <a href='/downloads/bitcoinUnlimited-0.12.0-linux32.tar.gz'> bitcoinUnlimited-0.12.0-linux32.tar.gz</a></p>
                     <br />
                     <h4>Source Code</h4>
-                    <p>Github branch 0.12bu <a href='https://github.com/gandrewstone/BitcoinUnlimited'>here</a>.</p>
+                    <p>Github branch 0.12bu <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimited'>here</a>.</p>
                 </div>
             </div>
         );
