@@ -12,7 +12,7 @@ The following will install the project and start the server, listening on port 8
 npm install grunt-cli -g
 npm install bower -g
 npm install forever -g
-git clone git@github.com:gandrewstone/BitcoinUnlimitedWeb.git
+git clone git@github.com:BitcoinUnlimited/BitcoinUnlimitedWeb.git
 cd BitcoinUnlimitedWeb
 npm install
 forever start index.js

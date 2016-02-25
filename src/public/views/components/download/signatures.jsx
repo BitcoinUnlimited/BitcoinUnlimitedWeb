@@ -17,6 +17,22 @@ const CHECKSUMS = `
 }
 `;
 
+const CHECKSUMS12 =  `
+{
+"program":"Bitcoin Unlimited",
+"version":"0.12.0",
+"files":{
+"bitcoinUnlimited-0.12.0-linux64.tar.gz":"75ea1cbb7550ac0e04c4409ecca662a7218b1168a21f0b7ca8d16a7f8edf2a6a",
+"bitcoinUnlimited-0.12.0-linux32.tar.gz":"c0c021a63f570526d6f302a4fdda34b97c63b564fb8792255baa26ddbc998818",
+"bitcoinUnlimited-0.12.0-win32-setup.exe":"ddd15c7cb172f3a520f3e1a5975689ffd12e9e49d9cf8999530b171c969c0e47",
+"bitcoinUnlimited-0.12.0-win64-setup.exe":"bdd3d7311aa29bfd3c45c7173d1cca7b1814be7ab5aae482c2de6d04c9aad63a",
+"bitcoinUnlimited-0.12.0-win32.zip":"9d4205577a74f0a7b0714d137b62911baba183f64c3f59fdbf02ee1a25b0293d",
+"bitcoinUnlimited-0.12.0-win64.zip":"1d21d0954dff822ab4d4ec4ffcf52949bc1d8f480f8848b98f3a69fde12a7e54"
+}
+}
+`;
+
+
 export default React.createClass({
 
     render: function () {
@@ -32,7 +48,7 @@ export default React.createClass({
                         <div className='signatureText'>
                             These signatures attest that the individual named compiled Bitcoin Unlimited from Github source and produced the following files with the corresponding sha256 hashes.
                             <br /><br />
-                            Signed Statement:<br /><br />
+                            0.11.2 Signed Statement:<br /><br />
                             <pre>{CHECKSUMS}</pre>
                             <br />
                             By: Andrew Stone (1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3)
@@ -42,7 +58,14 @@ export default React.createClass({
                             Signature: IG+bTcn/bbm2m0eXXTnJZOTWop3vQ+hi1G2q2ZBfB9BIa9+qFNr0WfuuFLi1Xng3VPP4meYnVMWkuXWs402BORc=
                             <br/><br/>
                             By: awemany (1BCnpopAZ4xFSxdX8NvVqUaSvsPffQhNRd)
+
                             Signature: IH1gTO8LfLt3ZiGef5GO2tgI87PgT7mLf8+JHwN8n4a5YswQgg7RqmgDYNAiCa3S2EtaWOjluJYwzIdfBB4/wx4=
+                            <br /><br />
+                            0.12.0 Signed Statement:<br /><br />
+                            <pre>{CHECKSUMS12}</pre>
+                            <br />
+                            By: Andrew Stone (1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3)
+                            Signature:<br />G7vqXvTmXGZzI+h/D0xOjCcH50wbYA8/Rn2zVfNDlccUO56ZX4fbcPEtOt6Xd2QE5uu5LGljV9x5faICDoPtN6A=
                         </div>
                         <br /><br />
                         <div id='signatureHelp'>
