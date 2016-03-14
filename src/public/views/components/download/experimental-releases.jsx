@@ -13,6 +13,8 @@ export default React.createClass({
                 </div>
                 <div className='col-sm-8'>
                     <h2 className='red'>Experimental Releases </h2>
+                    NONE
+{/*
                     <h3>Binary Downloads</h3>
                     <br />
                     <h4>Windows</h4>
@@ -25,6 +27,7 @@ export default React.createClass({
                     <br />
                     <h4>Source Code</h4>
                     <p>Github branch 0.12bu <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimited'>here</a>.</p>
+*/}
                 </div>
             </div>
         );
