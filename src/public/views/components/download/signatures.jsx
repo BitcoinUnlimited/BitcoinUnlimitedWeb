@@ -54,7 +54,7 @@ export default React.createClass({
                             <pre>{CHECKSUMS12}</pre>
                             <br />
                             By: Andrew Stone (1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3)
-                            Signature:<br />G75i+ydDAY9K/9go5tgac+SwTZi8mZZhj/0apZf1Gww5LsrWnLozR7e+MC0fMQqGfftVQ0nkrjNcnpVnJ6kXeHQ=
+                            Signature:<br />HIoKBs2zqpn5yXpTlu1IQ6raPbHBmfyZLpDX8PG1xjXadtAHJbVv6MD8CXMcJddjOmDSLXRwCbI7W/JrY/fX/Wk=
                             <br /><br />
                             0.11.2 Signed Statement:<br /><br />
                             <pre>{CHECKSUMS}</pre>
