@@ -42,7 +42,7 @@ export default React.createClass({
                     <p>nohup ./bitcoin-qt &amp; </p>
                     <br />
                     <h4>Source Code</h4>
-                    <p>Github branch 0.11cfg_stats <a href='https://github.com/gandrewstone/BitcoinUnlimited/tree/0.12bu'>here</a></p>
+                    <p>Github branch 0.12bu <a href='https://github.com/gandrewstone/BitcoinUnlimited/tree/0.12bu'>here</a></p>
                 </div>
             </div>
         );
