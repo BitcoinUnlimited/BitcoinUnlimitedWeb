@@ -18,4 +18,10 @@ npm install
 forever start index.js
 ```
 
+To edit and test:
+```bash
+grunt build
+nodejs index.js
+```
+
 See the nginx-site.conf file for an example configuration to proxy requests from port 80.
