@@ -21,18 +21,17 @@ export default React.createClass({
                     <h3>Binary Downloads</h3>
                     <br />
                     <h4>Windows</h4>
-                    <p>64-bit: Version: 0.12.1, July 28, 2016: <a href='/downloads/bitcoinUnlimited-0.12.1-win64-setup.exe'> bitcoinUnlimited-0.12.1-win64-setup.exe</a> <a href='/downloads/bitcoinUnlimited-0.12.1-win64.zip'> (zip)</a></p>
-                    <p>32-bit: Version: 0.12.1, July 28, 2016: <a href='/downloads/bitcoinUnlimited-0.12.1-win32-setup.exe'> bitcoinUnlimited-0.12.1-win32-setup.exe</a> <a href='/downloads/bitcoinUnlimited-0.12.1-win32.zip'> (zip)</a></p>
+                    <p>64-bit: Version: 0.12.1, Aug 14, 2016: <a href='/downloads/bitcoinUnlimited-0.12.1-win64-setup.exe'> bitcoinUnlimited-0.12.1-win64-setup.exe</a> <a href='/downloads/bitcoinUnlimited-0.12.1-win64.zip'> (zip)</a></p>
+                    <p>32-bit: Version: 0.12.1, Aug 14, 2016: <a href='/downloads/bitcoinUnlimited-0.12.1-win32-setup.exe'> bitcoinUnlimited-0.12.1-win32-setup.exe</a> <a href='/downloads/bitcoinUnlimited-0.12.1-win32.zip'> (zip)</a></p>
                     <br />
                     <h4>Linux</h4>
-                    <p>64-bit: Version: 0.12.1, July 28, 2016:<a href='/downloads/bitcoinUnlimited-0.12.1-linux64.tar.gz'> bitcoinUnlimited-0.12.1-linux64.tar.gz</a></p>
-                    <p>32-bit: Version: 0.12.1, July 28, 2016: <a href='/downloads/bitcoinUnlimited-0.12.1-linux32.tar.gz'> bitcoinUnlimited-0.12.1-linux32.tar.gz</a></p>
+                    <p>64-bit: Version: 0.12.1, Aug 14, 2016:<a href='/downloads/bitcoinUnlimited-0.12.1-linux64.tar.gz'> bitcoinUnlimited-0.12.1-linux64.tar.gz</a></p>
+                    <p>32-bit: Version: 0.12.1, Aug 14, 2016: <a href='/downloads/bitcoinUnlimited-0.12.1-linux32.tar.gz'> bitcoinUnlimited-0.12.1-linux32.tar.gz</a></p>
                     <br />
-{/*                    <h4>Mac OSX</h4>
-                    <p>64-bit: Version: 0.12.1, July 28, 2016:<a href='/downloads/bitcoinUnlimited-0.12.1-osx64.tar.gz'> bitcoinUnlimited-0.12.1-osx64.tar.gz</a></p>
-                    <p>32-bit: Version: 0.12.1, July 28, 2016:<a href='/downloads/bitcoinUnlimited-0.12.1-osx.tar.gz'> bitcoinUnlimited-0.12.1-osx.tar.gz</a></p>
-                    <p>DMG: Version: 0.12.0, July 28, 2016:<a href='/downloads/bitcoinUnlimited-0.12.1-osx.dmg'> bitcoinUnlimited-0.12.1-osx.dmg</a></p>
-*/}
+                    <h4>Mac OSX</h4>
+                    <p>64-bit: Version: 0.12.1, Aug 14, 2016:<a href='/downloads/bitcoinUnlimited-0.12.1-osx64.tar.gz'> bitcoinUnlimited-0.12.1-osx64.tar.gz</a></p>
+                    <p>32-bit: Version: 0.12.1, Aug 14, 2016:<a href='/downloads/bitcoinUnlimited-0.12.1-osx.tar.gz'> bitcoinUnlimited-0.12.1-osx.tar.gz</a></p>
+                    <p>DMG: Version: 0.12.0, Aug 14, 2016:<a href='/downloads/bitcoinUnlimited-0.12.1-osx.dmg'> bitcoinUnlimited-0.12.1-osx.dmg</a></p>
                     <br />
 
                     <h4>Linux Installation Instructions</h4>
