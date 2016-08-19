@@ -35,16 +35,16 @@ const CHECKSUMS12 =  `
 `;
 
 const CHECKSUMS0121b =  `
-{ 'files': { 'bitcoin-0.12.1-win32-setup.exe': '6234477ed4f2efd3436f54eb51744c8295b41b841301929cf7afd30a3bab9b6a',
-             'bitcoin-0.12.1-win64-setup.exe': 'd717e91479f337b75c6b87073fcac501d65afe1d1299ca44b99827e28fcf73a5',
-             'bitcoinUnlimited-0.12.1-linux32.tar.gz': 'be90ef856f5f43af6e72c043d2f8a66e19bf2b87726b0c29bbf3e7cbf4787c27',
-             'bitcoinUnlimited-0.12.1-linux64.tar.gz': '490bbc6b5c71e530ee081fec453e5874891b89570fbe6c80bbc8032b0b6145b7',
-             'bitcoinUnlimited-0.12.1-osx.dmg': '80a4c08e7469801c82ee8df11115055cdda034832129e8beb1e5325497b556bf',
-             'bitcoinUnlimited-0.12.1-osx.tar.gz': 'ba56939581544457744622668725b65757747f0a9a787f351f2402825c578826',
-             'bitcoinUnlimited-0.12.1-osx64.tar.gz': '14ab341ef66009b4043fcc0681b0af198052620fa4c0a4755a712745c5c2a1d6',
-             'bitcoinUnlimited-0.12.1-win.tar.gz': 'fd69912aae0445e79a98e68387d51e3ae9892cdb3166f6f54e9c8abf5e624665',
-             'bitcoinUnlimited-0.12.1-win32.zip': 'b12d0aed804f9229d0dbd6737837598d17afe3bd906ac6bee5888a1d2cf15de4',
-             'bitcoinUnlimited-0.12.1-win64.zip': '24ea87fbb807f3594fbc58693421e45056abe334689f0cbf69fa5ffb7260e0e4'},
+{ 'files': { 'bitcoinUnlimited-0.12.1-linux32.tar.gz': '984111483981bbfa5d33f40014336d74cbb263a51cb42a87e5d1871f88c14a7c',
+             'bitcoinUnlimited-0.12.1-linux64.tar.gz': '34de171ac1b48b0780d68f3844c9fd2e8bfe6a7780b55e1f012067c2440ebd8a',
+             'bitcoinUnlimited-0.12.1-osx.dmg': 'e40e1586edefd95e47c4db27116dcf0b5e286ea81d4243bd476db3128989bd4d',
+             'bitcoinUnlimited-0.12.1-osx.tar.gz': '0b4f7f60a1b439632c31c60d781172d69be0b6bbc2dc5fc58caca77dc90da7fe',
+             'bitcoinUnlimited-0.12.1-osx64.tar.gz': 'fceb0fb034e26124cd126954a3f968902d1ebe7758c9869f266aade9e9ff1885',
+             'bitcoinUnlimited-0.12.1-win.tar.gz': '68b539df8a6ace5cf9c4ca22bb6b9106127d153b2de01e82356b98f323e313e0',
+             'bitcoinUnlimited-0.12.1-win32-setup.exe': '0035006c411498a2c80046f2fb29615b838f045fac4f2c1af0ec0db1220ef8c2',
+             'bitcoinUnlimited-0.12.1-win32.zip': 'd2185d4276321bfdc08f1f21a1eee6c51150737b5c69938ddb8cfef065e70d58',
+             'bitcoinUnlimited-0.12.1-win64-setup.exe': '58189a3a07949f87998c7c255eda3e313a61b1ac24667d13ba771cff4a6612d4',
+             'bitcoinUnlimited-0.12.1-win64.zip': '65a0668f0451b78921275d1a1ec301feb68b29daf603dbbce7da7ece4306bb17'},
   'program': 'Bitcoin Unlimited',
   'version': '0.12.1b'}
 `;
@@ -75,7 +75,7 @@ export default React.createClass({
                             Signature:<br />G7iGIeJfeLt8cbfN+LfCD9MObNSQNluSVVISgycWRdQASZV/xZuEYxLTgUFKEAdIX7o4uR/RSB5chV1KrelLn0c=
                             <br/>
                             By: sickpig (1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)
-                            Signature: H7/qVy9a3YhdQtqwunlCXMu0xjZrMn38Xwtur0zP5Z2WEE1zxCO6tPMi9vhYaA8wkyDW50eXA58tu7kGqjBB4co=
+                            Signature: H0YIZtMm92ntSh321FRIG6Js7TYDDTmTsXoRYwh48UilQzh5uadFz9VHsLqoHshr0wpULEWqeE1WyH6ME9FB+Ec=
                             <br/><br/>
                             0.12.0 Signed Statement:<br /><br />
                             <pre>{CHECKSUMS12}</pre>
