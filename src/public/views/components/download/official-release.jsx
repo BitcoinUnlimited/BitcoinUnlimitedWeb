@@ -17,6 +17,7 @@ export default React.createClass({
                         We are currently supporting the 0.12.1 release and have older releases on 0.11.2 and 0.12.0.
                     </p>
                     <br />
+                    <div className='red'>Please verify binary signatures before installation!  Scroll down to the Signatures section to see the SHA-256 checksums of the binaries and our signatures on that statement.</div>
                     <h2 className='green'>Official Release </h2>
                     <h3>Binary Downloads</h3>
                     <br />
