@@ -24,10 +24,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gandrewstone/BitcoinUnlimitedWeb.git"
+    "url": "https://github.com/BitcoinUnlimited/BitcoinUnlimitedWeb.git"
   },
   "bugs": {
-    "url": "https://github.com/gandrewstone/BitcoinUnlimitedWeb/issues"
+    "url": "https://github.com/BitcoinUnlimited/BitcoinUnlimitedWeb/issues"
   },
   "keywords": [
     "bitcoin",
@@ -35,7 +35,7 @@
     "website"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/gandrewstone/BitcoinUnlimitedWeb#readme",
+  "homepage": "https://www.bitcoinunlimited.info/",
   "dependencies": {
       "express": "^4.13.3"
   },
