@@ -18,7 +18,8 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "postinstall": "bower install && grunt build"
+    "build": "bower install && grunt build",
+    "prepublish": "bower install && grunt build"
   },
   "main": "index.js",
   "repository": {
