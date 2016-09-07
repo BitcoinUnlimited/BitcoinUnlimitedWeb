@@ -18,6 +18,10 @@ app.get('/:page.html', function(req, res) {
     res.redirect('/' + req.params.page);
 });
 
+app.get('/downloads/:file', function(req, res) {
+    res.redirect('/components/bitcoin-unlimited-web-downloads/' + req.params.file);
+});
+
 app.use(express.static(path.join(__dirname, './public')));
 
 app.get('*', function(req, res) {
