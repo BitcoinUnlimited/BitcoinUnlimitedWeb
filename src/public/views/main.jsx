@@ -12,6 +12,7 @@ import Buip from './pages/buip.jsx';
 import Members from './pages/members.jsx';
 import Resources from './pages/resources.jsx';
 import Articles from './pages/articles.jsx';
+import NotFound from './pages/not-found.jsx';
 
 ReactDOM.render((
     <Router history={createHistory()}>
@@ -24,6 +25,7 @@ ReactDOM.render((
             <Route path='members' component={Members} />
             <Route path='resources' component={Resources} />
             <Route path='articles' component={Articles} />
+            <Route path='*' component={NotFound} />
         </Route>
     </Router>
 ), document.getElementById('react-app'));

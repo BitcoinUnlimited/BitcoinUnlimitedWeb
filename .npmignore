@@ -1,0 +1,9 @@
+src
+.idea
+tasks
+.babelrc
+.gitignore
+.npmignore
+Gruntfile.js
+nginx-site.conf
+nodemon.json
