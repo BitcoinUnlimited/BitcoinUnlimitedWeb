@@ -2,10 +2,8 @@ src
 .idea
 tasks
 .babelrc
-.bowerrc
 .gitignore
 .npmignore
-bower.json
 Gruntfile.js
 nginx-site.conf
 nodemon.json
