@@ -2,20 +2,18 @@
 
 The Bitcoin Unlimited website, hosted at https://bitcoinunlimited.info
 
-## Installing
+## Developing
 
 This is a node.js project requiring the npm package manager.
 
 The following will install the project and start the server, listening on port 8080.
 
 ```bash
-npm install grunt-cli -g
-npm install bower -g
-npm install forever -g
 git clone git@github.com:BitcoinUnlimited/BitcoinUnlimitedWeb.git
 cd BitcoinUnlimitedWeb
 npm install
-forever start index.js
+npm run build
+node index.js
 ```
 
 To edit and test:
@@ -25,3 +23,13 @@ nodejs index.js
 ```
 
 See the nginx-site.conf file for an example configuration to proxy requests from port 80.
+
+## Installing with npm
+
+```bash
+npm install bitcoin-unlimited-web --save
+```
+
+```javascript
+var BitcoinUnlimitedWeb = require('bitcoin-unlimited-web');
+```
