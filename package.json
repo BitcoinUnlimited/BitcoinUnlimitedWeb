@@ -1,6 +1,6 @@
 {
   "name": "bitcoin-unlimited-web",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The Bitcoin Unlimited web site",
   "author": "Bitcoin Unlimited Developers",
   "contributors": [
@@ -17,8 +17,9 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "build": "bower install && grunt build",
-    "prepublish": "bower install && grunt build"
+    "postinstall": "bower install",
+    "build": "grunt build",
+    "prepublish": "grunt build"
   },
   "main": "index.js",
   "repository": {
@@ -36,13 +37,13 @@
   "license": "MIT",
   "homepage": "https://www.bitcoinunlimited.info/",
   "dependencies": {
+    "bower": "^1.7.9",
     "express": "^4.13.3"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
-    "bower": "^1.7.9",
     "grunt": "^0.4.5",
     "grunt-babel": "^6.0.0",
     "grunt-browserify": "^4.0.1",
