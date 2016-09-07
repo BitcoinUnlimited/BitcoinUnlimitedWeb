@@ -34,6 +34,21 @@ const CHECKSUMS12 =  `
 
 `;
 
+const CHECKSUMS0121b =  `
+{ 'files': { 'bitcoinUnlimited-0.12.1-linux32.tar.gz': '984111483981bbfa5d33f40014336d74cbb263a51cb42a87e5d1871f88c14a7c',
+             'bitcoinUnlimited-0.12.1-linux64.tar.gz': '34de171ac1b48b0780d68f3844c9fd2e8bfe6a7780b55e1f012067c2440ebd8a',
+             'bitcoinUnlimited-0.12.1-osx.dmg': 'e40e1586edefd95e47c4db27116dcf0b5e286ea81d4243bd476db3128989bd4d',
+             'bitcoinUnlimited-0.12.1-osx.tar.gz': '0b4f7f60a1b439632c31c60d781172d69be0b6bbc2dc5fc58caca77dc90da7fe',
+             'bitcoinUnlimited-0.12.1-osx64.tar.gz': 'fceb0fb034e26124cd126954a3f968902d1ebe7758c9869f266aade9e9ff1885',
+             'bitcoinUnlimited-0.12.1-win.tar.gz': '68b539df8a6ace5cf9c4ca22bb6b9106127d153b2de01e82356b98f323e313e0',
+             'bitcoinUnlimited-0.12.1-win32-setup.exe': '0035006c411498a2c80046f2fb29615b838f045fac4f2c1af0ec0db1220ef8c2',
+             'bitcoinUnlimited-0.12.1-win32.zip': 'd2185d4276321bfdc08f1f21a1eee6c51150737b5c69938ddb8cfef065e70d58',
+             'bitcoinUnlimited-0.12.1-win64-setup.exe': '58189a3a07949f87998c7c255eda3e313a61b1ac24667d13ba771cff4a6612d4',
+             'bitcoinUnlimited-0.12.1-win64.zip': '65a0668f0451b78921275d1a1ec301feb68b29daf603dbbce7da7ece4306bb17'},
+  'program': 'Bitcoin Unlimited',
+  'version': '0.12.1b'}
+`;
+
 
 export default React.createClass({
 
@@ -50,6 +65,21 @@ export default React.createClass({
                         <div className='signatureText'>
                             These signatures attest that the individual named compiled Bitcoin Unlimited from Github source and produced the following files with the corresponding sha256 hashes.
                             <br /><br />
+                        <div id='signatureHelp'>
+                            To validate these signatures, use 'File->verify signatures' on any Satoshi Client.  Paste the signer's address into the first field, the signature statement into the second field, and the signature into the third one.  Note: do not change the whitespace of the signature statement.  Finally run 'sha256sum' on your downloaded file to make sure it matches.  You can check these signatures on the users' profile page on the <a href='http://www.bitco.in/forum'>bitco.in forum</a>.<br/>
+                        </div>
+                        <br /><br />
+                            0.12.1 Signed Statement:<br /><br />
+                            <pre>{CHECKSUMS0121b}</pre>
+                            <br />
+                            Do not add a final return character to the statement above when verifying the signature in the Bitcoin client<br/>
+                            <br />
+                            By: Andrew Stone (1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3 - verify address on bitco.in user thezerg)<br/>
+                            Signature:<br />G1W1Uq8QagCARx0eK895+5ZBQzwFqpQmRVOP+yPNDkCuAh8yC9BUxp59BtIP0ieHZvZBeHpvdkvepAC4YOkgwu4=
+                            <br/><br/>
+                            By: sickpig (1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)<br/>
+                            Signature:<br />H0YIZtMm92ntSh321FRIG6Js7TYDDTmTsXoRYwh48UilQzh5uadFz9VHsLqoHshr0wpULEWqeE1WyH6ME9FB+Ec=
+                            <br/><br/>
                             0.12.0 Signed Statement:<br /><br />
                             <pre>{CHECKSUMS12}</pre>
                             <br />
@@ -61,17 +91,14 @@ export default React.createClass({
                             <br />
                             By: Andrew Stone (1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3)
                             Signature: G75i+ydDAY9K/9go5tgac+SwTZi8mZZhj/0apZf1Gww5LsrWnLozR7e+MC0fMQqGfftVQ0nkrjNcnpVnJ6kXeHQ=
-                            <br/><br/>
+                            <br/><br/><br/>
                             By: sickpig (1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)
+                            <br/>
                             Signature: IG+bTcn/bbm2m0eXXTnJZOTWop3vQ+hi1G2q2ZBfB9BIa9+qFNr0WfuuFLi1Xng3VPP4meYnVMWkuXWs402BORc=
                             <br/><br/>
                             By: awemany (1BCnpopAZ4xFSxdX8NvVqUaSvsPffQhNRd)
 
                             Signature: IH1gTO8LfLt3ZiGef5GO2tgI87PgT7mLf8+JHwN8n4a5YswQgg7RqmgDYNAiCa3S2EtaWOjluJYwzIdfBB4/wx4=
-                        </div>
-                        <br /><br />
-                        <div id='signatureHelp'>
-                            To validate these signatures, use 'File->verify signatures' on any Satoshi Client.  Paste the signer's address into the first field, the signature statement into the second field, and the signature into the third one.  Note: do not change the whitespace of the signature statement.  Finally run 'sha256sum' on your downloaded file to make sure it matches.  You can check these signatures on the users' profile page on the <a href='http://www.bitco.in/forum'>bitco.in forum</a>.<br/>
                         </div>
                     </div>
                 </div>

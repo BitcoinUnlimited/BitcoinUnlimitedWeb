@@ -19,7 +19,7 @@ export default React.createClass({
                         <div className='row service-wrapper-row'>
                             <div className='col-sm-4'>
                                 <div className='service-image'>
-                                    <img src='img/buip.png' alt='Bitcoin Unlimited Proposals' />
+                                    <img src='/img/buip.png' alt='Bitcoin Unlimited Proposals' />
                                     </div>
                                 </div>
                                 <div className='col-sm-8'>
