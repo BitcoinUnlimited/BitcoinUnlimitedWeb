@@ -28,7 +28,7 @@ export default React.createClass({
                         <div className='row service-wrapper-row'>
                             <div className='col-sm-4'>
                                 <div className='service-image'>
-                                    <img src='img/vires-in-numeris.png' alt='Strength in Numbers' />
+                                    <img src='/img/vires-in-numeris.png' alt='Strength in Numbers' />
                                 </div>
                             </div>
                             <div className='col-sm-8'>

@@ -50,7 +50,7 @@ export default React.createClass({
                         <div className='row service-wrapper-row'>
                             <div className='col-sm-4'>
                                 <div className='service-image'>
-                                    <img src='img/330px-Knowledge-Reid-Highsmith.jpeg' alt='Knowledge' />
+                                    <img src='/img/330px-Knowledge-Reid-Highsmith.jpeg' alt='Knowledge' />
                                 </div>
                             </div>
                             <div className='col-sm-8'>

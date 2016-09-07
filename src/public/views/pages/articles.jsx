@@ -19,7 +19,7 @@ export default React.createClass({
                         <div className='row service-wrapper-row'>
                             <div className='col-sm-4'>
                                 <div className='service-image'>
-                                    <img src='img/release-potential.png' alt='Bitcoin Unlimited - Release the Potential' />
+                                    <img src='/img/release-potential.png' alt='Bitcoin Unlimited - Release the Potential' />
                                 </div>
                             </div>
                             <div className='col-sm-8'>
@@ -70,7 +70,7 @@ From the Bitcoin white paper, "nodes accept the block only if all transactions i
 <h3>IV. Values and beliefs: adoption is paramount</h3>
 <p>
 Bitcoin should freely scale with demand through a market-based process.  The user's experience is important -- we seek to engage with all people.  Therefore, low fees are desirable.  As the block subsidy declines, miners can make money based on volume, not exclusivity.  As the Bitcoin network grows, the limitations of the underlying transport and storage technologies will naturally create a fee market -- and this market will naturally fluctuate with supply and demand and properly track innovations in the underlying physical technologies.
-</p><p> 
+</p><p>
 It is understood that instant (0-confirmation) transactions are intrinsically less secure compared to confirmed transactions.  Transactions that have only been confirmed once are less secure compared to transactions that have been confirmed twice and so forth along the continuum.  Since 0-confirmation transactions are practically useful for people, we encourage innovations that enhance their security without undermining other key properties of the Bitcoin network.
 </p><p>
 Security and resistance to censorship improves with adoption -- the more actors that are in a peer-2-peer network, the harder it becomes to gain control of an influential percentage.
@@ -84,7 +84,7 @@ Any software can join the Bitcoin network because it is a permissionless decentr
 The voices of scientists, scholars, developers, entrepreneurs, investors and users should all be heard and respected.
 </p>
 <br/>
-<br/> 
+<br/>
 <h2>Article 2: Confederation</h2>
 
 <ol type="I">
@@ -105,7 +105,7 @@ The voices of scientists, scholars, developers, entrepreneurs, investors and use
 </p><p>
 Officer term is for two years. For continuity, elections shall be staggered by 6 months and take place 1 week prior to responsibility transfer. Beginning with the President on Jan 15, 2018, then Secretary, Developer, and Pool Operator. This means that the initial officer term may exceed 2 years.  Voting for all the initial officers shall occur on Jan 15, 2016.
 </p>
-</li><li><p>      
+</li><li><p>
 Formal interaction between members, including but not limited to BUIP submission and voting must occur via cryptographically verified identities. Members shall supply a Bitcoin public key when applying for membership and sign all formal communications with the corresponding private key.
 </p></li><li>
 Decisions shall be made via the following procedure:
@@ -120,7 +120,7 @@ Voting shall be open for a minimum 48 hour period and a maximum of 5 days.  Memb
 </p>
 </li><li>
 Additional BUIP requirements on patches.
-<p>  
+<p>
 If a BUIP contains a patch, the Developer may review the patch for acceptability (including but not limited to bugs, tests, coding standards) AFTER BUIP acceptance. The developer may work with the Proposer or other party for as long as necessary to ensure the patch is acceptable.  After 2 months, if the Proposer believes that this process is taking too long, the President, Secretary, or Proposer may propose that the patch be included "as is", via the same BUIP proposal channel and schedule a vote (normal BUIP majority rules).  This vote may not occur within one 1 week of the formal "commit as is" proposal.
 </p><p>
 If the BUIP does NOT contain a patch but suggests technical changes, it is the responsibility of the Proposer or any other party to produce this patch. After the patch is produced, the Developer reviews it as suggested in the preceding paragraph, except in the "as is" case, the normal BUIP schedule and process must be followed.  In the unfortunate situation where a patch is deliberately accepted which does not agree with the Proposer's BUIP, the Proposer's recourse is to resubmit the BUIP with a patch.
@@ -148,7 +148,7 @@ This article provides guidelines for operations assuming that Bitcoin Unlimited 
 </p>
 <ol type="I">
 <li>
-<p>Any unallocated funds raised shall be held in a 2-of-3 multi-signature account with the President, Secretary, and Developer holding the keys. Fiat currency holdings shall only occur to ensure that commitments can be paid regardless of Bitcoin's volatility and shall be held either by the President or in a Bitcoin Unlimited non-profit corporation account. 
+<p>Any unallocated funds raised shall be held in a 2-of-3 multi-signature account with the President, Secretary, and Developer holding the keys. Fiat currency holdings shall only occur to ensure that commitments can be paid regardless of Bitcoin's volatility and shall be held either by the President or in a Bitcoin Unlimited non-profit corporation account.
 </p><p>
 Allocated funds may be held temporarily by the person who will employ them.
 </p>
@@ -185,7 +185,7 @@ The President may periodically issue a special BUIP called an "Operational BUIP"
 <li><p>
 The President, Secretary, Developer, or Pool Operator can issue (or issue on behalf of another member) a special BUIP called an "Informative BUIP" which allows members to vote on a non-binding issue or question. These BUIPs allow the community to formally give feedback on future directions for the project. For example, an informative BUIP could be "Should we look into and then propose partnerships with hardware wallets?" Issuance is restricted to reduce BUIP spam.
 </p></li>
-</ol>  
+</ol>
 <br/>
 <br/>
 <h2>Article 4: The Bitcoin Unlimited Mining Pool</h2>

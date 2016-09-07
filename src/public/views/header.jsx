@@ -14,12 +14,12 @@ export default React.createClass({
     render: function () {
         return (
             <div className='mainmenu-wrapper'>
-             <div ClassName="container">
+             <div className="container">
                 <nav id='mainmenu' className='mainmenu'>
                     <ul>
                         <li className='logo-wrapper'>
                             <Link to='/'>
-                                <img src='img/bitcoin-unlimited.png' width='98%' height='100%' />
+                                <img src='/img/bitcoin-unlimited.png' width='98%' height='100%' />
                             </Link>
                         </li>
                         <li className={this.getClassName('index')}>
