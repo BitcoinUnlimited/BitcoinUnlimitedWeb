@@ -16,6 +16,12 @@ npm run build
 node index.js
 ```
 
+To edit and test:
+```bash
+grunt build
+nodejs index.js
+```
+
 See the nginx-site.conf file for an example configuration to proxy requests from port 80.
 
 ## Installing with npm
