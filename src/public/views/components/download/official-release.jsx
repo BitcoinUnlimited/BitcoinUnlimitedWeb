@@ -9,7 +9,7 @@ export default React.createClass({
             <div className='row service-wrapper-row'>
                 <div className='col-sm-4'>
                     <div className='service-image'>
-                        <img src='img/fingerprint.svg' alt='Fingerprint' />
+                        <img src='/img/fingerprint.svg' alt='Fingerprint' />
                     </div>
                 </div>
                 <div className='col-sm-8'>
