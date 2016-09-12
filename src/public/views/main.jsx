@@ -13,7 +13,7 @@ import Members from './pages/members.jsx';
 import Resources from './pages/resources.jsx';
 import Articles from './pages/articles.jsx';
 import NotFound from './pages/not-found.jsx';
-import Conference from './pages/conference.jsx';
+import Conferences from './pages/conferences.jsx';
 
 ReactDOM.render((
     <Router history={createHistory()}>
@@ -26,7 +26,7 @@ ReactDOM.render((
             <Route path='members' component={Members} />
             <Route path='resources' component={Resources} />
             <Route path='articles' component={Articles} />
-            <Route path='conference' component={Conference} />
+            <Route path='conferences' component={Conferences} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>

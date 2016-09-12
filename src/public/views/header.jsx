@@ -41,7 +41,7 @@ export default React.createClass({
                             <Link to='/resources'>Resources</Link>
                         </li>
                         <li className={this.getClassName('conference')}>
-                            <Link to='/conference'>Conferences</Link>
+                            <Link to='/conferences'>Conferences</Link>
                         </li>
                     </ul>
                 </nav>
