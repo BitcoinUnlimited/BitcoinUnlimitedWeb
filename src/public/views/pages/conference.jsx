@@ -31,7 +31,7 @@ export default React.createClass({
                         <p id="6dc6" class="graf--p graf-after--h4">The morning session will explore the scaling solutions developed over the past year, ready and waiting to meet an order-of-magnitude increase in transactional demand. The afternoon session will focus on longer-term scaling initiatives to on-board Bitcoin’s first billion users.</p>
                         <p id="2645" class="graf--p graf-after--p">The agenda is designed to maximize discussion among conference attendees. Talks will be short (two 20-min talks and approximately eight 10-min “mini talks”) and each will be followed by a Q&amp;A period. The panel sessions will be interactive with the audience, and the breakout sessions will give all attendees a chance to further develop ideas related to the topics introduced in the talks and panel sessions.</p>
                         <p id="c6ea" class="graf--p graf-after--p">The day will conclude with a dinner reception at a <a class="markup--anchor markup--p-anchor" href="http://www.bartartine.com/" target="_blank" rel="nofollow" data-href="http://www.bartartine.com/">popular eatery</a>.</p>
-                        <p>
+                        
                         <figure id="a6fc" class="graf--figure graf-after--p">
                         <div class="aspectRatioPlaceholder is-locked">
                         <div class="aspectRatioPlaceholder-fill"></div>
