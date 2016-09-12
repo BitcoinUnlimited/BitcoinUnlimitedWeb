@@ -42,7 +42,7 @@ export default React.createClass({
                         <p id="6f0e" class="graf--p graf-after--h4">Although the conference is intended to be a small and intimate event, a very limited number of tickets can be purchased via <a class="markup--anchor markup--p-anchor" href="https://docs.google.com/forms/d/e/1FAIpQLSfy1C4_RLs_T6CxRGXA92N7jXOamucFKjXrCLNb6YXt9iBGaA/viewform?entry.1898126628=1&amp;entry.597557985&amp;entry.195460802&amp;entry.967622631=No&amp;entry.1600438880=No&amp;entry.389789878" target="_blank" rel="nofollow" data-href="https://docs.google.com/forms/d/e/1FAIpQLSfy1C4_RLs_T6CxRGXA92N7jXOamucFKjXrCLNb6YXt9iBGaA/viewform?entry.1898126628=1&amp;entry.597557985&amp;entry.195460802&amp;entry.967622631=No&amp;entry.1600438880=No&amp;entry.389789878">this webform</a>.</p>
 
                         <h4 id="17e3" class="graf--h4 graf-after--p">Acknowledgement</h4>
-                        <p id="5030" class="graf--p graf-after--h4 graf--last">We gratefully acknowledge the extremely generous donations made anonymously to the <a class="markup--anchor markup--p-anchor" href="http://bitcoinunlimited.info/" target="_blank" rel="nofollow" data-href="http://bitcoinunlimited.info">Bitcoin Unlimited Community Organization</a> that make this event possible.</p>
+                        <p id="5030" class="graf--p graf-after--h4 graf--last">We gratefully acknowledge the extremely generous donations made anonymously to the <a class="markup--anchor markup--p-anchor" href="https://www.bitcoinunlimited.info/" target="_blank" rel="nofollow" data-href="https://www.bitcoinunlimited.info">Bitcoin Unlimited Community Organization</a> that make this event possible.</p>
                     </div>
                 </div>
                 <Footer />
