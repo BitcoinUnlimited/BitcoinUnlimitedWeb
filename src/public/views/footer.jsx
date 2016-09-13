@@ -53,6 +53,9 @@ export default React.createClass({
                                 <li>
                                     <Link to='/resources'>Resources</Link>
                                 </li>
+                                <li>
+                                    <Link to='/conferences'>Conferences</Link>
+                                </li>
                             </ul>
                         </div>
                         <div className="col-footer col-md-4 col-xs-6">

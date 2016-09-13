@@ -40,6 +40,9 @@ export default React.createClass({
                         <li className={this.getClassName('resources')}>
                             <Link to='/resources'>Resources</Link>
                         </li>
+                        <li className={this.getClassName('conference')}>
+                            <Link to='/conferences'>Conferences</Link>
+                        </li>
                     </ul>
                 </nav>
             </div>
