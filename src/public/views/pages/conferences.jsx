@@ -25,7 +25,7 @@ export default React.createClass({
                         <p>The morning session will explore the scaling solutions developed over the past year, ready and waiting to meet an order-of-magnitude increase in transactional demand. The afternoon session will focus on longer-term scaling initiatives to on-board Bitcoin’s first billion users.</p>
                         <p>The agenda is designed to maximize discussion among conference attendees. Talks will be short (two 20-min talks and approximately eight 10-min “mini talks”) and each will be followed by a Q&amp;A period. The panel sessions will be interactive with the audience, and the breakout sessions will give all attendees a chance to further develop ideas related to the topics introduced in the talks and panel sessions.</p>
                         <p>The day will conclude with a dinner reception at a <a href='http://www.bartartine.com/' target='_blank' rel='nofollow'>popular eatery</a>.</p>
-                        <img src='https://cdn-images-1.medium.com/max/800/1*zHL1XksSG4GnOrSXqvmImQ.png' />
+                        <img src='/img/Agenda.png' />
                         <h4>Tickets</h4>
                         <p>Although the conference is intended to be a small and intimate event, a very limited number of tickets can be purchased via <a href='https://docs.google.com/forms/d/e/1FAIpQLSfy1C4_RLs_T6CxRGXA92N7jXOamucFKjXrCLNb6YXt9iBGaA/viewform?entry.1898126628=1&amp;entry.597557985&amp;entry.195460802&amp;entry.967622631=No&amp;entry.1600438880=No&amp;entry.389789878' target='_blank' rel='nofollow'>this webform</a>.</p>
                         <h4>Acknowledgement</h4>
