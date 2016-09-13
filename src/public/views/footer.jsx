@@ -54,7 +54,7 @@ export default React.createClass({
                                     <Link to='/resources'>Resources</Link>
                                 </li>
                                 <li>
-                                    <Link to='/conference'>Conferences</Link>
+                                    <Link to='/conferences'>Conferences</Link>
                                 </li>
                             </ul>
                         </div>
