@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {Link} from 'react-router';
+import { strings } from '../lib/i18n';
 
 export default React.createClass({
 
@@ -23,25 +24,25 @@ export default React.createClass({
                             </Link>
                         </li>
                         <li className={this.getClassName('index')}>
-                            <Link to='/'>Home</Link>
+                            <Link to='/'>{strings().header.home}</Link>
                         </li>
                         <li className={this.getClassName('download')}>
-                            <Link to='/download'>Download</Link>
+                            <Link to='/download'>{strings().header.download}</Link>
                         </li>
                         <li className={this.getClassName('faq')}>
-                            <Link to='/faq'>FAQ</Link>
+                            <Link to='/faq'>{strings().header.faq}</Link>
                         </li>
                         <li className={this.getClassName('buip')}>
-                            <Link to='/buip'>Proposals</Link>
+                            <Link to='/buip'>{strings().header.proposals}</Link>
                         </li>
                         <li className={this.getClassName('members')}>
-                            <Link to='/members'>Members</Link>
+                            <Link to='/members'>{strings().header.members}</Link>
                         </li>
                         <li className={this.getClassName('resources')}>
-                            <Link to='/resources'>Resources</Link>
+                            <Link to='/resources'>{strings().header.resources}</Link>
                         </li>
                         <li className={this.getClassName('conference')}>
-                            <Link to='/conferences'>Conferences</Link>
+                            <Link to='/conferences'>{strings().header.conference}</Link>
                         </li>
                     </ul>
                 </nav>

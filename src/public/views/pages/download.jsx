@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { strings } from '../../lib/i18n';
 
 import Header from '../header.jsx';
 import Footer from '../footer.jsx';
@@ -16,7 +17,7 @@ export default React.createClass({
         return (
             <div id='download'>
                 <Header active='download' />
-                <Title title='Download Bitcoin Unlimited' />
+                <Title title={strings().download.title} />
                 <div className='section'>
                     <div className='container'>
                         <OfficialRelease />
