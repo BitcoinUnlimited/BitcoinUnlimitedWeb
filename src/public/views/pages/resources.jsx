@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { strings } from '../../lib/i18n';
 
 import Header from '../header.jsx';
 import Footer from '../footer.jsx';
@@ -44,7 +45,7 @@ export default React.createClass({
         return (
             <div id='resources'>
                 <Header active='resources' />
-                <Title title='Academic Articles and Founding Documents' />
+                <Title title={strings().resources.title} />
                 <div className='section'>
                     <div className='container'>
                         <div className='row service-wrapper-row'>
@@ -54,7 +55,7 @@ export default React.createClass({
                                 </div>
                             </div>
                             <div className='col-sm-8'>
-                                <h2 className='green'>Bitcoin Unlimited Supporting Documents</h2>
+                                <h2 className='green'>{strings().resources.supporting}</h2>
                                 <ul>
                                     {resources}
                                 </ul>

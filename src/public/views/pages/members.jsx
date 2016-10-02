@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { strings } from '../../lib/i18n';
 
 import Header from '../header.jsx';
 import Footer from '../footer.jsx';
@@ -22,7 +23,7 @@ export default React.createClass({
         return (
             <div id='members'>
                 <Header active='members' />
-                <Title title='Supporting Members' />
+                <Title title={strings().members.title} />
                 <div className='section'>
                     <div className='container'>
                         <div className='row service-wrapper-row'>

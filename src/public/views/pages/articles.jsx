@@ -13,7 +13,7 @@ export default React.createClass({
         return (
             <div id='articles'>
                 <Header active='resources' />
-                <Title title='Bitcoin Unlimited: Articles of Federation' />
+                <Title title={strings().articles.title} />
                 <div className='section'>
                     <div className='container'>
                         <div className='row service-wrapper-row'>

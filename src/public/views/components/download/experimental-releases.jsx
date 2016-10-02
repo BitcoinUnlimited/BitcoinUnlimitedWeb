@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { strings } from '../../../lib/i18n';
 
 export default React.createClass({
 
@@ -12,8 +13,8 @@ export default React.createClass({
                     </div>
                 </div>
                 <div className='col-sm-8'>
-                    <h2 className='red'>Experimental Releases </h2>
-                    NONE
+                    <h2 className='red'>{strings().experimental.releases}</h2>
+                    {strings().experimental.none}
 {/*
                     <h3>Binary Downloads</h3>
                     <br />

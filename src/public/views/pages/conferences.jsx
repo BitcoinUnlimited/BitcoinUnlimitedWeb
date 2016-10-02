@@ -6,7 +6,6 @@ import Header from '../header.jsx';
 import Footer from '../footer.jsx';
 import Title from '../components/title.jsx';
 
-
 export default React.createClass({
 
     render: function() {

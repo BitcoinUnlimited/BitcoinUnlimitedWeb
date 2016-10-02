@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { strings } from '../../../lib/i18n';
 
 export default React.createClass({
 
@@ -11,27 +12,30 @@ export default React.createClass({
                     <div className="row">
                         <div className="col-md-4 col-sm-6">
                             <div className="in-press press-wired">
-                                <a href="https://www.mail-archive.com/cryptography@metzdowd.com/msg09964.html">If
-                                    the network were to get that big, it would take several years, and by then,
-                                    sending 2 HD movies over the Internet would probably not seem like a big deal.
-                                    <br/><br/>-- Satoshi Nakamoto</a>
+                                <a href="https://www.mail-archive.com/cryptography@metzdowd.com/msg09964.html">
+                                    {strings().quotes.a1}
+                                    <br/><br/>
+                                    -- {strings().quotes.satoshi}
+                                </a>
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-6">
                             <div className="in-press press-mashable">
-                                <a href="https://bitcointalk.org/index.php?topic=48.msg329#msg329">In a few decades
-                                    when the reward gets too small, the transaction fee will become the main
-                                    compensation for nodes. I'm sure that in 20 years there will either be very
-                                    large transaction volume or no volume.
+                                <a href="https://bitcointalk.org/index.php?topic=48.msg329#msg329">
+                                    {strings().quotes.b1}
+                                    {' '}
+                                    {strings().quotes.b2}
                                 </a>
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-6">
                             <div className="in-press press-techcrunch">
                                 <a href="https://bitcointalk.org/index.php?topic=1347.msg15366#msg15366">
-                                    It can be phased in, like:
-                                    <p>if (blocknumber > 115000)</p>
-                                    <p>maxblocksize = largerlimit</p>
+                                    {strings().quotes.c1}
+                                    {' '}
+                                    <p>{strings().quotes.c2}</p>
+                                    {' '}
+                                    <p>{strings().quotes.c3}</p>
                                 </a>
                             </div>
                         </div>
