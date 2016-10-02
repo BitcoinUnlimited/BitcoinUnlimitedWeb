@@ -12,23 +12,23 @@ const RESOURCES = [
     {
         title: 'Articles of Federation',
         html: '/articles',
-        pdf: 'resources/BUarticles.pdf'
+        pdf: '/resources/BUarticles.pdf'
     },
     {
         title: 'A Transaction Fee Market Exists Without a Block Size Limit',
-        pdf: 'resources/feemarket.pdf'
+        pdf: '/resources/feemarket.pdf'
     },
     {
         title: 'Reduce Orphaning Risk and Improve Zero-Confirmation Security With Subchains',
-        pdf: 'resources/subchains.pdf'
+        pdf: '/resources/subchains.pdf'
     },
     {
         title: 'An Examination of Single Transaction Blocks and Their Effect on Network Throughput and Block Size',
-        pdf: 'resources/1txn.pdf'
+        pdf: '/resources/1txn.pdf'
     },
     {
         title: 'Bitcoin: A Peer-to-Peer Electronic Cash System',
-        pdf: 'resources/bitcoin.pdf'
+        pdf: '/resources/bitcoin.pdf'
     }
 ];
 
