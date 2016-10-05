@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { strings } from '../../lib/i18n';
 
 import Header from '../header.jsx';
 import Footer from '../footer.jsx';
