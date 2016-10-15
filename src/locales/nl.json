@@ -68,89 +68,89 @@
         "i3": "client."
     },
     "quotes": {
-        "a1": "If the network were to get that big, it would take several years, and by then, sending 2 HD movies over the Internet would probably not seem like a big deal.",
-        "b1": "In a few decades when the reward gets too small, the transaction fee will become the main compensation for nodes.",
-        "b2": "I'm sure that in 20 years there will either be very large transaction volume or no volume.",
-        "c1": "It can be phased in, like:",
+        "a1": "Als het netwerk ooit al zo groot zou worden, dan zou het een aantal jaren duren, en tegen die tijd, zal het versturen van 2 HD films over het Internet niet veel voorstellen.",
+        "b1": "Over een paar deceniums wanneer de emisie van nieuwe bitcoins verwaarloosbaar klein wordt, zullen de transactie opbrengsten de voornaamste bron van inkomsten worden voor de nodes.",
+        "b2": "Ik weet zeker dat over 20 jaar we een enorm grote transactie volume of geen enkele volume zullen hebben.",
+        "c1": "Het kan gefaseerd uitgerold worden, bijvoorbeeld:",
         "c2": "if (blocknumber > 115000)",
         "c3": "maxblocksize = largerlimit",
         "satoshi": "Satoshi Nakamoto"
     },
     "services": {
-        "members": "Members",
-        "membersText": "We assert that Bitcoin is and should be whatever we the users define by the code we run, and the rules we vote for with our hash power.",
-        "contribute": "Contribute",
-        "contributeText": "If you are a developer then contribute, if you have the resources then run a node, if you are a miner then join a mining pool, if you are a researcher then provide evidence and analysis and if you are a contributor then educate others with analysis and facts.",
+        "members": "Leden",
+        "membersText": "Wij verklaren dat Bitcoin is en zal alltijd moeten zijn wat de gebruikers definieren door de code die ze gebruiken, en de regels waar we voor stemmen met onze hash kracht.",
+        "contribute": "Help mee",
+        "contributeText": "Wanneer je een ontwikkelaar ben, help dan mee, als je de middelen hebt, zet een node aan, als je een miner bent, neem deel aan mining pool, als je een onderzoeker bent, presenteer dan bewijs en analyses en als je een enthousiasteling bent onderwijs dan anderen met analyse en feiten.",
         "resources": "Resources",
-        "resourcesText": "Bitcoin is out of the box thinking. We follow in Satoshi's tradition and present you an interdisciplinary approach.",
-        "read": "Read more"
+        "resourcesText": "Bitcoin is out of the box denken. Wij volgen in Satoshi's traditie en presenteren jou een interdisciplinaire aanpak.",
+        "read": "Lees meer"
     },
     "slider": {
-        "cryptography": "In Cryptography we Trust",
-        "cryptographyText": "The whole is truly greater than the sum of its parts.",
+        "cryptography": "Wij vertrouwen in Cryptography",
+        "cryptographyText": "Get geheel is daadwerkelijk groter dan de som der delen.",
         "vires": "Vires in Numeris",
-        "viresText": "Bitcoin Unlimited: A Peer-to-Peer Electronic Cash System",
-        "free": "Free and Decentralized",
-        "freeText": "Free and decentralised emerging consensus."
+        "viresText": "Bitcoin Unlimited: Een Peer-to-Peer Electronic Cash Systeem",
+        "free": "Vrij en Gedecentraliseerd",
+        "freeText": "Vrije en gedecentraliseerde emergente consensus."
     },
     "member": {
-        "application": "Application"
+        "application": "Applicatie"
     },
     "header": {
         "home": "Home",
         "download": "Download",
         "faq": "FAQ",
-        "proposals": "Proposals",
-        "members": "Members",
-        "resources": "Resources",
-        "conference": "Conferences"
+        "proposals": "Voorstellen",
+        "members": "Leden",
+        "resources": "Bronnen",
+        "conference": "Conferenties"
     },
     "footer": {
-        "latest": "Our Latest Work",
-        "articles": "Articles of Federation",
-        "fee": "Fee Market",
+        "latest": "Ons Laatste Werk",
+        "articles": "Artikelen van Federatie",
+        "fee": "Vrije Markt",
         "subchains": "Subchains",
-        "analysis": "Bitcoin Unlimited Analysis (1-txn)",
-        "navigate": "Navigate",
+        "analysis": "Bitcoin Unlimited Analyse (1-txn)",
+        "navigate": "Navigatie",
         "home": "Home",
         "download": "Download",
         "faq": "FAQ",
-        "proposals": "Proposals",
-        "members": "Members",
-        "resources": "Resources",
-        "conferences": "Conferences",
-        "join": "Join Us",
-        "forum": "The Bitcoin Forum",
+        "proposals": "Voorstellen",
+        "members": "Leden",
+        "resources": "Bronnen",
+        "conferences": "Conferenties",
+        "join": "Sluit je aan",
+        "forum": "Bitcoin Forum",
         "reddit1": "Reddit /r/btc",
         "reddit2": "Reddit /r/bitcoin_unlimited",
         "irc": "##btc on IRC",
-        "news": "News",
-        "time": "Time to roll out bigger blocks",
-        "why": "Why is Bitcoin forking?",
-        "consensus": "On consensus and forks",
-        "designing": "Designing for success",
+        "news": "Nieuws",
+        "time": "Tijd om grotere blocks uit te rollen",
+        "why": "Waarom gaat Bitcoin forken?",
+        "consensus": "Over consensus en forks",
+        "designing": "Ontwerpen voor success",
         "copy": "MIT License. No Rights Reserved."
     },
     "resources": {
-        "title": "Academic Articles and Founding Documents",
-        "supporting": "Bitcoin Unlimited Supporting Documents"
+        "title": "Academische Artikelen en Documenten van de grondlegger",
+        "supporting": "Bitcoin Unlimited Ondersteunende Documenten"
     },
     "notfound": {
-        "error": "Error 404: File Not Found",
-        "message": "The requested file could not be found."
+        "error": "Error 404: Bestand Niet Gevonden",
+        "message": "Het opgevraagde bestand kon niet gevonden worden."
     },
     "members": {
-        "title": "Supporting Members"
+        "title": "Ondersteunende leden"
     },
     "download": {
         "title": "Download Bitcoin Unlimited"
     },
     "buip": {
-        "title": "Contribute an Improvement Proposal",
-        "proposals": "Bitcoin Unlimited Improvement Proposals"
+        "title": "Help mee aan een Verbeterings Voorstel",
+        "proposals": "Bitcoin Unlimited Verbeterings Voorstellen"
     },
     "articles": {
-        "title": "Bitcoin Unlimited: Articles of Federation"
+        "title": "Bitcoin Unlimited: Artikelen van Federatie"
     },
     "faq": {
         "title": "Bitcoin Unlimited FAQ",
