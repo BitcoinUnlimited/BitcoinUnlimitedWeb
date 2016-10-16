@@ -28,7 +28,7 @@ ReactDOM.render((
             <Route path='resources' component={Resources} />
             <Route path='articles' component={Articles} />
             <Route path='conferences' component={Conferences} />
-			<Route path='donate' component={Donate} />
+            <Route path='donate' component={Donate} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>

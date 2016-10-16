@@ -115,6 +115,7 @@
         "home": "Home",
         "download": "Download",
         "faq": "FAQ",
+        "donate": "Donate",
         "proposals": "Proposals",
         "members": "Members",
         "resources": "Resources",
@@ -145,11 +146,11 @@
     "download": {
         "title": "Download Bitcoin Unlimited"
     },
-	"donate": {
+    "donate": {
         "title": "Donate",
-		"intro": "Your support allows us to advance the Bitcoin Unlimited project, and to maintain Bitcoin as a free-market economy.",
-		"supportus": "Support us via Bitcoin",
-		"address": "To donate, scan the QR code on the left or copy and paste our Bitcoin address below."
+        "intro": "Your support allows us to advance the Bitcoin Unlimited project, and to maintain Bitcoin as a free-market economy.",
+        "supportus": "Support us via Bitcoin",
+        "address": "To donate, scan the QR code on the left or copy and paste our Bitcoin address below."
     },
     "buip": {
         "title": "Contribute an Improvement Proposal",
