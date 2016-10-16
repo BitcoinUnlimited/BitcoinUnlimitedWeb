@@ -44,9 +44,9 @@ export default React.createClass({
 
                     <h4>{strings().official.installation}</h4>
                     <p>{strings().official.terminal}</p>
-                    <p>tar xvf ~/Downloads/bitcoinUnlimited-0.12.1-linux64.tar.gz</p>
-                    <p>cd bitcoinUnlimited-0.12.1/bin/</p>
-                    <p>nohup ./bitcoin-qt &amp; </p>
+                    <pre>$ tar xvf ~/Downloads/bitcoinUnlimited-0.12.1-linux64.tar.gz<br />
+                    $ cd bitcoinUnlimited-0.12.1/bin/<br />
+                    $ nohup ./bitcoin-qt &amp;<br /></pre>
                     <br />
                     <h4>{strings().official.source}</h4>
                     <p>{strings().official.branch} 0.12.1bu <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/tree/0.12.1bu'>{strings().official.here}</a></p>
