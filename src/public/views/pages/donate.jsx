@@ -24,12 +24,10 @@ export default React.createClass({
                                 </div>
                             </div>
                             <div className='col-sm-9'>
+                                <h2 className="green">{strings().donate.supportus}</h2>
                                 <p>
                                     {strings().donate.intro}
                                 </p>
-                                <br />
-                                <h2 className="green">{strings().donate.supportus}</h2>
-                                <br />
                                 <p>
                                     {strings().donate.address}
                                 </p>
