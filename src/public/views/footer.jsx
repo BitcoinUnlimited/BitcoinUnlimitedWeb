@@ -45,6 +45,9 @@ export default React.createClass({
                                     <Link to='/faq'>{strings().footer.faq}</Link>
                                 </li>
                                 <li>
+                                    <Link to='/donate'>{strings().footer.donate}</Link>
+                                </li>
+                                <li>
                                     <Link to='/buip'>{strings().footer.proposals}</Link>
                                 </li>
                                 <li>
