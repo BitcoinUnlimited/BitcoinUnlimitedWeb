@@ -42,12 +42,6 @@ export default React.createClass({
                     <p>DMG: {strings().official.version}: 0.12.0, {strings().official.august14}:<a href='/downloads/bitcoinUnlimited-0.12.1-osx.dmg'> bitcoinUnlimited-0.12.1-osx.dmg</a></p>
                     <br />
 
-                    <h4>{strings().official.installation}</h4>
-                    <p>{strings().official.terminal}</p>
-                    <pre>$ tar xvf ~/Downloads/bitcoinUnlimited-0.12.1-linux64.tar.gz<br />
-                    $ cd bitcoinUnlimited-0.12.1/bin/<br />
-                    $ nohup ./bitcoin-qt &amp;<br /></pre>
-                    <br />
                     <h4>{strings().official.source}</h4>
                     <p>{strings().official.branch} 0.12.1bu <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/tree/0.12.1bu'>{strings().official.here}</a></p>
                 </div>
