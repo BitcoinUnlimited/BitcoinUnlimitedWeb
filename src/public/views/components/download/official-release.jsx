@@ -39,7 +39,7 @@ export default React.createClass({
                     <h4>{strings().official.osx}</h4>
                     <p>{strings().official.bit64}: {strings().official.version}: 0.12.1, {strings().official.august14}:<a href='/downloads/bitcoinUnlimited-0.12.1-osx64.tar.gz'> bitcoinUnlimited-0.12.1-osx64.tar.gz</a></p>
                     <p>{strings().official.bit32}: {strings().official.version}: 0.12.1, {strings().official.august14}:<a href='/downloads/bitcoinUnlimited-0.12.1-osx.tar.gz'> bitcoinUnlimited-0.12.1-osx.tar.gz</a></p>
-                    <p>DMG: {strings().official.version}: 0.12.0, {strings().official.august14}:<a href='/downloads/bitcoinUnlimited-0.12.1-osx.dmg'> bitcoinUnlimited-0.12.1-osx.dmg</a></p>
+                    <p>DMG: {strings().official.version}: 0.12.1, {strings().official.august14}:<a href='/downloads/bitcoinUnlimited-0.12.1-osx.dmg'> bitcoinUnlimited-0.12.1-osx.dmg</a></p>
                     <br />
 
                     <h4>{strings().official.installation}</h4>
