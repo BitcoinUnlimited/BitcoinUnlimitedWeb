@@ -24,9 +24,9 @@
     },
     "instructions": {
         "title": "Quick Installation Guide (Linux)",
-        "helpZero": "Once you downloaded the file that match you system in the section above (e.g. 64 bit linux), open a terminal window then type:",
+        "helpZero": "Once you downloaded the file that matches your system in the section above (e.g. 64 bit linux), open a terminal window then type:",
         "helpOne": "If you're running an Ubuntu system you could use our official repository:",
-        "helpTwo": "If you want to compile from source just follow execute this commands:"
+        "helpTwo": "If you want to compile from source just follow and execute this commands:"
     },
     "signatures": {
         "signatures": "These signatures attest that the individual named compiled Bitcoin Unlimited from Github source and produced the following files with the corresponding sha256 hashes.",
