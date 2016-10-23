@@ -1,4 +1,4 @@
-ge{
+   {
     "experimental": {
         "releases": "Experimental Releases",
         "none": "NONE"
@@ -26,7 +26,7 @@ ge{
     "signatures": {
         "signatures": "Deze handtekeningen bewijzen dat de genoemde individu Bitcoin Unlimited heeft gecompileerd van de Github bron en de volgende bestanden heeft gegenereerd met de corresponderende sha256 hashes.",
         "helpOne": "Om deze handtekeningen te valideren, gebruik 'File->verify signatures' op iedere willekeurige Satoshi Client.",
-        "helpTwo": "Plak de signer's adres in het eerste veld, de ondertekende tekst in het tweede veld, en de handtekening in het derde veld.",
+        "helpTwo": "Plak het adres van de signer in het eerste veld, de ondertekende tekst in het tweede veld, en de handtekening in het derde veld.",
         "helpThree": "Let op: verander de spatie in de ondertekende tekst niet.",
         "helpFour": "Als laatste voer 'sha256sum' uit op jouw gedownloade bestand om er zeker van te zijn dat er een match is.",
         "helpFive": "Je kunt deze handtekeningen controleren op de profiel pagina van de gebruiker van het",
@@ -47,7 +47,7 @@ ge{
     },
     "description": {
         "title": "Wat is Bitcoin Unlimited?",
-        "a1": "Het Bitcoin Unlimited (BU) project tracht een stem te geven aan alle belang hebbende in het Bitcoin ecosysteem.",
+        "a1": "Het Bitcoin Unlimited (BU) project tracht een stem te geven aan alle belanghebbende in het Bitcoin ecosysteem.",
         "b1": "Iedere node operator of miner kan nu zijn eigen blocksize limiet kiezen door een instelling op zijn client aan te passen.",
         "b2": "Bitcoin Unlimited maakt het proces makkelijker door een configureerbare optie aan te bieden voor de geaccepteerde en de te generereren block-size dmv een GUI menu.",
         "b3": "Bitcoin Unlimited biedt verder een gebruiker-configureerbare failsafe instelling om een block groter dan je maximum geaccepteerde block toe te staan indien het een bepaalde diepte in de chain bereikt heeft.",
@@ -63,12 +63,12 @@ ge{
         "g2": "Artikelen van Federatie",
         "h1": "De Bitcoin Unlimited client is geen competitief block scaling voorstel zoals BIP-101, BIP-102, etc. In plaats daarvan volgt het consensus.",
         "h2": "Dit betekent dat het de blockchain volgt met de meeste rekenkracht, ongeacht de blockgrootte, en communiceerd zijn vermogen tot het accepteren van grotere blocks via het protocol en block versie velden.",
-        "i1": "Indien je het verhogen van de de blockgrootte ondersteund, op wat voor manier dan ook -- of gewoon de Bitcoin conflict resolutie ondersteund zoals van origine de visie was van de grondlegger -- overweeg dan het draaien van een",
+        "i1": "Indien je het verhogen van de de blockgrootte ondersteunt, op wat voor manier dan ook -- of gewoon de Bitcoin conflict resolutie ondersteunt zoals van origine de visie was van de grondlegger -- overweeg dan het draaien van een",
         "i2": "Bitcoin Unlimited",
         "i3": "client."
     },
     "quotes": {
-        "a1": "Als het netwerk ooit al zo groot zou worden, dan zou het een aantal jaren duren, en tegen die tijd, zal het versturen van 2 HD films over het Internet geen grote uitdaging meer zijn.",
+        "a1": "Als het netwerk ooit al zo groot zou worden, dan zou het een aantal jaren duren, en tegen die tijd, zal het versturen van 2 HD films over het Internet een fluitje van een cent zijn.",
         "b1": "Over een paar decenia wanneer de emisie van nieuwe bitcoins verwaarloosbaar klein wordt, zullen de transactie opbrengsten de voornaamste bron van inkomsten worden voor de miners.",
         "b2": "Ik weet zeker dat over 20 jaar we of een enorm grote transactie hoeveelheid of geen enkele hoeveelheid zullen hebben.",
         "c1": "Het kan gefaseerd uitgerold worden, bijvoorbeeld:",
