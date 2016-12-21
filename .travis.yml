@@ -12,3 +12,12 @@ script:
 
 notifications:
   email: false
+
+deploy:
+  provider: npm
+  email: trevinhofmann@gmail.com
+  on:
+    tags: true
+    node: '6'
+  api_key:
+    secure: CPFIMhs1FFgX/HGYUeqlP8q6o/23hSq75H1/2LgJodwxbMGtgyGpY9px30v4kpX9FS+GtzQFj6w7qup1XScNIhT+OXm1D4HxsOyyHVt4MwpnV01xX6+onzdPxxgx5RteDKzUR5rOyzxaj0TMVrBiPR9P1bNVl7LABT3rAAfxGOWcm2wYzbeKwUni7IaOCZDShSYNeu1swkWhv0Q0yLsE7+DfugxTH0bQKGl1AyHiwK9S3RSojOKrTwFoXQppFnFOR+8TYAHseEnH09a7xBoybyZUCRJeixBdNjRR+9ri58TEgVG4yj1QrvehyDSql8iPPAxXHDA7GyJSy2yih5I2Esv5Z35TB3nDqKP0fQwUqNgnk6dmv700sTV89K7qN/5jBseO6y6Ijf7Q8PzXp1JkQckzzNXZamhNZZ3X60LU68nU4QpSs78aqlGcbJEQyTB9kQMxp9E0WZvIQ+EGmYxJtGe5uNg9Mw+ysiZ/kP9Tf6kLeIqtx+OxeT2DKPvWXOlzHE3hqeevly7CXERzYGI2osSsN86/LJnlmvqhBr8vewFGZM2eRRM+TnAqe+mHWTxR3G++9CXZSvG1SNpx86TsXSK+Lm93vyEZCyCFmnqv/ZDUDIVeBLPMd6xMpkpXEQX7W7Jsm1ka1vX1KyZ/gQjaOVDkxSJyk1nRbe9EsmwLi8U=
