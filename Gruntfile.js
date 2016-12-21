@@ -7,6 +7,6 @@ module.exports = function(grunt) {
         fileExtensions: ['js']
     });
 
-    grunt.registerTask('build', ['babel', 'browserify', 'copy']);
+    grunt.registerTask('build', ['clean:dist', 'babel', 'browserify', 'copy']);
 
 };
