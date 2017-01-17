@@ -74,6 +74,9 @@ export default React.createClass({
                                     <a href="https://reddit.com/r/bitcoin_unlimited">{strings().footer.reddit2}</a>
                                 </li>
                                 <li>
+                                    <a href="mailto:trevinhofmann@gmail.com?subject=Bitcoin%20Unlimited%20Slack%20Invite&body=Hi%21%0D%0A%0D%0ACould+you+please+invite+me+to+the+Bitcoin+Unlimited+Slack+group%3F+My+email+address+is+%5BINSERT+EMAIL+ADDRESS+HERE%5D.%0D%0A%0D%0AThank+you%21">{strings().footer.slack}</a>
+                                </li>
+                                <li>
                                     <a href="https://webchat.freenode.net/?channels=##btc">{strings().footer.irc}</a>
                                 </li>
                             </p>
