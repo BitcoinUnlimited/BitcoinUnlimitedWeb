@@ -35,7 +35,7 @@
         "helpTwo": "Paste the signer's address into the first field, the signature statement into the second field, and the signature into the third one.",
         "helpThree": "Note: do not change the whitespace of the signature statement.",
         "helpFour": "Finally run 'sha256sum' on your downloaded file to make sure it matches.",
-        "helpFive": "You can check that and address corresponds to a user on the users' profile page on the",
+        "helpFive": "You can check that an address corresponds to a user on the users' profile page on the",
         "forum": "bitco.in forum",
         "statement": "Signed Statement",
         "tip": "Do not add a final return character to the statement above when verifying the signature in the Bitcoin client.",
