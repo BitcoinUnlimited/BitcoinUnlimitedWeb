@@ -1,7 +1,7 @@
 'use strict';
 
-const BASH0 = `tar xvf ~/Downloads/bitcoinUnlimited-0.12.1-linux64.tar.gz
-cd bitcoinUnlimited-0.12.1/bin/
+const BASH0 = `tar xvf ~/Downloads/bitcoinUnlimited-1.0.0-linux64.tar.gz
+cd bitcoinUnlimited-1.0.0/bin/
 nohup ./bitcoin-qt &
 `;
 
@@ -21,6 +21,7 @@ sudo apt-get install libdb4.8-dev libdb4.8++-dev
 mkdir -p ~/src
 git clone https://github.com/BitcoinUnlimited/BitcoinUnlimited.git bu-src
 cd bu-src
+git checkout release
 ./autogen-sh
 ./configure
 make
