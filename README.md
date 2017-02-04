@@ -24,7 +24,7 @@ Open `http://localhost:8080` to view your website.
 ## Development scripts
 
 * `npm start`: Start the server
-* `npm bower`: Install the bower dependencies
+* `npm run bower`: Install the bower dependencies
 * `npm run build`: Build the project into the `.dist` folder
 * `npm run watch`: Watch the `src` directory for changes, and rebuild when changed
 * `npm run nodemon`: Use nodemon to run the server and restart when `.dist` is changed
