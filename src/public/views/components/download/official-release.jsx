@@ -29,7 +29,7 @@ export default React.createClass({
                     <h3>{strings().official.releasenotes}</h3>
                     {strings().official.releasenotes_1_0_0_1} <a href='https://bitco.in/forum/threads/buir-2017-01-29-statement-regarding-excessive-block-by-bitcoin-unlimited-software-29-jan-2017.1790/'>{strings().official.here}</a>
                     <br/>
-                    {strings().official.releasenotes_1_0_0_0}
+                    {strings().official.releasenotes_1_0_0_0} <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/release/doc/release-notes/release-notes-1.0.0.md'>{strings().official.here}</a>
                     <h3>{strings().official.binary}</h3>
                     <br />
                     <h4>{strings().official.windows}</h4>
