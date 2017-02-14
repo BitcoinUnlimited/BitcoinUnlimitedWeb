@@ -17,6 +17,9 @@ export default React.createClass({
                                 <div className="portfolio-image">
                                     <ul className="no-list-style footer-navigate-section">
                                         <li>
+                                    	    <Link to='/why'>{strings().footer.whyBU}</Link>
+                                    	</li>
+                                        <li>
                                             <Link to='/articles'>{strings().footer.articles}</Link>
                                         </li>
                                         <li>
