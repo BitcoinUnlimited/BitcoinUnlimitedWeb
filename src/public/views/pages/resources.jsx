@@ -10,6 +10,10 @@ import Resource from '../components/resources/resource.jsx';
 
 const RESOURCES = [
     {
+		title: 'Why Bitcoin Unlimited',
+		html: '/why'	 
+	},
+    {
         title: 'Articles of Federation',
         html: '/articles',
         pdf: '/resources/BUarticles.pdf'
