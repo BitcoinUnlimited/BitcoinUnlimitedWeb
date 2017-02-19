@@ -1,40 +1,30 @@
 'use strict';
 
 import React from 'react';
-import { strings } from '../../lib/i18n';
-
 import Header from '../header.jsx';
 import Footer from '../footer.jsx';
-import Title from '../components/title.jsx';
+import { strings } from '../../lib/i18n';
 
-export default React.createClass({
+class Donate extends React.Component {
 
-    render: function() {
+    makeParagraph(string, index) { return <p key={index}>{string}</p> }
 
+    stringsToParagraphs(strings) {
+        return strings.map((string, i) => this.makeParagraph(string, i))
+    }
+
+    render() {
         return (
             <div id='donate'>
                 <Header active='donate' />
-                <Title title={strings().donate.title} />
-                <div className='section'>
-                    <div className='container'>
-                        <div className='row service-wrapper-row'>
-                            <div className='col-sm-3'>
-                                <div className='service-image'>
-                                    <img src='/img/donation-address-qr.png' alt='Fingerprint' />
-                                </div>
-                            </div>
-                            <div className='col-sm-9'>
-                                <h2 className="green">{strings().donate.supportus}</h2>
-                                <p>
-                                    {strings().donate.intro}
-                                </p>
-                                <p>
-                                    {strings().donate.address}
-                                </p>
-                                <p><pre>
-                                    36XTMVtgJqqNYymsSvRonpUsbZRGkm1jvX
-                                </pre></p>
-                            </div>
+                <div className="p2 py4 center">
+                    <div className="py2 h1">{ strings().donate.title }</div>
+
+                    <div className='left-align lh-copy p2 pb4 section__container'>
+                        { this.stringsToParagraphs(strings().donate.body) }
+                        <div className='pt1 center'>
+                            <img src='/img/donation-address-qr.png' alt='Fingerprint' />
+                            <div>36XTMVtgJqqNYymsSvRonpUsbZRGkm1jvX</div>
                         </div>
                     </div>
                 </div>
@@ -42,5 +32,6 @@ export default React.createClass({
             </div>
         );
     }
+}
 
-});
+export default Donate

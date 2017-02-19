@@ -1,0 +1,30 @@
+//
+// Inspired by: https://www.w3schools.com/howto/howto_css_dropdown.asp
+//
+
+.dropdown__title
+    cursor: pointer
+
+.dropdown__container
+    position: relative
+    display: inline-block
+
+.dropdown__content
+    display: none
+    position: absolute
+    background-color: #f9f9f9
+    min-width: 220px
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+    z-index: 1
+
+.dropdown__content a:hover
+    background-color: #f1f1f1
+
+.dropdown__container:hover .dropdown__content
+    display: block
+    left: 50%;
+    transform: translateX(-50%)
+    -webkit-transform: translateX(-50%)
+    -moz-transition: translateX(-50%)
+    -o-transition: translateX(-50%)
+    -ms-transition: translateX(-50%)

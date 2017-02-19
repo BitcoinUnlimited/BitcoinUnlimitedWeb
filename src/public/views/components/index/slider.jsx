@@ -3,8 +3,7 @@
 import React from 'react';
 import { strings } from '../../../lib/i18n';
 
-export default React.createClass({
-
+class Slider extends React.Component {
     componentDidMount() {
         let options = {
             nextButton: false,
@@ -16,9 +15,9 @@ export default React.createClass({
             preloader: true
         };
         $('#sequence').sequence(options).data('sequence');
-    },
+    }
 
-    render: function () {
+    render() {
         return (
             <div className="homepage-slider">
                 <div id="sequence">
@@ -50,5 +49,6 @@ export default React.createClass({
             </div>
         );
     }
+};
 
-});
+export default Slider

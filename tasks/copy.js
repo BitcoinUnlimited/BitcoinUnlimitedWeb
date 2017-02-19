@@ -14,6 +14,7 @@ module.exports = function(grunt) {
                         '**/*.html',
                         '**/*.css',
                         '**/*.png',
+                        '**/*.gif',
                         '**/*.ico',
                         '**/*.jpg',
                         '**/*.jpeg',
