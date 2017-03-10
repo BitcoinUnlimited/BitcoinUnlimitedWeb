@@ -11,6 +11,7 @@
         "release": "Official Release",
         "binary": "Binary Downloads",
         "releasenotes":"Release Notes",
+        "releasenotes_1_0_1_0": "1.0.1.0: Release notes are ",
         "releasenotes_1_0_0_1": "1.0.0.1: This release contains a single critical bug fix described ",
         "releasenotes_1_0_0_0": "1.0.0.0: Release notes are ",
         "windows": "Windows",

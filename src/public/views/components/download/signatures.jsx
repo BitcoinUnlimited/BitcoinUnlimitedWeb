@@ -66,6 +66,22 @@ const CHECKSUMS1_0_0_1 =  `
   'version': '1.0.0.1'}
 `;
 
+const CHECKSUMS1_0_1_0 =  `
+{ 'files': { 'bitcoinUnlimited-1.0.1-arm32.tar.gz': '8edb4f12e7ad08378d7a45845e868344274e87ae420bba59fd78cb61a9db1895',
+             'bitcoinUnlimited-1.0.1-arm64.tar.gz': '2f8e9b0b89031cf4360d36fe300ecbd81d59d7645d9b0f0e05d399d7beccd743',
+             'bitcoinUnlimited-1.0.1-linux32.tar.gz': 'e5eb6ac6ad8ba3fb036f31f44bf30f2c47c1cc8c67d20e79033742305dd52b72',
+             'bitcoinUnlimited-1.0.1-linux64.tar.gz': 'bb604081403eefa423fb2911bf6d99258d9db655ece8c3d557f32388c06a6207',
+             'bitcoinUnlimited-1.0.1-osx.dmg': 'e6042821d78e1a775e10858b6755c1224c921570021583e595b21be90c6eff41',
+             'bitcoinUnlimited-1.0.1-osx.tar.gz': 'c27883d1e890eddaf5f5e7a423be2dc9931733c80c2e9790300e94e395acd84e',
+             'bitcoinUnlimited-1.0.1-osx64.tar.gz': '013441ac99d37749850119a33ef4dca99b3e2ef751cd19cce4a0453762604baa',
+             'bitcoinUnlimited-1.0.1-win32-setup.exe': '6d1d8f76f2581a090986a54c5a5302b54e05653bbc2747a25aa6525d7066a2d3',
+             'bitcoinUnlimited-1.0.1-win32.zip': '067fb2d2710108f9990b19a953fac841ce58ed281c8bab739fe291d1a9f5429c',
+             'bitcoinUnlimited-1.0.1-win64-setup.exe': '16ae33163699dfac2b763377a8936b561ea18bee2f0d1d73f0f57cc04a8eb469',
+             'bitcoinUnlimited-1.0.1-win64.zip': '0f742aab2e04aa31ec5c89388a62591cd24e97fe06779b77ecb017b5baa7ea92'},
+  'program': 'Bitcoin Unlimited',
+  'version': '1.0.1.0'}
+`;
+
 export default React.createClass({
 
     render: function () {
@@ -94,7 +110,27 @@ export default React.createClass({
                             {' '}
                             <a href='http://www.bitco.in/forum'>{strings().signatures.forum}</a>.<br/>
                         </div>
-                        <br /><br />
+                        <br />
+                          <br />
+                            1.0.1.0 {strings().signatures.statement}:<br /><br />
+                            <pre>{CHECKSUMS1_0_1_0}</pre>
+                            <br />
+                            {strings().signatures.tip}
+                            <br/>
+                            <br />
+                            {strings().signatures.andrew} (1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3 - {strings().signatures.thezerg})
+                            <br/>
+                            {strings().signatures.signature}:<br />HJHX7Sk/IwxctW+9cvbn7689SsM64sy66POgYVbjU2p1KBFZJ/LBgi+BsR5hGur4w6eHDdeKSzzKyDT5cCktlxU=
+                            <br/><br/>
+                            {strings().signatures.sickpig} (1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)<br/>
+                            {strings().signatures.signature}:<br />H4vWH/YVSuXRHOFNTXRI0faP0Jf/yRl7uVGd3yCcPgNoUqEi9JClyz/x5CNEd8LC9hd5z/KXuQD1H7XmrrLdrH0=
+                            <br/><br/>
+                            {strings().signatures.deadalnix} (1KEaWZ7tpLF4n5xFf5bpTPff7G7uJZiDGw)<br/>
+                            {strings().signatures.signature}:<br />IFI4d6XFjGUP432jm8px7IbiFYv+7PdRS60mUgnTdx+YVEUo5zU6fkd7miIV5qp6dhXPTCsAc7OJsXmFoTW+PrA=
+                            <br/>
+                          <br/>
+
+                          <br />
                             1.0.0.1 {strings().signatures.statement}:<br /><br />
                             <pre>{CHECKSUMS1_0_0_1}</pre>
                             <br />
@@ -110,7 +146,8 @@ export default React.createClass({
                             <br/><br/>
                             {strings().signatures.deadalnix} (1KEaWZ7tpLF4n5xFf5bpTPff7G7uJZiDGw)<br/>
                             {strings().signatures.signature}:<br />H+OGhBmcEA4xr3nGrjH1riihwybxw9mBb7n3Bzf/Z/geOV9tV5qjsr21/jDP6WZ1VEsauWf+a+enrOLEgDsUfA8=
-                            <br/><br/>
+                            <br/>
+                          <br/>
                             0.12.1 {strings().signatures.statement}:<br /><br />
                             <pre>{CHECKSUMS0121b}</pre>
                             <br />
