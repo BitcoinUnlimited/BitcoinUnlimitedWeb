@@ -39,8 +39,8 @@ export default React.createClass({
                                 />
                             <div className='lh-copy py1 left-align'>
                                 The enforcement of these rules takes place in each node's consensus layer. We call it the consensus layer in part because there is widespread&nbsp;
-                                <div className='inline italic'>human consensus </div>
-                                about what these rules are: they are simply the rules needed to make bitcoin function as&nbsp;
+                                <div className='inline italic'>human consensus</div>
+                                &nbsp;about what these rules are: they are simply the rules needed to make bitcoin function as&nbsp;
                                 <div className='inline italic'>money</div>.
                             </div>
                             <div className='lh-copy py1 left-align'>
@@ -56,20 +56,20 @@ export default React.createClass({
                             </div>
                             <div className='lh-copy py1 left-align'>
                                 But what if there is a&nbsp;
-                                <div className='inline italic'>technical </div>
-                                reason that it&nbsp;
-                                <div className='inline italic'>might </div>
-                                be a bad idea to accept a particular block (even though the block would still preserve Bitcoin’s money property)? Remember, the Bitcoin network is made up of computer hardware connected over physical communication channels and subject to physical limitations. A block could contain so many transactions that a miner might be worried that it would never reach miners on the other side of the Great Firewall of China, or a node operator might be worried that it would take up too much of his hard-drive’s space to store or too much of his node’s processor time to validate.
+                                <div className='inline italic'>technical</div>
+                                &nbsp;reason that it&nbsp;
+                                <div className='inline italic'>might</div>
+                                &nbsp;be a bad idea to accept a particular block (even though the block would still preserve Bitcoin’s money property)? Remember, the Bitcoin network is made up of computer hardware connected over physical communication channels and subject to physical limitations. A block could contain so many transactions that a miner might be worried that it would never reach miners on the other side of the Great Firewall of China, or a node operator might be worried that it would take up too much of his hard-drive’s space to store or too much of his node’s processor time to validate.
                             </div>
                             <div className='lh-copy py1 left-align'>
                                 Bitcoin Core gives a black-and-white answer to the&nbsp;
-                                <div className='inline italic'>fuzzy </div>
-                                question of what kind of blocks&nbsp;
-                                <div className='inline italic'>might </div>
-                                be a bad idea to accept. Bitcoin Core says that if the block is larger than 1 MB then it&nbsp;
-                                <div className='inline italic'>must </div>
-                                be rejected (no differently than how the block would be rejected if it contained a double-spend). This rule thus exists in Core’s&nbsp;
-                                <div className='inline italic'>consensus layer </div>
+                                <div className='inline italic'>fuzzy</div>
+                                &nbsp;question of what kind of blocks&nbsp;
+                                <div className='inline italic'>might</div>
+                                &nbsp;be a bad idea to accept. Bitcoin Core says that if the block is larger than 1 MB then it&nbsp;
+                                <div className='inline italic'>must</div>
+                                &nbsp;be rejected (no differently than how the block would be rejected if it contained a double-spend). This rule thus exists in Core’s&nbsp;
+                                <div className='inline italic'>consensus layer</div>
                                 . It works fine if all the other nodes give the same black-and-white answer to this fuzzy question (Fig. 3a), but if a sufficient fraction of the network disagree (e.g., because blocks are full) and think that it’s also a good idea to accept 1.5 MB blocks (remember 1 MB was just a ball-park guess made 6 years ago anyways), then Core nodes will be “forked off the network” (Fig. 3b). Core users will no longer see their transactions confirmed (or confirmed only very slowly) and miners using Core will waste their hash power trying to extend the wrong block. This is a negative outcome that can be avoided.
                             </div>
                             <ImageWithLabel
@@ -79,17 +79,17 @@ export default React.createClass({
                                 />
                             <div className='lh-copy py1 left-align'>
                                 Before we describe the way a Bitcoin Unlimited node deals with the same problem, notice that Core’s block size rule is not like the other two rules we considered (i.e., those requiring that all transactions in a block must be valid and not already spent). Instead of enforcing Bitcoin’s money property, this additional rule is a hack that addresses a&nbsp;
-                                <div className='inline italic'>temporary </div>
-                                technological limitation of the physical Bitcoin network. Indeed, a technical constraint related to transporting blocks around the network has crept into Core’s consensus layer.
+                                <div className='inline italic'>temporary</div>
+                                &nbsp;technological limitation of the physical Bitcoin network. Indeed, a technical constraint related to transporting blocks around the network has crept into Core’s consensus layer.
                             </div>
                             <div className='lh-copy py1 left-align'>
                                 In Bitcoin Unlimited, the consensus layer is only concerned with preserving the money property of Bitcoin. An Unlimited node deals with the&nbsp;
-                                <div className='inline italic'>fuzzy </div>
-                                question of which blocks&nbsp;
-                                <div className='inline italic'>might </div>
-                                be difficult to accept for technical reasons outside the consensus layer and in a&nbsp;
-                                <div className='inline italic'>fuzzy </div>
-                                way: it makes a guess and then changes its mind if it guessed wrong!
+                                <div className='inline italic'>fuzzy</div>
+                                &nbsp;question of which blocks&nbsp;
+                                <div className='inline italic'>might</div>
+                                &nbsp;be difficult to accept for technical reasons outside the consensus layer and in a&nbsp;
+                                <div className='inline italic'>fuzzy</div>
+                                &nbsp;way: it makes a guess and then changes its mind if it guessed wrong!
                             </div>
                             <ImageWithLabel
                                 src='../img/emergent-consensus/4.gif'
@@ -121,8 +121,8 @@ export default React.createClass({
                                 />
                             <div className='lh-copy py1 left-align'>
                                 Of course, it is also possible that both chains are built upon— sort of a mixture of Fig. 5 and Fig. 6. Still, the excessive-block gate works unchanged. As soon as a red block has enough blocks built above it, the gate opens, presenting the red block and the blocks above it as&nbsp;
-                                <div className='inline italic'>one possible </div>
-                                chain tip. If it is longer than the current chain tip, the current chain tip will be replaced. If it is not longer, the current chain tip will be retained.
+                                <div className='inline italic'>one possible</div>
+                                &nbsp;chain tip. If it is longer than the current chain tip, the current chain tip will be replaced. If it is not longer, the current chain tip will be retained.
                             </div>
                             <div className='lh-copy py1 left-align'>
                                 Because the excessive-block logic exists outside the consensus layer, it is not critical that nodes deal with excessive blocks in the same way. Each node operator is free to express his opinion about what makes a block “excessive” by configuring his node’s excessive-block gate appropriately. Through the cumulative effect of thousands of node operators and miners expressing their preferences like this, an “effective block size limit” naturally emerges. This will be the subject of our next article.
