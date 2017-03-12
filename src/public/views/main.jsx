@@ -15,6 +15,7 @@ import Articles from './pages/articles.jsx';
 import NotFound from './pages/not-found.jsx';
 import Conferences from './pages/conferences.jsx';
 import Donate from './pages/donate.jsx';
+import EmergentConsensus from './pages/emergent-consensus.jsx';
 
 ReactDOM.render((
     <Router history={createHistory()}>
@@ -29,6 +30,7 @@ ReactDOM.render((
             <Route path='articles' component={Articles} />
             <Route path='conferences' component={Conferences} />
             <Route path='donate' component={Donate} />
+            <Route path='emergent-consensus' component={EmergentConsensus} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>
