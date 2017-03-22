@@ -20,6 +20,7 @@ module.exports = function(grunt) {
                 '**/*.png',
                 '**/*.jpg',
                 '**/*.jpeg',
+                '**/*.gif',
                 '**/*.svg',
                 '**/*.json',
                 '**/*.pdf',

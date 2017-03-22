@@ -1,6 +1,6 @@
 {
   "name": "bitcoin-unlimited-web",
-  "version": "0.5.5",
+  "version": "0.8.7",
   "description": "The Bitcoin Unlimited web site",
   "author": "Bitcoin Unlimited Developers",
   "contributors": [
@@ -19,7 +19,10 @@
     "start": "node index.js",
     "postinstall": "bower install",
     "build": "grunt build",
-    "prepublish": "grunt build"
+    "prepublish": "grunt clean:bower build",
+    "bower": "bower install",
+    "watch": "grunt watch",
+    "nodemon": "nodemon index.js"
   },
   "main": "index.js",
   "repository": {
@@ -49,9 +52,11 @@
     "grunt-browserify": "^4.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-config-dir": "^0.3.2",
+    "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-watch": "^0.6.1",
     "history": "^1.17.0",
+    "nodemon": "^1.11.0",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
     "react-router": "^1.0.3"

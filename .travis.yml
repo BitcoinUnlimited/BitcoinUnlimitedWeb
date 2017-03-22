@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- '6'
+- '4'
+install:
+- npm install
+script:
+- npm run build
+notifications:
+  email: false
+deploy:
+  provider: npm
+  email: trevinhofmann@gmail.com
+  on:
+    tags: true
+    node: '6'
+  api_key:
+    secure: VPjFeLUK6YIItbyJ+Yqan+Xz3OK39KZeTm/LlJXrzun8YsV7X+lqtAWWlxuScK+vPtZVYMhmLNydWwTAKlCNsKkBOvuEUFwaDpABmTURnY59vA/e0q4aHivfuHDBCtmZT3fEZAV0JcX4Exc/IiA9Jj69h1oNWkCSZKnYD+AJpYMw4+pMSa5ujWa2yF8sIlIH9K/mGmkbZPrcG6cIqPpYMmcpcqgLWVHiyRAmwEtAbYWQF4P0gxvnsZNT1bSQiL6WnPpjv9LDBVK6BPw0z8FdfwIxnoLu4qvs1nhLI/JjuWC8N1vZQ/nxIiHurwUAOigGYKFZdyPcbnJdR55HZKBpk4RsfOkTuHjeJPjD3MF1qrjSRx6kPQO4BFutKZdGAtZ22nCKno/K8PWBeeQhwaUSHHovDO4I9G2eePe0+8j1jOhl2HHNvc344o+lY0E814P0bzk5+c7sH79IiCk2E2zYloeDQrvRZvV6/z9XN9jXg4ubn8vBr8+xwnC0xxOzy/3zKEX4np3vUcLOSFALNN8cjCv7h7xDcQpQ6b31DkFUohIXVUIZXPCa1QfHn1x+GJuiSqv3ZhgWhiGddlYLchO8RXTxQNQNbx8v2Fl0eLz82iGX/sGqiLWTN1mH4IQzm4EuC2r5y5+GkhBy9gPWjkNp+EYrcWAQ3Tf2lrUFwUQI8Fk=

@@ -12,8 +12,11 @@ import Buip from './pages/buip.jsx';
 import Members from './pages/members.jsx';
 import Resources from './pages/resources.jsx';
 import Articles from './pages/articles.jsx';
+import EmergentConsensusBU from './pages/emergent-consensus-bu.jsx';
+import EmergentConsensus from './pages/emergent-consensus.jsx';
 import NotFound from './pages/not-found.jsx';
 import Conferences from './pages/conferences.jsx';
+import Donate from './pages/donate.jsx';
 
 ReactDOM.render((
     <Router history={createHistory()}>
@@ -27,6 +30,9 @@ ReactDOM.render((
             <Route path='resources' component={Resources} />
             <Route path='articles' component={Articles} />
             <Route path='conferences' component={Conferences} />
+            <Route path='donate' component={Donate} />
+            <Route path='emergent-consensusBU' component={EmergentConsensusBU} />
+            <Route path='emergent-consensus' component={EmergentConsensus} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>

@@ -1,83 +1,71 @@
 {
     "experimental": {
-        "releases": "Experimental Releases",
+        "releases": "Entwicklerversionen",
         "none": "NONE"
     },
     "official": {
-        "satoshi": "The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core \"Satoshi\" client.",
-        "supporting": "We are currently supporting the 1.0.0 release and have older releases 0.11.2, 0.12.0, and 0.12.1",
-        "verify": "Please verify binary signatures before installation!",
-        "signatures": "Scroll down to the Signatures section to see the SHA-256 checksums of the binaries and our signatures on that statement.",
-        "release": "Official Release",
+        "satoshi": "Das Bitcoin Unlimited Projekt entwickelt eine verbesserte Version des Bitcoin Core \"Satoshi\" Client.",
+        "supporting": "Zurzeit wird Version 0.12.1 unterstützt, es gibt ältere Releases der Versionen 0.11.2 und 0.12.0",
+        "verify": "Bitte jede Signatur der Binaries vor der Installation verfizieren!",
+        "signatures": "Im Abschnitt \"Signaturen\", weiter unten auf dieser Seite, finden sich die SHA-256 Checksums der Binaries und unsere Signaturen dazu.",
+        "release": "Offizielle Version",
         "binary": "Binary Downloads",
-        "releasenotes":"Release Notes",
-        "releasenotes_1_0_1_1": "1.0.1.1: Release notes are ",
-        "releasenotes_1_0_1_0": "1.0.1.0: Release notes are ",
-        "releasenotes_1_0_0_1": "1.0.0.1: This release contains a single critical bug fix described ",
-        "releasenotes_1_0_0_0": "1.0.0.0: Release notes are ",
         "windows": "Windows",
         "linux": "Linux",
         "osx": "Mac OSX",
-        "ARM": "ARM",
         "version": "Version",
-        "date": "Mar 14, 2017",
+        "august14": "14. Aug. 2016",
         "bit64": "64-bit",
         "bit32": "32-bit",
-        "installation": "Linux Installation Instructions",
+        "installation": "Linux Installationsanleitung",
+        "terminal": "Die Datei herunterladen, ein Terminal Fenster öffnen und folgendes eingeben:",
         "source": "Source Code",
         "branch": "Github branch",
-        "here": "here"
-    },
-    "instructions": {
-        "title": "Quick Installation Guide (Linux)",
-        "helpZero": "Once you downloaded the file that matches your system in the section above (e.g. 64 bit linux), open a terminal window then type:",
-        "helpOne": "If you're running an Ubuntu system you could use our official repository. It supports four archs - amd64, i386, arm and arm64 - and 3 Ubuntu versions - 14.04, 16.04 and 16.10. To install the binaries from the repository execute these commands from a console:",
-        "helpTwo": "If you want to compile from source just follow and execute these commands:"
+        "here": "hier"
     },
     "signatures": {
-        "signatures": "These signatures attest that the individual named compiled Bitcoin Unlimited from Github source and produced the following files with the corresponding sha256 hashes.",
-        "helpOne": "To validate these signatures, use 'File->verify signatures' on any Satoshi Client.",
-        "helpTwo": "Paste the signer's address into the first field, the signature statement into the second field, and the signature into the third one.",
-        "helpThree": "Note: do not change the whitespace of the signature statement.",
-        "helpFour": "Finally run 'sha256sum' on your downloaded file to make sure it matches.",
-        "helpFive": "You can check that an address corresponds to a user on the users' profile page on the",
+        "signatures": "Mit diesen Signaturen wird bestätigt, dass die genannten Personen Bitcoin Unlimited aus dem Github source code kompiliert haben. Die folgenden Dateien mit den zugehörigen SHA 256 Hashes wurden erzeugt.",
+        "helpOne": "Mit 'File->verify signatures' in jedem Satoshi Client können die Signaturen verfiziert werden.",
+        "helpTwo": "Die Addresse des Signierenden wird in das erste Feld eingegeben, das signierte Statement in das zweite Feld und die Signatur in das dritte Feld.",
+        "helpThree": "Anmerkung: Keine Whitespaces aus dem Statement entfernen oder hinzufügen.",
+        "helpFour": "Zum Schluss wird 'sha256sum' auf die gespeicherten Dateien angewandt und kontrolliert, dass die Hashes passen.",
+        "helpFive": "Kontrolliert werden, können die Signaturen auf der jeweiligen Profilseite des Benutzers im",
         "forum": "bitco.in forum",
-        "statement": "Signed Statement",
-        "tip": "Do not add a final return character to the statement above when verifying the signature in the Bitcoin client.",
-        "andrew": "By: Andrew Stone (thezerg)",
-        "awemany": "By: awemany",
-        "sickpig": "By: Andrea Suisani (sickpig)",
-        "deadalnix": "By: Amaury SECHET (deadalnix)",
-        "thezerg": "",
-        "signature": "Signature"
+        "statement": "Signiertes Statement",
+        "tip": "Achte darauf, keinen Zeilenumbruch zum Statement hinzufügen, wenn es im Bitcoin Client verifiziert werden soll.",
+        "andrew": "Von: Andrew Stone",
+        "awemany": "Von: awemany",
+        "sickpig": "Von: sickpig",
+        "thezerg": "Addresse von bitco.in Benutzer thezerg verifizieren.",
+        "signature": "Signatur"
     },
     "calltoaction": {
-        "partOne": "The Only Bitcoin Client That Gives",
-        "partTwo": "You",
-        "partThree": "Complete Freedom!",
-        "download": "Download here!"
+        "partOne": "Der einzige Bitcoin Client, der",
+        "partTwo": "dir",
+        "partThree": "uneingeschränkte Freiheit gibt!",
+        "download": "Hier herunterladen!"
     },
     "description": {
-        "title": "What is Bitcoin Unlimited?",
-        "a1": "The Bitcoin Unlimited (BU) project seeks to provide a voice to all stakeholders in the Bitcoin ecosystem.",
-        "b1": "Every node operator or miner can currently choose their own blocksize limit by modifying their client.",
-        "b2": "Bitcoin Unlimited makes the process easier by providing a configurable option for the accepted and generated blocksize via a GUI menu.",
-        "b3": "Bitcoin Unlimited further provides a user-configurable failsafe setting allowing you to accept a block larger than your maximum accepted blocksize if it reaches a certain number of blocks deep in the chain.",
-        "c1": "By moving the blocksize limit from the protocol layer to the transport layer, Bitcoin Unlimited removes the only point of central control in the Bitcoin economy - the blocksize limit - and returns it to the nodes and the miners.",
-        "c2": "An emergent consensus will thus arise based on free-market economics as the nodes/miners converge on consensus focal points, creating in the process a living, breathing entity that responds to changing real-world conditions in a free and decentralised manner.",
-        "d1": "This approach is supported by the evidence accumulated over the past six years.",
-        "d2": "The miners and node operators have until now been free to choose a soft limit which, as demand grew, has always been increased in a responsive and organic manner to meet the needs of the market.",
-        "d3": "We expect miners to continue in this tested and proven free-market way by, for instance, coordinating to set a new generated blocksize limit of 2MB and reject any blocks larger than 2MB unless they reach 4 blocks deep in the longest chain.",
-        "d4": "As demand increases, the limit can easily be increased to 3MB, 4MB, and so on, thus removing central control over the process of finding the equilibrium blocksize by allowing the free market to arrive at the correct choice in a decentralised fashion.",
-        "e1": "As a foundational principle, we assert that Bitcoin is and should be whatever its users define by the code they run, and the rules they vote for with their hash power.",
-        "f1": "Bitcoin Unlimited seeks to remove existing practical barriers to stakeholders expressing their views in these ways.",
-        "g1": "For more details, read our",
-        "g2": "Articles of Federation",
-        "h1": "The Bitcoin Unlimited client is not a competitive block scaling proposal like BIP-101, BIP-102, etc. Instead it tracks consensus.",
-        "h2": "This means that it tracks the blockchain that the hash power majority follows, irrespective of blocksize, and signals its ability to accept larger blocks via protocol and block versioning fields.",
-        "i1": "If you support an increase in the blocksize limit by any means -- or just support Bitcoin conflict resolution as originally envisioned by its founder -- consider running a",
+        "title": "Was ist Bitcoin Unlimited?",
+        "a1": "Durch das Bitcoin Unlimited (BU) Projekt soll allen Beteiligten im Bitcoin Ökosystem eine Stimme gegeben werden.",
+        "b1": "Jeder Knotenbetreiber und Miner kann schon zurzeit das eigene Blocksize Limit - durch Modifizierung des Clients - festlegen.",
+        "b2": "Durch Bitcoin Unlimited wird dieser Vorgang vereinfacht, die Größe produzierter und akzeptierter Blöcke wird durch eine Option im Menü eingestellt.",
+        "b3": "Weiterhin erlaubt Bitcoin Unlimited die Einstellung eines Parameters, der festlegt, ab welcher Länge der Blockchain, größere Blöcke, als die eingestellte Blocksize, akzeptiert werden.",
+        "c1": "Durch die Änderung des Blocksize Limits, von einer Eigenschaft der Protokollschicht in eine der Transportschicht, wird das einzig vorhandene zentral kontrollierte Merkmal der Bitcoinökonomie entfernt und an die Knoten und Miner zurück gegeben.",
+        "c2": "Durch das Zusammenspiel der Knoten und Miner wird, basierend auf den Gesetzen des freien Marktes, ein frei gewachsener Konsens (engl. emergent consensus) kreiert; eine lebendige Einheit, die auf die Bedingungen der Umgebung frei und dezentral reagiert.",
+        "d1": "Dieses Vorgehen wird durch die Daten der letzten sechs Jahre gestützt. ",
+        "d2": "Bis jetzt konnten Miner und Knoten ein \"soft limit\" festlegen, welches, angepasst an die Bedürfnisse des Marktes, von allen Beteiligten bedarfsgesteuert und dynamisch erhöht wurde.",
+        "d3": "Wir erwarten, dass die Miner in derselben erprobten Weise, beispielsweise durch Übereinkunft, 2 MB Blöcke zu generieren und Blöcke größer als 2 MB erst nach einer Tiefe von vier Blöcken zu akzeptieren, weiter machen werden.",
+        "d4": "Wenn der Bedarf anwächst, kann das Limit somit einfach auf drei MB, vier MB, usw. erhöht werden. Damit wird die zentrale Kontrolle über das Finden einer ausgeglichenen Blockgröße entfernt und die richtige Wahl durch den freien Markt in einem dezentralen Verfahren gefunden.",
+        "e1": "Als grundsätzliches Prinzip glauben wir, dass Bitcoin ist und sein soll, was die Nutzer durch den Code, den sie betreiben und die Regeln, für die sie mit ihrer Hashpower abstimmen, festlegen.",
+        "f1": "Bitcoin Unlimited versucht vorhandene Barrieren abzubauen, die Beteiligte daran hindern, ihr Ansichten auf diesem Wege zu äußern.",
+        "g1": "Mehr Details finden sich in der",
+        "g2": "Satzung unseres Vereins.",
+        "h1": "Im Gegensatz zu BIP-101, BIP-102, usw. ist Bitcoin Unlimited kein neuer Vorschlag für die Skalierung der Blockgröße. Es dient stattdessen nur zum Beobachten und Folgen des Netzwerkkonsens.",
+        "h2": "Es folgt der Blockchain, der die Mehrheit der Hashpower folgt unabhängig von der Blockgröße und signalisiert seine Bereitschaft, größere Blöcke zu akzeptieren über Protokoll- und Blockversion-Felder.",
+        "i1": "Wer eine Erhöhung der maximalen Blockgröße befürwortet, oder einfach nur die Konsensfindung in Bitcoin, wie sie der Erfinder ursprünglich gedacht hatte, unterstützt, sollte einen",
         "i2": "Bitcoin Unlimited",
-        "i3": "client."
+        "i3": "Client betreiben."
     },
     "quotes": {
         "a1": "If the network were to get that big, it would take several years, and by then, sending 2 HD movies over the Internet would probably not seem like a big deal.",
@@ -89,37 +77,37 @@
         "satoshi": "Satoshi Nakamoto"
     },
     "services": {
-        "members": "Members",
-        "membersText": "We assert that Bitcoin is and should be whatever we the users define by the code we run, and the rules we vote for with our hash power.",
-        "contribute": "Contribute",
-        "contributeText": "If you are a developer then contribute, if you have the resources then run a node, if you are a miner then join a mining pool, if you are a researcher then provide evidence and analysis and if you are a contributor then educate others with analysis and facts.",
-        "resources": "Resources",
-        "resourcesText": "Bitcoin is out of the box thinking. We follow in Satoshi's tradition and present you an interdisciplinary approach.",
-        "read": "Read more"
+        "members": "Mitglieder",
+        "membersText": "Wir sagen, dass Bitcoin ist und sein sollte, was auch immer wir, die User, durch den Code, den wir betreiben und die Regeln, für die wir mit Hashpower abstimmen, festlegen.",
+        "contribute": "Mitwirken",
+        "contributeText": "Wenn du ein Entwickler bist, beteilige dich, wenn du die Möglichkeit hast, betreibe einen Knoten. Bist du ein Miner, dann trete dem Mining Pool bei. Bist du ein Wissenschaftler, finde Fakten und Analysen. Bist du schon aktiv, dann zeige anderen die Analysen und Fakten.",
+        "resources": "Quellen",
+        "resourcesText": "Bitcoin ist Denken \"out of the box\". Wir folgen Satoshi's Tradition und zeigen einen interdisziplinären Ansatz.",
+        "read": "Mehr lesen"
     },
     "slider": {
         "cryptography": "In Cryptography we Trust",
         "cryptographyText": "The whole is truly greater than the sum of its parts.",
         "vires": "Vires in Numeris",
-        "viresText": "Bitcoin Unlimited: A Peer-to-Peer Electronic Cash System",
-        "free": "Free and Decentralized",
-        "freeText": "Free and decentralised emerging consensus."
+        "viresText": "Bitcoin Unlimited: Ein elektronisches Peer-to-Peer Geldsystem",
+        "free": "Frei und dezentralisiert",
+        "freeText": "Freier und dezentraler, gewachsener, Konsens."
     },
     "member": {
-        "application": "Application"
+        "application": "Mitgliedschaftsantrag"
     },
     "header": {
         "home": "Home",
         "download": "Download",
         "faq": "FAQ",
-        "proposals": "Proposals",
-        "members": "Members",
-        "resources": "Resources",
-        "conference": "Conferences"
+        "proposals": "Vorschläge",
+        "members": "Mitglieder",
+        "resources": "Quellen",
+        "conference": "Konferenzen"
     },
     "footer": {
-        "latest": "Our Latest Work",
-        "articles": "Articles of Federation",
+        "latest": "Unsere neueste Arbeit",
+        "articles": "Satzung unseres Vereins",
         "fee": "Fee Market",
         "subchains": "Subchains",
         "analysis": "Bitcoin Unlimited Analysis (1-txn)",
@@ -127,18 +115,17 @@
         "home": "Home",
         "download": "Download",
         "faq": "FAQ",
-        "donate": "Donate",
-        "proposals": "Proposals",
-        "members": "Members",
-        "resources": "Resources",
-        "conferences": "Conferences",
-        "join": "Join Us",
+        "donate": "Spenden",
+        "proposals": "Vorschläge",
+        "members": "Mitglieder",
+        "resources": "Quellen",
+        "conferences": "Konferenzen",
+        "join": "Tritt uns bei",
         "forum": "The Bitcoin Forum",
         "reddit1": "Reddit /r/btc",
         "reddit2": "Reddit /r/bitcoin_unlimited",
-        "slack": "Slack",
         "irc": "##btc on IRC",
-        "news": "News",
+        "news": "Neuigkeiten",
         "time": "Time to roll out bigger blocks",
         "why": "Why is Bitcoin forking?",
         "consensus": "On consensus and forks",
@@ -146,7 +133,7 @@
         "copy": "MIT License. No Rights Reserved."
     },
     "resources": {
-        "title": "Academic Articles and Founding Documents",
+        "title": "Akademische Beiträge und Gründungsdokumente",
         "supporting": "Bitcoin Unlimited Supporting Documents"
     },
     "notfound": {
@@ -154,19 +141,19 @@
         "message": "The requested file could not be found."
     },
     "members": {
-        "title": "Supporting Members"
+        "title": "Mitglieder"
     },
     "download": {
         "title": "Download Bitcoin Unlimited"
     },
     "donate": {
-        "title": "Donate",
-        "intro": "Your support allows us to advance the Bitcoin Unlimited project, and to maintain Bitcoin as a free-market economy.",
-        "supportus": "Support us via Bitcoin",
-        "address": "To donate, scan the QR code on the left or copy and paste our Bitcoin address below."
+        "title": "Spenden",
+        "intro": "Deine Spende erlaubt uns, dass Bitcoin Unlimited Projekt fortzuführen und Bitcoin als freien Markt zu erhalten.",
+        "supportus": "Spenden mit Bitcoin",
+        "address": "Zum Spenden, scanne den QR Code links oder kopiere die Bitcoin Addresse unten."
     },
     "buip": {
-        "title": "Contribute an Improvement Proposal",
+        "title": "Verbesserungsvorschlag einreichen",
         "proposals": "Bitcoin Unlimited Improvement Proposals"
     },
     "articles": {

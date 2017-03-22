@@ -1,43 +1,53 @@
 {
     "experimental": {
-        "releases": "Experimental Releases",
+        "releases": "测试版本",
         "none": "NONE"
     },
     "official": {
-        "satoshi": "The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core \"Satoshi\" client.",
-        "supporting": "We are currently supporting the 0.12.1 release and have older releases on 0.11.2 and 0.12.0.",
-        "verify": "Please verify binary signatures before installation!",
-        "signatures": "Scroll down to the Signatures section to see the SHA-256 checksums of the binaries and our signatures on that statement.",
-        "release": "Official Release",
-        "binary": "Binary Downloads",
+        "satoshi": "Bitcoin Unlimited是一个基于Bitcoin Core \"Satoshi\" 客户端的改进版本。",
+        "supporting": "目前我们有 1.0.0 发布版，和较久的版本 0.11.2, 0.12.0, 和 0.12.1",
+        "verify": "安装前请验证我们的数字签名！",
+        "signatures": "向下滚动至Signatures部分来查看二进制代码的SHA-256 checksums和我们的数字签名。",
+        "release": "正式版本",
+        "binary": "二进制代码下载",
+        "releasenotes":"更新说明",
+        "releasenotes_1_0_0_1": "1.0.0.1: 修复了一个严重的漏洞，详见：",
+        "releasenotes_1_0_0_0": "1.0.0.0: 更新说明见：",
         "windows": "Windows",
         "linux": "Linux",
         "osx": "Mac OSX",
+        "ARM": "ARM",
         "version": "版本",
-        "august14": "2016年8月14日",
+        "date": "Jan 31, 2017",
         "bit64": "64-bit",
         "bit32": "32-bit",
-        "installation": "Linux Installation Instructions",
-        "terminal": "Download the file and then open a terminal window. Type:",
-        "source": "Source Code",
-        "branch": "Github branch",
-        "here": "here"
+        "installation": "Linux 安装指引",
+        "source": "源代码",
+        "branch": "Github 分支",
+        "here": "这里"
+    },
+    "instructions": {
+        "title": "快速安装指引 (Linux)",
+        "helpZero": "下载符合您的系统的版本(如 64-bit Linux)，在命令行中输入:",
+        "helpOne": "如果您使用Ubuntu系统，您可以使用我们的官方PPA源。 支持AMD64，i386， ARM， ARM64 上的三种Ubuntu版本： 14.04， 16.04，16.10。 在命令行输入以下指令，通过PPA源安装：",
+        "helpTwo": "如果您想自己编译，请进行如下操作："
     },
     "signatures": {
-        "signatures": "These signatures attest that the individual named compiled Bitcoin Unlimited from Github source and produced the following files with the corresponding sha256 hashes.",
-        "helpOne": "To validate these signatures, use 'File->verify signatures' on any Satoshi Client.",
-        "helpTwo": "Paste the signer's address into the first field, the signature statement into the second field, and the signature into the third one.",
-        "helpThree": "Note: do not change the whitespace of the signature statement.",
-        "helpFour": "Finally run 'sha256sum' on your downloaded file to make sure it matches.",
-        "helpFive": "You can check these signatures on the users' profile page on the",
-        "forum": "bitco.in forum",
-        "statement": "Signed Statement",
-        "tip": "Do not add a final return character to the statement above when verifying the signature in the Bitcoin client",
-        "andrew": "By: Andrew Stone",
+        "signatures": "这些数字签名可以确保这些Bitcoin Unlimited版本是从Github源代码编译的，并具有如下的SHA256散列值。",
+        "helpOne": "您可以在任意Satoshi客户端里的'File->verify signatures' 来验证这些签名。",
+        "helpTwo": "将签名者的地址粘贴入第一栏，再将如下声明粘贴入第二栏，以及数字签名粘贴入第三栏。",
+        "helpThree": "注意：不要改动声明中的空格",
+        "helpFour": "最后，对您下载的文件运行 'sha256sum' 来核对是否相符。",
+        "helpFive": "您可以在这里找到并核对作者的地址：",
+        "forum": "bitco.in 论坛",
+        "statement": "声明内容",
+        "tip": "验证时，不要在声明内容的末尾增加换行符",
+        "andrew": "By: Andrew Stone (thezerg)",
         "awemany": "By: awemany",
-        "sickpig": "By: sickpig",
-        "thezerg": "verify address on bitco.in user thezerg",
-        "signature": "Signature"
+        "sickpig": "By: Andrea Suisani (sickpig)",
+        "deadalnix": "By: Amaury SECHET (deadalnix)",
+        "thezerg": "",
+        "signature": "签名"
     },
     "calltoaction": {
         "partOne": "The Only Bitcoin Client That Gives",
@@ -115,6 +125,7 @@
         "home": "Home",
         "download": "Download",
         "faq": "FAQ",
+        "donate": "Donate",
         "proposals": "Proposals",
         "members": "Members",
         "resources": "Resources",
@@ -123,6 +134,7 @@
         "forum": "The Bitcoin Forum",
         "reddit1": "Reddit /r/btc",
         "reddit2": "Reddit /r/bitcoin_unlimited",
+        "slack": "Slack",
         "irc": "##btc on IRC",
         "news": "News",
         "time": "Time to roll out bigger blocks",
@@ -144,6 +156,12 @@
     },
     "download": {
         "title": "Download Bitcoin Unlimited"
+    },
+    "donate": {
+        "title": "Donate",
+        "intro": "Your support allows us to advance the Bitcoin Unlimited project, and to maintain Bitcoin as a free-market economy.",
+        "supportus": "Support us via Bitcoin",
+        "address": "To donate, scan the QR code on the left or copy and paste our Bitcoin address below."
     },
     "buip": {
         "title": "Contribute an Improvement Proposal",

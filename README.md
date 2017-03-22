@@ -8,23 +8,26 @@ The Bitcoin Unlimited website, hosted at https://bitcoinunlimited.info
 
 This is a node.js project requiring the npm package manager.
 
-The following will install the project and start the server, listening on port 8080.
+The following will install and build the project.
 
 ```bash
 git clone git@github.com:BitcoinUnlimited/BitcoinUnlimitedWeb.git
 cd BitcoinUnlimitedWeb
 npm install
 npm run build
-npm start
 ```
 
-To test changes, execute the following after saving your changes:
-```bash
-npm run build
-npm start
-```
+To automatically rebuild and restart the server upon changes to `src`, use both `npm run watch` and `npm run nodemon`.
 
 Open `http://localhost:8080` to view your website.
+
+## Development scripts
+
+* `npm start`: Start the server
+* `npm run bower`: Install the bower dependencies
+* `npm run build`: Build the project into the `.dist` folder
+* `npm run watch`: Watch the `src` directory for changes, and rebuild when changed
+* `npm run nodemon`: Use nodemon to run the server and restart when `.dist` is changed
 
 ### Adding a page
 
