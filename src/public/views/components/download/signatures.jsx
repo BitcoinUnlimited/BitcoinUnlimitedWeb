@@ -98,6 +98,38 @@ const CHECKSUMS1_0_1_1 =  `
   'version': '1.0.1.1'}
 `;
 
+const CHECKSUMS1_0_1_2 =  `
+{ 'files': { 'bitcoinUnlimited-1.0.1.2-arm32.tar.gz': '5e7a9e60d4232c386370e14db1351f609fe0e5efb57393433f501ba665453673',
+             'bitcoinUnlimited-1.0.1.2-arm64.tar.gz': 'df66bf78edcf743c3245cda5b88d128d82def1f1e24abd7d02d97bcd14ebab9e',
+             'bitcoinUnlimited-1.0.1.2-linux32.tar.gz': '20e62907672f6d4622520bebf97b4673219e96390e8c05373eb92dbf2cbedd38',
+             'bitcoinUnlimited-1.0.1.2-linux64.tar.gz': '5ea1740325b2ad6bcd2c6985d1716186d2f2da54b9d9ab7a9948afa06f15d030',
+             'bitcoinUnlimited-1.0.1.2-osx.dmg': 'cc866bffaad75b2249b18c55554f85313626206b16799ed1a7a6863f7971d60d',
+             'bitcoinUnlimited-1.0.1.2-osx.tar.gz': '6b3d3dde0f02567a9cffee457f1b41087de07bad3e9c7533c5cad723a1a9a059',
+             'bitcoinUnlimited-1.0.1.2-osx64.tar.gz': '23f728945b031cdc4a3a287f22118be564295229f2cc9f65a59c8988f3667749',
+             'bitcoinUnlimited-1.0.1.2-win32-setup.exe': '53537bcf85f08330781c1acb9ba5dfaef01cc4f21c972eb74c77f502afa11f0e',
+             'bitcoinUnlimited-1.0.1.2-win32.zip': '5b244002a27b97b52c9b41f08599a2056b735613a28198de54ef2ec701a4695e',
+             'bitcoinUnlimited-1.0.1.2-win64-setup.exe': '399f2da16d908855c3e4a1ad6403b975e841e0fe0b86524414f1a2e1a527ba2f',
+             'bitcoinUnlimited-1.0.1.2-win64.zip': '736b9aef0b56494172cf0c984cdf81e492ff4e5def72a067da46f2b5a803704e'},
+  'program': 'Bitcoin Unlimited',
+  'version': '1.0.1.2'}
+`;
+
+const CHECKSUMS1_0_1_3 =  `
+{ 'files': { 'bitcoinUnlimited-1.0.1.3-arm32.tar.gz': '5faab324ab50e6621b5cc2cf0b82d528e52075a9db401d5b3e4ea10a499ac0bd',
+             'bitcoinUnlimited-1.0.1.3-arm64.tar.gz': '3d603431f3685a10eb2e55080e511024d2562be66de7d89092df8df4e52bb279',
+             'bitcoinUnlimited-1.0.1.3-linux32.tar.gz': 'bb5088b8dfb2be930534f1b174279299eec090542fa62fd04fe05eb9d43f14ba',
+             'bitcoinUnlimited-1.0.1.3-linux64.tar.gz': '864908c88d6b9d08c64e46b12acb5c1f8418b0737dfbeffdb8b1c03907892b02',
+             'bitcoinUnlimited-1.0.1.3-osx.dmg': '7e19427a5931278a06cefdea972a674b676bbfeab2816993ab6b530889aeb536',
+             'bitcoinUnlimited-1.0.1.3-osx.tar.gz': '94fd5d1bb878ecf3f0f50333e2625f1e6632de7506207f1b5b5dece148c69c73',
+             'bitcoinUnlimited-1.0.1.3-osx64.tar.gz': '588224a2558f026b764ee8583fc3b0c359167357805bb350375d011282cff7d2',
+             'bitcoinUnlimited-1.0.1.3-win32-setup.exe': 'a8db3159799309439f31e4c60faab0e2ac24819e918f7f3402cec76c0b009d68',
+             'bitcoinUnlimited-1.0.1.3-win32.zip': 'e754fdd303cbceb955929e4a1b626d6251a767665c3cea9796426b0f406bdb36',
+             'bitcoinUnlimited-1.0.1.3-win64-setup.exe': '2fd35bdb9bf50bc78a7cba2ee4890b07475737b2d6d46d22cc68dccae85b9a6e',
+             'bitcoinUnlimited-1.0.1.3-win64.zip': '8e837b44ee71d9c7b6693320e5909cb5cd1f12580e7b828d359828bc8a06d4ee'},
+  'program': 'Bitcoin Unlimited',
+  'version': '1.0.1.3'}
+`;
+
 export default React.createClass({
 
     render: function () {
@@ -127,6 +159,40 @@ export default React.createClass({
                             <a href='http://www.bitco.in/forum'>{strings().signatures.forum}</a>.<br/>
                         </div>
                         <br />
+                          <br />
+                            1.0.1.3 {strings().signatures.statement}:<br /><br />
+                            <pre>{CHECKSUMS1_0_1_3}</pre>
+                            <br />
+                            {strings().signatures.tip}
+                            <br/>
+                            <br />
+                            {strings().signatures.andrew} (1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3 - {strings().signatures.thezerg})
+                            <br/>
+                            {strings().signatures.signature}:<br />HBy+OJ6JfRRw7w6r7VEfn9GiDN+ygZgf9rF/ZZWoY7LZPjeHffnyrlA5XN6FWRAhJ5gMpFz+S6F+icux1/POSMc=
+                            <br/><br/>
+                            {strings().signatures.sickpig} (1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)<br/>
+                            {strings().signatures.signature}:<br />HyCsg5XRdH5/X5h7TuZNn5oqyhtP03rH1OO/Bb9RAhq6OxqozDGc9RISoHMOboD4LXktEZ6305cJiH81YJf2EzE=
+                            <br/><br/>
+                            {strings().signatures.deadalnix} (1KEaWZ7tpLF4n5xFf5bpTPff7G7uJZiDGw)<br/>
+                            {strings().signatures.signature}:<br />IMiQROapmiXpURSuBzRRXvaKFGl3DDsD+ZqMRp7619X/TmLgejkkcxVQc92CUyLrXpOH6QXDc/SvLIz0GfNunG4=
+                            <br/>                        
+                          <br />
+                            1.0.1.2 {strings().signatures.statement}:<br /><br />
+                            <pre>{CHECKSUMS1_0_1_2}</pre>
+                            <br />
+                            {strings().signatures.tip}
+                            <br/>
+                            <br />
+                            {strings().signatures.andrew} (1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3 - {strings().signatures.thezerg})
+                            <br/>
+                            {strings().signatures.signature}:<br />HDChbyQJwPuT/UR6swXC88e8De34aVSlOqx/KGjqYjveFehDtMMbE7nlh5kYHSJeatckCTG4tVRCLXe+IsduDRk=
+                            <br/><br/>
+                            {strings().signatures.sickpig} (1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)<br/>
+                            {strings().signatures.signature}:<br />IIYVLF5kSeOpo6MI6Xy3d85+rXHskWdts+N9YEfAugGtUSDtoteU4FAseTFpveK1eNmZJhAyfDMCYC1zpJ5P6og=
+                            <br/><br/>
+                            {strings().signatures.deadalnix} (1KEaWZ7tpLF4n5xFf5bpTPff7G7uJZiDGw)<br/>
+                            {strings().signatures.signature}:<br />H/Yx99GzjGz2eXpyttFYh5KR4DwbcXWJlVwubBZvhMERYq7DBH+6T3euvZSJ03P+F4G0HrcgjFvVDueGhSSjYe4=
+                            <br/>
                           <br />
                             1.0.1.1 {strings().signatures.statement}:<br /><br />
                             <pre>{CHECKSUMS1_0_1_1}</pre>
