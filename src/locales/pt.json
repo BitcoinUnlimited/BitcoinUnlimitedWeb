@@ -1,0 +1,190 @@
+{
+    "experimental": {
+        "releases": "Publicações Experimentais",
+        "none": "NENHUM"
+    },
+    "official": {
+        "satoshi": "O projeto Bitcoin Unlimited mantém uma versão melhorada do cliente Bitcoin Core \"Satoshi\".",
+        "supporting": "Atualmente suportamos o lançamento 0.12.1 e temos lançamentos mais antigos em 0.11.2 e 0.12.0.",
+        "verify": "Por favor verifique as assinaturas binárias antes da instalação!",
+        "signatures": "Role para baixo para a seção de Assinaturas para ver as somas de verificação SHA-256 dos binários e nossas assinaturas naquela declaração.",
+        "release": "Lançamento Oficial",
+        "binary": "Downloads Binários",
+        "windows": "Windows",
+        "linux": "Linux",
+        "osx": "Mac OSX",
+        "version": "Versão",
+        "august14": "14 de Agosto, 2016",
+        "bit64": "64-bit",
+        "bit32": "32-bit",
+        "installation": "Instruções de Instalação para Linux",
+        "terminal": "Faça o Download do arquivo e então abra uma janela do terminal. Digite:",
+        "source": "Source Code",
+        "branch": "Github branch",
+        "here": "here"
+    },
+    "signatures": {
+        "signatures": "Estas assinaturas atestam que o nome individual compilado Bitcoin Unlimited da fonte Github e produzido a partir dos seguintes arquivos com os correspondentes hashes sha256.",
+        "helpOne": "Para validar estas assinaturas, use 'File->verify signatures' em qualquer Cliente Satoshi.",
+        "helpTwo": "Cole o endereço do assinante no primeiro campo, a declaração de assinatura no segundo campo, e a assinatura no terceiro campo.",
+        "helpThree": "Nota: não mude o espaço em branco da declaração de assinatura.",
+        "helpFour": "Finalmente rode 'sha256sum' em seu arquivo baixado para ter certeza que corresponde.",
+        "helpFive": "Você pode verificar estas assinaturas na página do perfil dos usuários em",
+        "forum": "bitco.in forum",
+        "statement": "Declaração Assinada",
+        "tip": "Não adicione um caractere final de retorno na declaração acima ao verificar a assinatura no cliente Bitcoin",
+        "andrew": "Por: Andrew Stone",
+        "awemany": "Por: awemany",
+        "sickpig": "Por: sickpig",
+        "thezerg": "verifique o endereço em bitco.in usuário thezerg",
+        "signature": "Assinatura"
+    },
+    "calltoaction": {
+        "partOne": "O Único Cliente de Bitcoin Que",
+        "partTwo": "Dá A Você",
+        "partThree": "Completa Liberdade!",
+        "download": "Faça o Download aqui!"
+    },
+    "description": {
+        "title": "O que é Bitcoin Unlimited?",
+        "a1": "O projeto The Bitcoin Unlimited (BU) busca dar voz a todos as partes envolvidas no ecossistema do Bitcoin.",
+        "b1": "Cada operador de nó ou minerador pode atualmente escolher seus próprios limites de tamanho do bloco ao modificar seu cliente.",
+        "b2": "Bitcoin Unlimited simplifica o processo ao prover uma opção de configuração para o tamanho do bloco aceito e gerado através do menu GUI.",
+        "b3": "Bitcoin Unlimited provê uma configuração à prova de falhas configurada pelo usuário permitindo a você aceitar um bloco maior do que seu máximo aceito de tamanho de bloco se alcançar um certo número de blocos ao longo da cadeia.",
+        "c1": "Ao mover o limite do tamanho do bloco da camada de protocolo para a camada de transporte, Bitcoin Unlimited remove o único ponto de controle central na economia do Bitcoin - o limite do tamanho do bloco - dando o controle de volta para os operadores de nó e mineradores.",
+        "c2": "Um consenso emergente será então levantado baseado em uma economia de livre-mercado uma vez que os operadores/mineradores irão convergir para pontos focais de consenso, criando no processo uma entidade viva e respirando que poderá responder às mudanças nas condições do mundo real de uma forma descentralizada.",
+        "d1": "Esta abordagem é suportada por evidências acumuladas ao longo dos últimos seis anos.",
+        "d2": "Os mineradores e operadores de nó tiveram até agora a liberdades para escolher um limite suave que, com o crescimento da demanda, tem sempre aumentado como uma forma responsiva e orgânica de atender às necessidades do mercado.",
+        "d3": "Esperamos que os mineradores neste caminho já testado e provado do livre-mercado ao, por exemplo, de forma coordenada definir um novo limite gerado do tamanho de bloco para 2MB e rejeitar qualquer bloco maior do que 2MB a menos que eles alcancem a profundidade de 4 blocos na cadeia mais longa.",
+        "d4": "Com o aumento da demanda, o limite pode facilmente ser aumentado para 3MB, 4MB e assim por diante, removendo desta forma o controle central sobre o processo de encontrar o equilíbrio de tamanho de bloco ao alocar o livre-mercado para chegar a uma escolha correta de uma forma descentralizada.",
+        "e1": "Como princípio fundamental, afirmamos que o Bitcoin é e deve ser o que seus usuários definirem no código que eles rodam, e as regras nas quais votam com seu poder de hash.",
+        "f1": "Bitcoin Unlimited busca remover as barreiras práticas existentes aos envolvidos, ao expressar suas visões nestes caminhos.",
+        "g1": "Para mais informações, leia nosso",
+        "g2": "Artigos da Federação",
+        "h1": "O cliente da The Bitcoin Unlimited não é uma proposta de bloco de escala competitiva como BIP-101, BIP-102, etc. Em vez disso ele segue o consenso.",
+        "h2": "Isso significa que segue a cadeia de blocos que a maioria do poder de hash segue, independente do tamanho do bloco, e sinaliza sua habilidade de aceitar blocos maiores via protocolo e campos de controle de versão do bloco.",
+        "i1": "Se você apoia o aumento do limite do tamanho do bloco de alguma forma -- ou apenas suporte a resolução de conflitos no Bitcoin como foi originalmente imaginado por seu fundador -- então considere utilizar o",
+        "i2": "Bitcoin Unlimited",
+        "i3": "client."
+    },
+    "quotes": {
+        "a1": "Se a rede chegar a este tamanho, isso levará muitos anos, e até lá, enviar 2 filmes HD através da internet provavelmente não será grande coisa.",
+        "b1": "Em algumas décadas quando a recompensa ficar muito pequena, a taxa de transação se transformará na principal compensação para os operadores de nó.",
+        "b2": "Tenho certeza de que em 20 anos teremos ou um enorme volume ou nenhum volume.",
+        "c1": "Pode ser formulado como:",
+        "c2": "if (blocknumber > 115000)",
+        "c3": "maxblocksize = largerlimit",
+        "satoshi": "Satoshi Nakamoto"
+    },
+    "services": {
+        "members": "Membros",
+        "membersText": "Afirmamos que o Bitcoin é e deve ser o que nós usuários definimos no código que nós executamos, e as regras que votamos com nosso poder de hash.",
+        "contribute": "Contribuir",
+        "contributeText": "Se você é um desenvolvedor, então contribua, se tem recursos então opere um nó, se é um minerador, entre no pool de mineração, se é um pesquisador então apresenta evidências e análises e se você é um contribuidor, então eduque outros com análises e fatos.",
+        "resources": "Recursos",
+        "resourcesText": "Bitcoin é um pensamento fora da caixa. Seguimos a tradição de Satoshi e apresentamos uma abordagem interdisciplinar.",
+        "read": "Ler Mais"
+    },
+    "slider": {
+        "cryptography": "Acreditamos na Criptografia",
+        "cryptographyText": "O todo é verdadeiramente maior do que a soma de suas partes.",
+        "vires": "Poderes nos Números",
+        "viresText": "Bitcoin Unlimited: Um sistema Monetário Eletrônico de Pessoa-para-Pessoa",
+        "free": "Livre e Descentralizado",
+        "freeText": "Um consenso emergente livre e descentralizado."
+    },
+    "member": {
+        "application": "Aplicação"
+    },
+    "header": {
+        "home": "Home",
+        "download": "Download",
+        "faq": "FAQ",
+        "proposals": "Propostas",
+        "members": "Membros",
+        "resources": "Recursos",
+        "conference": "Conferências"
+    },
+    "footer": {
+        "latest": "Nosso trabalho Recente",
+        "articles": "Artigos da Federação",
+        "fee": "Livre Mercado",
+        "subchains": "Subcadeiras",
+        "analysis": "Análise Bitcoin Unlimited (1-txn)",
+        "navigate": "Navegar",
+        "home": "Home",
+        "download": "Download",
+        "faq": "FAQ",
+        "proposals": "Propostas",
+        "members": "Membros",
+        "resources": "Recursos",
+        "conferences": "Conferências",
+        "join": "Junte-se a Nós",
+        "forum": "The Bitcoin Forum",
+        "reddit1": "Reddit /r/btc",
+        "reddit2": "Reddit /r/bitcoin_unlimited",
+        "irc": "##btc on IRC",
+        "news": "Novidades",
+        "time": "Hora de implementar nossos maiores blocos",
+        "why": "Por que o Bitcoin está bifurcando?",
+        "consensus": "Sobre consensos e bifurcações",
+        "designing": "Designing para o sucesso",
+        "copy": "MIT License. No Rights Reserved."
+    },
+    "resources": {
+        "title": "Artigos Acadêmicos e Documentos Constitutivos",
+        "supporting": "Documentos de Suporte da Bitcoin Unlimited"
+    },
+    "notfound": {
+        "error": "Error 404: File Not Found",
+        "message": "The requested file could not be found."
+    },
+    "members": {
+        "title": "Membros Apoiadores"
+    },
+    "download": {
+        "title": "Download Bitcoin Unlimited"
+    },
+    "buip": {
+        "title": "Contribuir com uma Proposta de Melhoria",
+        "proposals": "Propostas de Melhoria da Bitcoin Unlimited"
+    },
+    "articles": {
+        "title": "Bitcoin Unlimited: Artigos da Federação"
+    },
+    "faq": {
+        "title": "FAQ Bitcoin Unlimited",
+        "subtitle": "Todas as suas Perguntas Respondidas",
+        "q1": "Tamanhos de blocos ilimitados irá mesmo resultar em um mercado sem taxas?",
+        "a1a": "Não. De forma intuitiva você pode entender isto ao perceber que irá levar muito mais tempo para propagar um bloco gigante pela rede do que um bloco pequeno. Portanto um bloco gigante tem mais chance de ficar \"órfão\" -- o que significa, um bloco competidor será encontrado, propagado através da rede e irá suplantar o bloco gigante. Neste caso o minerador do bloco gigante irá perder todo o subsídio do bloco e as taxas de transação. Portanto os mineradores são incentivados pelas limitações na rede física subjacente a produzir blocos menores, e incentivados pelas taxas de transação a produzirem blocos maiores.",
+        "a1b": "Encontrar o equilíbrio entre estas duas forças é onde o livre mercado se destaca. Quando a rede física subjacente melhora ou as taxas aumentam, os mineradores irão naturalmente ser capazes de produzir blocos maiores. A \"oferta\" (espaço em um bloco) da transação depende portanto diretamente da capacidade fundamental, ao invés de confiar em algum \"comitê de direção\" centralizado para definir de forma apropriada o tamanho do bloco. Bitcoin está baseado na desintermediação, e este é outro exemplo desta característica trabalhando.",
+        "a1c": "Para um tratamento formal sobre este assunto veja",
+        "a1d": "Um Mercado de Taxa de Transação Existe Sem um Limite do Tamanho do Bloco",
+        "q2": "Os tamanhos ilimitados dos blocos irão resultar de fato em blocos gigantescos?",
+        "a2a": "Não. O rendimento efetivo da rede é atualmente limitado pela produção de uma única transação de blocos (vazia exceto para a coinbase). Quanto maior ficam os blocos, mais desses blocos são gerados, resultando em um máximo do tamanho médio do bloco. Além disso, um minerador racional não deve aceitar um bloco gigantesco, já que isso o impossibilita de ter qualquer chance de também produzir blocos contendo transações. Mais especificamente, se o tempo esperado para encontrar e validar um pequeno bloco é menor do que o tempo para validar o bloco gigantesco, ele irá maximizar sua receita se continuar a minerar um bloco irmão enquanto simultaneamente valida o bloco gigantesco.",
+        "a2b": "Para um tratamento formal sobre este assunto veja",
+        "a2c": "Um Exame de Blocos de Transação-Única e Seus Efeitos no Rendimento da Rede e no Tamanho do Bloco",
+        "q3": "Por que Artigos da Federação formais da Bitcoin Unlimited são necessários?",
+        "a3a": "É completamente desconhecido se a maioria dos usuários do Bitcoin apoiam o tamanho do bloco maior do que 1 MB. Nenhum debate formal ou votação aconteceu sobre este assunto. Em contraste, este debate é censurado nos dois maiores sites da comunidade do Bitcoin.",
+        "a3b": "A maioria dos mineiros \"votaram\" para a proposta não implementada BIP100 (esta proposta, então, permitiria que os mineiros para votar sobre o tamanho do bloco), mas nada foi feito para implementar a BIP100. A existência da BIP100, BIP101 e outras propostas podem estar \"dividindo\" a grande comunidade de grandes-blocos -- ainda que não exista mecanismo conhecido com autoridade para aposentar uma proposta para que a comunidade possa convergir para uma proposta única. Sendo assim, indivíduos que contribuíram uma grande quantidade de tempo e energia para uma particular implementação/BIP se encontram sem recursos, uma vez que o poder de adicionar ou remover funções recai exclusivamente sobre os indivíduos que possuem habilidades técnicas e estavam no lugar certo na hora certa.",
+        "a3c": "Quando você migra para o cliente Bitcoin Unlimited, os Artigos da Federação garantirão que sua voz é ouvida, e seu voto é contado.",
+        "a3d": "Propostas são feitas, debatidas, e então resolvidas (votadas) e o Proponente e oficiais da BU tem o poder de forçar este processo para ocorrer em tempo hábil. Os Artigos também garantem que se for aprovada, as propostas implementadas sejam comprometidas com o repositório de código em tempo hábil.",
+        "a3e": "Para mais informações por favor leia os",
+        "a3f": "Artigos da Federação da Bitcoin Unlimited",
+        "q4": "A BU irá bifurcar a Blockchain?",
+        "a4a": "Não. Mas se alguma outra entidade causar uma bifurcação, se por exemplo os mineiros começarem blocos > 1MB, então os operadores de nós da Bitcoin Unlimited irão seguir o a bifurcação mais-trabalhada (geralmente a mais longa). Isto significa que seu nó da BU irá controlar a maioria da mineração ao invés de uma escolha específica.",
+        "a4b": "Neste momento, o único evento que irá desencadear esse comportamento é uma bifurcação de tamanho do bloco, porque acreditamos que o tamanho do bloco NÃO faz parte do consenso da blockchain. Se outros eventos que atualmente fazem parte da \"camada de consenso\" também desencadearem esse comportamento eles podem ser adicionados com base no resultado da submissão de uma BUIP (Proposta de Implementação da Bitcoin Unlimited), que tenha sido debatida e votada.",
+        "q5": "A BU abre um novo vetor de ataque Sybil? Por exemplo se alguma entidade lançar milhares de nós, 60.000 por exemplo (100x os níveis atuais da rede). Em seguida, definir um tamanho de um bloco super pequeno. Será que isso não fará a rede de refém e, portanto, definir o tamanho do bloco?",
+        "a5a": "Nós tem esse poder e, portanto, a rede está vulnerável a este tipo de ataque com ou sem a BU. Se você tem os recursos e a vontade de lançar 60.000 nós, algumas mudanças no código fonte não irão lhe impedir -- e ter acesso a BU é irrelevante.",
+        "q6": "Os mineiros podem executar o cliente da BU, selecionar um limite bem pequeno de bloco e portanto reduzir a oferta de transação para menos do que 1MB?",
+        "a6a": "Se 51% dos mineiros querem blocos menores, eles podem fazer isso hoje sem a BU. Eles podem simplesmente limitar o tamanho de seus blocos gerados -- o tamanho máximo de um bloco minerado é uma opção na linha de comando. Além disso, o tamanho máximo do bloco aceito é uma constante definida no cabeçalho do arquivo. Então uma simples linha de código precisa ser alterada para que os mineiros passem a ignorar blocos maior do que N em todos os clientes \"Derivados-de-Satoshi\".",
+        "q7": "A BU afeta o consenso da blockchain? É possível que uma rede preenchida com nós da BU não converja?",
+        "a7a": "Se você definir alguns parâmetros para certos valores você pode, por exemplo, imitar o comportamento da Bitcoin Core. Bitcoin Core não irá convergir em uma rede com os mineiros produzindo blocos que são tanto maiores e menores do que 1 MB (isso é chamado de uma bifurcação).",
+        "a7b": "Imaginemos uma rede apenas com BU com o excedente do tamanho de um bloco definido em 1 MB para muitos nós, e blocos sendo produzidos tanto com menos do que 1 MB e mais do que 1 MB. Esta rede irá convergir rapidamente se houver uma grande disparidade no poder de hash entre os dois grupos. O maior bloco de nós \"vê\" a cadeia menor e irá mudar para ela rapidamente se assim assumir a liderança. O menor grupo de blocos \"vê\" a cadeia maior mas irá resistir em mudar para ela até que blocos adicionais sejam criados em cima dela. Assim, o grupo do bloco menor pode estar sempre alguns blocos atrás e mineradores de blocos pequenos irão produzir muitos órfãos. O oposto é verdade no caso em que mineradores de granes blocos estão em minoria em poder de hash, exceto que eles estão sempre no topo da cadeia mais trabalhada. Esta produção de órfãos é um mecanismo de feedback que a rede para que os mineiros alterem seu comportamento.",
+        "a7c": "Se os dois grupos tem aproximadamente o mesmo poder de hashing, a situação se torna uma",
+        "a7d": "caminhada aleatória",
+        "a7e": "devido ao fato de que a produção do bloco é um processo de Poisson. Neste caso, a matemática mostra que uma bifurcação irá periodicamente se mover muito a frente dos outros para desencadear uma convergência.",
+        "a7f": "Se a rede está passando por um período de instabilidade no tamanho do bloco, seja devido a uma luta entre dois clientes onde o tamanho do bloco é parte do consenso como XT e Core ou devido a uma luta entre mineradores de poder de hash similares, pode fazer sentido para os usuários esperarem por confirmações adicionais ou uma convergência para evitarem gastos duplos.",
+        "a7g": "Na Bitcoin Unlimited, esperamos eventualmente rastrear TODAS as bifurcações não triviais e indicar visualmente quando as transações foram confirmadas em todas as bifurcações, eliminando a possibilidade de gasto duplo. Isto irá permitir aos usuários usarem a rede bitcoin normalmente durante estes períodos. Contudo, já que nós não acreditamos que estes períodos irão durar muito tempo porque causarão uma grande queda na receita de mineração, não é uma prioridade."
+    }
+}
