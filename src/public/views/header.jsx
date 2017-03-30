@@ -23,9 +23,6 @@ export default React.createClass({
                                 <img src='/img/bitcoin-unlimited.png' width='98%' height='100%' />
                             </Link>
                         </li>
-                        <li className={this.getClassName('index')}>
-                            <Link to='/'>{strings().header.home}</Link>
-                        </li>
                         <li className={this.getClassName('download')}>
                             <Link to='/download'>{strings().header.download}</Link>
                         </li>
@@ -43,6 +40,9 @@ export default React.createClass({
                         </li>
                         <li className={this.getClassName('conference')}>
                             <Link to='/conferences'>{strings().header.conference}</Link>
+                        </li>
+                        <li className={this.getClassName('contact-us')}>
+                            <Link to='/contact-us'>{strings().header.contactus}</Link>
                         </li>
                     </ul>
                 </nav>
