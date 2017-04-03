@@ -59,6 +59,9 @@ export default React.createClass({
                                 <li>
                                     <Link to='/conferences'>{strings().footer.conferences}</Link>
                                 </li>
+                                <li>
+                                    <Link to='/contact-us'>{strings().footer.contactus}</Link>
+                                </li>
                             </ul>
                         </div>
                         <div className="col-footer col-md-4 col-xs-6">
@@ -78,6 +81,9 @@ export default React.createClass({
                                 </li>
                                 <li>
                                     <a href="https://webchat.freenode.net/?channels=#btc">{strings().footer.irc}</a>
+                                </li>
+                                <li>
+                                    <a href="mail:security@bitcoinunlimited.info">Report Security Issue</a>
                                 </li>
                             </p>
                         </div>

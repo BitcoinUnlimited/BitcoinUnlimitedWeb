@@ -17,6 +17,7 @@ import EmergentConsensus from './pages/emergent-consensus.jsx';
 import NotFound from './pages/not-found.jsx';
 import Conferences from './pages/conferences.jsx';
 import Donate from './pages/donate.jsx';
+import ContactUs from './pages/contact-us.jsx';
 
 ReactDOM.render((
     <Router history={createHistory()}>
@@ -33,6 +34,7 @@ ReactDOM.render((
             <Route path='donate' component={Donate} />
             <Route path='emergent-consensusBU' component={EmergentConsensusBU} />
             <Route path='emergent-consensus' component={EmergentConsensus} />
+            <Route path='contact-us' component={ContactUs} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>

@@ -120,7 +120,8 @@
         "proposals": "Proposals",
         "members": "Members",
         "resources": "Resources",
-        "conference": "Conferences"
+        "conference": "Conferences",
+        "contactus": "Contact Us"
     },
     "footer": {
         "latest": "Our Latest Work",
@@ -137,6 +138,7 @@
         "members": "Members",
         "resources": "Resources",
         "conferences": "Conferences",
+        "contactus": "Contact Us",
         "join": "Join Us",
         "forum": "The Bitcoin Forum",
         "reddit1": "Reddit /r/btc",
