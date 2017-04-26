@@ -155,7 +155,7 @@ export default React.createClass({
                 </div>
                 <div className='col-sm-8'>
                     <h2>Signatures</h2>
-                    <div className='signatures'>
+                    <div id="signs" className='signatures'>
                         <div className='signatureText'>
                             {strings().signatures.signatures}
                             <br /><br />
