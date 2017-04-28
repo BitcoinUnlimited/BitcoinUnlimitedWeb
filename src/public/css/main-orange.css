@@ -16,6 +16,10 @@ text-align: justify;}
 
 .papers p{color: black; text-align: justify;}
 
+.vision {
+  color: black;
+  text-align:justify;
+}
 
 .section {
   padding: 30px 0;
@@ -2564,7 +2568,3 @@ background-image: url(../img/homepage-slider/Blockchain.png);
 .red {color: red;}
 .green {color: green;}
 
-.vision {margin: 20px 20px 20px 10px;
-color: black;
-width: 60%;
-text-align:justify;}
