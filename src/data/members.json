@@ -1,200 +1,374 @@
 [
-  {
-    "name": "Andrew Stone (theZerg)",
-    "bitcoinKey": "1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/",
-    "statement": "The Bitcoin Unlimited client allows Bitcoin to realise the vision presented by Satoshi Nakamoto in his original whitepaper and subsequent writings of a trustless peer-to-peer network -- a vision of individuals worldwide directly transacting without a need for intermediaries."
-  },
-  {
-    "name": "awemany",
-    "bitcoinAddress": "1BCnpopAZ4xFSxdX8NvVqUaSvsPffQhNRd",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3892"
-  },
-  {
-    "name": "solex",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3900"
-  },
-  {
-    "name": "Inca",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3913",
-    "statement": "I believe Bitcoin Unlimited is necessary to steer Bitcoin back towards the original ideal envisioned by Satoshi Nakamoto. Network consensus should decide what bitcoin is or will be in the future - not individual developers and that is why I support Bitcoin Unlimited wholeheartedly."
-  },
-  {
-    "name": "Melbustus",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3928",
-    "statement": "I support Bitcoin Unlimited because:\n\n1. It gives control of blocksize back to the free-market and doesn't try to unnecessarily engineer economic outcomes.\n2. It supports one of the core theses of Bitcoin; namely, that the system is defined by the code its users in aggregate run.\n3. It is inherently supportive of larger blocksize, which I think is critical for bitcoin's longterm security and success. Larger blocks will allow a larger volume of on-chain fee-generating transactions, and bitcoin can only be secure and succeed as the dominant cryptocurrency if it can scale to accommodate demand for transactions both large and small.\n4. It provides another outlet for users to voice their opinion, both through running the Bitcoin Unlimited node software, and potentially through participating in or supporting the Bitcoin Unlimited mining pool. There are increasing numbers of bitcoin users who do not participate in running node software nor hashing, and the Bitcoin Unlimited project provides more options for all participants."
-  },
-  {
-    "name": "cypherdoc",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3930"
-  },
-  {
-    "name": "Peter R",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3939",
-    "statement": "I want to be a member because I believe in Bitcoin Unlimited's vision. For Bitcoin to be successful, it must be able to evolve through a bottom-up organic process. Bitcoin Unlimited gives additional power to the user to control its evolution in a fully decentralized fashion. I can help by developing analytic theory, empirical data analysis, visualizations, and scientific writing."
-  },
-  {
-    "name": "sickpig",
-    "bitcoinKey": "1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3940",
-    "statement": "[T]he protocol has to be decoupled from any particular implementation. [T]he more choices users have the better."
-  },
-  {
-    "name": "mintymark",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3945",
-    "statement": "I feel strongly that this proposal is the right way to go and that eventually this will be clear to everyone. Consensus does not need to built into the software and may even be a liability if it is, far better to let people express consensus by making it a command line option."
-  },
-  {
-    "name": "Zangelbert Bingledack",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3950",
-    "statement": "The paternalistic view of having devs spoonfeed all consensus-related choices to the user seems like it won't be viable at the much higher market caps Bitcoin is destined to reach. Gradually users will have to be given more explicit fine-grained control in order to enable Bitcoin to react nimbly to general threats, as well as specifically to scenarios where developers are compromised.\n\nThe addition of XT as an alternative to Core is an improvement over just Core, because it at least lets users choose who spoonfeeds them consensus packages; BU (at least the version with user-selectable blocksize) takes it to the next level and gives users more of a \"line-item veto\" on these dev-created consensus packages. It doesn't overly baby the user but instead encourages miners and nodes to perform their own profit-loss calculations, expanding the scope of the free market by removing the centrally planned blocksize cap that has been retained for paternalistic reasons. Consensus becomes an emergent phenomenon.\n\nI believe we have in fact always been trusting the free market from the beginning in Bitcoin, so BU just lays bare the underlying reality without entertaining the pretense that blockspace economic knowledge *or even real control* lies with the Core devs.\n\nIn short, it's time for Honey Badger to grow up and assume its true form as a creature of the market."
-  },
-  {
-    "name": "Erdogan",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3955",
-    "statement": "I campaign for bitcoin as free market money, the market will decide everything. I like the market. Unfortunately, I am lazy..."
-  },
-  {
-    "name": "Wouter Schut (seweso)",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-4025",
-    "message": "Bitcoin has had a virtually unlimited blocksize limit for most of its lifetime, without issue. The block-size limit was never a limit on actual growth, but it might start to limit real growth in the beginning or middle of 2016. And in terms of perception and peak usage it might have already hurt growth tremendously. If bigger blocks is detrimental to the overal health and value of Bitcoin - which i believe it will be at some point - then miners should already be incentivised to create smaller blocks. Having better decentralisation - like we did in the past - is incomparable to the amount of security we enjoy now because of hugely invested miners which have made a long term commitment to Bitcoin."
-  },
-  {
-    "name": "VeritasSapere",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-4057",
-    "statement": "I support the vision of Bitcoin Unlimited. I support an increased blocksize and multiple implementations of the Bitcoin protocol. If we need to rely on a centralized authority for Bitcoin to survive then we should consider this experiment to have failed to prove its intended theory at least in the form of Bitcoin, trust without centralized authority. So sign me up, there is more I could say on the subject but I will leave it at that for now."
-  },
-  {
-    "name": "steffen",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-4118",
-    "statement": "I would like to be a member because I am a market anarchist and the block size limit serves no constructive use. I can help financially and can help spread awareness."
-  },
-  {
-    "name": "lebing",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-4464"
-  },
-  {
-    "name": "bitcartel",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-5230"
-  },
-  {
-    "name": "lunarboy",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-5349"
-  },
-  {
-    "name": "swinny89",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7113"
-  },
-  {
-    "name": "Windowly",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7145",
-    "statement": "Bitcoin Unlimited definitely seems like the most elegant solution on the market."
-  },
-  {
-    "name": "allegro101",
-    "pgpKey": "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: GnuPG v1\n\n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\n9Eis56CJKkOs\n=Y9io\n-----END PGP PUBLIC KEY BLOCK-----",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7159",
-    "statement": "I like what I have been reading so far."
-  },
-  {
-    "name": "darkfur93",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7160",
-    "statement": "I first heard about Bitcoin Unlimited on reddit and I been excited about it since."
-  },
-  {
-    "name": "rezzme",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7208",
-    "statement": "Bitcoin Unlimited represents to me the original (and arguably optimal) iteration of bitcoin, while in itself representing another major vote in favor of competing implementations and diverse development teams. It's the best of old and new, wrapped with positively vibrant and encouraging longstanding community members."
-  },
-  {
-    "name": "Andrew Quentson (Aquent)",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7210",
-    "statement": "I want to become a member because Bitcoin Unlimited is the only way to not have gatekeepers who wish to enforce their policies by centrally controlling the blockzise."
-  },
-  {
-    "name": "Roy Badami",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7527",
-    "statement": "Also, having read the Articles, I'm impressed. Don't take this the wrong way, but this feels to me very much what the Bitcoin Foundation should have been."
-  },
-  {
-    "name": "JVWVU",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7609",
-    "statement": "Sign me up, we need to scale and we need to in a truly knowledgable, decentralized way and Bitcoin Unlimited, imo is that way."
-  },
-  {
-    "name": "kostialevin",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7612"
-  },
-  {
-    "name": "Marcelo Silva",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7613"
-  },
-  {
-    "name": "kcfnrybak",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7642"
-  },
-  {
-    "name": "Wary",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-7762",
-    "statement": "Sign me in.\n\nBecause:\n\n1. Core monopoly must be broken.\n2. If Bitcoin won't grow, it will die.\n3. Bitcoin must stay Bitcoin, rather than Lightning, SW etc."
-  },
-  {
-    "name": "freetrader",
-    "bitcoinKey": "1Libre7MGkCXr7pUAEbwihCR9X4quYAyQ4",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-7903",
-    "statement": "I think Bitcoin is the most exciting thing to happen since the Internet, and I would like to see it grow unfettered. I have run an XT full node before, but Bitcoin Unlimited better matches my personal hopes for the project, and I'm now looking at setting up a BU full node."
-  },
-  {
-    "name": "Matthew Light",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-7911"
-  },
-  {
-    "name": "Trevin Hofmann",
-    "pgpKey": "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: SKS 1.1.5\nComment: Hostname: pgp.mit.edu\nmQENBFXwhKUBCADiEpy6CuJdQ7+f1wHGPaXENji/BuakNMkQsyvDciKAVmmCEuD96oGHyITr\nnxh2DTkrzBLWotKYy6VcTUXwTehu20MCvZuIFMEgPJq/kEgzKAuqK7K7STJXytF+24dHMhzi\n9h2i8gtFqiSnhD8DASmPe4Ed0dpXeeeRHrrPUVX+TQjkw6MJeHxvusJTU856pmSGeWDQNLPf\nKChpch0Eb+KqUPPMes6vW84EqXyVqonpt6rcZLh/+12X6jPh4HOLj4udkkUPtEJ7ShZpxi+F\nHCm2AYrsvf5X9cWKNhv7Lv7d3Mw6STE8asVppZlbUJubR9dO/cKbyaqGI2J7RAmQBoV3ABEB\nAAG0KFRyZXZpbiBIb2ZtYW5uIDx0cmV2aW5ob2ZtYW5uQGdtYWlsLmNvbT6JATkEEwEIACMF\nAlXwhKUCGwMHCwkIBwMCAQYVCAIJCgsEFgIDAQIeAQIXgAAKCRBzffo9i1h4nhCwB/46pQ25\nNj+BA3TEpZ8ulJVLuIKgu56CDp842h3SY12wnTU4GfowhMoyqbN5edGdx8zx0sVmAP5GQzph\np7DgOSaJAtdj6SbaFHo1bn20+Bj9lLUgRMLVmfsC57XveWVS0YVLqdKOnVSmMNCWqO1QDjfk\nnMa37IZebvwr6uAD2q3gPPoxBJmQk5BYlu/AKGYHHZCZbAdhALfx8V2Ako/5Wk/2vMeF88q+\nC3M9I2olXoa6lhTx0F75FVBCG8O29p0wNNxfmM5Q34949+0rrXy1Mb2z8TXIWc+bN9ndIT3w\nZt3y1GBoFfyQh65dm7fUSHyWLXdCiEbRQFUfzc+JrFkSqNnfuQENBFXwhKUBCACyyN4SMwq1\n/73pTkqrklOpfe6THfLUQb4icq1y04yWFmdT9PUQ4xEMpEGhJAvm7ve8SPCI7Jjd3Ts28M5k\nPe11i9EjvFWw3AzgTSD7Dv/JuzGCyW7CouWluf82QEGuBcv0xUUQmPKXHCe2y3KmMnh8VJQs\nnKTPXlucStS3lOpeYGRokUuZLFSNXTDOlHNeebSogILc6wlHu+mUXEaYtwNAMiXeXDTCTZZW\n7iKw7KCzhy9NoOA53F6HjPGufwnX5gHhbY5jMzXFul3Nlnu150FKGzEnwkuhcNsD37jclvpX\n9AzmMLGltgQCr3YoU1tdIjThfhM6z64Ji+4YlWTXRDmRABEBAAGJAR8EGAEIAAkFAlXwhKUC\nGwwACgkQc336PYtYeJ5yZggAlAsYQtPp5+t4claicXCpX2XfcTNwB0WJo2+DHts3aBSA8/5l\n2T9OWjFUoakrL1scVo3TlewhghBRncgc+nLY9nz1jH9uCqfh+3mCmWJKJ5wAsWY+sRAvZwm6\n865Ej355sF+W4p5tQxy5NqLLvBxx+BqdXxGLNN7LzKMcwG4bZTSgxozF8S70c7WrkePxBo80\n3DuHfzdxMhiVs8TsEcpkYI09TfV0d2F4JdzcSemQGeIu2AICoaEDAFUzI19WPPPyfsOFZmUA\nexWCddoSkZD0Bnh8PgTW4PH7dHqNv/Ue591wh2YLSNqbg4xJ8itgvGCrU2V53e4lXabZmb0b\nNHDx1A==\n=Kk0Y\n-----END PGP PUBLIC KEY BLOCK-----",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-7966",
-    "statement": "Bitcoin is the most exciting project I've found, and I would like to contribute to the decentralization of its development."
-  },
-  {
-    "name": "rocks",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8036",
-    "statement": "I support Bitcoin Unlimited because it is the best mechanism to fulfill Satoshi's original vision of a community led P2P payment system that enables instant transactions between users, is directly usable by any individual globally, and puts all participants on equal footing.\n\nBitcoin Unlimited supports this vision by putting the community in control of the future direction of Bitcoin, letting each individual decide for themselves what Bitcoin can and should be, and supporting the original larger blocksize vision for Bitcoin that is critical for the project's long term success.\n\nBitcoin Unlimited is also taking a critical lead in solving the next set of scaling solutions required to enable the network to continue to meet growing transaction demand, with projects such as subchains and others."
-  },
-  {
-    "name": "gr8ful4",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8062"
-  },
-  {
-    "name": "Christoph Bergmann",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8066",
-    "statement": "I think bitcoin unlimited is the best approach to find [consensus]. Let the nodes decide what they are capable and not a central planner."
-  },
-  {
-    "name": "_mr_e",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8079"
-  },
-  {
-    "name": "codehalo",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8552"
-  },
-  {
-    "name": "Bagatell",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8714"
-  },
-  {
-    "name": "Lee Adams",
-    "bitcoinKey": "1ruQ2wceuMt83aXQsERyWGxQawHqXERSd",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8770"
-  },
-  {
-    "name": "slipbuck",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8783"
-  },
-  {
-    "name": "digitsu",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8931"
-  },
-  {
-    "name": "YarkoL",
-    "application": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8933"
-  }
+    {
+        "avatar": "solex",
+        "name": "Andrew Clifford",
+        "publicKey": "15TiujYmnHa33fjEnasBBm1eWcGx9YEXPL",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3900",
+        "photoUrl": "img/about/Andrew_Clifford.png",
+        "title": "President",
+        "bio": [
+            "Andrew Clifford started information technology work in 1981 developing accounting applications. He consulted for 20 years on financial trading systems in the City of London: at several equities trading firms. For ten years he was technical manager for one major system which, at its peak, handled 1% of the shares traded globally. He left the City in 2010 to become a writer, then learned about Bitcoin in late-2012. Since then he has been immersed in community efforts to help this cryptocurrency develop towards translating the world economy onto a sound monetary system in order to improve living standards everywhere."
+        ]
+    },
+    {
+        "avatar": "theZerg",
+        "name": "Andrew Stone",
+        "publicKey": "1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/",
+        "photoUrl": "img/about/Andrew_Stone.png",
+        "title": "Lead Developer",
+        "bio": [
+            "Andrew Stone is the lead developer for Bitcoin Unlimited.",
+            "Andrew produced video game development software (Game-Maker) in 1991 which sold in 3 countries (US, GB, and South Korea). He graduated with a Bachelors of Science in Computer Science from Yale University in 1995. He then worked at a number of telecom startups including Ascom Nexion (acquired by Fujitsu Network Communications for $130m), Ignitus Communications (acquired by Lucent fro $240m), and Camiant Inc. (acquired by Tekelec for $130m).",
+            "Andrew then led engineering at OpenClovis Inc whose high-availability clustering software is deployed worldwide. He also produced hardware and software for an Arduino-compatible embedded LED drive (Lightuino) that was directly sold worldwide and was used in interior design prototype automobiles for BMW and Rolls-Royce.",
+            "Andrew was introduced to and invested in Bitcoin in 2012."
+        ]
+    },
+    {
+        "avatar": "Peter R",
+        "name": "Dr. Peter Rizun",
+        "publicKey": "1BWZe6XkGLcf6DWC3TFXiEtZmcyAoNq5BW",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3939",
+        "photoUrl": "img/about/Peter_Rizun.png",
+        "title": "Secretary / Chief Scientist",
+        "bio": [
+            "Peter R. Rizun is a physicist and entrepreneur living in Vancouver, Canada, and is co-founder and co-managing editor for Ledger. His main research interest is developing analytical theory that explains properties and emergent phenomenon of the Bitcoin Network. He has written two papers related to Bitcoin that received significant interest, \"A Transaction Fee Market Exists Without A Block Size Limit\" and \"Reduce Orphaning Risk and Improve Zero Confirmation Security With Subchains\", and gave a talk on block space as an economic commodity at the Scaling Bitcoin conference in Montreal. He was the recipient of the $105,000 Natural Sciences and Engineering Research Council (NSERC) CGS Doctoral Award and was recognized as a \"Leader of Tomorrow\" by the Alberta Science and Technology Foundation (ASTech). He holds a B.A.Sc. degree in Engineering Physics from the University of British Columbia and a Ph.D. in Medical Physics from the University of Calgary."
+        ]
+    },
+    {
+        "avatar": "sickpig",
+        "name": "Andrea Suisani",
+        "publicKey": "1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3940",
+        "photoUrl": "img/about/Andrea_Suisani.png",
+        "title": "Key Developer",
+        "bio": [
+            "A software developer for almost twenty years, recently transitioned to what they use to call a full-stack software developer. That means doing 4 jobs while being payed only for one. On the bright side such a role gives opportunity to improve skills through a lot of IT fields like database system administration, system administration, coding and project management.",
+            "Holding a Bachelor degree in statistics, and getting into Bitcoin in 2011, Andrea briefly pool mined with a Radeon GPU, and hasn't looked back since."
+        ]
+    },
+    {
+        "avatar": "Peter Tschipper",
+        "name": "Peter Tschipper",
+        "publicKey": "1AmdP3nFWSJhkzszXHZNQiJLx7eUGRbzvs",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-9222",
+        "photoUrl": "img/about/Peter_Tschipper.png",
+        "title": "Key Developer",
+        "bio": [
+            "Peter Tschipper is a full time Bitcoin Unlimited developer living on Vancouver Island, Canada. Peter holds a degree in Engineering from the University of Toronto and has worked in the areas of Finance, Health Care and Mineral Exploration. Most of his tech experiences are in the field of Performance Engineering and his main interest is in applying that knowledge to further the goal of Bitcoin On-Chain scaling."
+        ]
+    },
+    {
+        "avatar": "Rogerver",
+        "name": "Roger Ver",
+        "publicKey": "1KubbeimkYerQhQjdMEufzUDpZvJEUcHfJ ",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31067",
+        "photoUrl": "img/about/Roger_Ver.png",
+        "title": "CEO Bitcoin.com / BU member",
+        "bio": [
+            "After founding several successful companies in Silicon Valley, Roger began his Bitcoin journey in February 2011.",
+            "Years before traditional venture capital firms became involved, he became the first person in the world to start investing in Bitcoin related startups, nearly singlehandedly funded the entire first generation of Bitcoin businesses.",
+            "His current investments include Bitcoin.com, Blockchain.com, Bitpay.com, Kraken.com, and many many others.",
+            "In his free time he enjoys competing in Brazilian Jujitsu tournaments."
+        ]
+    },
+    {
+        "avatar": "chriswilmer",
+        "name": "Dr. Christopher Wilmer",
+        "publicKey": "1FdweEq46d3r67W6odR4YREUXJrZ8Vj7c",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-28082",
+        "photoUrl": "img/about/Christopher_Wilmer.png",
+        "title": "University Liaison",
+        "bio": [
+            "Prof. Christopher E. Wilmer began using Bitcoin in September 2011, after reading Wired Magazine's infamous article entitled \"The Rise and Fall of Bitcoin.\" Undeterred by Wired's confident view that the Bitcoin experiment was over, Chris bought some bitcoins for $3 each and began learning to use this exciting new technology. In 2014, he co-authored his first book on Bitcoin aimed at the general public, \"Bitcoin for the Befuddled,\" and also started the world's first academic journal for Bitcoin/cryptocurrency related research, called Ledger.",
+            "Prof. Wilmer directs a research lab at the University of Pittsburgh that uses large-scale molecular simulations, run on supercomputers, to understand and design new materials. His research group works closely with experimental chemists and materials scientists to synthesize and test promising materials. In 2012 he co-founded NuMat Technologies and was named by Forbes as one of the 30-Under-30 in Energy Innovation. Recently he was awarded an early career fellowship for promising scientists and engineers from the US National Science Foundation."
+        ]
+    },
+    {
+        "avatar": "Haiyang",
+        "name": "Haipo Yang",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31181",
+        "photoUrl": "img/about/Haipo_Yang.png",
+        "title": "CEO ViaBTC / BU member",
+        "bio": [
+            "Haipo Yang is ViaBTC's founder and CEO.",
+            "Haipo got to know Bitcoin in 2011, began his investments in 2013, and founded ViaBTC in May 2016. He has grown ViaBTC to be one of the largest and most advanced mining pools globally. An experienced developer, he independently set up the technical infrastructure for the pool and took it from 0 to 1."
+        ]
+    },
+    {
+    	"avatar": "digitsu",
+    	"name": "Jerry Chan",
+    	"publicKey": "1DJCRBbdsDErAPdK2JwAe8SSBxdhuzj3wo",
+    	"link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8931",
+        "photoUrl": "img/about/Jerry_Chan.png",
+        "title": "Strategist",
+        "bio": [
+            "Jerry Chan is a financial technologist who has worked on Wall Street trading technology at Goldman Sachs and JPMorgan for a total of 14 years. Jerry is editor of the crypto-currency blog WallStreetTechnologist.com and works on various Bitcoin related projects around Asia, the most recent of which is Satoricoin.jp the first customizable physical bitcoin aimed at the mass market. Jerry holds a degree in Electrical and Computer Engineering from the University of Waterloo, Canada."
+        ]
+    },
+    {
+        "avatar": "deadalnix",
+        "name": "Amaury Sechet",
+        "publicKey": "1KEaWZ7tpLF4n5xFf5bpTPff7G7uJZiDGw",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-29751"
+    },
+    {
+        "avatar": "Mengerian",
+        "name": "Antony Zegers",
+        "publicKey": "13JdYTKi4QN6KyYWwifCvNMeaRaeq1JQ38",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-4689"
+    },
+    {
+        "avatar": "Christoph Bergmann",
+        "name": "Christoph Bergmann",
+        "publicKey": "1BvayiASVCmGmg4WUJmyRHoNevWWo5snqC",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8066"
+    },
+    {
+        "avatar": "Emil Oldenburg",
+        "name": "Emil Oldenburg",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31180"
+    },
+    {
+        "avatar": "jake",
+        "name": "Jake Smith",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-30390"
+    },
+    {
+        "avatar": "Lee Adams",
+        "name": "Lee Adams",
+        "publicKey": "1ruQ2wceuMt83aXQsERyWGxQawHqXERSd",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7066"
+    },
+    {
+        "avatar": "mike",
+        "name": "Mike Malley",
+        "publicKey": "174Bbv3ev1qPp2cPMuPpyqPTbArjwwCrD",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-30776"
+    },
+    {
+        "avatar": "Roy Badami",
+        "name": "Roy Badami",
+        "publicKey": "1GfHipP1Wi9kqQwSQiWneusNwTtCiRKP8W",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7527"
+    },
+    {
+        "avatar": "bitcartel",
+        "name": "Simon Liu",
+        "publicKey": "16tA8bcwFve5FDpTaNTPRFg5Jn5GLBpMrL",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-5230"
+    },
+    {
+        "avatar": "tim potter",
+        "name": "Tim Potter",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-28223"
+    },
+    {
+        "avatar": "dgenr8",
+        "name": "Tom Harding",
+        "publicKey": "http://keybase.io/dgenr8",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31163"
+    },
+    {
+        "avatar": "Trevin Hofmann",
+        "name": "Trevin Hofmann",
+        "publicKey": "1GwL929cnZBk9XEjhpvciRC45AMETqFeQu",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-7966"
+    },
+    {
+        "avatar": "adamstgbit",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-7#post-31750"
+    },
+    {
+        "avatar": "AdrianX",
+        "name": "",
+        "publicKey": "1d3ePRadbB5xfkMjU7UFvxQ1CrVK5CUKE",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-15542"
+    },
+    {
+        "avatar": "awemany",
+        "name": "",
+        "publicKey": "1BCnpopAZ4xFSxdX8NvVqUaSvsPffQhNRd",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/"
+    },
+    {
+        "avatar": "Bagatell",
+        "name": "",
+        "publicKey": "1VgVjyeCD7yQqitraVvNrZu5tFiaKHDGC",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8714"
+    },
+    {
+        "avatar": "cliff",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-27994"
+    },
+    {
+        "avatar": "cryosanth",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "CubicEarth",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "cypherdoc",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3930"
+    },
+    {
+        "avatar": "freetrader",
+        "name": "",
+        "publicKey": "1Libre7MGkCXr7pUAEbwihCR9X4quYAyQ4",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-7903"
+    },
+    {
+        "avatar": "Helvetian616",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31323"
+    },
+    {
+        "avatar": "jbreher",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-13358"
+    },
+    {
+        "avatar": "jcliff",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-30007"
+    },
+    {
+        "avatar": "Jefferson Nunn",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "jl777",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-14120"
+    },
+    {
+        "avatar": "jsmith_dev",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "kostialevin",
+        "name": "",
+        "publicKey": "1BTXKkt2TmkPEDmn6EBhh8t8r9cPbKwbBF",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7612"
+    },
+    {
+        "avatar": "kyuupichan",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "lunar",
+        "name": "",
+        "publicKey": "1BpYYT2HQzQdz5CFPM1nehCZd1xWPtNbma",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-5349"
+    },
+    {
+        "avatar": "marcus",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "norway",
+        "name": "",
+        "publicKey": "13eS5t4WGGPSwFKRQYzCKcfWF6sfjN1Ka2",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-28078"
+    },
+    {
+        "avatar": "rezzme",
+        "name": "",
+        "publicKey": "1GwL929cnZBk9XEjhpvciRC45AMETqFeQu",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7208"
+    },
+    {
+        "avatar": "Richy_T",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-30066"
+    },
+    {
+        "avatar": "Roger_Murdock",
+        "name": "",
+        "publicKey": "1AmtAAg9NK3j44y5RB6QBYrLnYJo3cJAtb",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-14340"
+    },
+    {
+        "avatar": "sgbett",
+        "name": "",
+        "publicKey": "",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-14118"
+    },
+    {
+        "avatar": "tkg",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "todu",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "torusJKL",
+        "name": "",
+        "publicKey": "",
+        "link": ""
+    },
+    {
+        "avatar": "VeritasSapere",
+        "name": "",
+        "publicKey": "1PQ1BB819gxUbDZX3aReBXx4r7zGo67jXi",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-4057"
+    },
+    {
+        "avatar": "Wildfire.ca",
+        "name": "",
+        "publicKey": "1WFcajYTxFXZWxQJvM2tETtdzzCaA6pd1",
+        "link": ""
+    },
+    {
+        "avatar": "Windowly",
+        "name": "",
+        "publicKey": "1Czsw6Tp4H7uQC6W9fcAtGyRtoX812JNkU",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7145"
+    },
+    {
+        "avatar": "YarkoL",
+        "name": "",
+        "publicKey": "https://bitco.in/forum/threads/a-call-for-members-signing-bitcoin-addresses-or-pgp-public-keys.773/#post-9457",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8933"
+    },
+    {
+        "avatar": "Zanglebert Bingledack",
+        "name": "",
+        "publicKey": "19a3fheZVGragEreBzXhjWMuSev2PrHToF",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3946"
+    }
 ]

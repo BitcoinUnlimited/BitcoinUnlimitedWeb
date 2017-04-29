@@ -3,78 +3,43 @@
 import React from 'react';
 import { strings } from '../../../lib/i18n';
 
-export default React.createClass({
+import Release from './release.jsx'
+import Signatures1014 from './signatures_1-0-1-4.jsx'
 
-    render: function () {
+class OfficialRelease extends React.Component {
+    render() {
         return (
-            <div className='row service-wrapper-row'>
-                <div className='col-sm-4'>
-                    <div className='service-image'>
-                        <img src='/img/download.svg' alt='download' />
-                    </div>
-                </div>
-                <div className='col-sm-8'>
-                    <h2 className='green'>{strings().official.release}: 1.0.1.4  - ({strings().official.date}) </h2>
-                    <div>
-                        <font color="red">{strings().official.verify}</font>
-                        {' '}
-                        {strings().official.signatures1}
-                        {' '}
-                        <a href="/download#signs">{strings().official.signatures2}</a>
-                        {' '}
-                        {strings().official.signatures3}
-                    </div>
-                    <h3>{strings().official.releasenotes}</h3>
-                    {strings().official.releasenotes_1_0_1_4} <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/v1.0.1.4/doc/release-notes/release-notes-1.0.1.4.md'>{strings().official.here}</a>
-                    <br/><br />
-                    {strings().official.releasenotes_1_0_1_0} <a href='https://bitco.in/forum/threads/announcement-bitcoin-unlimited-general-release-1-0-0.1783/page-2#post-35605'>{strings().official.here}</a>
-                    <br/>
-                    {strings().official.releasenotes_1_0_0_0} <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/release/doc/release-notes/release-notes-1.0.0.md'>{strings().official.here}</a>
-                    <br />
-                    <h3>{strings().official.binary}</h3>
-                    <h4>{strings().official.windows}</h4>
-                    <p>{strings().official.bit64}: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-win64-setup.exe'> bitcoinUnlimited-1.0.1.4-win64-setup.exe</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-win64-setup.exe'> (mirror)</a>
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-win64.zip'> (zip)</a></p>
-                    <p>{strings().official.bit32}: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-win32-setup.exe'> bitcoinUnlimited-1.0.1.4-win32-setup.exe</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-win32-setup.exe'> (mirror)</a>
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-win32.zip'> (zip)</a></p>
-                    <br />
-                    <h4>{strings().official.linux}</h4>
-                    <p>{strings().official.bit64}: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-linux64.tar.gz'> bitcoinUnlimited-1.0.1.4-linux64.tar.gz</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-linux64.tar.gz'> (mirror)</a>
-                    </p><p>{strings().official.bit32}: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-linux32.tar.gz'> bitcoinUnlimited-1.0.1.4-linux32.tar.gz</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-linux32.tar.gz'> (mirror)</a>
-                    </p><br />
-                    <h4>{strings().official.osx}</h4>
-                    <p>{strings().official.bit64}: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-osx64.tar.gz'> bitcoinUnlimited-1.0.1.4-osx64.tar.gz</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-osx64.tar.gz'> (mirror)</a>
-                    </p><p>{strings().official.bit32}: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-osx.tar.gz'> bitcoinUnlimited-1.0.1.4-osx.tar.gz</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-osx.tar.gz'> (mirror)</a>
-                    </p><p>DMG: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-osx.dmg'> bitcoinUnlimited-1.0.1.4-osx.dmg</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-osx.dmg'> (mirror)</a>
-                    </p><br />
-                    <h4>{strings().official.ARM}</h4>
-                    <p>{strings().official.bit64}: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-arm64.tar.gz'> bitcoinUnlimited-1.0.1.4-arm64.tar.gz</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-arm64.tar.gz'> (mirror)</a>
-                    </p><p>{strings().official.bit32}: {strings().official.version}: 1.0.1.4, {strings().official.date}:
-                      <a href='/downloads/bitcoinUnlimited-1.0.1.4-arm32.tar.gz'> bitcoinUnlimited-1.0.1.4-arm32.tar.gz</a>
-                      <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-arm32.tar.gz'> (mirror)</a>
-                    </p><br />
+            <div className='lh-copy py1'>
+                <p>{ strings().download.latest.download } ({strings().download.latest.version}, {strings().download.latest.date}):</p>
 
-                    <h4>{strings().official.source}</h4>
-                    <p>{strings().official.branch} <a href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/tree/release'>{strings().official.here}</a></p>
-                </div>
+                <Release
+                    osx64='/downloads/bitcoinUnlimited-1.0.1.4-osx64.tar.gz'
+                    osx64Mirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-osx64.tar.gz'
+                    osx32='/downloads/bitcoinUnlimited-1.0.1.4-osx.tar.gz'
+                    osx32Mirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-osx.tar.gz'
+                    osxDmg='/downloads/bitcoinUnlimited-1.0.1.4-osx.dmg'
+                    osxDmgMirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-osx.dmg'
+                    windows64Exe='/downloads/bitcoinUnlimited-1.0.1.4-win64-setup.exe'
+                    windows64Zip='/downloads/bitcoinUnlimited-1.0.1.4-win64.zip'
+                    windows64Mirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-win64-setup.exe'
+                    windows32Exe='/downloads/bitcoinUnlimited-1.0.1.4-win32-setup.exe'
+                    windows32Zip='/downloads/bitcoinUnlimited-1.0.1.4-win32.zip'
+                    windows32Mirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-win32-setup.exe'
+                    linux64='/downloads/bitcoinUnlimited-1.0.1.4-linux64.tar.gz'
+                    linux64Mirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-linux64.tar.gz'
+                    linux32='/downloads/bitcoinUnlimited-1.0.1.4-linux32.tar.gz'
+                    linux32Mirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-linux32.tar.gz'
+                    arm64='/downloads/bitcoinUnlimited-1.0.1.4-arm64.tar.gz'
+                    arm64Mirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-arm64.tar.gz'
+                    arm32='/downloads/bitcoinUnlimited-1.0.1.4-arm32.tar.gz'
+                    arm32Mirror='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.1.4-arm32.tar.gz'
+                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/tree/release'>
+
+                    <Signatures1014 />
+                </Release>
             </div>
-        );
+        )
     }
+}
 
-});
+export default OfficialRelease

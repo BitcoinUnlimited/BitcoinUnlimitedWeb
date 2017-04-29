@@ -2,70 +2,53 @@
 
 import React from 'react';
 import { strings } from '../../lib/i18n';
+import Page from '../page.jsx'
+import Section from '../components/section.jsx';
 
-import Header from '../header.jsx';
-import Footer from '../footer.jsx';
-import Title from '../components/title.jsx';
-import Resource from '../components/resources/resource.jsx';
+import Technical from '../components/resources/technical.jsx';
+import NonTechnical from '../components/resources/nonTechnical.jsx';
+import NolNet from '../components/resources/nolNet.jsx';
+import Buips from '../components/resources/buips.jsx';
 
-const RESOURCES = [
-    {
-        title: 'Articles of Federation',
-        html: '/articles',
-        pdf: '/resources/BUarticles.pdf'
-    },
-    {
-        title: 'A Transaction Fee Market Exists Without a Block Size Limit',
-        pdf: '/resources/feemarket.pdf'
-    },
-    {
-        title: 'Reduce Orphaning Risk and Improve Zero-Confirmation Security With Subchains',
-        pdf: '/resources/subchains.pdf'
-    },
-    {
-        title: 'An Examination of Single Transaction Blocks and Their Effect on Network Throughput and Block Size',
-        pdf: '/resources/1txn.pdf'
-    },
-    {
-        title: 'Bitcoin: A Peer-to-Peer Electronic Cash System',
-        pdf: '/resources/bitcoin.pdf'
+class Resources extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { selectedSection: this.props.params.section };
     }
-];
 
-export default React.createClass({
+    componentWillReceiveProps(nextProps) {
+        this.setState({ selectedSection: nextProps.params.section })
+    }
 
-    render: function() {
-
-        let resources = RESOURCES.map(function(resource, i) {
-            return (
-                <Resource title={resource.title} html={resource.html} pdf={resource.pdf} key={i} />
-            );
-        });
-
+    render() {
         return (
-            <div id='resources'>
-                <Header active='resources' />
-                <Title title={strings().resources.title} />
-                <div className='section'>
-                    <div className='container'>
-                        <div className='row service-wrapper-row'>
-                            <div className='col-sm-4'>
-                                <div className='service-image'>
-                                    <img src='/img/330px-Knowledge-Reid-Highsmith.jpeg' alt='Knowledge' />
-                                </div>
-                            </div>
-                            <div className='col-sm-8'>
-                                <h2 className='green'>{strings().resources.supporting}</h2>
-                                <ul>
-                                    {resources}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <Footer />
-            </div>
+            <Page name="resources" title={ strings().resources.title } subtitle={ strings().resources.subtitle } >
+                <Section
+                    key='technical'
+                    expanded={ this.state.selectedSection === 'technical'}
+                    title={ strings().resources.technical.title }
+                    body={ <Technical /> } />
+
+                <Section
+                    key='non-technical'
+                    expanded={ this.state.selectedSection === 'non-technical'}
+                    title={ strings().resources.nonTechnical.title }
+                    body={ <NonTechnical /> } />
+
+                <Section
+                    key='nolnet'
+                    expanded={ this.state.selectedSection === 'nolnet'}
+                    title={ strings().resources.nolNet.title }
+                    body={ <NolNet /> } />
+
+                <Section
+                    key='buips'
+                    expanded={ this.state.selectedSection === 'buips'}
+                    title={ strings().resources.buips.title }
+                    body={ <Buips /> } />
+            </Page>
         );
     }
+}
 
-});
+export default Resources

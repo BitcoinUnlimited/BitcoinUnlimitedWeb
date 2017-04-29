@@ -1,0 +1,113 @@
+//
+//
+// these styles are shared between 1) the website, and 2) the voting app
+//
+//-----------------------------------------------------------------------
+
+@import 'colors'
+
+.avenir
+  font-family: avenir, sans-serif
+
+.white
+    color: white
+
+.gray
+    color: $gray
+
+.black
+    color: black
+
+.green
+    color: green
+
+.orange
+    color: $orange
+
+.lh-copy
+    line-height: 1.6
+
+.z-top
+    z-index: 100000
+
+.non-decorated
+    text-decoration: none
+
+.clickable
+    cursor: pointer
+
+// links
+.link
+    color: $gray
+    text-decoration: none
+    transition: color .15s ease-in
+    -webkit-transition: color .15s ease-in
+    -moz-transition: color .15s ease-in
+    -o-transition: color .15s ease-in
+    -ms-transition: color .15s ease-in
+
+.link:hover, .link:active, .link:focus
+    text-decoration: none
+
+.link--underline
+    border-bottom: 1px solid currentColor
+    padding-bottom: 1px
+    text-decoration: none
+    transition: color .15s ease-in
+    -webkit-transition: color .15s ease-in
+    -moz-transition: color .15s ease-in
+    -o-transition: color .15s ease-in
+    -ms-transition: color .15s ease-in
+
+.link--underline:hover, .link--underline:active, .link--underline:focus
+  text-decoration: none
+
+// dimming effect
+.dim
+    opacity: 1
+    transition: opacity .15s ease-in
+    -webkit-transition: opacity .15s ease-in
+    -moz-transition: opacity .15s ease-in
+    -o-transition: opacity .15s ease-in
+    -ms-transition: opacity .15s ease-in
+
+.dim:hover, .dim:focus
+    opacity: .8
+    transition: opacity .15s ease-in
+    -webkit-transition: opacity .15s ease-in
+    -moz-transition: opacity .15s ease-in
+    -o-transition: opacity .15s ease-in
+    -ms-transition: opacity .15s ease-in
+
+.dim:active
+    opacity: .8
+    transition: opacity .15s ease-out
+    -webkit-transition: opacity .15s ease-out
+    -moz-transition: opacity .15s ease-out
+    -o-transition: opacity .15s ease-out
+    -ms-transition: opacity .15s ease-out
+
+// buttons
+.btn--primary
+    color: white
+    text-decoration: none
+    background-color: $orange
+    border-radius: 4px
+    border: 1px solid $orange
+    padding: 10px
+
+.btn--primary-large
+    color: white
+    text-decoration: none
+    background-color: $orange
+    border-radius: 4px
+    border: 1px solid $orange
+    padding: 14px 22px
+
+.btn--secondary
+    color: black
+    text-decoration: none
+    background-color: white
+    border-radius: 4px
+    border: 1px solid $orange
+    padding: 10px

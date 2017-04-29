@@ -1,54 +1,35 @@
 'use strict';
 
 import React from 'react';
-import {Link} from 'react-router';
-import { strings } from '../lib/i18n';
+import WebHeader from './components/header/webHeader.jsx'
+import MobileHeader from './components/header/mobileHeader.jsx'
+import SecurityBanner from './components/header/securityBanner.jsx'
 
-export default React.createClass({
+class Header extends React.Component {
+    renderSecurityMessage() {
+        return
 
-    getClassName(link) {
-        if (this.props.active === link) {
-            return 'active';
-        }
-    },
+        // Example 1:
+        // return "we have found a bug in abc. We are working to fix it."
 
-    render: function () {
+        // Example 2:
+        // return (
+        //     <div className='inline'>
+        //         there is an <a href='#' target='_blank' className='orange'>issue</a>.
+        //     </div>
+        // )
+    }
+
+    render() {
         return (
-            <div className='mainmenu-wrapper'>
-             <div className="container">
-                <nav id='mainmenu' className='mainmenu'>
-                    <ul>
-                        <li className='logo-wrapper'>
-                            <Link to='/'>
-                                <img src='/img/bitcoin-unlimited.png' width='98%' height='100%' />
-                            </Link>
-                        </li>
-                        <li className={this.getClassName('download')}>
-                            <Link to='/download'>{strings().header.download}</Link>
-                        </li>
-                        <li className={this.getClassName('faq')}>
-                            <Link to='/faq'>{strings().header.faq}</Link>
-                        </li>
-                        <li className={this.getClassName('buip')}>
-                            <Link to='/buip'>{strings().header.proposals}</Link>
-                        </li>
-                        <li className={this.getClassName('members')}>
-                            <Link to='/members'>{strings().header.members}</Link>
-                        </li>
-                        <li className={this.getClassName('resources')}>
-                            <Link to='/resources'>{strings().header.resources}</Link>
-                        </li>
-                        <li className={this.getClassName('conference')}>
-                            <Link to='/conferences'>{strings().header.conference}</Link>
-                        </li>
-                        <li className={this.getClassName('contact-us')}>
-                            <Link to='/contact-us'>{strings().header.contactus}</Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <div>
+                <WebHeader />
+                <MobileHeader />
+                <div className='banner'></div>
+                <SecurityBanner message={ this.renderSecurityMessage() }/>
             </div>
         );
     }
+};
 
-});
+export default Header
