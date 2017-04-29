@@ -28,7 +28,7 @@ class MemberModal extends React.Component {
         }
 
         if (this.props.member.publicKey) {
-            bitcoin_address = "Bitcoin address: " + this.props.member.publicKey
+            bitcoin_address = "BU signing address: " + this.props.member.publicKey
         }
 
         return (
