@@ -1,0 +1,81 @@
+
+// this contains styling specific to the site.
+
+@require 'colors'
+@require 'header'
+@require 'footer'
+@require 'index'
+@require 'download'
+@require 'about'
+@require 'post'
+@require 'burger-menu'
+@require 'dropdown'
+
+.icon--center
+    position: relative
+    top: 5px
+
+.banner
+    height: 8px
+    background: linear-gradient(90deg, #f5b547, #e67e22)
+
+.section__container
+    width: 64%
+    min-width: 340px
+    display: inline-block
+
+.section__filler
+    width: 840px
+
+.section__image
+    max-width: 80%
+
+.not-found__container
+    min-height: 340px
+
+.ReactModal__Body--open
+    overflow: hidden
+
+.modal--overlay
+    position: fixed
+    top: 0px
+    left: 0px
+    right: 0px
+    bottom: 0px
+    background-color: rgba(255, 255, 255, 0.74902)
+
+.modal--content
+    position: absolute
+    top: 50%
+    left: 50%
+    right: auto
+    bottom: auto
+    border: 2px solid $near-black
+    background-color: white
+    overflow: auto
+    border-radius: 4px
+    outline: none
+    padding: 20px
+    margin-right: -50%
+    width: 70%
+    max-width: 540px
+    max-height: 60%
+    transform: translate(-50%, -50%)
+    -webkit-transform: translate(-50%, -50%)
+    -moz-transform: translate(-50%, -50%)
+    -o-transform: translate(-50%, -50%)
+    -ms-transform: translate(-50%, -50%)
+
+pre
+  display: block
+  padding: 10px
+  margin: 0 0 10px
+  font-size: 14px
+  line-height: 1.4
+  word-break: break-all
+  word-wrap: break-word
+  color: #333
+  background-color: #f5f5f5
+  border: 1px solid #ccc
+  border-radius: 4px
+  overflow: auto

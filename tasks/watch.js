@@ -18,6 +18,7 @@ module.exports = function(grunt) {
                 '**/*.html',
                 '**/*.css',
                 '**/*.png',
+                '**/*.gif',
                 '**/*.jpg',
                 '**/*.jpeg',
                 '**/*.gif',
@@ -29,6 +30,10 @@ module.exports = function(grunt) {
                 '**/*.gz'
             ],
             tasks: ['copy']
+        },
+        stylus: {
+            files: ['src/public/css/*.styl'],
+            tasks: ['stylus']
         }
     };
 

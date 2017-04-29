@@ -1,0 +1,402 @@
+[
+    {
+        "number": "BUIP001",
+        "title": "Extensions to the Bitcoin Client",
+        "proposer": "Andrew Stone",
+        "submitted": "2015-11-26",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/001.mediawiki"
+    },
+    {
+        "number": "BUIP002",
+        "title": "Multi-BIP Scaling Enabler",
+        "proposer": "Andrew Clifford",
+        "submitted": "2015-12-30",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/002.mediawiki"
+    },
+    {
+        "number": "BUIP003",
+        "title": "Andrew Quentson (Aquent) for Secretary",
+        "proposer": "Andrew Quentson",
+        "submitted": "2015-12-30",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/003.mediawiki"
+    },
+    {
+        "number": "BUIP004",
+        "title": "RBF/double spending support",
+        "proposer": "Pete Waterland (inca)",
+        "submitted": "2015-12-31",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/004.mediawiki"
+    },
+    {
+        "number": "BUIP005",
+        "title": "Settings information via coinbase-txn & user-agent",
+        "proposer": "Andrew Clifford",
+        "submitted": "2015-12-31 (Revision 1, user-agent, 2016-01-07)",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/005.mediawiki"
+    },
+    {
+        "number": "BUIP006",
+        "title": "Blocktorrent – a torrent-style block data transport",
+        "proposer": "freetrader",
+        "submitted": "2016-01-07",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/006.mediawiki"
+    },
+    {
+        "number": "BUIP007",
+        "title": "Lee Adams (redditchampsys) for president",
+        "proposer": "Lee Adams",
+        "submitted": "2016-01-09",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/007.mediawiki"
+    },
+    {
+        "number": "BUIP008",
+        "title": "Vote Andrew Stone for Developer",
+        "proposer": "Andrew Stone (thezerg)",
+        "submitted": "2016-01-09",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/008.mediawiki"
+    },
+    {
+        "number": "BUIP009",
+        "title": "User-configurable public-key cryptography (let users choose from predefined cryptosystems)",
+        "proposer": "Simon Liu",
+        "submitted": "2016-01-09",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/009.mediawiki"
+    },
+    {
+        "number": "BUIP010",
+        "title": "Xtreme Thinblocks",
+        "proposer": "Peter Tschipper",
+        "submitted": "2016-01-10",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/010.mediawiki"
+    },
+    {
+        "number": "BUIP011",
+        "title": "Andrew Clifford for President",
+        "proposer": "Andrew Clifford",
+        "submitted": "2016-01-12",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/011.mediawiki"
+    },
+    {
+        "number": "BUIP012",
+        "title": "Vote Trevin Hofmann for President",
+        "proposer": "Trevin Hofmann",
+        "submitted": "2016-01-13",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/012.mediawiki"
+    },
+    {
+        "number": "BUIP013",
+        "title": "Upgrade alert system so that Bitcoin Unlimited can send message alerts to node",
+        "proposer": "Simon Liu",
+        "submitted": "2016-01-14 (rev 2. 25 Jan 2016, rev 3. 26 Jan 2016)",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/013.mediawiki"
+    },
+    {
+        "number": "BUIP014",
+        "title": "Testing a Bitcoin Unlimited X-Relay Network for miners in mainland China",
+        "proposer": "Andrew Clifford",
+        "submitted": "2016-03-03",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/014.mediawiki"
+    },
+    {
+        "number": "BUIP015",
+        "title": "Decentralize mining with the FAIR PoW algorithm and an user-configurable PoW setting",
+        "proposer": "Simon Liu",
+        "submitted": "2016-01-19",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/015.mediawiki"
+    },
+    {
+        "number": "BUIP016",
+        "title": "Consensus with Classic on txn size limit",
+        "proposer": "Andrew Clifford",
+        "submitted": "2016-01-20",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/016.mediawiki"
+    },
+    {
+        "number": "BUIP017",
+        "title": "Datastream Compression",
+        "proposer": "Peter Tschipper",
+        "submitted": "03/20/2016",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/017.mediawiki"
+    },
+    {
+        "number": "BUIP018",
+        "title": "Bitnodes Seeding and User-Configurable DNS Seeds",
+        "proposer": "Simon Liu",
+        "submitted": "2016-04-02",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/018.mediawiki"
+    },
+    {
+        "number": "BUIP019",
+        "title": "New Members for Election #1",
+        "proposer": "Andrew Clifford",
+        "submitted": "2016-04-29",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/019.mediawiki"
+    },
+    {
+        "number": "BUIP020",
+        "title": "Implement bit-0 soft-forks (BIPs 9,68,112,113)",
+        "proposer": "freetrader",
+        "submitted": "2016-06-09",
+        "status": "withdrawn",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/020.mediawiki"
+    },
+    {
+        "number": "BUIP021",
+        "title": "Proposal for implementation of node performance testing and safe block size estimation and broadcast",
+        "proposer": "Peter Waterland",
+        "submitted": "2016-07-18",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/021.mediawiki"
+    },
+    {
+        "number": "BUIP022",
+        "title": "XInv",
+        "proposer": "Peter Tschipper",
+        "submitted": "2016-07-30",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/022.mediawiki"
+    },
+    {
+        "number": "BUIP023",
+        "title": "Miner block creation latency optimization",
+        "proposer": "Andrew Stone",
+        "submitted": "2016-08-1",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/023.mediawiki"
+    },
+    {
+        "number": "BUIP024",
+        "title": "Extension Blocks with Address Sharding",
+        "proposer": "Andrew Stone",
+        "submitted": "2016-08-03",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/024.mediawiki"
+    },
+    {
+        "number": "BUIP025",
+        "title": "BU 'Bronze Sponsor' at Scaling Bitcoin, Milan, Italy",
+        "proposer": "Andrew Clifford",
+        "submitted": "2916-09-10",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/025.mediawiki"
+    },
+    {
+        "number": "BUIP027",
+        "title": "Satoshi's Vision - Development & Scaling Conference",
+        "proposer": "Andrew Clifford",
+        "submitted": "2016-09-31",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/027.mediawiki"
+    },
+    {
+        "number": "BUIP028",
+        "title": "Candidacy for Secretary role - digitsu",
+        "proposer": "Jerry Chan",
+        "submitted": "2016-09-03",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/028.mediawiki"
+    },
+    {
+        "number": "BUIP029",
+        "title": "Vote Trevin Hofmann for Secretary",
+        "proposer": "Trevin Hofmann",
+        "submitted": "2016-09-06",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/029.mediawiki"
+    },
+    {
+        "number": "BUIP030",
+        "title": "Website updates",
+        "proposer": "Jerry Chan",
+        "submitted": "2016-09-29",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/030.mediawiki"
+    },
+    {
+        "number": "BUIP031",
+        "title": "New Members for Election #2",
+        "proposer": "Andrew Clifford (solex)",
+        "submitted": "2016-09-30",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/031.mediawiki"
+    },
+    {
+        "number": "BUIP032",
+        "title": "Vote Peter R for Secretary",
+        "proposer": "Peter Rizun (Peter R)",
+        "submitted": "2016-10-05",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/032.mediawiki"
+    },
+    {
+        "number": "BUIP033",
+        "title": "Parallel Validation",
+        "proposer": "Peter Tschipper",
+        "submitted": "2016-10-22",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/033.mediawiki"
+    },
+    {
+        "number": "BUIP034",
+        "title": "Ecosystem Outreach for Onchain Scaling",
+        "proposer": "Andrew Clifford (solex)",
+        "submitted": "2016-10-23",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/034.mediawiki"
+    },
+    {
+        "number": "BUIP035",
+        "title": "New Bitcoin Unlimited Website",
+        "proposer": "Peter Rizun (Peter R)",
+        "submitted": "2016-11-04",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/035.mediawiki"
+    },
+    {
+        "number": "BUIP036",
+        "title": "New Members for Election #3",
+        "proposer": "Andrew Clifford",
+        "submitted": "2016-11-05",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/036.mediawiki"
+    },
+    {
+        "number": "BUIP037",
+        "title": "Hardfork SegWit",
+        "proposer": "Amaury SECHET",
+        "submitted": "2016-11-12",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/037.mediawiki"
+    },
+    {
+        "number": "BUIP038",
+        "title": "Revert 'sticky gate'",
+        "proposer": "Tom Harding (Sponsor: freetrader)",
+        "submitted": "2016-11-27",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/038.mediawiki"
+    },
+    {
+        "number": "BUIP039",
+        "title": "Upgrade via extension point	",
+        "proposer": "Amaury SÉCHET",
+        "submitted": "2016-12-04",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/039.mediawiki"
+    },
+    {
+        "number": "BUIP040",
+        "title": "Emergent Consensus Parameters and Defaults for Large (>1MB) Blocks",
+        "proposer": "Andrew Stone",
+        "submitted": "2016-12-05",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/040.mediawiki"
+    },
+    {
+        "number": "BUIP041",
+        "title": "('BUIP038' Counter) Prevent Minority Hash Power From Injecting Very Large Blocks",
+        "proposer": "Andrew Stone",
+        "submitted": "2016-12-07",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/041.mediawiki"
+    },
+    {
+        "number": "BUIP042",
+        "title": "New Members for Election #4",
+        "proposer": "Andrew Clifford",
+        "submitted": "2016-12-16",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/042.mediawiki"
+    },
+    {
+        "number": "BUIP043",
+        "title": "Exploring the Bitcoin Network",
+        "proposer": "Dr Saralees Nadarajah, @S Nadarajah (Sponsor: Peter Rizun)",
+        "submitted": "2016-12-23",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/043.mediawiki"
+    },
+    {
+        "number": "BUIP044",
+        "title": "Development Process",
+        "proposer": "Amaury SÉCHET",
+        "submitted": "2017-01-09",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/044.mediawiki"
+    },
+    {
+        "number": "BUIP045",
+        "title": "Unified addresses format for 'BUIP037'",
+        "proposer": "Amaury SÉCHET",
+        "submitted": "2017-01-12",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/045.mediawiki"
+    },
+    {
+        "number": "BUIP046",
+        "title": "Faster, Higher Quality Publication Process for the Bitcoin Research Journal Ledger",
+        "proposer": "Christopher E. Wilmer (BU member, @chriswilmer)",
+        "submitted": "2017-02-17",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/046.mediawiki"
+    },
+    {
+        "number": "BUIP047",
+        "title": "The Future of Bitcoin - Development & Scaling Conference",
+        "proposer": "Antony Zegers (@mengerian)",
+        "submitted": "2017-02-23",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/047.mediawiki"
+    },
+    {
+        "number": "BUIP048",
+        "title": "New Members for Election #5",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2017-03-09",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/048.mediawiki"
+    },
+    {
+        "number": "BUIP049",
+        "title": "Amend AoC to change membership period",
+        "proposer": "Windowly",
+        "submitted": "2017-03-18",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/049.mediawiki"
+    },
+    {
+        "number": "BUIP050",
+        "title": "Double yes with tie-break question",
+        "proposer": "torusJKL",
+        "submitted": "2017-03-18",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/050.mediawiki"
+    },
+    {
+        "number": "BUIP051",
+        "title": "Set up dedicated Continuous Integration",
+        "proposer": "freetrader",
+        "submitted": "2017-04-15",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/051.mediawiki"
+    },
+]

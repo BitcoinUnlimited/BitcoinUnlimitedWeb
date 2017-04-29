@@ -1,190 +1,493 @@
 {
-    "experimental": {
-        "releases": "Experimental Releases",
-        "none": "NONE"
+    "index": {
+        "hero": {
+            "v1": {
+                "title": "The Peer-to-Peer Electronic Cash System for Planet Earth",
+                "subtitle": "Using Emergent Consensus and safe signalling to enable on-chain scaling",
+                "button": "Download Bitcoin Unlimited"
+            },
+            "v2": {
+                "titleOne": " Bitcoin: A Peer-to-Peer Electronic Cash System for Planet Earth",
+                "titleTwo": "Decentralized On-chain Scaling Solutions for Node Operators",
+                "titleThree": "Safe Signaling and Emergent Consensus Techniques for Miners",
+                "button": "Download Bitcoin Unlimited"
+            }
+        },
+        "solutions": {
+            "title": "Solutions",
+            "description": "Bitcoin Unlimited provides a voice to all stakeholders in the Bitcoin ecosystem.",
+            "users": {
+                "title": "For Users",
+                "body": "Bitcoin is a worldwide peer-to-peer electronic cash system. To the users of Bitcoin Unlimited, this means low and predictable fees, reliable confirmation times, and useable instant transactions."
+            },
+            "nodes": {
+                "title": "For Node Operators",
+                "body": "Bigger blocks are coming. When they arrive, you want your node to be ready. Bitcoin Unlimited allows you to securely track consensus as defined by the most proof-of-work chain composed of valid transactions, regardless of the outcome of the \"block size limit debate.\""
+            },
+            "miners": {
+                "title": "For Miners",
+                "body": "Say \"no\" to supply quotas and central planning of the block space market. If there is demand for block space, miners should be free to compete to meet that demand. By running Bitcoin Unlimited, you are casting a vote to continue growing Bitcoin in the most simple and proven manner: with more on-chain transactions."
+            },
+            "investors": {
+                "title": "For Investors",
+                "body": "Supporting our objective to lift the block size limit will return control over Bitcoin's evolution back to the market. By removing this limit, Bitcoin's user base will be free to grow, along with it its market capitalization."
+            },
+            "link": "Learn more"
+        },
+        "divider": "Bitcoin is the world's first electronic cash system, allowing users to send payments quickly, cheaply, and from anywhere with an Internet connection, all without relying on banks, payment processors, or any other third party. Bitcoin Unlimited software helps the network backbone scale to meet the demands of this global economy.",
+        "technologies": {
+            "title": "Technologies",
+            "description": "Bitcoin Unlimited powers the backbone of the Bitcoin network by using novel technologies.",
+            "adjustableCap": {
+                "title": "Adjustable Block-size Cap (ABC)",
+                "text": "The BU client allows node operators and miners to easily adjust the size of blocks they accept without having to restart their node or recompile new executables."
+            },
+            "xthin": {
+                "title": "Xtreme thin blocks (Xthin)",
+                "text": "Bitcoin Unlimited was the first client to fix the inefficiency in the core Bitcoin code that resulted in transactions often being received twice by each node. BU's solution improves block propagation times and reduces the number of required bytes."
+            },
+            "validation": {
+                "title": "Parallel validation",
+                "text": "The BU client enables nodes to validate more than one block – along with new incoming transactions – all at the same time. This neutralizes an existing attack vector while improving the network’s performance."
+            }
+        }
     },
-    "official": {
-        "satoshi": "The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core \"Satoshi\" client.",
-        "supporting": "We are currently supporting the 1.0.0 release and have older releases 0.11.2, 0.12.0, and 0.12.1",
-        "verify": "Please verify binary signatures before installation!",
-        "signatures1": "Scroll down to the Signatures",
-        "signatures2": "section",
-        "signatures3": "to see the SHA-256 checksums of the binaries and our signatures on that statement.",
-        "release": "Latest official release",
-        "binary": "Binary Downloads",
-        "releasenotes":"Release Notes",
-        "closed_source_release": "This is a closed source release addressing issues of a similar class as release 1.0.1.1.  These issues are in the P2P network layer and allow an attacker to remotely cause your client to exit via an assertion.  Source code will be released when sufficient nodes are upgraded.",
-        "prior_closed_source_release": "This prior closed source-patch release is now available under the 1.0.1.2 tag. It addresses issues in the P2P network layer that allows an attacker to cause your client to exit.",
-        "release_note_text_1_0_1_3": "This release addresses minor and cosmetic issues reported when the 1.0.1.2 release patch came under full review.  Upgrading from 1.0.1.2 is optional, upgrading from 1.0.1.1 or earlier is essential.",
-        "releasenotes_1_0_1_4": "1.0.1.4: Release notes: ",
-        "releasenotes_1_0_1_3": "1.0.1.3: Release notes: ",
-        "releasenotes_1_0_1_2": "1.0.1.2: Release notes: ",
-        "releasenotes_1_0_1_1": "1.0.1.1: Release notes are ",
-        "releasenotes_1_0_1_0": "1.0.1.0: Release notes are ",
-        "releasenotes_1_0_0_1": "1.0.0.1: This release contains a single critical bug fix described ",
-        "releasenotes_1_0_0_0": "1.0.0.0: Release notes are ",
-        "windows": "Windows",
-        "linux": "Linux",
-        "osx": "Mac OSX",
-        "ARM": "ARM",
-        "version": "Version",
-        "date": "Apr 24, 2017",
-        "bit64": "64-bit",
-        "bit32": "32-bit",
-        "installation": "Linux Installation Instructions",
-        "source": "Source Code",
-        "branch": "Github branch",
-        "here": "here"
+    "solutions": {
+        "title": "Solutions",
+        "subtitle": "Bitcoin Unlimited provides a voice to all stakeholders in the Bitcoin ecosystem.",
+        "intro": "The BU client's flexibility allows you to configure your full-node according to your priorities.",
+        "users": {
+            "title": "For Users",
+            "body": [
+                "Bitcoin is a worldwide peer-to-peer electronic cash system, known for low and predictable transaction fees, reliable confirmation times, and useable instant transactions. Unfortunately, because many network nodes continue to enforce a limit on the size of blocks which is below today's demand (the current limit corresponds to roughly 3 transactions per second), fees have risen, backlogs of transactions have formed, and confirmation times have become erratic. A smaller number of nodes have even adopted replace-by-fee policies to permit double-spending of transactions stuck due to the backlogs, which has produced the regrettable side effect of making instant Bitcoin transactions less secure.",
+                "By supporting Bitcoin Unlimited, you are supporting our organization's efforts to reduce transaction fees and confirmation times by enabling node operators to lift their block size limits, as well as our efforts to reverse the damage done to instant transactions through the misguided replace-by-fee initiative."
+            ]
+        },
+        "nodes": {
+            "title": "For Node Operators",
+            "body": [
+                "Bigger blocks are coming. When they arrive, you want your node to be ready. Whether your node powers a Bitcoin business or your own wallet, the Bitcoin Unlimited client allows you to securely track consensus as defined by the most proof-of-work chain composed of valid transactions, regardless of the outcome of the \"block size limit debate\".",
+                "The Bitcoin Unlimited client is designed around the principle that Bitcoin should evolve through a bottom-up, free-market-based process where your voice as a node operator can be heard. Using the client's graphical user interface, you can easily adjust your node's block size limit, to signal to miners that you are ready for bigger blocks today.",
+                "As Bitcoin continues to grow its user base, the resources required to run a node likewise increase. Bitcoin Unlimited developers are focused on removing bottlenecks to counteract this effect. Bitcoin Unlimited was the first client to solve the \"block propagation bottleneck\" identified by Cornell researchers in 2016 as the dominant bottleneck to increasing network throughput. Our solution—known as Xtreme Thin Blocks—reduced block propagation times by a factor of 5.6x across the normal P2P network and by a factor of 8.7x across the Great Firewall of China, while using 24x fewer bytes. Bitcoin Unlimited developers followed this up with their latest innovation called Parallel Validation, which further improves the efficiency of the BU client.",
+                "Switching to Bitcoin Unlimited from another Satoshi-client is as simple as downloading and installing the software. There is no need to re-download the blockchain."
+            ]
+        },
+        "miners": {
+            "title": "For Miners",
+            "body": [
+                "Say \"no\" to production quotas and central planning of the block space market. If there is demand for block space, as a miner you should be free to meet that demand. By running Bitcoin Unlimited, you are literally casting a vote in your coinbase transaction for a free market in block space, and thus a vote to continue growing Bitcoin in the most simple and proven manner: with more on-chain transactions.",
+                "Watch the block size preference of the network evolve by examining the block-size limit settings of network nodes (expressed in the user-agent string) and other miners (expressed in the coinbase transactions), ensuring that you always have up-to-date information regarding how big you can safely make your blocks.",
+                "But Bitcoin Unlimited is not just about a free market in block space. Bitcoin Unlimited's Xpedited block relay (based on Xthin technology) ensures that you're always mining on the latest block and that the blocks you solve propagate across the network quickly regardless of their size, thereby increasing your profitability. With Parallel Validation, your node will no longer by locked up while validating new blocks, but free to do other useful things instead.",
+                "Bitcoin Unlimited developers are continuously working with progressive miners like you to ensure that the features you need to be successful are included in our software. If you would like to get involved in this process, please feel free to contact us."
+            ]
+        },
+        "investors": {
+            "title": "For Investors",
+            "body": [
+                "To bootstrap this new digital currency, it takes investors like you willing to hold bitcoin through the ups and downs of its price action. You want to be rewarded for that risk. By supporting Bitcoin Unlimited you are supporting our objective to return control over Bitcoin's evolution back to the market and our efforts to enable node operators to lift the block size limit that is presently restricting transaction volumes. By removing this limit, Bitcoin's user base will be free to grow, and with it its market capitalization."
+            ]
+        }
     },
-    "instructions": {
-        "title": "Quick Installation Guide (Linux)",
-        "helpZero": "Once you downloaded the file that matches your system in the section above (e.g. 64 bit linux), open a terminal window then type:",
-        "helpOne": "If you're running an Ubuntu system you could use our official repository. It supports four archs - amd64, i386, arm and arm64 - and 3 Ubuntu versions - 14.04, 16.04 and 16.10. To install the binaries from the repository execute these commands from a console:",
-        "helpTwo": "If you want to compile from source just follow and execute these commands:"
-    },
-    "signatures": {
-        "signatures": "These signatures attest that the individual named compiled Bitcoin Unlimited from Github source and produced the following files with the corresponding sha256 hashes.",
-        "helpOne": "To validate these signatures, use 'File->verify signatures' on any Satoshi Client.",
-        "helpTwo": "Paste the signer's address into the first field, the signature statement into the second field, and the signature into the third one.",
-        "helpThree": "Note: do not change the whitespace of the signature statement.",
-        "helpFour": "Finally run 'sha256sum' on your downloaded file to make sure it matches.",
-        "helpFive": "You can check that an address corresponds to a user on the users' profile page on the",
-        "forum": "bitco.in forum",
-        "statement": "Signed Statement",
-        "tip": "Do not add a final return character to the statement above when verifying the signature in the Bitcoin client.",
-        "andrew": "By: Andrew Stone (thezerg)",
-        "awemany": "By: awemany",
-        "sickpig": "By: Andrea Suisani (sickpig)",
-        "deadalnix": "By: Amaury SECHET (deadalnix)",
-        "thezerg": "",
-        "signature": "Signature"
-    },
-    "calltoaction": {
-        "partOne": "The Only Bitcoin Client That Gives",
-        "partTwo": "You",
-        "partThree": "Complete Freedom!",
-        "download": "Download here!"
-    },
-    "description": {
-        "title": "What is Bitcoin Unlimited?",
-        "a1": "The Bitcoin Unlimited (BU) project seeks to provide a voice to all stakeholders in the Bitcoin ecosystem.",
-        "b1": "Every node operator or miner can currently choose their own blocksize limit by modifying their client.",
-        "b2": "Bitcoin Unlimited makes the process easier by providing a configurable option for the accepted and generated blocksize via a GUI menu.",
-        "b3": "Bitcoin Unlimited further provides a user-configurable failsafe setting allowing you to accept a block larger than your maximum accepted blocksize if it reaches a certain number of blocks deep in the chain.",
-        "c1": "By moving the blocksize limit from the protocol layer to the transport layer, Bitcoin Unlimited removes the only point of central control in the Bitcoin economy - the blocksize limit - and returns it to the nodes and the miners.",
-        "c2": "An emergent consensus will thus arise based on free-market economics as the nodes/miners converge on consensus focal points, creating in the process a living, breathing entity that responds to changing real-world conditions in a free and decentralised manner.",
-        "d1": "This approach is supported by the evidence accumulated over the past six years.",
-        "d2": "The miners and node operators have until now been free to choose a soft limit which, as demand grew, has always been increased in a responsive and organic manner to meet the needs of the market.",
-        "d3": "We expect miners to continue in this tested and proven free-market way by, for instance, coordinating to set a new generated blocksize limit of 2MB and reject any blocks larger than 2MB unless they reach 4 blocks deep in the longest chain.",
-        "d4": "As demand increases, the limit can easily be increased to 3MB, 4MB, and so on, thus removing central control over the process of finding the equilibrium blocksize by allowing the free market to arrive at the correct choice in a decentralised fashion.",
-        "e1": "As a foundational principle, we assert that Bitcoin is and should be whatever its users define by the code they run, and the rules they vote for with their hash power.",
-        "f1": "Bitcoin Unlimited seeks to remove existing practical barriers to stakeholders expressing their views in these ways.",
-        "g1": "For more details, read our",
-        "g2": "Articles of Federation",
-        "h1": "The Bitcoin Unlimited client is not a competitive block scaling proposal like BIP-101, BIP-102, etc. Instead it tracks consensus.",
-        "h2": "This means that it tracks the blockchain that the hash power majority follows, irrespective of blocksize, and signals its ability to accept larger blocks via protocol and block versioning fields.",
-        "i1": "If you support an increase in the blocksize limit by any means -- or just support Bitcoin conflict resolution as originally envisioned by its founder -- consider running a",
-        "i2": "Bitcoin Unlimited",
-        "i3": "client."
-    },
-    "quotes": {
-        "a1": "If the network were to get that big, it would take several years, and by then, sending 2 HD movies over the Internet would probably not seem like a big deal.",
-        "b1": "In a few decades when the reward gets too small, the transaction fee will become the main compensation for nodes.",
-        "b2": "I'm sure that in 20 years there will either be very large transaction volume or no volume.",
-        "c1": "It can be phased in, like:",
-        "c2": "if (blocknumber > 115000)",
-        "c3": "maxblocksize = largerlimit",
-        "satoshi": "Satoshi Nakamoto"
-    },
-    "services": {
-        "members": "Members",
-        "membersText": "We assert that Bitcoin is and should be whatever we the users define by the code we run, and the rules we vote for with our hash power.",
-        "contribute": "Contribute",
-        "contributeText": "If you are a developer then contribute, if you have the resources then run a node, if you are a miner then join a mining pool, if you are a researcher then provide evidence and analysis and if you are a contributor then educate others with analysis and facts.",
-        "resources": "Resources",
-        "resourcesText": "Bitcoin is out of the box thinking. We follow in Satoshi's tradition and present you an interdisciplinary approach.",
-        "read": "Read more"
-    },
-    "slider": {
-        "cryptography": "In Cryptography we Trust",
-        "cryptographyText": "The whole is truly greater than the sum of its parts.",
-        "vires": "Vires in Numeris",
-        "viresText": "Bitcoin Unlimited: A Peer-to-Peer Electronic Cash System",
-        "free": "Free and Decentralized",
-        "freeText": "Free and decentralised emerging consensus."
-    },
-    "member": {
-        "application": "Application"
-    },
-    "header": {
-        "home": "Home",
-        "download": "Download",
-        "faq": "FAQ",
-        "proposals": "Proposals",
-        "members": "Members",
-        "resources": "Resources",
-        "conference": "Conferences",
-        "contactus": "Contact Us"
-    },
-    "footer": {
-        "latest": "Our Latest Work",
-        "articles": "Articles of Federation",
-        "fee": "Fee Market",
-        "subchains": "Subchains",
-        "analysis": "Bitcoin Unlimited Analysis (1-txn)",
-        "navigate": "Navigate",
-        "home": "Home",
-        "download": "Download",
-        "faq": "FAQ",
-        "donate": "Donate",
-        "proposals": "Proposals",
-        "members": "Members",
-        "resources": "Resources",
-        "conferences": "Conferences",
-        "contactus": "Contact Us",
-        "join": "Join Us",
-        "forum": "The Bitcoin Forum",
-        "reddit1": "Reddit /r/btc",
-        "reddit2": "Reddit /r/bitcoin_unlimited",
-        "slack": "Slack",
-        "irc": "#btc on IRC",
-        "news": "News",
-        "time": "Time to roll out bigger blocks",
-        "why": "Why is Bitcoin forking?",
-        "consensus": "On consensus and forks",
-        "designing": "Designing for success",
-        "copy": "MIT License. No Rights Reserved."
+    "technologies": {
+        "title": "Technologies",
+        "subtitle": "Bitcoin Unlimited powers the backbone of the Bitcoin network by using novel technologies.",
+        "adjustableCap": {
+            "title": "Adjustable Block-size Cap (ABC)",
+            "body": [
+                "Bitcoin Unlimited was the first client to provide the tools that node operators and miners need to remove the 1 MB block size limit currently limiting transaction throughput on the Bitcoin network. The BU client allows node operators to easily adjust the size of blocks their node accepts, without having to restart their node or recompile new executables from source code. Similarly, BU allows miners to begin producing larger blocks without a restart or a recompile. BU provides both groups the ability to signal their block size preferences across the network, using the user-agent string in the case of common nodes, and using the coinbase transaction of each new block in the case of mining nodes."
+            ]
+        },
+        "xthin": {
+            "title": "Xtreme Thin Blocks (Xthin)",
+            "body": [
+                "Bitcoin Unlimited was the first client to fix the inefficiency in the core Bitcoin code that resulted in transactions often being received twice by each node: once when the transaction was first broadcast by a user to the peer-to-peer network, and again when a solved block containing the now-confirmed transaction was found by a miner.",
+                "Rather than requesting the block verbatim, an Xthin-equipped node images its mempool onto a Bloom filter that its sends with its \"get data\" request; the transmitting node sends the block contents by hash for all the transactions imaged onto the Bloom filter and in full otherwise. In the unlikely event that the receiving node is unable to reconstruct the block, it requests the still-missing transactions, resulting in a second round trip between the nodes."
+            ]
+        },
+        "parallelValidation": {
+            "title": "Parallel Validation",
+            "body": [
+                "Prior to parallel validation, when a node received a new block, it would essentially freeze until it had either accepted or rejected the block in question. During this validation period, the node would neither relay new transactions nor attempt to validate competing blocks.",
+                "This resulted in an attack vector where a malicious entity could mine an extremely slow-to-verify block and temporarily freeze the network.",
+                "Parallel validation neutralizes this attack vector by allowing nodes to validate more than one block--along with new incoming transactions--all at the same time. This improves Bitcoin’s performance as a payment network because there is no longer any interruption in transaction processing during block validation. Furthermore, because a fast-to-validate block will \"win\" a block race against a slow-to-validate block found at the same time, the widespread adoption of parallel validation would add a cost of approximately 1.25 BTC per validation-minute due to the increased orphan risk of slow-to-verify blocks."
+            ]
+        }
     },
     "resources": {
-        "title": "Academic Articles and Founding Documents",
-        "supporting": "Bitcoin Unlimited Supporting Documents"
-    },
-    "notfound": {
-        "error": "Error 404: File Not Found",
-        "message": "The requested file could not be found."
-    },
-    "members": {
-        "title": "Supporting Members"
-    },
-    "download": {
-        "title": "Download Bitcoin Unlimited"
+        "title": "Resources",
+        "subtitle": "",
+        "technical": {
+            "title": "Select Technical Works by Bitcoin Unlimited Members",
+            "space": [
+                { "body": "In this paper, Dr. Peter R. Rizun shows that a transaction fee market exists without a block size limit, due to the increased risk a miner faces of having his block orphaned for each additional transaction he includes in his block. In the corresponding video, Rizun explains how block space has the properties of a normal economic commodity and satisfies the laws of supply and demand. He argues that the 1 MB block size limit is now acting as a \"production quota,\" thereby resulting in a deadweight loss of economic activity in the Bitcoin economy." },
+                { "body": "In this paper, Bitcoin Unlimited lead developer G. Andrew Stone explores the mystery behind the \"empty block\" phenomenon and shows that empty blocks place a natural restriction on the rate at which the blockchain can grow." },
+            ],
+            "propogation": [
+                { "body": "Xthin is arguably the innovation that put Bitcoin Unlimited on the map. In this article series, Bitcoin Unlimited developers compare the performance of Xthin block propagation to standard block propagation. They show that Xthin blocks are 5.6x faster across the normal P2P network and cross the Great Firewall of China in 8.7x less time, both while using 24x fewer bytes." },
+                { "body": "In this article, Rizun explores a pre-consensus technique based on weak blocks. He shows how the technique permits larger blocks for a given level of orphan risk, diverts transaction fees to pay for hashing (blockchain security), and improves the security of unconfirmed transactions, all while maintaining the transaction fee market." }
+            ],
+            "consensus": [
+                { "body": "Bitcoin Unlimited empowers node operators to control how they enforce certain Bitcoin block validity rules on their own node. In this article, BU member Antony Zegers explores the market incentives facing node operators when they choose to enforce block validity rules, and how these incentives lead to an emergent consensus on the Bitcoin network." },
+                { "body": "In this video, Bitcoin Unlimited member John Swingle argues that \"hard forks\" should generally be preferred over \"soft forks\" because while the former increase user and market choice, the latter undermine user and market choice by increasing the coordination cost of resisting an unpopular or controversial change. Swingle further argues that in many cases, the added constraints of making a protocol change as a soft fork necessitate the introduction of additional and inherently-dangerous complexity." }
+            ],
+            "bu": [
+                { "body": "Bitcoin Unlimited's consensus layer is concerned with preserving the money property of Bitcoin. Using simple animations, Peter Rizun explains how a BU node deals with blocks that are potentially problematic to accept for technical (non-monetary) reasons." }
+            ]
+        },
+        "nonTechnical": {
+            "title": "Select Non-technical Works by Bitcoin Unlimited Members",
+            "articles": [
+                { "body": "Because Bitcoin has no center (it is decentralized), node operators must take matters into their own hands in order to create change. This article explains how Bitcoin Unlimited can be used as a tool to help create that change." },
+                { "body": "Bitcoin Unlimited does not constrain node operators or miners to one particular coordination scheme with regards to the block size limit; instead it is a tool that can be used to implement several different schemes. In this article, Bitcoin Unlimited member and ViaBTC Mining Pool CEO Haipo Yang proposes a way for miners to coordinate for the upcoming increase in the size of blocks." },
+                { "body": "Generally, a problem can rarely be solved unless it is properly recognized. Specifically, Bitcoin's centralized maximum block size is put into historical context and a decentralized solution is presented. This article introduces emergence, which is a fundamental aspect of nature giving rise to many levels of complexity. Further, its important and long-term applicability for determining the optimum block size limit in the Bitcoin network is shown."}
+            ]
+        },
+        "nolNet": {
+            "title": "No-limit Test Net",
+            "bodyPartOne": "Bitcoin Unlimited maintains a public test network called No-limit (NOL) to evaluate experimental new features and to measure network performance under much higher transactional throughput than is possible on mainnet. A guide, available ",
+            "bodyLink": "here",
+            "bodyPartTwo": ", explains how to mine on testnet with your computer, describes how to generate a large volume of test transactions, and includes other helpful information."
+        },
+        "buips": {
+            "title": "BUIPs (Bitcoin Unlimited Improvement Proposals)"
+        }
     },
     "donate": {
         "title": "Donate",
-        "intro": "Your support allows us to advance the Bitcoin Unlimited project, and to maintain Bitcoin as a free-market economy.",
-        "supportus": "Support us via Bitcoin",
-        "address": "To donate, scan the QR code on the left or copy and paste our Bitcoin address below."
+        "body": [
+            "Your support allows us to advance the Bitcoin Unlimited project, and to maintain Bitcoin as a free-market economy.",
+            "To donate, scan the QR code or use the Bitcoin address below."
+        ]
     },
-    "buip": {
-        "title": "Contribute an Improvement Proposal",
-        "proposals": "Bitcoin Unlimited Improvement Proposals"
+    "buips": {
+        "title": "BUIPs",
+        "subtitle": "Bitcoin Unlimited Improvement Proposal Archive and related documentation."
     },
-    "articles": {
-        "title": "Bitcoin Unlimited: Articles of Federation"
+    "about": {
+        "title": "About",
+        "subtitle": "",
+        "organization": {
+            "title": "The Bitcoin Unlimited Community Organization",
+            "body": []
+        },
+        "members": {
+            "title": "Members",
+            "body": []
+        },
+        "join": {
+            "title": "How to join",
+            "body": {
+                "text1": "To apply for membership, please introduce yourself in",
+                "link1": "this thread",
+                "text2": "and state that you wish to become a member. The decision to admit new members is made by a vote from existing members, so be sure to provide enough verifiable information about yourself and your vision for the future of Bitcoin that the membership can make an informed decision regarding your application."
+            }
+        },
+        "contact": {
+            "title": "Contact us",
+            "general": "For general inquiries, please contact us at",
+            "security": "To report a security issue, please contact us at",
+            "reach": "Join the discussion at",
+            "forum": "The Bitcoin Forum",
+            "reddit1": "Reddit /r/btc",
+            "reddit2": "Reddit /r/bitcoin_unlimited",
+            "slack": "Slack",
+            "irc": "#btc on IRC",
+            "issues": "Issues Tracker"
+        }
     },
     "faq": {
         "title": "Bitcoin Unlimited FAQ",
-        "subtitle": "All Your Questions Answered",
+        "subtitle": "All Your Questions Answered.",
+        "whatIsBu": {
+            "title": "What is Bitcoin Unlimited?"
+        },
+        "hardForksAndConsensus": {
+            "title": "Hard forks and Consensus"
+        },
+        "scaling": {
+            "title": "On-chain and Off-chain Scaling"
+        },
+        "attacksAndRisks": {
+            "title": "Attacks and Risks"
+        },
+        "whoIsBu": {
+            "title": "Who is Bitcoin Unlimited?"
+        },
+        "myths": {
+            "title": "Myths"
+        },
+        "contribute": {
+            "title": "How can I contribute to Bitcoin Unlimited?"
+        },
+
+        "users": {
+            "title": "For Users",
+            "questions": {
+                "q1": {
+                    "q": "How do I switch from my existing client to Bitcoin Unlimited?",
+                    "a": "It is simple as downloading Bitcoin Unlimited and copying over your DB directory, wallet.dat and bitcoin.conf to the new install location."
+                },
+                "q2": {
+                    "q": "Will Bitcoin Unlimited split the blockchain?",
+                    "a": "No, Bitcoin Unlimited will not split the block-chain."
+                },
+                "q3": {
+                    "q": "What is Bitcoin Unlimited doing exactly?",
+                    "a1": "Ensuring Bitcoin functions as a peer-to-peer electronic cash system. Read a detailed explanation",
+                    "a2": "here."
+                },
+                "q4": {
+                    "q": "Does Bitcoin Unlimited appeal to authority figures?",
+                    "a": "Bitcoin Unlimited has no authority figure to appeal to."
+                },
+                "q5": {
+                    "q": "Is an uncapped blocksize a radical and risky change?",
+                    "a": "No, the blocksize is not uncapped."
+                },
+                "q6": {
+                    "q": "Should I be worried about Bitcoin Unlimited?**",
+                    "a": "No, Bitcoin Unlimited is the 2nd most popular Bitcoin implementation."
+                },
+                "q7": {
+                    "q": "Is Bitcoin Unlimited, Bitcoin?",
+                    "a": "Yes, Bitcoin Unlimited follows the most-proof-of-work Bitcoin blockchain which has the most hash-power behind it."
+                },
+                "q8": {
+                    "q": "Does Bitcoin Unlimited completely remove the block-size?",
+                    "a": "No,  Bitcoin Unlimited allows users to manually configure their software."
+                },
+                "q9": {
+                    "q": "Does Bitcoin Unlimited want absolute control of Bitcoin?",
+                    "a": "No, Bitcoin Unlimited is a software implementation of Bitcoin."
+                },
+                "q10": {
+                    "q": "Is Bitcoin Unlimited trivially broken?",
+                    "a": "No, Bitcoin Unlimited has been operating on the Bitcoin network since 2015."
+                },
+                "q11": {
+                    "q": "Will Bitcoin Unlimited affect my Bitcoin wallet?",
+                    "a": "No, Bitcoin Unlimited does not affect your wallet."
+                },
+                "q12": {
+                    "q": "Is the Bitcoin blockchain immutable with Bitcoin Unlimited?",
+                    "a": "Yes, it is the Bitcoin blockchain."
+                },
+                "q13": {
+                    "q": "Is Bitcoin Unlimited better than Segwit?",
+                    "a": "Bitcoin Unlimited offers the Bitcoin full-node implementation, whereas Segwit is an addition to Bitcoin Core."
+                },
+                "q14": {
+                    "q": "Will Bitcoin Unlimited support Schnorr signatures?",
+                    "a": "Bitcoin Unlimited has R&D into Schnorrs, although has not yet introduced support for Schnorr signatures."
+                },
+                "q15": {
+                    "q": "Can Bitcoin safely scale with Bitcoin Unlimited?",
+                    "a": "Yes, Bitcoin Unlimited safely scales as it adheres to Nakamato consensus providing users with easy options to-do-so."
+                },
+                "q16": {
+                    "q": "Will Bitcoin Unlimited adopt Segwit?",
+                    "a": "No, Bitcoin Unlimited will not be adopting Segwit from Bitcoin Core."
+                },
+                "q17": {
+                    "q": "How does Bitcoin Unlimited keep the community informed?",
+                    "a": "Bitcoin Unlimited is built up of its users of whom keep the community informed."
+                },
+                "q18": {
+                    "q": "Is Bitcoin Unlimited a conspiracy?",
+                    "a": "No, Bitcoin Unlimited is not a conspiracy."
+                },
+                "q19": {
+                    "q": "Does Bitcoin Unlimited collude with individuals?",
+                    "a": "No, Bitcoin Unlimited does not collude with individuals."
+                },
+                "q20": {
+                    "q": "Does Bitcoin Unlimited have fake nodes?",
+                    "a": "It is impossible to have a fake-node."
+                },
+                "q21": {
+                    "q": "How does the Bitcoin Unlimited foundation feel about government regulation of Bitcoin?",
+                    "a": "Bitcoin Unlimited has no say in government regulation of Bitcoin."
+                },
+                "q22": {
+                    "q": "Does Bitcoin Unlimited enter into formal agreements with participants of the Bitcoin industry?",
+                    "a": "No, Bitcoin Unlimited does not enter into formal agreements with participants of the Bitcoin industry."
+                },
+                "q23": {
+                    "q": "Does Bitcoin Unlimited condemn censorship?",
+                    "a": "Yes, Bitcoin Unlimited condemns censorship."
+                },
+                "q24": {
+                    "q": "Why isn't Bitcoin Unlimited calling itself \"Bitcoin\"?",
+                    "a": "Bitcoin Unlimited is Bitcoin."
+                },
+                "q25": {
+                    "q": "Which users and businesses officially support Bitcoin Unlimited?",
+                    "a": "Many users and businesses officially support Bitcoin Unlimited including; bitcoin.com, viabtc.com and coinbase.com."
+                },
+                "q26": {
+                    "q": "Does Bitcoin Unlimited believe in free-market choice?",
+                    "a": "Yes, Bitcoin Unlimited believes in free-market choice."
+                },
+                "q27": {
+                    "q": "Why doesn't Bitcoin Unlimited move to another crypto-currency?",
+                    "a": "Bitcoin Unlimited is the Bitcoin block-chain."
+                },
+                "q28": {
+                    "q": "Does Bitcoin Unlimited support hardware wallets?",
+                    "a": "Yes, Bitcoin Unlimited supports hardware wallets."
+                },
+                "q29": {
+                    "q": "Does Bitcoin Unlimited make transactions harder to trace?",
+                    "a": "No, Bitcoin Unlimited does not make transactions harder to trace."
+                },
+                "q30": {
+                    "q": "Does Bitcoin Unlimited follow the longest chain of proof-of-work?",
+                    "a": "Yes, Bitcoin Unlimited follows the longest Bitcoin proof-of-work."
+                },
+                "q31": {
+                    "q": "Is Bitcoin Unlimited more than a simple block-size increase?",
+                    "a": "Bitcoin Unlimited offers many features including the controls to increase the block-size."
+                },
+                "q32": {
+                    "q": "Does Bitcoin Unlimited follow Nakamoto consensus?",
+                    "a": "Yes, Bitcoin Unlimited follows Nakamoto consensus."
+                },
+                "q33": {
+                    "q": "Does Bitcoin Unlimited scale the number of individuals?",
+                    "a": "Yes, Bitcoin Unlimited scales the number of individuals."
+                },
+                "q34": {
+                    "q": "Why is a formal Bitcoin Unlimited Articles of Federation necessary?",
+                    "a": "To ensure the user voice is voted and heard."
+                },
+                "q35": {
+                    "q": "Will an Unlimited block-size result in no fee market?",
+                    "a": "No, it will not, however, it will decrease fees to potentially sub-penny and improve confirmation times."
+                },
+                "q36": {
+                    "q": "Does Bitcoin Unlimited affect blockchain consensus?",
+                    "a": "No, Bitcoin Unlimited follows Nakamoto consensus."
+                },
+                "q37": {
+                    "q": "How do I update my current software to Bitcoin Unlimited using Ubuntu?",
+                    "a1": "Use the following commands with-out commas: bitcoin-cli stop, sudo apt remove bitcoind, sudo rm /etc/apt/sources.list.d/bitcoin-ubuntu-bitcoin*, sudo add-apt-repository ppa:bitcoin-unlimited/bu-ppa, sudo apt update, sudo apt install bitcoind, bitcoind -daemon",
+                    "a2": "Or you can use this 1 command recipe, copy/paste the following command: bitcoin-cli stop && sudo apt remove bitcoind && sudo rm /etc/apt/sources.list.d/bitcoin-ubuntu-bitcoin* && sudo add-apt-repository ppa:bitcoin-unlimited/bu-ppa && sudo apt update && sudo apt install bitcoind && bitcoind -daemon"
+                },
+                "q38": {
+                    "q": "How do I use Bitcoin Unlimited with Raspberry Pi?",
+                    "a1": "A good tutorial for Raspberry Pi is located",
+                    "a2": "here."
+                },
+                "q39": {
+                    "q": "Where is the Bitcoin Unlimited Testnet?",
+                    "a": "Bitcoin Unlimited has a dedicated test network which can be accessed using the -chain_nol option."
+                },
+            }
+        },
+        "nodes": {
+            "title": "For Node Operators",
+            "questions": {
+                 "q1": {
+                    "q": "Will nodes refuse blocks based on different configurations?",
+                    "a": "If it is a Bitcoin Unlimited node, no."
+                },
+                "q2": {
+                    "q": "What if I don't upgrade to Bitcoin Unlimited?",
+                    "a": "It is possible the implementation of Bitcoin you are using may experience down-time, contact your vendor."
+                },
+                "q3": {
+                    "q": "Will Bitcoin Unlimited implement Flexible Transactions?",
+                    "a": "Additions to Bitcoin Unlimited are by member-vote."
+                },
+                "q4": {
+                    "q": "Does Bitcoin Unlimited fix malleability?",
+                    "a": "Yes, Bitcoin Unlimited has R&D into FlexTrans from Bitcoin Classic, an implementation of Bitcoin."
+                },
+                "q5": {
+                    "q": "How much bandwidth has Bitcoin Unlimited's Xthin saved?",
+                    "a": "3TB globally."
+                },
+                "q6": {
+                    "q": "Does Bitcoin Unlimited have technical debt?",
+                    "a": "No, Bitcoin Unlimited does not have technical debt."
+                },
+            }
+        },
+        "miners": {
+            "title": "For Miners",
+            "questions": {
+                "q1": {
+                    "q": "Is mining Bitcoin Unlimited blocks be a waste of electricity?",
+                    "a": "No, each block is valued as any other Bitcoin Block."
+                },
+                "q2": {
+                    "q": "How much miner support does Bitcoin Unlimited require to hard-fork?",
+                    "a": "51% to 75% is a safe threshold."
+                },
+                "q3": {
+                    "q": "Will Bitcoin Unlimited ever change the proof-of-work?",
+                    "a": "No, the Bitcoin proof-of-work has been successfully working since 2009."
+                },
+                "q4": {
+                    "q": "Does Bitcoin Unlimited believe in soft-forks?",
+                    "a": "No, a soft-fork is a malicious fork."
+                },
+                "q5": {
+                    "q": "Is it possible there are additional bugs in Bitcoin Unlimited?",
+                    "a": "As with any software implementation, there is the possibility of additional bugs."
+                },
+                "q6": {
+                    "q": "How fast does Bitcoin Unlimited respond and deploy solutions for bugs?",
+                    "a": "With-in 1 to 3 hours."
+                },
+                "q7": {
+                    "q": "How many Bitcoin Unlimited developers work for different companies?",
+                    "a": "Several, Bitcoin Unlimited is a diverse group of users."
+                },
+                "q8": {
+                    "q": "How much code have Bitcoin Unlimited developers contributed?",
+                    "a": "Over 10,000 lines of code."
+                },
+                "q9": {
+                    "q": "Are Bitcoin Unlimited developers qualified and capable?",
+                    "a": "Yes, Bitcoin Unlimited developers are qualified and capable."
+                },
+                "q10": {
+                    "q": "Where does Bitcoin Unlimited obtain development talent from?",
+                    "a": "Anyone from the community is able to participate in Bitcoin development."
+                },
+                "q11": {
+                    "q": "Is the economic benefit of mining Bitcoin Unlimited good?",
+                    "a": "Yes, the economic benefit of mining Bitcoin Unlimited is good."
+                },
+                "q12": {
+                    "q": "Will Bitcoin Unlimited work as advertised?",
+                    "a": "Yes, Bitcoin Unlimited works as advertised."
+                }
+            }
+        },
+        "investors": {
+            "title": "For Investors",
+            "questions": {
+                "q1": {
+                    "q": "Is Bitcoin Unlimited a registered not-for-profit organization?",
+                    "a": "Yes, Bitcoin Unlimited is a registered not-for-profit organization."
+                },
+                "q2": {
+                    "q": "Is there a donation address for Bitcoin Unlimited?",
+                    "a": "Yes, you can send Bitcoin (BTC) donations to: 36XTMVtgJqqNYymsSvRonpUsbZRGkm1jvX"
+                },
+                "q3": {
+                    "q": "Where can I find Bitcoin Unlimited's financial statements?",
+                    "a": "Bitcoin Unlimited does not provide public financial statements."
+                },
+                "q4": {
+                    "q": "Has Bitcoin Unlimited issued a financial report?",
+                    "a1": "Yes, it is located",
+                    "a2": "here."
+                }
+            }
+        },
         "q1": "Will unlimited size blocks actually result in no fee market?",
         "a1a": "No. Intuitively you can understand this by realizing that it will take a lot longer to propagate a gigantic block across the network than a small one. Therefore a gigantic block has a higher likelihood of being \"orphaned\" -- that is, a competing block will be found, propagated across the network and supplant the gigantic block. In this case the miner of the gigantic block will lose the block subsidy and transaction fees. Therefore miners are incentivised by limitations in the underlying physical network to produce smaller blocks, and incentivized by transaction fees to produce larger ones.",
         "a1b": "Finding the balance between these forces is where the free market excels. As underlying physical networks improve or fees increase, miners will naturally be able to produce larger blocks. The transaction \"supply\" (space in a block) therefore depends directly on the fundamental capacity, rather than relying on some centralized \"steering committee\" to properly set maximum block size. Bitcoin is all about disintermediation, and this is another example of it working.",
@@ -216,5 +519,119 @@
         "a7e": "due to the fact that block production is a Poisson process. In this case, the mathematics show that one fork will periodically move far enough ahead of the other to trigger a convergence.",
         "a7f": "If the network is undergoing a period of block size instability, whether that be due to a struggle between two block-size-is-part-of-consensus clients like XT and Core or due to a struggle between miners of similar hash power, it may make sense for users to wait for additional confirmations or convergence to avoid double spends.",
         "a7g": "In Bitcoin Unlimited, we hope to eventually track ALL nontrivial forks and visually indicate when transactions have been confirmed on all forks, eliminating the possibility of a double spend.  This will allow users to use the bitcoin network normally during these periods.  However, since we do not believe that these periods will last long because they will cause a dramatic drop in miner revenue, it is not a priority."
+    },
+    "download": {
+        "title": "Download",
+        "subtitle": "The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core \"Satoshi\" client.",
+        "latest": {
+            "title": "Latest Release",
+            "download": "Download the latest release of Bitcoin Unlimited",
+            "version": "v1.0.1.4",
+            "date": "Apr 24, 2017",
+        },
+        "windows": "Windows",
+        "linux": "Linux",
+        "osx": "Mac OSX",
+        "ARM": "ARM",
+        "bit64": "64-bit",
+        "bit32": "32-bit",
+        "dmg": "dmg",
+        "exe": "exe",
+        "zip": "zip",
+        "tar": "tar",
+        "mirror": "mirror",
+        "view": "View the",
+        "source": "source code",
+        "notes": {
+            "title": "Release Notes",
+            "releasenotes_1_0_1_4": "1.0.1.4: Release notes are ",
+            "releasenotes_1_0_1_3": "1.0.1.3: Release notes: this release addresses minor and cosmetic issues reported when the 1.0.1.2 release patch came under full review.  Upgrading from 1.0.1.2 is optional, upgrading from 1.0.1.1 or earlier is essential.",
+            "releasenotes_1_0_1_2": "1.0.1.2: Release notes: this prior closed source-patch release is now available under the 1.0.1.2 tag. It addresses issues in the P2P network layer that allows an attacker to cause your client to exit.",
+            "releasenotes_1_0_1_0": "1.0.1.0: Release notes are ",
+            "releasenotes_1_0_0_0": "1.0.0.0: Release notes are ",
+            "here": "here"
+        },
+        "signatures": {
+            "title": "Signatures",
+            "signatures": "The signatures below attest that the individual named compiled Bitcoin Unlimited from Github source and produced the following files with the corresponding sha256 hashes.",
+            "helpOne": "To validate these signatures, use 'File->verify signatures' on any Satoshi Client.",
+            "helpTwo": "Paste the signer's address into the first field, the signature statement into the second field, and the signature into the third one.",
+            "helpThree": "Note: do not change the whitespace of the signature statement.",
+            "helpFour": "Finally run 'sha256sum' on your downloaded file to make sure it matches.",
+            "helpFive": "You can check that an address corresponds to a user on the users' profile page on the",
+            "forum": "bitco.in forum",
+            "statement": "Signed Statement",
+            "tip": "Do not add a final return character to the statement above when verifying the signature in the Bitcoin client.",
+            "andrew": "By: Andrew Stone (thezerg)",
+            "awemany": "By: awemany",
+            "sickpig": "By: Andrea Suisani (sickpig)",
+            "deadalnix": "By: Amaury SECHET (deadalnix)",
+            "thezerg": "",
+            "signature": "Signature"
+        },
+        "installation": {
+            "title": "Installation Notes",
+            "helpZero": "Once you downloaded the file that matches your system in the section above (e.g. 64 bit linux), open a terminal window then type:",
+            "helpOne": "If you're running an Ubuntu system you could use our official repository. It supports four archs - amd64, i386, arm and arm64 - and 3 Ubuntu versions - 14.04, 16.04 and 16.10. To install the binaries from the repository execute these commands from a console:",
+            "helpTwo": "If you want to compile from source just follow and execute these commands:"
+        },
+        "older": {
+            "title": "Older Releases"
+        }
+    },
+    "header": {
+        "download": {
+            "title": "Download",
+            "latest": "Latest Release",
+            "notes": "Release Notes",
+            "signatures": "Signatures",
+            "installation": "Installation Notes",
+            "older": "Older Releases"
+        },
+        "donate": "Donate",
+        "about": {
+            "title": "About",
+            "organization": "Organization",
+            "members": "Members",
+            "join": "How to join",
+            "contact": "Contact us"
+        },
+        "faq": {
+            "title": "FAQ",
+            "whatIsBu" : "What is Bitcoin Unlimited?",
+            "hardForksAndConsensus" : "Forks and Consensus",
+            "scaling" : "Scaling",
+            "attacksAndRisks" : "Attacks and Risks",
+            "whoIsBu" : "Who is Bitcoin Unlimited?",
+            "myths" : "Myths",
+            "contribute" : "Contribute"
+        },
+        "resources": {
+            "title": "Resources",
+            "technical": "Technical Works",
+            "nonTechnical": "Non-technical Works",
+            "nolNet": "No-limit Test Net",
+            "buips": "BUIPs"
+        },
+        "solutions": {
+            "title": "Solutions",
+            "users": "For Users",
+            "nodes": "For Node Operators",
+            "miners": "For Miners",
+            "investors": "For Investors"
+        },
+        "technologies": {
+            "title": "Technologies",
+            "adjustableCap": "Adjustable Block-size Cap",
+            "xthin": "Xthin",
+            "parallelValidation": "Parallel validation"
+        }
+    },
+    "footer": {
+        "copy": "MIT License. No Rights Reserved."
+    },
+    "notfound": {
+        "error": "Error 404: File Not Found",
+        "message": "The requested file could not be found."
     }
 }

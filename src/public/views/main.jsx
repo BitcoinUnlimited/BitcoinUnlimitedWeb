@@ -3,38 +3,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRoute } from 'react-router';
-import { createHistory } from 'history';
+import { browserHistory } from 'react-router'
 
 import Index from './pages/index.jsx';
-import Download from './pages/download.jsx';
-import Faq from './pages/faq.jsx';
-import Buip from './pages/buip.jsx';
-import Members from './pages/members.jsx';
+import Solutions from './pages/solutions.jsx';
+import Technologies from './pages/technologies.jsx';
+import About from './pages/about.jsx';
+import Donate from './pages/donate.jsx';
 import Resources from './pages/resources.jsx';
-import Articles from './pages/articles.jsx';
+import Faq from './pages/faq.jsx';
+import Download from './pages/download.jsx';
 import EmergentConsensusBU from './pages/emergent-consensus-bu.jsx';
 import EmergentConsensus from './pages/emergent-consensus.jsx';
 import NotFound from './pages/not-found.jsx';
-import Conferences from './pages/conferences.jsx';
-import Donate from './pages/donate.jsx';
-import ContactUs from './pages/contact-us.jsx';
 
 ReactDOM.render((
-    <Router history={createHistory()}>
+    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
         <Route path='/'>
             <IndexRoute component={Index} />
             <Route path='index' component={Index} />
-            <Route path='download' component={Download} />
-            <Route path='faq' component={Faq} />
-            <Route path='buip' component={Buip} />
-            <Route path='members' component={Members} />
-            <Route path='resources' component={Resources} />
-            <Route path='articles' component={Articles} />
-            <Route path='conferences' component={Conferences} />
+            <Route path="solutions(/:section)" component={Solutions} />
+            <Route path='technologies(/:section)' component={Technologies} />
+            <Route path='about(/:section)' component={About} />
             <Route path='donate' component={Donate} />
+            <Route path='resources(/:section)' component={Resources} />
+            <Route path='faq(/:section)' component={Faq} />
+            <Route path='download(/:section)' component={Download} />
             <Route path='emergent-consensusBU' component={EmergentConsensusBU} />
             <Route path='emergent-consensus' component={EmergentConsensus} />
-            <Route path='contact-us' component={ContactUs} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>

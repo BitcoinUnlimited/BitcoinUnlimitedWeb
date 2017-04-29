@@ -4,115 +4,58 @@ import React from 'react';
 import { Link } from 'react-router';
 import { strings } from '../lib/i18n';
 
-export default React.createClass({
-
-    render: function () {
+class Footer extends React.Component {
+    render() {
         return (
-            <div className="footer">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-footer col-md-3 col-xs-6">
-                            <h3>{strings().footer.latest}</h3>
-                            <div>
-                                <div className="portfolio-image">
-                                    <ul className="no-list-style footer-navigate-section">
-                                        <li>
-                                            <Link to='/articles'>{strings().footer.articles}</Link>
-                                        </li>
-                                        <li>
-                                            <a href="/resources/feemarket.pdf">{strings().footer.fee}</a>
-                                        </li>
-                                        <li>
-                                            <a href="/resources/subchains.pdf">{strings().footer.subchains}</a>
-                                        </li>
-                                        <li>
-                                            <a href="/resources/1txn.pdf">{strings().footer.analysis}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+            <div>
+                <div className='banner'></div>
+                <div className='footer__container white'>
+                    <div className="px2 pb1 center">
+                        <div className='left-align align-top inline-block footer__section'>
+                            <h4><Link className='white text-decoration-none' to='/solutions'>{strings().header.solutions.title}</Link></h4>
+                            <Link className='block py1 link dim' to='/solutions/users'>{strings().header.solutions.users}</Link>
+                            <Link className='block py1 link dim' to='/solutions/nodes'>{strings().header.solutions.nodes}</Link>
+                            <Link className='block py1 link dim' to='/solutions/miners'>{strings().header.solutions.miners}</Link>
+                            <Link className='block py1 link dim' to='/solutions/investors'>{strings().header.solutions.investors}</Link>
                         </div>
-                        <div className="col-footer col-md-3 col-xs-6">
-                            <h3>{strings().footer.navigate}</h3>
-                            <ul className="no-list-style footer-navigate-section">
-                                <li>
-                                    <Link to='/'>{strings().footer.home}</Link>
-                                </li>
-                                <li>
-                                    <Link to='/download'>{strings().footer.download}</Link>
-                                </li>
-                                <li>
-                                    <Link to='/faq'>{strings().footer.faq}</Link>
-                                </li>
-                                <li>
-                                    <Link to='/donate'>{strings().footer.donate}</Link>
-                                </li>
-                                <li>
-                                    <Link to='/buip'>{strings().footer.proposals}</Link>
-                                </li>
-                                <li>
-                                    <Link to='/members'>{strings().footer.members}</Link>
-                                </li>
-                                <li>
-                                    <Link to='/resources'>{strings().footer.resources}</Link>
-                                </li>
-                                <li>
-                                    <Link to='/conferences'>{strings().footer.conferences}</Link>
-                                </li>
-                                <li>
-                                    <Link to='/contact-us'>{strings().footer.contactus}</Link>
-                                </li>
-                            </ul>
+
+                        <div className='left-align align-top inline-block footer__section'>
+                            <h4><Link className='white text-decoration-none' to='/technologies'>{strings().header.technologies.title}</Link></h4>
+                            <Link className='block py1 link dim' to='/technologies/adjustable-block-size-cap'>{strings().header.technologies.adjustableCap}</Link>
+                            <Link className='block py1 link dim' to='/technologies/xthin'>{strings().header.technologies.xthin}</Link>
+                            <Link className='block py1 link dim' to='/technologies/parallel-validation'>{strings().header.technologies.parallelValidation}</Link>
                         </div>
-                        <div className="col-footer col-md-4 col-xs-6">
-                            <h3>{strings().footer.join}</h3>
-                            <p className="contact-us-details">
-                                <li>
-                                    <a href="https://www.bitco.in/forum">{strings().footer.forum}</a>
-                                </li>
-                                <li>
-                                    <a href="https://reddit.com/r/btc">{strings().footer.reddit1}</a>
-                                </li>
-                                <li>
-                                    <a href="https://reddit.com/r/bitcoin_unlimited">{strings().footer.reddit2}</a>
-                                </li>
-                                <li>
-                                    <a href="mailto:trevinhofmann@gmail.com?subject=Bitcoin%20Unlimited%20Slack%20Invite&body=Hi%21%0D%0A%0D%0ACould%20you%20please%20invite%20me%20to%20the%20Bitcoin%20Unlimited%20Slack%20group%3F%20My%20email%20address%20is%20%5BINSERT%20EMAIL%20ADDRESS%20HERE%5D.%0D%0A%0D%0AThank%20you%21">{strings().footer.slack}</a>
-                                </li>
-                                <li>
-                                    <a href="https://webchat.freenode.net/?channels=#btc">{strings().footer.irc}</a>
-                                </li>
-                                <li>
-                                    <a href="mail:security@bitcoinunlimited.info">Report Security Issue</a>
-                                </li>
-                            </p>
+
+                        <div className='left-align align-top inline-block footer__section'>
+                            <h4><Link className='white text-decoration-none' to='/resources'>{strings().header.resources.title}</Link></h4>
+                            <Link className='block py1 link dim' to='/resources/technical'>{strings().header.resources.technical}</Link>
+                            <Link className='block py1 link dim' to='/resources/non-technical'>{strings().header.resources.nonTechnical}</Link>
+                            <Link className='block py1 link dim' to='/resources/nolnet'>{strings().header.resources.nolNet}</Link>
+                            <Link className='block py1 link dim' to='/resources/buips'>{strings().header.resources.buips}</Link>
                         </div>
-                        <div className="col-footer col-md-2 col-xs-6">
-                            <h3>{strings().footer.news}</h3>
-                            <ul className="no-list-style footer-navigate-section">
-                                <li>
-                                    <a href="http://gavinandresen.ninja/time-to-roll-out-bigger-blocks">{strings().footer.time}</a>
-                                </li>
-                                <li>
-                                    <a href="https://medium.com/faith-and-future/why-is-bitcoin-forking-d647312d22c1">{strings().footer.why}</a>
-                                </li>
-                                <li>
-                                    <a href="https://medium.com/@octskyward/on-consensus-and-forks-c6a050c792e7#.s7d93q1a9">{strings().footer.consensus}</a>
-                                </li>
-                                <li>
-                                    <a href="http://gavinandresen.ninja/designing-for-success">{strings().footer.designing}</a>
-                                </li>
-                            </ul>
+
+                        <div className='left-align align-top inline-block footer__section'>
+                            <h4><Link className='white text-decoration-none' to='/about'>{strings().header.about.title}</Link></h4>
+                            <Link className='block py1 link dim' to='/about/organization'>{strings().header.about.organization}</Link>
+                            <Link className='block py1 link dim' to='/about/members'>{strings().header.about.members}</Link>
+                            <Link className='block py1 link dim' to='/about/join'>{strings().header.about.join}</Link>
+                            <Link className='block py1 link dim' to='/about/contact'>{strings().header.about.contact}</Link>
+                        </div>
+
+                        <div className='left-align align-top inline-block footer__section'>
+                            <h4><Link className='white text-decoration-none' to='/faq'>{strings().header.faq.title}</Link></h4>
+                            <h4><Link className='white text-decoration-none' to='/download'>{strings().header.download.title}</Link></h4>
+                            <h4><Link className='white text-decoration-none' to='/donate'>{strings().header.donate}</Link></h4>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="footer-copyright">&copy; {strings().footer.copy}</div>
-                        </div>
+                    <div className="py3 center">
+                        <div>&copy; {strings().footer.copy}</div>
                     </div>
                 </div>
             </div>
         );
     }
 
-});
+};
+
+export default Footer;

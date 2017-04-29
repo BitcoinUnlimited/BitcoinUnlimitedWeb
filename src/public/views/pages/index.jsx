@@ -4,26 +4,24 @@ import React from 'react';
 
 import Header from '../header.jsx';
 import Footer from '../footer.jsx';
-import Slider from '../components/index/slider.jsx';
-import Quotes from '../components/index/quotes.jsx';
-import Services from '../components/index/services.jsx';
-import CallToAction from '../components/index/call-to-action.jsx';
-import Description from '../components/index/description.jsx';
+import Hero from '../components/index/hero.jsx';
+import Solutions from '../components/index/solutions.jsx';
+import Divider from '../components/index/divider.jsx';
+import Technologies from '../components/index/technologies.jsx';
 
-export default React.createClass({
-
-    render: function() {
+class Index extends React.Component {
+    render() {
         return (
             <div id="index">
                 <Header active='index' />
-                <Slider />
-                <Quotes />
-                <Services />
-                <CallToAction />
-                <Description />
+                <Hero />
+                <Solutions />
+                <Divider />
+                <Technologies />
                 <Footer />
             </div>
         );
     }
+};
 
-});
+export default Index
