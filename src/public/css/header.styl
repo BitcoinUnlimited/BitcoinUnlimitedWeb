@@ -6,17 +6,6 @@
 .header--mobile
   display: none;
 
-@media (max-width: 1050px)
-  .font-thin
-    font-weight: normal
-
-  .header--web
-    display: none;
-
-  .header--mobile
-    display: block;
-
-
 .header__container
     height: 110px
     font-size: 16px
@@ -32,8 +21,7 @@
     height: 50px
 
 .header__logo--mobile
-    height: 50px
-    padding: 30px 40px
+    display: none
 
 .header__link
     text-decoration: none
@@ -75,3 +63,25 @@
     -moz-transition: color .15s ease-in
     -o-transition: color .15s ease-in
     -ms-transition: color .15s ease-in
+
+@media (max-width: 1050px)
+    .font-thin
+        font-weight: normal
+
+    .header--web
+        display: none;
+
+    .header--mobile
+        display: block;
+
+    .header__logo
+        padding: 30px 40px
+
+@media (max-width: 400px)
+    .header__logo
+        display: none
+
+    .header__logo--mobile
+        display: block
+        height: 50px
+        padding: 30px 40px
