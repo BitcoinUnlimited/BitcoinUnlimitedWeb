@@ -14,7 +14,8 @@ class MobileHeader extends React.Component {
         return (
             <div className='header--mobile header__container clearfix'>
                 <div className="left">
-                    <Link to='/'><img src='/img/bitcoin-unlimited.png' className='header__logo--mobile'/></Link>
+                    <Link to='/'><img src='/img/bitcoin-unlimited.png' className='header__logo'/></Link>
+                    <Link to='/'><img src='/img/bitcoin-unlimited-alt.jpg' className='header__logo--mobile'/></Link>
                 </div>
                 <div className="right">
                     <Menu className='center' isOpen={false} right>
