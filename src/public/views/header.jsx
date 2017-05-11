@@ -4,6 +4,7 @@ import React from 'react';
 import WebHeader from './components/header/webHeader.jsx'
 import MobileHeader from './components/header/mobileHeader.jsx'
 import SecurityBanner from './components/header/securityBanner.jsx'
+import AnnounceBanner from './components/header/announceBanner.jsx'
 
 class Header extends React.Component {
     renderSecurityMessage() {
@@ -20,6 +21,15 @@ class Header extends React.Component {
         //)
     }
 
+    renderAnnounceMessage() {
+        return
+        //return (
+        //     <div className='inline-block'>
+        //       <p> BU x.y.z. has been just released, plese fetch it from the download section</p>
+        //     </div>
+        //)
+    }
+
     render() {
         return (
             <div>
@@ -27,6 +37,7 @@ class Header extends React.Component {
                 <MobileHeader />
                 <div className='banner'></div>
                 <SecurityBanner message={ this.renderSecurityMessage() }/>
+                <AnnounceBanner message={ this.renderAnnounceMessage() }/>
             </div>
         );
     }
