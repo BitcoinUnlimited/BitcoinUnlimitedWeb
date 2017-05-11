@@ -22,12 +22,12 @@ class Header extends React.Component {
     }
 
     renderAnnounceMessage() {
-        return
-        //return (
-        //     <div className='inline-block'>
-        //       <p> BU x.y.z. has been just released, plese fetch it from the download section</p>
-        //     </div>
-        //)
+        //return
+        return (
+             <div className='inline-block'>
+               <p> BU 1.0.2.0 has been released, please update your node as soon as possible. </p>
+             </div>
+        )
     }
 
     render() {
