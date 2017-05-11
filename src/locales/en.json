@@ -613,7 +613,8 @@
             "technical": "Technical Works",
             "nonTechnical": "Non-technical Works",
             "nolNet": "No-limit Test Net",
-            "buips": "BUIPs"
+            "buips": "BUIPs",
+            "buvweb" : "BU Voting"
         },
         "solutions": {
             "title": "Solutions",
