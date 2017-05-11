@@ -52,7 +52,10 @@ class SignaturesLatest extends React.Component {
                     {strings().download.signatures.signature}:<br />H6OWVn853bkc1LQbLbvFCaphlWSz6wFNVu+zicQz+ACKWYHRhzrORMqyrEGR1DEPT9IFccIj4cASQB9kCHvG2E0=
                     <br/><br/>
                     {strings().download.signatures.deadalnix} (1KEaWZ7tpLF4n5xFf5bpTPff7G7uJZiDGw)<br/>
-                    {strings().download.signatures.signature}:<br />TBD
+                    {strings().download.signatures.signature}:<br />H9ZTrM1/oF/XLaasgze/Na4Xf2Aw/3stAnobbJClUS9RdJ0llGy9f6TdQ5EddDwEGLgVSHrNsa72h3u7zuO0o7g=
+                    <br/><br/>
+                    {strings().download.signatures.freetrader} (1Libre7MGkCXr7pUAEbwihCR9X4quYAyQ4)<br/>
+                    {strings().download.signatures.signature}:<br />G8CWW88hb328xmbJUh7Eq763/XdU+oARx8zIzVHoaxYZDvRLGf/N8PUxZ7TjORAIUaiz3zTxjuekyrUJ4YIJglY=
                     <br/>
                 </div>
             </div>
