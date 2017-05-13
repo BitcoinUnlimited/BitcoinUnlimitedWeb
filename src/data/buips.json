@@ -393,10 +393,42 @@
     },
     {
         "number": "BUIP051",
+        "title": "Add CompactBlocks support",
+        "proposer": "freetrader",
+        "submitted": "2017-04-13",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/051.mediawiki"
+    },
+    {
+        "number": "BUIP052",
         "title": "Set up dedicated Continuous Integration",
         "proposer": "freetrader",
         "submitted": "2017-04-15",
         "status": "draft",
-        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/051.mediawiki"
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/052.mediawiki"
+    },
+    {
+        "number": "BUIP053",
+        "title": "Tweakable client DoS responses",
+        "proposer": "freetrader",
+        "submitted": "2017-05-01",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/053.mediawiki"
+    },
+    {
+        "number": "BUIP054",
+        "title": "Make AD optional and disabled by default",
+        "proposer": "freetrader",
+        "submitted": "2017-05-05",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/054.mediawiki"
+    },
+    {
+        "number": "BUIP055",
+        "title": "Increase the Block Size Limit at a Fixed Block Height",
+        "proposer": "Peter Rizun",
+        "submitted": "2017-05-10",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/055.mediawiki"
     },
 ]
