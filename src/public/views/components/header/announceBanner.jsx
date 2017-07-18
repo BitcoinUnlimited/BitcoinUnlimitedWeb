@@ -12,7 +12,7 @@ class AnnounceBanner extends React.Component {
         } else {
             return (
                 <div className='alert__banner p3 center'>
-                    <div className='section__container left-align'>
+                    <div className='section__container center'>
                         <div className='inline bold underline'>Announcement:</div>
                         &nbsp;
                         {this.props.message}

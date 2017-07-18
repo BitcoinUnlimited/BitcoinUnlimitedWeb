@@ -12,7 +12,7 @@ class SecurityBanner extends React.Component {
         } else {
             return (
                 <div className='alert__banner p3 center'>
-                    <div className='section__container left-align'>
+                    <div className='section__container center'>
                         <div className='inline bold underline'>Security alert:</div>
                         &nbsp;
                         {this.props.message}
