@@ -4,11 +4,11 @@ import React from 'react';
 import { strings } from '../../../lib/i18n';
 
 import Release from './release.jsx'
-import SignaturesLatest from './signatures_1-0-2-0.jsx'
+import SignaturesLatest from './signatures_1-0-3-0.jsx'
 
 class OfficialRelease extends React.Component {
     render() {
-        var latestVersion = "1.0.2.0";
+        var latestVersion = "1.0.3.0";
         return (
             <div className='lh-copy py1'>
                 <p>{ strings().download.latest.download } ({latestVersion}, {strings().download.latest.date}):</p>
