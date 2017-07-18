@@ -11,7 +11,7 @@ class OfficialRelease extends React.Component {
         var latestVersion = "1.0.3.0";
         return (
             <div className='lh-copy py1'>
-                <p>{ strings().download.latest.download } ({latestVersion}, {strings().download.latest.date}):</p>
+                <p>{ strings().download.latest.download } ({latestVersion}, {strings().download.latest.date})<br /> <i>({ strings().download.latest.notes }</i>):</p>
 
                 <Release
                     osx64={'/downloads/bitcoinUnlimited-' + latestVersion + '-osx64.tar.gz'}

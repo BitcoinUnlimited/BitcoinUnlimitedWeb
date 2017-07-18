@@ -525,9 +525,10 @@
         "subtitle": "The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core \"Satoshi\" client.",
         "latest": {
             "title": "Latest Release",
-            "download": "Download the latest release of Bitcoin Unlimited",
+            "download": "Download the latest standard release of Bitcoin Unlimited",
             "version": "v1.0.3.0",
             "date": "July 18, 2017",
+	    "notes": "this is a standard release, a new one that will implement UAHF/BUIP055 specification will be provided in the next few days",
         },
         "windows": "Windows",
         "linux": "Linux",

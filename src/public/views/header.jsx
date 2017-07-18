@@ -25,7 +25,7 @@ class Header extends React.Component {
         //return
         return (
              <div className='inline-block'>
-               <p> BU 1.0.3 has been just released, plese fetch it from the download section</p>
+               <p> BU standard version 1.0.3 has just been released, please fetch it from the download section</p>
              </div>
         )
     }
