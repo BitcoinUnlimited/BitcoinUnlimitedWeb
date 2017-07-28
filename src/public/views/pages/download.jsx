@@ -4,8 +4,8 @@ import React from 'react';
 import { strings } from '../../lib/i18n';
 
 import OfficialRelease from '../components/download/official-release.jsx';
+import BitcoinCashRelease from '../components/download/bitcoincash-release.jsx';
 import InstallInstructions from '../components/download/install-instructions.jsx';
-import Signatures1011 from '../components/download/signatures_1-0-1-1.jsx';
 import ReleaseNotes from '../components/download/releaseNotes.jsx';
 import OlderReleases from '../components/download/olderReleases.jsx';
 
@@ -29,6 +29,11 @@ class Download extends React.Component {
                 title={ strings().download.title }
                 subtitle={ strings().download.subtitle }>
 
+                <Section
+                    key='bitcoincash'
+                    expanded={ this.state.selectedSection === 'bitcoincash'}
+                    title={ strings().download.bitcoincash.title }
+                    body={ <BitcoinCashRelease /> } />
                 <Section
                     key='latest'
                     expanded={ this.state.selectedSection === 'latest'}
