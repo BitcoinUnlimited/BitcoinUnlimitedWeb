@@ -39,7 +39,7 @@ class SignaturesBitcoinCash extends React.Component {
                 </div>
 
                 <br />
-                    1.0.3.0 {strings().download.signatures.statement}:<br /><br />
+                    {strings().download.signatures.statement}:<br /><br />
                     <pre>{CHECKSUMS}</pre>
                     <br />
                     {strings().download.signatures.tip}
@@ -49,10 +49,10 @@ class SignaturesBitcoinCash extends React.Component {
                     {strings().download.signatures.signature}:<br />HIkrIDsmHW+sor8PRDTUYBwMCdqR0zGtcoiDDuoVY5GaK91PzuXQ2+jxUlzEabP5vo1I3yDj6B/fEGraPkrkTMY=
                     <br/><br/>
                     {strings().download.signatures.sickpig} (1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)<br/>
-                    {strings().download.signatures.signature}:<br />TBD
+                    {strings().download.signatures.signature}:<br />H7VQRhvSd35P44VZqH2jMPtjIfv0snYu7R8j776WikAbOToBXuwUffGo5wYkV70cBhOLjsrYHAa5HQWW9HtKxjQ=
                     <br/><br/>
                     {strings().download.signatures.freetrader} (1Libre7MGkCXr7pUAEbwihCR9X4quYAyQ4)<br/>
-                    {strings().download.signatures.signature}:<br />TBD
+                    {strings().download.signatures.signature}:<br />G7DagaNVPmR3Pxf/cYPGu6uBPsczg6MM7dTTyEh18qKu0xbnxVhR3sT4JteWGvsZnuXjTGW0BhTLYiIDJRoftAI= <a href="https://ftrader.github.io/posts/bitcoin_unlimited/20170728-bitcoin-unlimited-0001-1.html">(note)</a>
                     <br/>
                 </div>
             </div>

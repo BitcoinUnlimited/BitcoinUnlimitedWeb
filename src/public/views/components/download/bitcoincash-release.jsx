@@ -12,6 +12,8 @@ class BitcoinCashRelease extends React.Component {
         return (
             <div className='lh-copy py1'>
                 <p>{ strings().download.bitcoincash.download } ({latestVersion}, {strings().download.bitcoincash.date})<br /> <i>({ strings().download.bitcoincash.notes }</i>):</p>
+                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/BitcoinCash/doc/release-notes/release-notes-bucash1.1.0.0.md">Release Notes</a></p>
+                <p><strong>NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that is happening on Aug 1,2017!  If you are new to Bitcoin or do not understand the prior sentence, you do not want this release.  Instead choose the "Latest Official Release" (see below).</strong></p>
 
                 <Release
                     osx64={'/downloads/BUcash-' + latestVersion + '-osx64.tar.gz'}
