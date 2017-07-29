@@ -528,7 +528,7 @@
             "download": "Download the latest standard release of Bitcoin Unlimited",
             "version": "v1.0.3.0",
             "date": "July 18, 2017",
-            "notes": "this is a standard release, a new one that will implement the UAHF/BUIP055 specification (Bitcoin Cash) will be provided in the next few days",
+            "notes": "This is a standard release. If you are new to Bitcoin this is most likely the release you want. If you want BUCash (Bitcoin Cash), which implements the UAHF/BUIP055 specification, look further up on this page.",
         },
         "bitcoincash": {
             "title": "Bitcoin Cash Release",
