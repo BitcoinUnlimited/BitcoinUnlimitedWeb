@@ -33,19 +33,19 @@ class Header extends React.Component {
     }
 
     renderAlertMessage() {
-        //return
-        return (
-             <div className='inline-block'>
-               <p>
-                  <a title="Bitcoin Network upgrade explained, click to read Peter Rizun's medium article"
-                      href="https://medium.com/@peter_r/bitcoin-network-upgrade-at-block-494-784-f5ca19829529"
-                      target="_blank" className="link--underline white bold">
-                    Bitcoin network upgrade to 2MB max block size at block 494,784
-                  </a>
-                </p>
+        return
+        //return (
+        //     <div className='inline-block'>
+        //       <p>
+        //          <a title="Bitcoin Network upgrade explained, click to read Peter Rizun's medium article"
+        //              href="https://medium.com/@peter_r/bitcoin-network-upgrade-at-block-494-784-f5ca19829529"
+        //              target="_blank" className="link--underline white bold">
+        //            Bitcoin network upgrade to 2MB max block size at block 494,784
+        //          </a>
+        //        </p>
 
-             </div>
-        )
+        //     </div>
+        //)
     }
 
     render() {
