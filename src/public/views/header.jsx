@@ -23,13 +23,15 @@ class Header extends React.Component {
     }
 
     renderAnnounceMessage() {
-        return
-        //return (
-        //     <div className='inline-block'>
-        //       <p> BU Bitcoin Cash Edition version 1.1.1.1 has been released, please fetch it from the download section</p>
-        //       <p> BU standard version 1.0.3 has been released, please fetch it from the download section</p>
-        //     </div>
-        //)
+        return (
+             <div className='inline-block'>
+               <p>
+                  <a title="Download BUCash 1.1.2.0" href="https://www.bitcoinunlimited.info/download" className="link--underline white bold">
+                    BU Bitcoin Cash (BCH) release 1.1.2.0 available
+                  </a>
+               </p>
+             </div>
+        )
     }
 
     renderAlertMessage() {
