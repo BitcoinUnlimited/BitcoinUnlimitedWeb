@@ -524,19 +524,19 @@
         "title": "Download",
         "subtitle": "The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core \"Satoshi\" client.",
         "latest": {
-            "title": "Latest Official Release",
+            "title": "Official Bitcoin (BTC) Release",
             "download": "Download the latest standard release of Bitcoin Unlimited",
             "version": "v1.0.3.0",
             "date": "July 18, 2017",
-            "notes": "This is a standard release. If you are new to Bitcoin this is most likely the release you want. If you want BUCash (Bitcoin Cash), which implements the UAHF/BUIP055 specification, look further up on this page.",
+            "notes": "This is a release for the original Bitcoin blockchain. If you are new to Bitcoin this is most likely the release you want. If you want BUCash (Bitcoin Cash), which implements the UAHF/BUIP055 specification, look further up on this page.",
         },
         "bitcoincash": {
-            "title": "Bitcoin Cash Release",
+            "title": "Official Bitcoin Cash (BCH) Release",
             "download": "Download the latest Bitcoin Cash compatible release of Bitcoin Unlimited",
-            "version": "v1.1.1.1",
-            "date": "Sep 4, 2017",
-            "notes": "This release implements the UAHF/BUIP055 specification, also called Bitcoin Cash.  This release is being offered by the Bitcoin Unlimited Developer 'unofficially' until the BU community has the opportunity to vote on whether Bitcoin Cash should be officially supported.",
-            "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  If you are new to Bitcoin or do not understand the prior sentence, you do not want this release.  Instead choose the \"Latest Official Release\" (see below)."
+            "version": "v1.1.2.0",
+            "date": "Nov 10, 2017",
+            "notes": "This release implements Bitcoin Cash, compliant with the latest hard fork (Nov 13, 2017).",
+            "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  Bitcoin Cash is a better bitcoin, delivering onchain scalability that will result in low transaction fees."
         },
         "windows": "Windows",
         "linux": "Linux",
@@ -553,6 +553,7 @@
         "source": "source code",
         "notes": {
             "title": "Release Notes",
+            "releasenotes_buc_1_1_2_0": "BUcash 1.1.2.0: Release notes are ",
             "releasenotes_buc_1_1_1_1": "BUcash 1.1.1.1: Release notes are ",
             "releasenotes_buc_1_1_1_0": "BUcash 1.1.1.0: Release notes are ",
             "releasenotes_buc_1_1_0_0": "BUCash 1.1.0.0: Release notes are ",
