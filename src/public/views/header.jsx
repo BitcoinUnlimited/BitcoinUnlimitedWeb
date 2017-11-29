@@ -26,8 +26,8 @@ class Header extends React.Component {
         return (
              <div className='inline-block'>
                <p>
-                  <a title="Download BUCash 1.1.2.0" href="https://www.bitcoinunlimited.info/download" className="link--underline white bold">
-                    BU Bitcoin Cash (BCH) release 1.1.2.0 available
+                  <a title="Bitcoin Cash Development Plan" href="/cash-development-plan" className="link--underline white bold">
+                    Read the Bitcoin Cash Develoment and Testing Plan
                   </a>
                </p>
              </div>
