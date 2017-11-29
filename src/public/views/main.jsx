@@ -15,6 +15,7 @@ import Faq from './pages/faq.jsx';
 import Download from './pages/download.jsx';
 import EmergentConsensusBU from './pages/emergent-consensus-bu.jsx';
 import EmergentConsensus from './pages/emergent-consensus.jsx';
+import DevelopTestingAccord from './pages/develop-testing-accord.jsx';
 import NotFound from './pages/not-found.jsx';
 
 ReactDOM.render((
@@ -31,6 +32,7 @@ ReactDOM.render((
             <Route path='download(/:section)' component={Download} />
             <Route path='emergent-consensusBU' component={EmergentConsensusBU} />
             <Route path='emergent-consensus' component={EmergentConsensus} />
+            <Route path='cash-development-plan' component={DevelopTestingAccord} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>
