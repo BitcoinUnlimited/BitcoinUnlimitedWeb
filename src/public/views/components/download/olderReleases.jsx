@@ -227,7 +227,7 @@ class OfficialRelease extends React.Component {
         return (
             <div className="pt2">
                 <Section
-                    title='BUcash-1.1.0.0'
+                    title='BUcash-1.1.1.0'
                     body={ this.renderVBUcash1110Body() }
                     expanded={ false } />
 
