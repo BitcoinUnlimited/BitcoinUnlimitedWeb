@@ -533,10 +533,10 @@
         "bitcoincash": {
             "title": "Official Bitcoin Cash (BCH) Release",
             "download": "Download the latest Bitcoin Cash compatible release of Bitcoin Unlimited",
-            "version": "v1.1.2.0",
-            "date": "Nov 10, 2017",
-            "notes": "This release implements Bitcoin Cash, compliant with the latest hard fork (Nov 13, 2017).",
-            "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  Bitcoin Cash is a better bitcoin, delivering onchain scalability that will result in low transaction fees."
+            "version": "v1.2.0.0",
+            "date": "Jan 7, 2017",
+            "notes": "This release implements Bitcoin Cash, compliant with the latest hard fork (Nov 13, 2017) and adding CashAddr and Bitpay address format support.",
+            "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  Bitcoin Cash is a better bitcoin, delivering onchain scalability that has resulted in penny transaction fees and fast confirmations."
         },
         "windows": "Windows",
         "linux": "Linux",
@@ -553,6 +553,7 @@
         "source": "source code",
         "notes": {
             "title": "Release Notes",
+            "releasenotes_buc_1_2_0_0": "BUcash 1.2.0.0: Release notes are ",
             "releasenotes_buc_1_1_2_0": "BUcash 1.1.2.0: Release notes are ",
             "releasenotes_buc_1_1_1_1": "BUcash 1.1.1.1: Release notes are ",
             "releasenotes_buc_1_1_1_0": "BUcash 1.1.1.0: Release notes are ",
