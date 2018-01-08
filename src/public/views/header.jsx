@@ -5,6 +5,7 @@ import WebHeader from './components/header/webHeader.jsx'
 import MobileHeader from './components/header/mobileHeader.jsx'
 import SecurityBanner from './components/header/securityBanner.jsx'
 import AnnounceBanner from './components/header/announceBanner.jsx'
+import AlertBanner from './components/header/alertBanner.jsx'
 
 class Header extends React.Component {
     renderSecurityMessage() {
@@ -22,12 +23,31 @@ class Header extends React.Component {
     }
 
     renderAnnounceMessage() {
-        //return
         return (
              <div className='inline-block'>
-               <p> BU standard version 1.0.3 has just been released, please fetch it from the download section</p>
+               <p>
+                  <a title="Download BUCash 1.2.0.0" href="/download" className="link--underline white bold">
+                    BU Bitcoin Cash (BCH) release 1.2.0.0 available
+                  </a>
+               </p>
              </div>
         )
+    }
+
+    renderAlertMessage() {
+        return
+        //return (
+        //     <div className='inline-block'>
+        //       <p>
+        //          <a title="Bitcoin Network upgrade explained, click to read Peter Rizun's medium article"
+        //              href="https://medium.com/@peter_r/bitcoin-network-upgrade-at-block-494-784-f5ca19829529"
+        //              target="_blank" className="link--underline white bold">
+        //            Bitcoin network upgrade to 2MB max block size at block 494,784
+        //          </a>
+        //        </p>
+
+        //     </div>
+        //)
     }
 
     render() {
@@ -38,6 +58,7 @@ class Header extends React.Component {
                 <div className='banner'></div>
                 <SecurityBanner message={ this.renderSecurityMessage() }/>
                 <AnnounceBanner message={ this.renderAnnounceMessage() }/>
+                <AlertBanner message={ this.renderAlertMessage() }/>
             </div>
         );
     }

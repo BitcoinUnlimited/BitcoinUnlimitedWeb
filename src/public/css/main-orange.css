@@ -9,13 +9,13 @@ blockquote p {
   font-size: 0.9em;
   font-style:italic;
   margin-bottom: 20px;
-line-height: 1.5;
-text-align: justify;}
+  line-height: 1.5;
+  text-align: justify;
+}
 
 .papers {color: black;}
 
 .papers p{color: black; text-align: justify;}
-
 
 .section {
   padding: 30px 0;
@@ -70,6 +70,7 @@ ul.no-list-style {
 ul.no-list-style li {
   line-height: 28px;
 }
+
 div[class*="span"] {
   -webkit-transition: all .4s linear;
   -moz-transition: all .4s linear;

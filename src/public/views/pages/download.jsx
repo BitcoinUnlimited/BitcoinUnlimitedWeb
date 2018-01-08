@@ -15,11 +15,11 @@ import Section from '../components/section.jsx';
 class Download extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selectedSection: this.props.params.section || 'latest' };
+        this.state = { selectedSection: this.props.params.section || 'bitcoincash' };
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ selectedSection: nextProps.params.section || 'latest' })
+        this.setState({ selectedSection: nextProps.params.section || 'bitcoincash' })
     }
 
     render() {
