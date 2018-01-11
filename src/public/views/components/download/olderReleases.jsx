@@ -16,8 +16,46 @@ import Signatures1014 from './signatures_1-0-1-4.jsx'
 import Signatures1020 from './signatures_1-0-2-0.jsx'
 import SignaturesBUcash1100 from './signatures_BUcash1-1-0-0.jsx'
 import SignaturesBUcash1110 from './signatures_BUcash1-1-1-0.jsx'
+import SignaturesBUcash1111 from './signatures_BUcash1-1-1-1.jsx'
+import SignaturesBUcash1120 from './signatures_BUcash1-1-2-0.jsx'
 
 class OfficialRelease extends React.Component {
+    renderVBUcash1120Body() {
+        return (
+            <Release
+                osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-osx64.tar.gz'
+                osx32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-osx.tar.gz'
+                osxDmg='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-osx.dmg'
+                windows64Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-win64-setup.exe'
+                windows32Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-win32-setup.exe'
+                linux64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-linux64.tar.gz'
+                linux32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-linux32.tar.gz'
+                arm64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-arm64.tar.gz'
+                arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-arm32.tar.gz'
+                source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.1.2.0'>
+
+                <SignaturesBUcash1120 />
+            </Release>
+        )
+    }
+    renderVBUcash1111Body() {
+        return (
+            <Release
+                osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-osx64.tar.gz'
+                osx32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-osx.tar.gz'
+                osxDmg='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-osx.dmg'
+                windows64Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-win64-setup.exe'
+                windows32Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-win32-setup.exe'
+                linux64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-linux64.tar.gz'
+                linux32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-linux32.tar.gz'
+                arm64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-arm64.tar.gz'
+                arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.1.1-arm32.tar.gz'
+                source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.1.1.1'>
+
+                <SignaturesBUcash1111 />
+            </Release>
+        )
+    }
     renderVBUcash1110Body() {
         return (
             <Release
@@ -226,6 +264,16 @@ class OfficialRelease extends React.Component {
     render() {
         return (
             <div className="pt2">
+                <Section
+                    title='BUcash-1.1.2.0'
+                    body={ this.renderVBUcash1120Body() }
+                    expanded={ false } />
+
+                <Section
+                    title='BUcash-1.1.1.1'
+                    body={ this.renderVBUcash1111Body() }
+                    expanded={ false } />
+
                 <Section
                     title='BUcash-1.1.1.0'
                     body={ this.renderVBUcash1110Body() }
