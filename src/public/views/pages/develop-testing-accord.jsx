@@ -24,7 +24,7 @@ class DevelopTestingAccord extends React.Component {
                           Development teams for Bitcoin Cash client software -- Bitcoin ABC, Bitcrust, Bitprim, Bitcoin Unlimited, ElectrumX, nChain, and Parity --  met recently in London.  The purpose of the meeting was to discuss our medium-term development priorities.  We were very excited by the vision shared by all attendees for Bitcoin Cash to massively scale to become a fast, low-fee, global peer-to-peer electronic cash system!
                         </div>
                         <div className='lh-copy py1 left-align'>
-                          The meeting -- and our deliberations afterwards -- provided the Bitcoin Unlimited team with an opportunity to clarify its own medium-term priorities beyond the common vision of massive on-chain scaling.  The following point-form list is the result of those deliberations:
+                          The meeting -- and our deliberations afterwards -- provided the Bitcoin Unlimited team with an opportunity to clarify its own medium-term priorities beyond the common vision of massive on-chain scaling.  The following point-form list summarizes some Bitcoin Unlimited priorities resulting from those deliberations:
                         </div>
                         <div className='lh-copy py1 justify'>
                           <ol>
@@ -37,7 +37,7 @@ class DevelopTestingAccord extends React.Component {
                           </ol>
                         </div>
                         <div className='lh-copy py1 left-align'>
-                          Remember, Bitcoin won't succeed all on its own.  It will take the continued hard work of people like you dedicated to the vision of building better money for mankind.  Antony Zeger (Bitcoin Cash developer) said it best: "Together we will make Bitcoin Cash the best money the world has ever seen."
+                          Remember, Bitcoin won't succeed all on its own.  It will take the continued hard work of people like you dedicated to the vision of building better money for mankind.  Antony Zegers (Bitcoin Cash developer) said it best: "Together we will make Bitcoin Cash the best money the world has ever seen."
                         </div>
                     </div>
                 </div>
