@@ -1,12 +1,12 @@
 'use strict';
 
-const BASH0 = `tar xvf bitcoinUnlimited-1.0.3.0-linux64.tar.gz
-cd bitcoinUnlimited-1.0.3/bin/
+const BASH0 = `tar xvf BUcash-1.2.0.0-linux64.tar.gz
+cd BUcash-1.2.0/bin/
 nohup ./bitcoin-qt &
 `;
 
 const BASH1 = `sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:bitcoin-unlimited/bu-ppa
+sudo add-apt-repository ppa:bitcoin-unlimited/bu-cash
 sudo apt-get update
 sudo apt-get install bitcoind bitcoin-qt
 `;
