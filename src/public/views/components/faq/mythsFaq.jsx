@@ -100,7 +100,7 @@ class MythsFaq extends React.Component {
                     title={ "Is Bitcoin Unlimited hostile to Bitcoin Core?" }
                     body={ <div>
                         <p>
-                            In the heated public debate it sometimes appears that Bitcoin Unlimited and Bitcoin Core are two hostile camps fighting tooth and nail. The boring reality however is that the developers of both Bitcoin Unlimited as Bitcoin Core are Pro-Bitcoin and Pro-Open-Source. Despite having other opinions about the blocksize, everybody in both groups agrees that he likes bitcoin and good software (and pictures of cats). On most issues the individual members of both groups share an overwhelming consensus, enjoy to cooperate and aim to do so in the future.
+                            In the heated public debate it sometimes appears that Bitcoin Unlimited and Bitcoin Core are two hostile camps fighting tooth and nail. The boring reality however is that the developers of both Bitcoin Unlimited and Bitcoin Core are Pro-Bitcoin and Pro-Open-Source. Despite having other opinions about the blocksize, everybody in both groups agrees that he likes bitcoin and good software (and pictures of cats). On most issues the individual members of both groups share an overwhelming consensus, enjoy to cooperate and aim to do so in the future.
                         </p>
                     </div> }
                     expanded={ false } />
