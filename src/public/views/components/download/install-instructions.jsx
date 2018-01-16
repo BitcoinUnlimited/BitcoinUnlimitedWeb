@@ -6,7 +6,7 @@ nohup ./bitcoin-qt &
 `;
 
 const BASH1 = `sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:bitcoin-unlimited/bu-cash
+sudo add-apt-repository ppa:bitcoin-unlimited/bucash
 sudo apt-get update
 sudo apt-get install bitcoind bitcoin-qt
 `;
