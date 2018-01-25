@@ -34,7 +34,7 @@ class OfficialRelease extends React.Component {
                     arm64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-' + latestVersion + '-arm64.tar.gz'}
                     arm32={'/downloads/bitcoinUnlimited-' + latestVersion + '-arm32.tar.gz'}
                     arm32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-' + latestVersion + '-arm32.tar.gz'}
-                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/tree/release'>
+                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/tree/BitcoinCore1.0'>
 
                     <SignaturesLatest />
                 </Release>
