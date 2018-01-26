@@ -23,15 +23,15 @@ class OfficialRelease extends React.Component {
     renderVBUcash1120Body() {
         return (
             <Release
-                osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-osx64.tar.gz'
-                osx32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-osx.tar.gz'
-                osxDmg='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-osx.dmg'
-                windows64Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-win64-setup.exe'
-                windows32Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-win32-setup.exe'
-                linux64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-linux64.tar.gz'
-                linux32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-linux32.tar.gz'
-                arm64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-arm64.tar.gz'
-                arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-1.1.2.0-arm32.tar.gz'
+                osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-osx64.tar.gz'
+                osx32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-osx.tar.gz'
+                osxDmg='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-osx.dmg'
+                windows64Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-win64-setup.exe'
+                windows32Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-win32-setup.exe'
+                linux64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-linux64.tar.gz'
+                linux32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-linux32.tar.gz'
+                arm64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-arm64.tar.gz'
+                arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.1.2.0-arm32.tar.gz'
                 source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.1.2.0'>
 
                 <SignaturesBUcash1120 />
