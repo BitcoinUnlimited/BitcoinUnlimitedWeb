@@ -150,6 +150,9 @@
         },
         "buips": {
             "title": "BUIPs (Bitcoin Unlimited Improvement Proposals)"
+        },
+        "nodes": {
+            "title" : "Bitcoin cash nodes counting"
         }
     },
     "donate": {
@@ -630,7 +633,8 @@
             "nonTechnical": "Non-technical Works",
             "nolNet": "No-limit Test Net",
             "buips": "BUIPs",
-            "buvweb" : "BU Voting"
+            "buvweb" : "BU Voting",
+            "nodes" : "Cashnodes.io"
         },
         "solutions": {
             "title": "Solutions",
