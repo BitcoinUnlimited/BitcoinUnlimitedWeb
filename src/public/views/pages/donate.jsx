@@ -21,12 +21,18 @@ class Donate extends React.Component {
                     <div className="py2 h1">{ strings().donate.title }</div>
 
                     <div className='left-align lh-copy p2 pb4 section__container'>
-                        { this.stringsToParagraphs(strings().donate.body) }
+                        { this.stringsToParagraphs(strings().donate.body1) }
                         <div className='pt1 center'>
-                            <img src='/img/donation-address-qr.png' alt='Fingerprint' />
-                            <div>36XTMVtgJqqNYymsSvRonpUsbZRGkm1jvX</div>
+                            <img src='/img/donation-address-qr-bch.svg' alt='Fingerprint' />
+                            <div><b>bitcoincash:pq6snv5fcx2fp6dlzg7s0m9zs8yqh74335tzvvfcmq</b></div>
+                        </div>
+                        { this.stringsToParagraphs(strings().donate.body2) }
+                        <div className='pt1 center'>
+                            <img src='/img/donation-address-qr-btc.svg' alt='Fingerprint' />
+                            <div><b>36XTMVtgJqqNYymsSvRonpUsbZRGkm1jvX</b></div>
                         </div>
                     </div>
+
                 </div>
                 <Footer />
             </div>
