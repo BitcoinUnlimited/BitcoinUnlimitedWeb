@@ -4,15 +4,15 @@ import React from 'react';
 import { strings } from '../../../lib/i18n';
 
 import Release from './release.jsx'
-import SignaturesBitcoinCash from './signatures_BUcash1-2-0-1.jsx'
+import SignaturesBitcoinCash from './signatures_BUcash1-3-0-0.jsx'
 
 class BitcoinCashRelease extends React.Component {
     render() {
-        var latestVersion = "1.2.0.1";
+        var latestVersion = "1.3.0.0";
         return (
             <div className='lh-copy py1'>
                 <p>{ strings().download.bitcoincash.download } ({latestVersion}, {strings().download.bitcoincash.date})<br /> <i>({ strings().download.bitcoincash.notes }</i>):</p>
-                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.2.0.1.md">Release Notes</a></p>
+                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.3.0.0.md">Release Notes</a></p>
                 <p><strong>{strings().download.bitcoincash.warning}</strong></p>
 
                 <Release
