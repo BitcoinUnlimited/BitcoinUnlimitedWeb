@@ -150,13 +150,19 @@
         },
         "buips": {
             "title": "BUIPs (Bitcoin Unlimited Improvement Proposals)"
+        },
+        "nodes": {
+            "title" : "Bitcoin cash nodes counting"
         }
     },
     "donate": {
         "title": "Donate",
-        "body": [
+        "body1": [
             "Your support allows us to advance the Bitcoin Unlimited project, and to maintain Bitcoin as a free-market economy.",
-            "To donate, scan the QR code or use the Bitcoin address below."
+            "To donate, scan the QR code or use the Bitcoin Cash (BCH) address below."
+        ],
+        "body2": [
+            "if you prefer this Bitcoin (BTC) address below could be used"
         ]
     },
     "buips": {
@@ -631,7 +637,8 @@
             "nonTechnical": "Non-technical Works",
             "nolNet": "No-limit Test Net",
             "buips": "BUIPs",
-            "buvweb" : "BU Voting"
+            "buvweb" : "BU Voting",
+            "nodes" : "Cashnodes.io"
         },
         "solutions": {
             "title": "Solutions",
