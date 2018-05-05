@@ -52,7 +52,7 @@ class SignaturesBitcoinCash extends React.Component {
                     {strings().download.signatures.sickpig}<br/>
                     bitcoincash:qrdvmdluf2s5cf08wcp9h2ja8lqt5peq35y56z4s7s<br/>
                     1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G<br/>
-                    {strings().download.signatures.signature}:<br />TBD
+                    {strings().download.signatures.signature}:<br />H8v7UwhKB1vpV8OWdsMFv7fqjmiNHzgovqTbGuXcmKk8Mistqnxna9sigC46aw0dvkPv6A5SbK563u1YX1qYnaw=
                     <br/><br/>
                     {strings().download.signatures.freetrader}<br/>
                     bitcoincash:qrvy3znq8wuzfkqejp88zwknwdvahy995vf67dw3au<br/>
