@@ -153,6 +153,13 @@
         },
         "nodes": {
             "title" : "Bitcoin cash nodes counting"
+        },
+        "nakamotostudies": {
+            "title" : "The Satoshi Nakamoto Archive",
+            "url" : "Nakamotostudies.org",
+            "bodyOne" : "The Nakamoto Studies Institute was created in response to the needs of the Bitcoin Cash community. Much of the original Bitcoin literature and history is still hosted on websites that support Bitcoin Core and which are hostile to the original vision of Satoshi Nakamoto. This includes organizations such as Bitcoin.org and the Satoshi Nakamoto Institute.",
+            "bodyTwo" : "Given the increasing hostility of the debates, discussions to change the white paper, and the history of staggering censorship, propaganda, boycotting, theft and subversion that Bitcoin Core inherited, the Nakamoto Studies Institute believes it is no longer prudent to allow these organizations to remain the premiere online resources for the primary and secondary source material.",
+            "bodyThree" : "NSI is curating and organizing the best primary and secondary source material available on the history of Bitcoin (BCH) and (BTC) and it’s future."
         }
     },
     "donate": {

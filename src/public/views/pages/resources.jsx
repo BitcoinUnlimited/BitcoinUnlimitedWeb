@@ -9,6 +9,7 @@ import Technical from '../components/resources/technical.jsx';
 import NonTechnical from '../components/resources/nonTechnical.jsx';
 import NolNet from '../components/resources/nolNet.jsx';
 import Buips from '../components/resources/buips.jsx';
+import NsInfo from '../components/resources/nsInfo.jsx';
 
 class Resources extends React.Component {
     constructor(props) {
@@ -54,10 +55,10 @@ class Resources extends React.Component {
                     body={  <a className='dim black' href="/voting/">BU Voting</a>  } />
 
                 <Section
-                    key='nodes'
-                    expanded={ this.state.selectedSection === 'nodes'}
-                    title={ strings().resources.nodes.title }
-                    body={  <a className='dim black' href="/nodes/">Bitcoin Cash nodes counting</a>  } />
+                    key='nakamoto'
+                    expanded={ this.state.selectedSection === 'nakamoto'}
+                    title={ strings().resources.nakamotostudies.title }
+                    body={  <NsInfo />  } />
             </Page>
         );
     }
