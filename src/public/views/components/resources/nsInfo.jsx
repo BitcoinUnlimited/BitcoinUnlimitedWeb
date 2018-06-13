@@ -11,15 +11,7 @@ class NsInfo extends React.Component {
         return (
             <div className='p2'>
                 <a className='dim black pt1' target='_blank' href='https://nakamotostudies.org/'>{ strings().resources.nakamotostudies.url }</a>
-                <p>
-                    { strings().resources.nakamotostudies.bodyOne }
-                </p>
-                <p>
-                    { strings().resources.nakamotostudies.bodyTwo }
-                </p>
-                <p>
-                    { strings().resources.nakamotostudies.bodyThree }
-                </p>
+                <p>{ strings().resources.nakamotostudies.body }</p>
             </div>
         )
     }
