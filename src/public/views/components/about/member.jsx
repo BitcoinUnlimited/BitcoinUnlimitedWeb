@@ -8,7 +8,7 @@ class Member extends React.Component {
         if (this.props.member.photoUrl) {
             return (<img className='member__image' src={ '../' + this.props.member.photoUrl} alt={this.props.member.name} />)
         } else {
-            return
+            return (<img className='member__image generic' src='../img/about/generic.png' alt={this.props.member.name} />)
         }
     }
 
@@ -41,7 +41,7 @@ class Member extends React.Component {
 
     render() {
         return (
-            <div className='p2 pb3 center inline-block align-top member__container'>
+            <div className={'p2 pb3 center inline-block align-top member__container'+((this.props.member.photoUrl)?'':' generic')}>
                 { this.renderImage() }
 
                 <div className='pt1'>
