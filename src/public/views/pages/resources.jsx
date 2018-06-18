@@ -10,6 +10,7 @@ import NonTechnical from '../components/resources/nonTechnical.jsx';
 import NolNet from '../components/resources/nolNet.jsx';
 import Buips from '../components/resources/buips.jsx';
 import NsInfo from '../components/resources/nsInfo.jsx';
+import CashNodes from '../components/resources/cashNodes.jsx';
 
 class Resources extends React.Component {
     constructor(props) {
@@ -58,7 +59,7 @@ class Resources extends React.Component {
                     key='nodes'
                     expanded={ this.state.selectedSection === 'nodes'}
                     title={ strings().resources.nodes.title }
-                    body={ <a className='dim black' href="/nodes/">Bitcoin Cash nodes counting</a> } />
+                    body={  <CashNodes />  } />
 
                 <Section
                     key='nakamoto'
