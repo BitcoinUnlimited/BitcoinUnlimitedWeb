@@ -40,6 +40,7 @@
   "license": "MIT",
   "homepage": "https://www.bitcoinunlimited.info/",
   "dependencies": {
+    "bchaddrjs": "^0.2.1",
     "bitcore-message": "^1.0.4",
     "bower": "^1.7.9",
     "express": "^4.13.3",
