@@ -3,3 +3,4 @@
 node_modules
 src/public/components
 .DS_Store
+package-lock.json
