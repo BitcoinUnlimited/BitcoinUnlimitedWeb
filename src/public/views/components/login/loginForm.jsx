@@ -11,14 +11,9 @@ var AddrFormat = require('bchaddrjs');
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
-
         this.setPubKey = this.setPubKey.bind(this);
         this.setSignature = this.setSignature.bind(this);
         this.loginSubmit = this.loginSubmit.bind(this);
-        this.errorsExist = this.errorsExist.bind(this);
-        this.validateAddress = this.validateAddress.bind(this);
-        this.fixAddressFormat = this.fixAddressFormat.bind(this);
-
         this.state = { pubkey:"", sig:"", error:"" };
     }
 
@@ -46,7 +41,7 @@ class LoginForm extends React.Component {
             return 1;
         } else {
             // Convert BitcoinCash and Bitpay addresses to legacy for verification
-            var addr = this.fixAddressFormat(this.state.pubkey);
+            let addr = this.fixAddressFormat(this.state.pubkey);
             // bitcore/node causes errors when random strings are passed as the signature param
             try {
                 if (!Message(this.props.challenge).verify(addr, this.state.sig)) return 1;
@@ -70,24 +65,22 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-          <form className="login__form" onSubmit={ this.loginSubmit }>
-              <div className={ this.state.error.length > 0 ? "error" : "error false" }>{ this.state.error }</div>
-              <label className="login__label">
-                  <span>Public Key:</span>
-                  <input className="login__text" type="text" name="pubkey" value={ this.state.pubkey } onChange={ this.setPubKey } />
-              </label>
-              <label className="login__label">
-                  <span>Challenge:</span>
-                  <div className="challenge">
-                      { this.props.challenge }
-                  </div>
-              </label>
-              <label className="login__label">
-                  <span>Signature:</span>
-                  <textarea className="login__textarea" type="textarea" name="sig" value={ this.state.sig } onChange={ this.setSignature }></textarea>
-              </label>
-              <input className="login__submit" type="submit" value="Submit" />
-          </form>
+            <form className="login__form" onSubmit={ this.loginSubmit }>
+                <div className={ this.state.error.length > 0 ? "error" : "error false" }>{ this.state.error }</div>
+                <label className="login__label">
+                    <span>Public Key:</span>
+                    <input className="login__text" type="text" name="pubkey" value={ this.state.pubkey } onChange={ this.setPubKey } />
+                </label>
+                <label className="login__label">
+                    <span>Challenge:</span>
+                    <div className="challenge">{ this.props.challenge }</div>
+                </label>
+                <label className="login__label">
+                    <span>Signature:</span>
+                    <textarea className="login__textarea" type="textarea" name="sig" value={ this.state.sig } onChange={ this.setSignature }></textarea>
+                </label>
+                <input className="login__submit" type="submit" value="Submit" />
+            </form>
         )
     }
 }

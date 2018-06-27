@@ -12,13 +12,13 @@ class Login extends React.Component {
     }
 
     buildChallenge() {
-      var wordArr = strings().auth.wordpool.split(' ');
-      var challenge = '',
-          wordCount = 12;
-      for (var i=0; i < wordCount; i++) {
-        challenge += ' ' + wordArr[Math.floor(Math.random()*wordArr.length)];
-      }
-      return challenge;
+        var wordArr = strings().auth.wordpool.split(' ');
+        var challenge = '',
+            wordCount = 12;
+        for (var i=0; i < wordCount; i++) {
+            challenge += ' ' + wordArr[Math.floor(Math.random()*wordArr.length)];
+        }
+        return challenge.trim();
     }
 
     render() {
