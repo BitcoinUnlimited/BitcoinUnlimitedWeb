@@ -683,6 +683,25 @@
     "footer": {
         "copy": "MIT License. No Rights Reserved."
     },
+    "login": {
+        "title": "Login",
+        "subtitle": "Use your official public key to login."
+    },
+    "auth": {
+        "errors": [
+            "Your public key was not found in our system. Please use the correct key associated with your BitcoinUnlimited membership.",
+            "The signature you provided was incorrect."
+        ],
+        "validAddresses": [
+            "1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G",
+            "15TiujYmnHa33fjEnasBBm1eWcGx9YEXPL",
+            "1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3",
+            "1BWZe6XkGLcf6DWC3TFXiEtZmcyAoNq5BW",
+            "bitcoincash:qq8ndxfu44umd6nq786px2nkrc0g744phszu58gwcd",
+            "qq8ndxfu44umd6nq786px2nkrc0g744phszu58gwcd"
+        ],
+        "wordpool": "a purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution digital signatures provide part of the solution but the main benefits are lost if a trusted third party is still required to prevent double-spending we propose a solution to the double-spending problem using a peer-to-peer network the network timestamps transactions by hashing them into an ongoing chain of hash-based proof-of-work forming a record that cannot be changed without redoing the proof-of-work the longest chain not only serves as proof of the sequence of events witnessed but proof that it came from the largest pool of cpu power As long as a majority of cpu power is controlled by nodes that are not cooperating to attack the network they'll generate the longest chain and outpace attackers the network itself requires minimal structure messages are broadcast on a best effort basis and nodes can leave and rejoin the network at will accepting the longest proof-of-work chain as proof of what happened while they were gone"
+    },
     "notfound": {
         "error": "Error 404: File Not Found",
         "message": "The requested file could not be found."
