@@ -11,23 +11,10 @@ import NolNet from '../components/resources/nolNet.jsx';
 import Buips from '../components/resources/buips.jsx';
 import NsInfo from '../components/resources/nsInfo.jsx';
 
-import Bitcore from 'bitcore-lib'
-import Message from 'bitcore-message'
-import AddrFormat from 'bchaddrjs'
-
 class Resources extends React.Component {
     constructor(props) {
         super(props);
         this.state = { selectedSection: this.props.params.section };
-
-        var cashAddress = 'bitcoincash:qq8ndxfu44umd6nq786px2nkrc0g744phszu58gwcd';
-
-        if (!AddrFormat.isLegacyAddress(cashAddress)) {
-          var pubKey = AddrFormat.toLegacyAddress(cashAddress)
-        }
-        var challenge = 'bitcoin unlimited';
-        var verify = Message(challenge).verify(pubKey,'IKUsGJ5oCr6D50Zy9rtAok7bhvNTt7YHibWrFr+ZpCV2DABwA+pf/Qn/o9ZMMjmbzW0Rf7MtQTH2h3AaEfoCJFo=');
-        console.log(verify);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -63,21 +50,21 @@ class Resources extends React.Component {
 
                 <Section
                     key='voting'
-                    expanded={ this.state.selectedSection === 'voting'}
+                    expanded={ this.state.selectedSection === 'voting' }
                     title={ 'Voting' }
-                    body={  <a className='dim black' href="/voting/">BU Voting</a>  } />
+                    body={ <a className='dim black' href="/voting/">BU Voting</a> } />
 
                 <Section
                     key='nodes'
                     expanded={ this.state.selectedSection === 'nodes'}
                     title={ strings().resources.nodes.title }
-                    body={  <a className='dim black' href="/nodes/">Bitcoin Cash nodes counting</a>  } />
+                    body={ <a className='dim black' href="/nodes/">Bitcoin Cash nodes counting</a> } />
 
                 <Section
                     key='nakamoto'
                     expanded={ this.state.selectedSection === 'nakamoto'}
                     title={ strings().resources.nakamotostudies.title }
-                    body={  <NsInfo />  } />
+                    body={ <NsInfo /> } />
             </Page>
         );
     }

@@ -17,6 +17,7 @@ import EmergentConsensusBU from './pages/emergent-consensus-bu.jsx';
 import EmergentConsensus from './pages/emergent-consensus.jsx';
 import DevelopTestingAccord from './pages/develop-testing-accord.jsx';
 import NotFound from './pages/not-found.jsx';
+import Login from './pages/login.jsx';
 
 ReactDOM.render((
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
@@ -33,6 +34,7 @@ ReactDOM.render((
             <Route path='emergent-consensusBU' component={EmergentConsensusBU} />
             <Route path='emergent-consensus' component={EmergentConsensus} />
             <Route path='cash-development-plan' component={DevelopTestingAccord} />
+            <Route path='login' component={Login} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>
