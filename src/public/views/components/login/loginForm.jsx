@@ -3,10 +3,10 @@
 import React from 'react';
 import { strings } from '../../../lib/i18n';
 
-import Bitcore from 'bitcore-lib'
-import Message from 'bitcore-message'
-import AddrFormat from 'bchaddrjs'
-import Jwt from 'jsonwebtoken'
+var Bitcore = require('bitcore-lib');
+var Message = require('bitcore-message');
+var AddrFormat = require('bchaddrjs');
+//import Jwt from 'jsonwebtoken'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -16,56 +16,56 @@ class LoginForm extends React.Component {
         this.setSignature = this.setSignature.bind(this);
         this.loginSubmit = this.loginSubmit.bind(this);
         this.errorsExist = this.errorsExist.bind(this);
-        this.checkAddress = this.checkAddress.bind(this);
-        this.fixAddress = this.fixAddress.bind(this);
+        this.validateAddress = this.validateAddress.bind(this);
+        this.fixAddressFormat = this.fixAddressFormat.bind(this);
 
         this.state = { pubkey:"", sig:"", error:"" };
     }
 
     setPubKey(e) {
-      this.setState({ pubkey: e.target.value });
+        this.setState({ pubkey: e.target.value });
     }
     setSignature(e) {
-      this.setState({ sig: e.target.value });
+        this.setState({ sig: e.target.value });
     }
 
     loginSubmit(e) {
         e.preventDefault();
         let errorType = this.errorsExist();
-        if (errorType === 0 || errorType === 1) {
-          this.setState({ error: strings().auth.errors[errorType] });
+        if (Number.isInteger(errorType)) {
+            this.setState({ error: strings().auth.errors[errorType] });
         } else {
-            //console.log('all good!');
+            console.log("valid! Send jwt");
         }
     }
 
     errorsExist() {
-        if (!this.checkAddress(this.state.pubkey)) {
+        if (!this.validateAddress(this.state.pubkey)) {
             return 0;
         } else if (this.state.sig.length === 0) {
             return 1;
         } else {
-          var addr = this.fixAddress(this.state.pubkey);
-          console.log(addr);
-          console.log(this.state.sig);
-          console.log(this.props.challenge);
-
-          console.log(Message(this.props.challenge).verify("1BWZe6XkGLcf6DWC3TFXiEtZmcyAoNq5BW","hereisasignature"));
-
-          // var result = Message(this.props.challenge).verify(addr, this.state.sig);
-          // console.log(result);
+            // Convert BitcoinCash and Bitpay addresses to legacy for verification
+            var addr = this.fixAddressFormat(this.state.pubkey);
+            // bitcore/node causes errors when random strings are passed as the signature param
+            try {
+                if (!Message(this.props.challenge).verify(addr, this.state.sig)) return 1;
+            }
+            catch(error) {
+                return 1;
+            }
         }
     }
 
-    checkAddress(address) {
-      return strings().auth.validAddresses.filter(addr => addr === address).length > 0;
+    validateAddress(address) {
+        return strings().auth.validAddresses.filter(addr => addr === address).length > 0;
     }
 
-    fixAddress(address) {
-      if (!AddrFormat.isLegacyAddress(address)) {
-        return AddrFormat.toLegacyAddress(address)
-      }
-      return address;
+    fixAddressFormat(address) {
+        if (!AddrFormat.isLegacyAddress(address)) {
+            return AddrFormat.toLegacyAddress(address)
+        }
+        return address;
     }
 
     render() {
