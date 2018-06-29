@@ -52,7 +52,7 @@ class Resources extends React.Component {
                     key='voting'
                     expanded={ this.state.selectedSection === 'voting' }
                     title={ 'Voting' }
-                    body={ <a className='dim black' href="/voting/">BU Voting</a> } />
+                    body={ <div className='p2'><a className='dim black' href="/voting/">BU Voting</a></div> } />
 
                 <Section
                     key='nodes'
