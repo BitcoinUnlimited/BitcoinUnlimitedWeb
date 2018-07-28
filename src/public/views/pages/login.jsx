@@ -12,8 +12,8 @@ class Login extends React.Component {
     }
 
     buildChallenge() {
-        var wordArr = strings().auth.wordpool.split(' ');
-        var challenge = '',
+        let wordArr = strings().auth.wordpool.split(' ');
+        let challenge = '',
             wordCount = 12;
         for (var i=0; i < wordCount; i++) {
             challenge += ' ' + wordArr[Math.floor(Math.random()*wordArr.length)];
