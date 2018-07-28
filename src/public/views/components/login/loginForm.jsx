@@ -3,10 +3,11 @@
 import React from 'react';
 import { strings } from '../../../lib/i18n';
 
-var Bitcore = require('bitcore-lib');
-var Message = require('bitcore-message');
-var AddrFormat = require('bchaddrjs');
-//import Jwt from 'jsonwebtoken'
+import Bitcore from 'bitcore-lib';
+import Message from 'bitcore-message';
+import AddrFormat from 'bchaddrjs';
+import Jwt from 'jsonwebtoken';
+//import Env from 'process-env'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class LoginForm extends React.Component {
         this.setPubKey = this.setPubKey.bind(this);
         this.setSignature = this.setSignature.bind(this);
         this.loginSubmit = this.loginSubmit.bind(this);
-        this.state = { pubkey:"", sig:"", error:"" };
+        this.state = { pubkey:"", sig:"", error:"", counter: 0 };
     }
 
     setPubKey(e) {
@@ -26,11 +27,15 @@ class LoginForm extends React.Component {
 
     loginSubmit(e) {
         e.preventDefault();
-        let errorType = this.errorsExist();
-        if (Number.isInteger(errorType)) {
+        if (Number.isInteger(this.errorsExist())) {
             this.setState({ error: strings().auth.errors[errorType] });
         } else {
-            console.log("valid! Send jwt");
+            //Env.set(this.state.pubkey, this.state.sig, true);
+            let token = jwt.sign({
+                exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                data: 'foobar'
+            }, this.state.sig);
+            console.log(token);
         }
     }
 
@@ -57,13 +62,11 @@ class LoginForm extends React.Component {
     }
 
     fixAddressFormat(address) {
-        if (!AddrFormat.isLegacyAddress(address)) {
-            return AddrFormat.toLegacyAddress(address)
-        }
-        return address;
+        return !AddrFormat.isLegacyAddress(address) ? AddrFormat.toLegacyAddress(address) : address;
     }
 
     render() {
+        console.log(React.version);
         return (
             <form className="login__form" onSubmit={ this.loginSubmit }>
                 <div className={ this.state.error.length > 0 ? "error" : "error false" }>{ this.state.error }</div>
@@ -77,7 +80,7 @@ class LoginForm extends React.Component {
                 </label>
                 <label className="login__label">
                     <span>Signature:</span>
-                    <textarea className="login__textarea" type="textarea" name="sig" value={ this.state.sig } onChange={ this.setSignature }></textarea>
+                    <textarea className="login__textarea" type="password" name="sig" value={ this.state.sig } onChange={ this.setSignature }></textarea>
                 </label>
                 <input className="login__submit" type="submit" value="Submit" />
             </form>
