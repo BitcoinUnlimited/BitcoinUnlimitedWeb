@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { strings } from '../../../lib/i18n';
+import { validateAddress, fixAddressFormat, messageVerify } from '../../../../database/verifySignature.js';
 
-import Bitcore from 'bitcore-lib';
-import Message from 'bitcore-message';
-import AddrFormat from 'bchaddrjs';
 import Jwt from 'jsonwebtoken';
+
+import Axios from 'axios';
 //import Env from 'process-env'
 
 class LoginForm extends React.Component {
@@ -27,29 +27,39 @@ class LoginForm extends React.Component {
 
     loginSubmit(e) {
         e.preventDefault();
-        if (Number.isInteger(this.errorsExist())) {
-            this.setState({ error: strings().auth.errors[errorType] });
+        let errors = this.checkSubmit();
+        if (Number.isInteger(errors)) {
+            this.setState({ error: strings().auth.errors[errors] });
         } else {
-            //Env.set(this.state.pubkey, this.state.sig, true);
-            let token = jwt.sign({
-                exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                data: 'foobar'
-            }, this.state.sig);
-            console.log(token);
+            this.setState({ error: '' });
+            console.log('correct!');
+
+            // get token after checking signature
+            Axios.post('/sig_verify', {
+                challenge: this.props.challenge,
+                address: this.state.pubkey,
+                signature: this.state.sig
+            }).then(response => {
+                if (response.data !== 'undefined') {
+                    localStorage.setItem('jwt-token', response.data);
+                } else {
+                    this.setState({ error: "Authentication failed." });
+                }
+            }).catch(error => {
+                this.setState({ error: error });
+            });
         }
     }
 
-    errorsExist() {
-        if (!this.validateAddress(this.state.pubkey)) {
+    checkSubmit() {
+        if (!validateAddress(this.state.pubkey)) {
             return 0;
         } else if (this.state.sig.length === 0) {
             return 1;
         } else {
-            // Convert BitcoinCash and Bitpay addresses to legacy for verification
-            let addr = this.fixAddressFormat(this.state.pubkey);
-            // bitcore/node causes errors when random strings are passed as the signature param
+            let addr = fixAddressFormat(this.state.pubkey);
             try {
-                if (!Message(this.props.challenge).verify(addr, this.state.sig)) return 1;
+                if (!messageVerify({ challenge:this.props.challenge, address:addr, signature:this.state.sig })) return 1;
             }
             catch(error) {
                 return 1;
@@ -57,16 +67,7 @@ class LoginForm extends React.Component {
         }
     }
 
-    validateAddress(address) {
-        return strings().auth.validAddresses.filter(addr => addr === address).length > 0;
-    }
-
-    fixAddressFormat(address) {
-        return !AddrFormat.isLegacyAddress(address) ? AddrFormat.toLegacyAddress(address) : address;
-    }
-
     render() {
-        console.log(React.version);
         return (
             <form className="login__form" onSubmit={ this.loginSubmit }>
                 <div className={ this.state.error.length > 0 ? "error" : "error false" }>{ this.state.error }</div>

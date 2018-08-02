@@ -120,7 +120,7 @@
             "title": "Select Technical Works by Bitcoin Unlimited Members",
             "space": [
                 { "body": "In this paper, Dr. Peter R. Rizun shows that a transaction fee market exists without a block size limit, due to the increased risk a miner faces of having his block orphaned for each additional transaction he includes in his block. In the corresponding video, Rizun explains how block space has the properties of a normal economic commodity and satisfies the laws of supply and demand. He argues that the 1 MB block size limit is now acting as a \"production quota,\" thereby resulting in a deadweight loss of economic activity in the Bitcoin economy." },
-                { "body": "In this paper, Bitcoin Unlimited lead developer G. Andrew Stone explores the mystery behind the \"empty block\" phenomenon and shows that empty blocks place a natural restriction on the rate at which the blockchain can grow." },
+                { "body": "In this paper, Bitcoin Unlimited lead developer G. Andrew Stone explores the mystery behind the \"empty block\" phenomenon and shows that empty blocks place a natural restriction on the rate at which the blockchain can grow." }
             ],
             "propogation": [
                 { "body": "Xthin is arguably the innovation that put Bitcoin Unlimited on the map. In this article series, Bitcoin Unlimited developers compare the performance of Xthin block propagation to standard block propagation. They show that Xthin blocks are 5.6x faster across the normal P2P network and cross the Great Firewall of China in 8.7x less time, both while using 24x fewer bytes." },
@@ -392,7 +392,7 @@
                 "q39": {
                     "q": "Where is the Bitcoin Unlimited Testnet?",
                     "a": "Bitcoin Unlimited has a dedicated test network which can be accessed using the -chain_nol option."
-                },
+                }
             }
         },
         "nodes": {
@@ -421,7 +421,7 @@
                 "q6": {
                     "q": "Does Bitcoin Unlimited have technical debt?",
                     "a": "No, Bitcoin Unlimited does not have technical debt."
-                },
+                }
             }
         },
         "miners": {
@@ -539,7 +539,7 @@
             "download": "Download the latest standard release of Bitcoin Unlimited",
             "version": "v1.0.3.0",
             "date": "July 18, 2017",
-            "notes": "This is a release for the original Bitcoin blockchain. If you are new to Bitcoin this is most likely the release you want. If you want BUCash (Bitcoin Cash), which implements the UAHF/BUIP055 specification, look further up on this page.",
+            "notes": "This is a release for the original Bitcoin blockchain. If you are new to Bitcoin this is most likely the release you want. If you want BUCash (Bitcoin Cash), which implements the UAHF/BUIP055 specification, look further up on this page."
         },
         "bitcoincash": {
             "title": "Official Bitcoin Cash (BCH) Release",
@@ -678,7 +678,8 @@
             "1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3",
             "1BWZe6XkGLcf6DWC3TFXiEtZmcyAoNq5BW",
             "bitcoincash:qq8ndxfu44umd6nq786px2nkrc0g744phszu58gwcd",
-            "qq8ndxfu44umd6nq786px2nkrc0g744phszu58gwcd"
+            "qq8ndxfu44umd6nq786px2nkrc0g744phszu58gwcd",
+            "12PSYTJQ5cNLLKtQt95S94JGoCuxxV2ADN"
         ],
         "wordpool": "a purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution digital signatures provide part of the solution but the main benefits are lost if a trusted third party is still required to prevent double-spending we propose a solution to the double-spending problem using a peer-to-peer network the network timestamps transactions by hashing them into an ongoing chain of hash-based proof-of-work forming a record that cannot be changed without redoing the proof-of-work the longest chain not only serves as proof of the sequence of events witnessed but proof that it came from the largest pool of cpu power As long as a majority of cpu power is controlled by nodes that are not cooperating to attack the network they'll generate the longest chain and outpace attackers the network itself requires minimal structure messages are broadcast on a best effort basis and nodes can leave and rejoin the network at will accepting the longest proof-of-work chain as proof of what happened while they were gone"
     },
