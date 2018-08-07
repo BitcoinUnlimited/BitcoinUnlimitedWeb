@@ -14,8 +14,9 @@ const UserSchema = {
     primaryKey: 'pubkey',
     properties: {
         pubkey: 'string',
-        name: 'string?',
-        jwt: 'string',
+        challenge: 'string',
+        signature: 'string',
+        expires: 'int'
     }
 }
 
@@ -25,35 +26,30 @@ const realmDB = new Realm({
   deleteRealmIfMigrationNeeded: true,
 });
 
-// const databaseOptions = {
-//     path: 'realmDB.realm',
-//     schema: [UserSchema],
-//     schemaVersion: 0,
-// }
-
 const insertUser = body => new Promise((resolve, reject) => {
-    const { pubkey, name, jwt } = body;
+    const { pubkey, challenge, signature, expires } = body;
+    if (!pubkey || !challenge || !signature || !expires) {
+        reject({ status: 'failed', message: 'Missing user data' });
+    }
     realmDB.write(() => {
-        let user = realmDB.create('User', {pubkey:pubkey, name:name, jwt:jwt}, true);
+        let user = realmDB.create('User', { pubkey: pubkey, challenge: challenge, signature: signature, expires: expires }, true);
     });
     resolve(user);
-    // Realm.open(databaseOptions).then(realm => {
-    //     try {
-    //         realm.write(() => {
-    //             let authedUser = realm.create('User', { pubkey: pubkey, signature: signature }, true);
-    //             console.log(authedUser);
-    //             resolve(authedUser);
-    //         });
-    //     } catch (e) {
-    //         reject(e);
-    //     }
-    // }).catch(e => {
-    //     reject(e);
-    // });
-},(e) => {
-    console.log(e);
-    reject(e);
 });
+
+// Realm.open(databaseOptions).then(realm => {
+//     try {
+//         realm.write(() => {
+//             let authedUser = realm.create('User', { pubkey: pubkey, signature: signature }, true);
+//             console.log(authedUser);
+//             resolve(authedUser);
+//         });
+//     } catch (e) {
+//         reject(e);
+//     }
+// }).catch(e => {
+//     reject(e);
+// });
 
 // const insertUser = user => new Promise((resolve, reject) => {
 //     console.log(user);
@@ -77,14 +73,17 @@ const insertUser = body => new Promise((resolve, reject) => {
 const getUser = pubkey => new Promise((resolve, reject) => {
     try {
         let user = realmDB.objects('User').filtered('pubkey == $0', pubkey);
-        resolve(user)
+        if (typeof user !== 'undefined' && typeof user[0] !== 'undefined') {
+            resolve(user[0]);
+        } else {
+            reject({ status: 'error', message: 'User not found' });
+        }
     } catch (e) {
         reject(e);
     }
 });
 
 module.exports = {
-    realmDB,
     insertUser,
     getUser,
 }

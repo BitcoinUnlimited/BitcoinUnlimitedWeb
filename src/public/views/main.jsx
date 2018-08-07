@@ -20,6 +20,9 @@ import Login from './pages/login.jsx';
 import Blog from './pages/blog.jsx';
 import NotFound from './pages/not-found.jsx';
 
+import Auth from './pages/protected/auth.jsx';
+import Dashboard from './pages/protected/dashboard.jsx';
+
 ReactDOM.render((
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
         <Route path='/'>
@@ -36,6 +39,9 @@ ReactDOM.render((
             <Route path='emergent-consensus' component={EmergentConsensus} />
             <Route path='cash-development-plan' component={DevelopTestingAccord} />
             <Route path='login' component={Login} />
+            <Route component={Auth}>
+                <Route path='dashboard' component={Dashboard} />
+            </Route>
             <Route path='blog' component={Blog} />
             <Route path='*' component={NotFound} />
         </Route>
