@@ -23,8 +23,13 @@ const fixAddressFormat = address => { return !AddrFormat.isLegacyAddress(address
  * Note: Bitcore causes errors when non-signature strings are passed as the signature param
  */
 const messageVerify = message => {
-    const { challenge, address, signature } = message;
-    return Message(challenge).verify(address, signature);
+    let { challenge, pubkey, signature } = message;
+    const fixedPubKey = fixAddressFormat(pubkey);
+    try {
+        return Message(challenge).verify(fixedPubKey, signature);
+    } catch(e) {
+        return false;
+    }
 }
 
 module.exports = {

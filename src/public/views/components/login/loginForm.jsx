@@ -1,69 +1,56 @@
 'use strict';
 
 import React from 'react';
+import { withRouter } from 'react-router';
 import { strings } from '../../../lib/i18n';
-import { validateAddress, fixAddressFormat, messageVerify } from '../../../../database/verifySignature.js';
-
-import Jwt from 'jsonwebtoken';
-
+import { validateAddress } from '../../../../database/verifySignature.js';
 import Axios from 'axios';
-//import Env from 'process-env'
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
-        this.setPubKey = this.setPubKey.bind(this);
-        this.setSignature = this.setSignature.bind(this);
+        this.change = this.change.bind(this);
         this.loginSubmit = this.loginSubmit.bind(this);
-        this.state = { pubkey:"", sig:"", error:"", counter: 0 };
+        this.state = { isAuthed: false ,pubkey:'', sig:'', error:'', counter: 0 };
     }
 
-    setPubKey(e) {
-        this.setState({ pubkey: e.target.value });
-    }
-    setSignature(e) {
-        this.setState({ sig: e.target.value });
+    change(e) {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     loginSubmit(e) {
         e.preventDefault();
-        let errors = this.checkSubmit();
+        let errors = this.validate();
         if (Number.isInteger(errors)) {
             this.setState({ error: strings().auth.errors[errors] });
-        } else {
-            this.setState({ error: '' });
-            console.log('correct!');
-
-            // get token after checking signature
-            Axios.post('/sig_verify', {
-                challenge: this.props.challenge,
-                address: this.state.pubkey,
-                signature: this.state.sig
-            }).then(response => {
-                if (response.data !== 'undefined') {
-                    localStorage.setItem('jwt-token', response.data);
-                } else {
-                    this.setState({ error: "Authentication failed." });
-                }
-            }).catch(error => {
-                this.setState({ error: error });
-            });
+            return;
         }
+        this.verifySignature({ pubkey: this.state.pubkey, challenge: this.props.challenge, signature: this.state.sig });
     }
 
-    checkSubmit() {
-        if (!validateAddress(this.state.pubkey)) {
-            return 0;
-        } else if (this.state.sig.length === 0) {
+    verifySignature(user) {
+        const { pubkey, challenge, signature } = user;
+        Axios.post('/sig_verify', {
+            pubkey: pubkey,
+            challenge: challenge,
+            signature: signature
+        }).then(response => {
+            if (response.data && !(response.data.status && response.data.status == 'error')) {
+                localStorage.setItem('jwt', response.data);
+                this.props.router.push('/dashboard');
+            } else {
+                this.setState({ error: 'Authentication failed.' });                
+            }
+        }).catch(error => {
+            this.setState({ error: 'Authentication failed.' });
+        });
+    }
+
+    validate() {
+        if (!this.state.sig || !this.state.pubkey) {
             return 1;
-        } else {
-            let addr = fixAddressFormat(this.state.pubkey);
-            try {
-                if (!messageVerify({ challenge:this.props.challenge, address:addr, signature:this.state.sig })) return 1;
-            }
-            catch(error) {
-                return 1;
-            }
+        } else if (!validateAddress(this.state.pubkey)) {
+            return 0;
         }
     }
 
@@ -73,7 +60,7 @@ class LoginForm extends React.Component {
                 <div className={ this.state.error.length > 0 ? "error" : "error false" }>{ this.state.error }</div>
                 <label className="login__label">
                     <span>Public Key:</span>
-                    <input className="login__text" type="text" name="pubkey" value={ this.state.pubkey } onChange={ this.setPubKey } />
+                    <input className="login__text" type="text" name="pubkey" value={ this.state.pubkey } onChange={ this.change } />
                 </label>
                 <label className="login__label">
                     <span>Challenge:</span>
@@ -81,7 +68,7 @@ class LoginForm extends React.Component {
                 </label>
                 <label className="login__label">
                     <span>Signature:</span>
-                    <textarea className="login__textarea" type="password" name="sig" value={ this.state.sig } onChange={ this.setSignature }></textarea>
+                    <textarea className="login__textarea" type="password" name="sig" value={ this.state.sig } onChange={ this.change }></textarea>
                 </label>
                 <input className="login__submit" type="submit" value="Submit" />
             </form>
@@ -89,4 +76,10 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm
+export default withRouter(LoginForm);
+
+LoginForm.propTypes = {
+  router: React.PropTypes.shape({
+    push: React.PropTypes.func.isRequired
+  }).isRequired
+};

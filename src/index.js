@@ -7,13 +7,28 @@ import express from 'express';
 import redirects from './data/redirects.json';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
-import { insertUser, getUser, realmDB } from './database/realmSchema.js';
-import { validateAddress, fixAddressFormat, messageVerify } from './database/verifySignature.js';
+import { insertUser, getUser } from './database/realmSchema.js';
+import { validateAddress, fixAddressFormat, messageVerify, jwtSecret } from './database/verifySignature.js';
 
-const passport = require('passport');
-const jwtStrategy = require('passport-jwt').Strategy;
+import passport from 'passport';
+import { Strategy, ExtractJwt } from 'passport-jwt';
 
-console.log(process.env.JWT_SECRET);
+const errorObject = msg => ({ status: 'error', message: `Error: ${msg}` });
+
+const passportOpts = {
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.JWT_SECRET,
+}
+
+const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
+    const user = getUser(payload.pubkey).then(user => {
+        next(null, user);
+    }).catch(e => {
+        next(null, false);
+    });
+});
+
+passport.use(jwtStrategy);
 
 let app = express();
 
@@ -32,97 +47,37 @@ app.get('/downloads/:file', (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, './public')));
+app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.get('/blog/admin', jwtMiddlware, function(req, res) {
-//     jwt.verify(req.token, 'secret-key', function(err, data) {
-//         if (err) {
-//             res.send("send to 403")
-//             //res.sendStatus(403);
-//         } else {
-//             // show page
-//             res.json({
-//                 text: 'test'
-//             });
-//         }
-//     });
-// });
-
 app.post('/sig_verify', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    if (!req.body.challenge || !req.body.address || !req.body.signature) {
-        res.status(401).send({ status: 'error' });
-    }
-    if (messageVerify(req.body)) {
+    const { pubkey, challenge, signature } = req.body;
+    if (!pubkey || !challenge || !signature) {
+        res.send(errorObject('Verification failed'));
+    } else if (messageVerify(req.body)) {
+        const expires = Math.floor(Date.now() / 1000) + (60 * 60);
+        insertUser({ pubkey: pubkey, challenge: challenge, signature: signature, expires: expires }).catch(e => {
+            res.send(errorObject(e));
+        });
         const token = jwt.sign({
-            exp: Math.floor(Date.now() / 1000) + (60 * 60),
-            pubkey: req.body.pubkey,
-            challenge: req.body.challenge,
-            signature: req.body.signature,
+            pubkey: pubkey,
+            challenge: challenge,
+            signature: signature,
+            expires: expires,
         }, process.env.JWT_SECRET);
         res.send(token);
     } else {
-        res.status(401).send({ status: 'unauthorized' });
+        res.send(errorObject('Verification failed'));
     }
 })
 
-app.post('/new_user', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    try {
-        var result = insertUser(req.body);
-        res.send({
-            status:'success',
-            data: result,
-        });
-    } catch (e) {
-        res.send({
-            status:'failure',
-            data: e,
-        });
+app.get('/get_user', passport.authenticate('jwt', { session: false }),(req, res) => {
+    if (req.user) {
+        res.send(req.user);
+    } else {
+        res.send(errorObject('User not found'));
     }
-    //const { pubkey, signature } = req.body;
-    // insertUser({ pubkey, signature }).then(user => {
-    //     res.send({
-    //         status: 'success',
-    //         message: 'Inserted new user',
-    //         data: user,
-    //     });
-    // }).catch(e => {
-    //     res.send({
-    //         status: 'failed',
-    //         message: `Insert user error!: ${e}`,
-    //     });
-    // });
-});
-
-app.get('/user/:id', (req, res) => {
-    getUser(req.params.id).then(result => {
-        console.log('send result');
-        res.send(result);
-    }).catch(e => {
-        console.log('errr');
-        res.send(e);
-    });
-    // res.setHeader('Content-Type', 'application/json');
-    // getUser().then(users => {
-    //     res.send({
-    //         status: 'success',
-    //         message: 'Users',
-    //         data: users,
-    //     });
-    // }).catch(e => {
-    //     console.log(e);
-    //     res.send({
-    //         status: 'failed',
-    //         message: `No users!: ${e}`,
-    //     });
-    // });
-    // var token = jwt.sign({
-    //     exp: Math.floor(Date.now() / 1000) + (60 * 60),
-    //     pubkey: 'foobar'
-    // }, 'secret-key');
-    // res.send(token);
 });
 
 app.get('*', (req, res) => {
@@ -135,15 +90,35 @@ let server = app.listen(8080, "localhost", () => {
     console.log('The Bitcoin Unlimited website is now being served at http://%s:%s', host, port);
 });
 
-const jwtMiddlware = (req, res, next) => {
-    const header = req.headers["authorization"];
-    if (typeof header !== 'undefined') {
-        const bearer = header.split(' ');
-        const bearerToken = bearer[1];
-        req.token = bearerToken;
-        next();
-    } else {
-        console.log('not allowed');
-        res.sendStatus(403);
-    }
-}
+// res.setHeader('Content-Type', 'application/json');
+// getUser().then(users => {
+//     res.send({
+//         status: 'success',
+//         message: 'Users',
+//         data: users,
+//     });
+// }).catch(e => {
+//     console.log(e);
+//     res.send({
+//         status: 'failed',
+//         message: `No users!: ${e}`,
+//     });
+// });
+// var token = jwt.sign({
+//     exp: Math.floor(Date.now() / 1000) + (60 * 60),
+//     pubkey: 'foobar'
+// }, 'secret-key');
+// res.send(token);
+
+// const jwtMiddlware = (req, res, next) => {
+//     const header = req.headers["authorization"];
+//     if (typeof header !== 'undefined') {
+//         const bearer = header.split(' ');
+//         const bearerToken = bearer[1];
+//         req.token = bearerToken;
+//         next();
+//     } else {
+//         console.log('not allowed');
+//         res.sendStatus(403);
+//     }
+// }
