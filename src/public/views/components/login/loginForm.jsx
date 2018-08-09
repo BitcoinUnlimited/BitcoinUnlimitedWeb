@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import { strings } from '../../../lib/i18n';
 import { validateAddress } from '../../../../database/verifySignature.js';
 import Axios from 'axios';
@@ -39,10 +40,10 @@ class LoginForm extends React.Component {
                 localStorage.setItem('jwt', response.data);
                 this.props.router.push('/dashboard');
             } else {
-                this.setState({ error: 'Authentication failed.' });                
+                this.setState({ error: strings().auth.errors[2] });
             }
         }).catch(error => {
-            this.setState({ error: 'Authentication failed.' });
+            this.setState({ error: strings().auth.errors[2] });
         });
     }
 
@@ -79,7 +80,7 @@ class LoginForm extends React.Component {
 export default withRouter(LoginForm);
 
 LoginForm.propTypes = {
-  router: React.PropTypes.shape({
-    push: React.PropTypes.func.isRequired
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
   }).isRequired
 };
