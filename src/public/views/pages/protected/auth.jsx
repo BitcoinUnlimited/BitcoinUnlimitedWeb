@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import Axios from 'axios';
-
-const isDefined = optional => typeof optional !== 'undefined';
+import { isDefined } from '../../../../helpers/helpers.js';
 
 class Auth extends React.Component {
     constructor(props) {
@@ -34,7 +34,6 @@ class Auth extends React.Component {
                     this.removeJwtAndRedirect();
                 }
             }).catch(e => {
-                //console.log(`Get user error: ${e}`);
                 this.removeJwtAndRedirect();
             });
         }
@@ -52,7 +51,7 @@ class Auth extends React.Component {
 export default withRouter(Auth);
 
 Auth.propTypes = {
-  router: React.PropTypes.shape({
-    push: React.PropTypes.func.isRequired
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
   }).isRequired
 };

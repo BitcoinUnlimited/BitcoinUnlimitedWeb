@@ -689,8 +689,13 @@
     },
     "auth": {
         "errors": [
-            "Your public key was not found in our system. Please use the correct key associated with your BitcoinUnlimited membership.",
-            "The signature you provided was incorrect."
+            "The public key is invalid. Please use the key associated with your Bitcoin Unlimited membership.",
+            "Incorrect signature.",
+            "Authentication failed.",
+            "Missing form data.",
+            "Public key not found in database.",
+            "Verification failed.",
+            "User not found."
         ],
         "validAddresses": [
             "1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G",
