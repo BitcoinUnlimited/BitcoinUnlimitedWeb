@@ -45,3 +45,7 @@ npm install bitcoin-unlimited-web --save
 ```javascript
 var BitcoinUnlimitedWeb = require('bitcoin-unlimited-web');
 ```
+
+## Environment configuration
+
+Make sure to update JWT_SECRET in the .env file located in the base directory for added security.
