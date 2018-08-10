@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <Page name="dashboard" title={ strings().login.title } subtitle={ strings().login.subtitle } >
+            <Page name="dashboard" title={ strings().dashboard.title } >
                 <div>Dashboard</div>
             </Page>
         );
