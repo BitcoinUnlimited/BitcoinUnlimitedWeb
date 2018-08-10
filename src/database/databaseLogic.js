@@ -11,7 +11,7 @@ const signatureVerify = body => {
     if (!isString(pubkey) || !isString(challenge) || !isString(signature)) {
         return responseError(strings().auth.errors[5]);
     } else if (messageVerify(body)) {
-        const expires = Math.floor(Date.now() / 1000) + 20;//(120 * 60); // 2 hr
+        const expires = Math.floor(Date.now() / 1000) + (120 * 60); // 1hr
         let error = false;
         insertUser({ pubkey: pubkey, challenge: challenge, signature: signature, expires: expires });
         const token = jwt.sign({

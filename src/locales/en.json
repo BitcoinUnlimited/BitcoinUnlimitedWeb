@@ -687,6 +687,9 @@
         "title": "Login",
         "subtitle": "Use your official public key to login."
     },
+    "dashboard": {
+        "title": "Admin Dashboard"
+    },
     "auth": {
         "errors": [
             "The public key is invalid. Please use the key associated with your Bitcoin Unlimited membership.",
