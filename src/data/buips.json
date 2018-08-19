@@ -380,7 +380,7 @@
         "title": "Amend AoC to change membership period",
         "proposer": "Windowly",
         "submitted": "2017-03-18",
-        "status": "draft",
+        "status": "closed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/049.mediawiki"
     },
     {
@@ -388,7 +388,7 @@
         "title": "Double yes with tie-break question",
         "proposer": "torusJKL",
         "submitted": "2017-03-18",
-        "status": "draft",
+        "status": "closed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/050.mediawiki"
     },
     {
@@ -396,7 +396,7 @@
         "title": "Add CompactBlocks support",
         "proposer": "freetrader",
         "submitted": "2017-04-13",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/051.mediawiki"
     },
     {
@@ -404,7 +404,7 @@
         "title": "Set up dedicated Continuous Integration",
         "proposer": "freetrader",
         "submitted": "2017-04-15",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/052.mediawiki"
     },
     {
@@ -412,7 +412,7 @@
         "title": "Tweakable client DoS responses",
         "proposer": "freetrader",
         "submitted": "2017-05-01",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/053.mediawiki"
     },
     {
@@ -420,7 +420,7 @@
         "title": "Make AD optional and disabled by default",
         "proposer": "freetrader",
         "submitted": "2017-05-05",
-        "status": "draft",
+        "status": "closed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/054.mediawiki"
     },
     {
@@ -428,7 +428,279 @@
         "title": "Increase the Block Size Limit at a Fixed Block Height",
         "proposer": "Peter Rizun",
         "submitted": "2017-05-10",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/055.mediawiki"
     },
+    {
+        "number": "BUIP056",
+        "title": "Increase the Block Size Limit at a Support Threshold",
+        "proposer": "Tomas van der Wansem (Sponsor: Zangelbert Bingledack)",
+        "submitted": "2017-05-12",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/056.mediawiki"
+    },
+    {
+        "number": "BUIP057",
+        "title": "Add BIP 135 support (generalized BIP9 version bits)",
+        "proposer": "Sancho Panza (Sponsor: Andrea Suisani)",
+        "submitted": "2017-04-14",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/057.mediawiki"
+    },
+    {
+        "number": "BUIP058",
+        "title": "Dynamic checkpoints",
+        "proposer": "freetrader",
+        "submitted": "2017-05-19",
+        "status": "withdrawn",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/058.mediawiki"
+    },
+    {
+        "number": "BUIP059",
+        "title": "Make 'sticky gate' optional (disabled by default)",
+        "proposer": "freetrader",
+        "submitted": "2017-05-21",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/059.mediawiki"
+    },
+    {
+        "number": "BUIP060",
+        "title": "New Members for Election #6",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2017-05-22",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/060.mediawiki"
+    },
+    {
+        "number": "BUIP061",
+        "title": "Demonstration of Phase in Full Network Upgrade Activated by Miners",
+        "proposer": "LIN Zheming",
+        "submitted": "2017-06-13",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/061.mediawiki"
+    },
+    {
+        "number": "BUIP062",
+        "title": "Funded Development, aka Devpool",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2017-08-24",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/062.mediawiki"
+    },
+    {
+        "number": "BUIP063",
+        "title": "Support Bitcoin Cash with an official implementation",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2017-09-01",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/063.mediawiki"
+    },
+    {
+        "number": "BUIP064",
+        "title": "Support Segwit2x with an official implementation",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2017-09-01",
+        "status": "rejected",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/064.mediawiki"
+    },
+    {
+        "number": "BUIP065",
+        "title": "Gigablock Testnet Initiative",
+        "proposer": "Peter Rizun (@Peter R)",
+        "submitted": "2017-08-28",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/065.mediawiki"
+    },
+    {
+        "number": "BUIP066",
+        "title": "Ecosystem Outreach for Onchain Scaling, Part II",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2017-09-02",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/066.mediawiki"
+    },
+    {
+        "number": "BUIP067",
+        "title": "New Members for Election #7",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2017-09-09",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/067.mediawiki"
+    },
+    {
+        "number": "BUIP068",
+        "title": "The Future of Bitcoin 2 Conference",
+        "proposer": "Antony Zegers (@Mengerian)",
+        "submitted": "2017-11-01",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/068.mediawiki"
+    },
+    {
+        "number": "BUIP070",
+        "title": "Support BitPay's new Bitcoin Cash address format in BUCash",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted": "2017-11-08",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/070.mediawiki"
+    },
+    {
+        "number": "BUIP071",
+        "title": "Make Bitcoin Cash the 'Release' Version of Bitcoin Unlimited",
+        "proposer": "Peter Rizun (@Peter R)",
+        "submitted": "2017-11-13",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/071.mediawiki"
+    },
+    {
+        "number": "BUIP072",
+        "title": "Partially re-weight BU's funds towards BCH",
+        "proposer": "Peter Rizun (@Peter R)",
+        "submitted": "2017-11-13",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/072.mediawiki"
+    },
+    {
+        "number": "BUIP073",
+        "title": "Fully re-weight BU's funds towards BCH",
+        "proposer": "@Norway",
+        "submitted": "2017-11-13",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/073.mediawiki"
+    },
+    {
+        "number": "BUIP074",
+        "title": "Sell the Bitcoin Gold portion of BU's funds for BCH",
+        "proposer": "@Windowly",
+        "submitted": "2017-11-16",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/074.mediawiki"
+    },
+    {
+        "number": "BUIP075",
+        "title": "Counter BUIP of BUIP071",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted": "2017-11-13",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/075.mediawiki"
+    },
+    {
+        "number": "BUIP076",
+        "title": "Support Base32 address format in BUCash",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted": "2017-11-17",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/076.mediawiki"
+    },
+    {
+        "number": "BUIP077",
+        "title": "Enable representative tokens via OP_GROUP on Bitcoin Cash",
+        "proposer": "Andrew Stone (@thezerg)",
+        "submitted": "2017-11-19",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/077.mediawiki"
+    },
+    {
+        "number": "BUIP078",
+        "title": "Enable Binary Contracts in Bitcoin Cash via OP_DATASIGVERIFY",
+        "proposer": "Andrew Stone (@thezerg)",
+        "submitted": "2017-11-19",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/078.mediawiki"
+    },
+    {
+        "number": "BUIP079",
+        "title": "Publication of BUIP vote and election dates in advance",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted": "2017-11-19",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/079.mediawiki"
+    },
+    {
+        "number": "BUIP080",
+        "title": "New Members for Election #8",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2017-11-24",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/080.mediawiki"
+    },
+    {
+        "number": "BUIP081",
+        "title": "Unambiguous definition of 1 year membership period",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted": "2017-11-26",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/081.mediawiki"
+    },
+    {
+        "number": "BUIP082",
+        "title": "opt-in malleability fix",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted": "2017-12-25",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/082.mediawiki"
+    },
+    {
+        "number": "BUIP083",
+        "title": "Andrew Clifford for President",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2018-01-06",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/083.mediawiki"
+    },
+    {
+        "number": "BUIP084",
+        "title": "Secure BCH coin splitting instructions",
+        "proposer": "@79b79aa8",
+        "submitted": "2018-01-11",
+        "status": "passed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/084.mediawiki"
+    },
+    {
+        "number": "BUIP085",
+        "title": "Double spend relaying",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted": "2018-02-04",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/085.mediawiki"
+    },
+    {
+        "number": "BUIP086",
+        "title": "bitcoincash: URI format update",
+        "proposer": "@Brendan Lee (sponsored by @torusJKL)",
+        "submitted": "2018-02-09",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/086.mediawiki"
+    },
+    {
+        "number": "BUIP087",
+        "title": "Utilization of 'cash' denomination",
+        "proposer": "@Ken Shishido",
+        "submitted": "2018-03-18",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/087.mediawiki"
+    },
+    {
+        "number": "BUIP088",
+        "title": "Double-spend proof creation and forwarding",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted": "2018-03-29",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/088.mediawiki"
+    },
+    {
+        "number": "BUIP089",
+        "title": "Blockchain Engineer Services Contract",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2018-04-21",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/089.mediawiki"
+    },
+    {
+        "number": "BUIP090",
+        "title": "New Members For Election #9",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted": "2018-04-25",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/090.mediawiki"
+    }
 ]

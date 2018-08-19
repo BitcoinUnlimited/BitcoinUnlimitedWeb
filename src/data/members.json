@@ -59,20 +59,6 @@
         ]
     },
     {
-        "avatar": "Rogerver",
-        "name": "Roger Ver",
-        "publicKey": "1KubbeimkYerQhQjdMEufzUDpZvJEUcHfJ ",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31067",
-        "photoUrl": "img/about/Roger_Ver.png",
-        "title": "CEO Bitcoin.com / BU member",
-        "bio": [
-            "After founding several successful companies in Silicon Valley, Roger began his Bitcoin journey in February 2011.",
-            "Years before traditional venture capital firms became involved, he became the first person in the world to start investing in Bitcoin related startups, nearly singlehandedly funded the entire first generation of Bitcoin businesses.",
-            "His current investments include Bitcoin.com, Blockchain.com, Bitpay.com, Kraken.com, and many many others.",
-            "In his free time he enjoys competing in Brazilian Jujitsu tournaments."
-        ]
-    },
-    {
         "avatar": "chriswilmer",
         "name": "Dr. Christopher Wilmer",
         "publicKey": "1FdweEq46d3r67W6odR4YREUXJrZ8Vj7c",
@@ -87,7 +73,7 @@
     {
         "avatar": "Haiyang",
         "name": "Haipo Yang",
-        "publicKey": "",
+        "publicKey": "18cBEMRxXHqzWWCxZNtU91F5sbUNKhL5PX",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31181",
         "photoUrl": "img/about/Haipo_Yang.png",
         "title": "CEO ViaBTC / BU member",
@@ -128,14 +114,8 @@
     {
         "avatar": "Emil Oldenburg",
         "name": "Emil Oldenburg",
-        "publicKey": "",
+        "publicKey": "1KvZmH4iJbenBpJRMUrsykWfCjDBNAdJuZ",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31180"
-    },
-    {
-        "avatar": "jake",
-        "name": "Jake Smith",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-30390"
     },
     {
         "avatar": "Lee Adams",
@@ -144,45 +124,27 @@
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7066"
     },
     {
-        "avatar": "mike",
-        "name": "Mike Malley",
-        "publicKey": "174Bbv3ev1qPp2cPMuPpyqPTbArjwwCrD",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-30776"
-    },
-    {
         "avatar": "Roy Badami",
         "name": "Roy Badami",
         "publicKey": "1GfHipP1Wi9kqQwSQiWneusNwTtCiRKP8W",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7527"
     },
     {
-        "avatar": "bitcartel",
-        "name": "Simon Liu",
-        "publicKey": "16tA8bcwFve5FDpTaNTPRFg5Jn5GLBpMrL",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-5230"
-    },
-    {
         "avatar": "tim potter",
         "name": "Tim Potter",
-        "publicKey": "",
+        "publicKey": "1LPTCsvUatVH4Z9UsScJHHZTPjpJRqepNm",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-28223"
     },
     {
         "avatar": "dgenr8",
         "name": "Tom Harding",
-        "publicKey": "http://keybase.io/dgenr8",
+        "publicKey": "1BaKh3EaAjGoaP8BH9AZ4jG7VD3HaC3xoG",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31163"
-    },
-    {
-        "avatar": "Trevin Hofmann",
-        "name": "Trevin Hofmann",
-        "publicKey": "-----BEGIN PGP PUBLIC KEY BLOCK-----\nVersion: SKS 1.1.5\nComment: Hostname: pgp.mit.edu\nmQENBFXwhKUBCADiEpy6CuJdQ7+f1wHGPaXENji/BuakNMkQsyvDciKAVmmCEuD96oGHyITr\nnxh2DTkrzBLWotKYy6VcTUXwTehu20MCvZuIFMEgPJq/kEgzKAuqK7K7STJXytF+24dHMhzi\n9h2i8gtFqiSnhD8DASmPe4Ed0dpXeeeRHrrPUVX+TQjkw6MJeHxvusJTU856pmSGeWDQNLPf\nKChpch0Eb+KqUPPMes6vW84EqXyVqonpt6rcZLh/+12X6jPh4HOLj4udkkUPtEJ7ShZpxi+F\nHCm2AYrsvf5X9cWKNhv7Lv7d3Mw6STE8asVppZlbUJubR9dO/cKbyaqGI2J7RAmQBoV3ABEB\nAAG0KFRyZXZpbiBIb2ZtYW5uIDx0cmV2aW5ob2ZtYW5uQGdtYWlsLmNvbT6JATkEEwEIACMF\nAlXwhKUCGwMHCwkIBwMCAQYVCAIJCgsEFgIDAQIeAQIXgAAKCRBzffo9i1h4nhCwB/46pQ25\nNj+BA3TEpZ8ulJVLuIKgu56CDp842h3SY12wnTU4GfowhMoyqbN5edGdx8zx0sVmAP5GQzph\np7DgOSaJAtdj6SbaFHo1bn20+Bj9lLUgRMLVmfsC57XveWVS0YVLqdKOnVSmMNCWqO1QDjfk\nnMa37IZebvwr6uAD2q3gPPoxBJmQk5BYlu/AKGYHHZCZbAdhALfx8V2Ako/5Wk/2vMeF88q+\nC3M9I2olXoa6lhTx0F75FVBCG8O29p0wNNxfmM5Q34949+0rrXy1Mb2z8TXIWc+bN9ndIT3w\nZt3y1GBoFfyQh65dm7fUSHyWLXdCiEbRQFUfzc+JrFkSqNnfuQENBFXwhKUBCACyyN4SMwq1\n/73pTkqrklOpfe6THfLUQb4icq1y04yWFmdT9PUQ4xEMpEGhJAvm7ve8SPCI7Jjd3Ts28M5k\nPe11i9EjvFWw3AzgTSD7Dv/JuzGCyW7CouWluf82QEGuBcv0xUUQmPKXHCe2y3KmMnh8VJQs\nnKTPXlucStS3lOpeYGRokUuZLFSNXTDOlHNeebSogILc6wlHu+mUXEaYtwNAMiXeXDTCTZZW\n7iKw7KCzhy9NoOA53F6HjPGufwnX5gHhbY5jMzXFul3Nlnu150FKGzEnwkuhcNsD37jclvpX\n9AzmMLGltgQCr3YoU1tdIjThfhM6z64Ji+4YlWTXRDmRABEBAAGJAR8EGAEIAAkFAlXwhKUC\nGwwACgkQc336PYtYeJ5yZggAlAsYQtPp5+t4claicXCpX2XfcTNwB0WJo2+DHts3aBSA8/5l\n2T9OWjFUoakrL1scVo3TlewhghBRncgc+nLY9nz1jH9uCqfh+3mCmWJKJ5wAsWY+sRAvZwm6\n865Ej355sF+W4p5tQxy5NqLLvBxx+BqdXxGLNN7LzKMcwG4bZTSgxozF8S70c7WrkePxBo80\n3DuHfzdxMhiVs8TsEcpkYI09TfV0d2F4JdzcSemQGeIu2AICoaEDAFUzI19WPPPyfsOFZmUA\nexWCddoSkZD0Bnh8PgTW4PH7dHqNv/Ue591wh2YLSNqbg4xJ8itgvGCrU2V53e4lXabZmb0b\nNHDx1A==\n=Kk0Y\n-----END PGP PUBLIC KEY BLOCK-----",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-7966"
     },
     {
         "avatar": "adamstgbit",
         "name": "",
-        "publicKey": "",
+        "publicKey": "17sudmxFpCxW2aeKUV4ZnkuDw7UtnkHkCM",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-7#post-31750"
     },
     {
@@ -204,70 +166,10 @@
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8714"
     },
     {
-        "avatar": "cliff",
-        "name": "",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-27994"
-    },
-    {
-        "avatar": "cryosanth",
-        "name": "",
-        "publicKey": "",
-        "link": ""
-    },
-    {
-        "avatar": "CubicEarth",
-        "name": "",
-        "publicKey": "",
-        "link": ""
-    },
-    {
-        "avatar": "cypherdoc",
-        "name": "",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3930"
-    },
-    {
         "avatar": "freetrader",
         "name": "",
         "publicKey": "1Libre7MGkCXr7pUAEbwihCR9X4quYAyQ4",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-7903"
-    },
-    {
-        "avatar": "Helvetian616",
-        "name": "",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31323"
-    },
-    {
-        "avatar": "jbreher",
-        "name": "",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-13358"
-    },
-    {
-        "avatar": "jcliff",
-        "name": "",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-30007"
-    },
-    {
-        "avatar": "Jefferson Nunn",
-        "name": "",
-        "publicKey": "",
-        "link": ""
-    },
-    {
-        "avatar": "jl777",
-        "name": "",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-14120"
-    },
-    {
-        "avatar": "jsmith_dev",
-        "name": "",
-        "publicKey": "",
-        "link": ""
     },
     {
         "avatar": "kostialevin",
@@ -278,8 +180,8 @@
     {
         "avatar": "kyuupichan",
         "name": "",
-        "publicKey": "",
-        "link": ""
+        "publicKey": "1BH8E3TkuJMCcH5WGD11kVweKZuhh6vb7V",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-7#post-33488"
     },
     {
         "avatar": "lunar",
@@ -290,8 +192,8 @@
     {
         "avatar": "marcus",
         "name": "",
-        "publicKey": "",
-        "link": ""
+        "publicKey": "1KVTtx1tx8YnoUk42GEq6QNRbzQp6VCmNF",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-8#post-35332"
     },
     {
         "avatar": "norway",
@@ -300,46 +202,16 @@
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-28078"
     },
     {
-        "avatar": "rezzme",
-        "name": "",
-        "publicKey": "1GwL929cnZBk9XEjhpvciRC45AMETqFeQu",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7208"
-    },
-    {
-        "avatar": "Richy_T",
-        "name": "",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-30066"
-    },
-    {
-        "avatar": "Roger_Murdock",
-        "name": "",
-        "publicKey": "1AmtAAg9NK3j44y5RB6QBYrLnYJo3cJAtb",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-14340"
-    },
-    {
-        "avatar": "sgbett",
-        "name": "",
-        "publicKey": "",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-14118"
-    },
-    {
-        "avatar": "tkg",
-        "name": "",
-        "publicKey": "",
-        "link": ""
-    },
-    {
         "avatar": "todu",
-        "name": "",
-        "publicKey": "",
-        "link": ""
+        "name": "Tomislav Dugandzic",
+        "publicKey": "1E9VsPghjhvPVDJXrbSiCt4Lk7A2DZWtRH",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-8#post-34058"
     },
     {
         "avatar": "torusJKL",
-        "name": "",
-        "publicKey": "",
-        "link": ""
+        "name": "Gal Buki",
+        "publicKey": "1C9Yur3xi5EgJxghonzFo6x2Wt9LDLdMRC",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-8#post-35500"
     },
     {
         "avatar": "VeritasSapere",
@@ -348,27 +220,111 @@
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-4057"
     },
     {
-        "avatar": "Wildfire.ca",
-        "name": "",
-        "publicKey": "1WFcajYTxFXZWxQJvM2tETtdzzCaA6pd1",
-        "link": ""
-    },
-    {
         "avatar": "Windowly",
         "name": "",
         "publicKey": "1Czsw6Tp4H7uQC6W9fcAtGyRtoX812JNkU",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7145"
     },
     {
-        "avatar": "YarkoL",
-        "name": "",
-        "publicKey": "https://bitco.in/forum/threads/a-call-for-members-signing-bitcoin-addresses-or-pgp-public-keys.773/#post-9457",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8933"
-    },
-    {
         "avatar": "Zanglebert Bingledack",
         "name": "",
         "publicKey": "19a3fheZVGragEreBzXhjWMuSev2PrHToF",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3946"
+    },
+    {
+        "avatar": "Joel Dalais",
+        "name": "",
+        "publicKey": "1GUJQD3g3K2piLgZsj6JoHGQq7CfPq8jSe",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-9#post-35831"
+    },
+    {
+        "avatar": "drwasho",
+        "name": "",
+        "publicKey": "19xt9beTPVRbrWNfrEABPTSpETwp7LKuKm",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-9#post-36133"
+    },
+    {
+        "avatar": "Ken Shishido",
+        "name": "",
+        "publicKey": "1JBeRbTDpcjycJ7iSYs4RYFGJvbsqFfaHU",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-9#post-38229"
+    },
+    {
+        "avatar": "painlord2k",
+        "name": "",
+        "publicKey": "1D5EBbbv4XpQJyFkWu5r49Cqe2FHJhotXh",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-10#post-38813"
+    },
+    {
+        "avatar": "John Cunningham",
+        "name": "",
+        "publicKey": "1HZHDQZt4Ue8C8pWP8xyoZP2SdQkqDUqvp",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-11#post-43046"
+    },
+    {
+        "avatar": "Nic",
+        "name": "",
+        "publicKey": "1N9ukmAq6EhhVigrAHiMMzSHdEwDAcLskP",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-11#post-42540"
+    },
+    {
+        "avatar": "Erik Beijnoff",
+        "name": "",
+        "publicKey": "1Nm9MEPAi5qLA9MFULNQAs432fNLrQdpGr",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-10#post-39580"
+    },
+    {
+        "avatar": "bitsko",
+        "name": "",
+        "publicKey": "1Bitsko32RrVBw4FxBRyM7x1bkbognCFFz",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-12#post-44395"
+    },
+    {
+        "avatar": "79b79aa8",
+        "name": "",
+        "publicKey": "13K3dA4fefCUTX6VsNysqmNKfsmR93jhyD",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-12#post-49048"
+    },
+    {
+        "avatar": "Griffith",
+        "name": "",
+        "publicKey": "1Pcpj8sR5adRNMi8rZ1Zi7rg6GPqcmFHAz",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-12#post-52228"
+    },
+    {
+        "avatar": "singularity",
+        "name": "",
+        "publicKey": "15GEoJf5GJYAsdXxZCMt1iX4j9HcpvDzkn",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-12#post-46108"
+    },
+    {
+        "avatar": "micropresident",
+        "name": " Shammah Chancellor",
+        "publicKey": "1J4o9cXz2ybPsgXQf1H4GrKAdfuLLxUbnY",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-13#post-61594"
+    },
+    {
+        "avatar": "Daniel Lipshitz",
+        "name": "Daniel Lipshitz",
+        "publicKey": "1HK2S5iXZZ4TYt1osvaLY6TqJMkkjEdpzA",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-13#post-61740"
+    },
+    {
+        "avatar": "Jonathan Vaage",
+        "name": "Jonathan Vaage",
+        "publicKey": "1581sovLFohMPPaxYG5gYLLGjmnemagc21",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-14#post-62491"
+    },
+    {
+        "avatar": "reina",
+        "name": "",
+        "publicKey": "1KSp6dmtF7EKZyaBpdWFL4qeG8nkMcb7LS",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-13#post-59891"
+    },
+    {
+        "avatar": "Wildfire.ca",
+        "name": "",
+        "publicKey": "1WFcajYTxFXZWxQJvM2tETtdzzCaA6pd1",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-7#post-33342"
     }
 ]

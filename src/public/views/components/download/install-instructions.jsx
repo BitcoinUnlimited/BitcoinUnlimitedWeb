@@ -22,7 +22,7 @@ mkdir -p ~/src
 git clone https://github.com/BitcoinUnlimited/BitcoinUnlimited.git bu-src
 cd bu-src
 git checkout release
-./autogen-sh
+./autogen.sh
 ./configure
 make
 sudo make install

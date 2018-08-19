@@ -8,7 +8,7 @@ class MemberModal extends React.Component {
         if (this.props.member.photoUrl) {
             return (<img className='member__image pb1' src={ '../' + this.props.member.photoUrl} alt={this.props.member.name} />)
         } else {
-            return
+            return (<img className='member__image' src='../img/about/generic.png' alt={this.props.member.name} />)
         }
     }
 
