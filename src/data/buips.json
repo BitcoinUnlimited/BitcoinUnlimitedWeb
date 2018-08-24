@@ -702,5 +702,69 @@
         "submitted": "2018-04-25",
         "status": "draft",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/090.mediawiki"
+    },
+    {
+        "number":   "BUIP091",
+        "title":    "NeWorkshop on Instant Transactions for Bitcoin",
+        "proposer": "Peter Rizun (@Peter R)",
+        "submitted":"2018-08-06",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/091.mediawiki"
+    },
+    {
+        "number":   "BUIP092",
+        "title":    "Move the official BU repository and issue tracker to GitLab",
+        "proposer": "Gal Buki (@torusJKL)",
+        "submitted":"2018-08-01",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/092.mediawiki"
+    },
+    {
+        "number":   "BUIP069",
+        "title":    "Academic paper - Mining, Taxation and Public Goods in Bitcoin",
+        "proposer": "Nicolai Dimitri (@Nic)",
+        "submitted":"2018-08-01",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/069.mediawiki"
+    },
+    {
+        "number":   "BUIP094",
+        "title":    "BCH November upgrade - Re-enable Op Codes",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted":"2018-08-14",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/094.mediawiki"
+    },
+    {
+        "number":   "BUIP095",
+        "title":    "BCH November upgrade - CHECKDATASIG & CHECKDATASIGVERIFY",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted":"2018-08-14",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/095.mediawiki"
+    },
+    {
+        "number":   "BUIP096",
+        "title":    "BCH November upgrade - Enforced lexicographic transaction ordering",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted":"2018-08-14",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/096.mediawiki"
+    },
+    {
+        "number":   "BUIP097",
+        "title":    "New Members For Election #10",
+        "proposer": "Andrew Clifford (@solex)",
+        "submitted":"2018-08-21",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/097.mediawiki"
+    },
+    {
+        "number":   "BUIP098",
+        "title":    "Bitcoin Unlimited's Strategy for the November 2018 Hard Fork",
+        "proposer": "Andrew Stone (@theZerg)",
+        "submitted":"2018-08-21",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/098.mediawiki"
     }
 ]
