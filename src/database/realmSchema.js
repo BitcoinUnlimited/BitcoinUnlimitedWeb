@@ -1,12 +1,10 @@
 'use strict';
 
+const env = require('dotenv').config();
 const Realm = require('realm');
-const Promise = require('promise');
-import { strings } from '../public/lib/i18n';
-import { responseError, toInt, isDefined, isString } from '../helpers/helpers.js';
 
-const UserSchema = {
-    name: 'User',
+const AuthSchema = {
+    name: 'Auth',
     primaryKey: 'pubkey',
     properties: {
         pubkey: 'string',
@@ -16,52 +14,79 @@ const UserSchema = {
     }
 }
 
-const realmDB = new Realm({
-  path: 'realmDB.realm',
-  schema: [UserSchema],
-  deleteRealmIfMigrationNeeded: true, // dev only
-});
-
-const insertUser = body => new Promise((resolve, reject) => {
-    const { pubkey, challenge, signature, expires } = body;
-    if (!isString(pubkey) || !isString(challenge) || !isString(signature) || !expires) {
-        reject(responseError(strings().auth.errors[3]));
+const UserSchema = {
+    name: 'User',
+    primaryKey: 'uid',
+    properties: {
+        uid: 'string',
+        pubkey: 'string',
+        name: 'string?',
+        email: 'string?',
+        icon: 'string?',
+        bio: 'string?',
+        role: 'string?'
     }
-    realmDB.write(() => {
-        let user = realmDB.create('User', { pubkey: pubkey, challenge: challenge, signature: signature, expires: expires }, true);
-    });
-    if (isDefined(user)) {
-        resolve(user);
-    } else {
-        reject(responseError(strings().auth.errors[6]));
+}
+
+const RoleSchema = {
+    name: 'Role',
+    primaryKey: 'uid',
+    properties: {
+        uid: 'string',
+        role: 'string'
     }
-});
+}
 
-const removeUser = pubkey => new Promise((resolve, reject) => {
-    realmDB.write(() => {
-        let user = realmDB.objects('User').filtered('pubkey == $0', pubkey);
-        if (isDefined(user) && isDefined(user[0])) {
-            realmDB.delete(user);
-        }
-    });
-    resolve();
-});
+const TagSchema = {
+    name: 'Tag',
+    primaryKey: 'uid',
+    properties: {
+        uid: 'string',
+        term: 'string'
+    }
+}
 
-const getUser = pubkey => new Promise((resolve, reject) => {
+const PostSchema = {
+    name: 'Post',
+    primaryKey: 'uid',
+    properties: {
+        uid: 'string',
+        title: 'string',
+        subtitle: 'string',
+        body: 'string',
+        created: 'date', // new Date.now()
+        updated: 'date?', // optional properties can be set to `null` or `undefined`
+        published: 'bool',
+        tags: 'string?[]',
+        author: 'string'
+    }
+};
+
+const getSchemas = () => {
+    return [UserSchema, RoleSchema, TagSchema, PostSchema];
+}
+
+const getDB = type => {
     try {
-        let user = realmDB.objects('User').filtered('pubkey == $0', pubkey);
-        if (isDefined(user) && isDefined(user[0])) {
-            resolve(user[0]);
-        } else {
-            reject(responseError(strings().auth.errors[4]));
-        }
-    } catch (e) {
-        reject(e);
+        return (type == 'auth') ? process.env.DB_AUTH_NAME : process.env.DB_NAME;
+    } catch(e) {
+        return (type == 'auth') ? 'realmDBauth.realm' : 'realmDB.realm';
     }
+}
+
+const authDB = new Realm({
+    path: getDB('auth'),
+    schema: [AuthSchema]
+});
+
+const realmDB = new Realm({
+  path: getDB(),
+  schema: getSchemas()
 });
 
 module.exports = {
-    insertUser,
-    getUser,
-    removeUser,
+    realmDB,
+    getSchemas,
+    authDB,
+    getDB,
 }

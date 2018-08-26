@@ -8,9 +8,8 @@ import redirects from './data/redirects.json';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { signatureVerify, validateUser } from './database/databaseLogic.js';
-import { getUser, removeUser } from './database/realmSchema.js';
-import { responseError } from './helpers/helpers.js';
+import { signatureVerify, validateAuth, realmOp, getAuth, removeAuth } from './database/databaseLogic.js';
+import { resErr } from './helpers/helpers.js';
 
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
@@ -21,11 +20,11 @@ const passportOpts = {
 }
 
 const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
-    const user = getUser(payload.pubkey).then(user => {
-        if (validateUser(user)) {
-            next(null, user);
+    const auth = getAuth(payload.pubkey).then(auth => {
+        if (validateAuth(auth)) {
+            next(null, auth);
         } else {
-            removeUser(payload.pubkey);
+            removeAuth(payload.pubkey);
             next(null, false);
         }
     }).catch(e => {
@@ -52,19 +51,13 @@ app.get('/downloads/:file', (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, './public')));
+
 app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.post('/sig_verify', (req, res) => { res.send(signatureVerify(req.body)); });
-
-app.get('/get_user', passport.authenticate('jwt', { session: false }),(req, res) => {
-    if (req.user) {
-        res.send(req.user);
-    } else {
-        res.send(responseError(strings().auth.errors[6]));
-    }
-});
+app.post('/realm', passport.authenticate('jwt', { session: false }), (req, res) => res.send(realmOp(req.body)));
+app.get('/get_auth', passport.authenticate('jwt', { session: false }),(req, res) => (req.user) ? res.send(req.user) : res.send(resErr(strings().auth.errors[6])));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));

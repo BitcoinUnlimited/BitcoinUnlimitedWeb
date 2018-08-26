@@ -690,6 +690,18 @@
     "dashboard": {
         "title": "Admin Dashboard"
     },
+    "database": {
+        "errors": [
+            "Object type not specified.",
+            "Object type not found.",
+            "Realm object not found.",
+            "uid not specified.",
+            "Object is missing required parameters.",
+            "User not found.",
+            "Post not found.",
+            "Role not found."
+        ]
+    },
     "auth": {
         "errors": [
             "The public key is invalid. Please use the key associated with your Bitcoin Unlimited membership.",
@@ -698,7 +710,7 @@
             "Missing form data.",
             "Public key not found in database.",
             "Verification failed.",
-            "User not found."
+            "Auth not found."
         ],
         "validAddresses": [
             "1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G",
