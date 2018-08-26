@@ -67,23 +67,59 @@ const signatureVerify = data => {
     return resErr(strings().auth.errors[5]);
 };
 
-const realmGet = (type, value) => realmDB.objects(type).filtered('uid == $0', value);
+const buildDatabaseError = idx => resErr(strings().database.errors[idx]);
+
+const realmGetAll = (type, filtered) => {
+    return new Promise((resolve, reject) => {
+        if (!isDef(type)) {
+            reject(resErr(strings().database.errors[0]));
+        }
+        realmDB.write(() => {
+            if (isDef(filtered)) {
+                let result = realmDB.objects(type).filtered(filtered);
+                resolve(result);
+            } else {
+                let result = realmDB.objects(type);
+                resolve(result);
+            }
+        });
+    });
+}
+
+const realmGetUid = (type, uid) => {
+    return new Promise((resolve, reject) => {
+        if (!isDef(type) || !isDef(uid)) {
+            resolve(resErr(strings().database.errors[0]));
+        }
+        realmDB.write(() => {
+            const result = realmDB.objects(type).filtered('uid == $0', uid);
+            if (isDef(result)) {
+                resolve(result);
+            } else {
+                reject(buildDatabaseError(2));
+            }
+        });
+    });
+};
 
 const realmDelete = (type, value) => {
-    realmDB.write(() => {
-        let realmObj = realmGet(type, value);
-        if (isDef(realmObj)) {
-            realmDB.delete(realmObj);
-            return resSuccess();
-        } else {
-            return resErr(strings().database.errors[2]);
-        }
+    return new Promise((resolve, reject) => {
+        realmGetUid(type, value).then(realmObj => {
+            realmDB.write(() => {
+                realmDB.delete(realmObj);
+                resolve(resSuccess());
+            });
+        }).catch(e => {
+            reject(e);
+        });
     });
 }
 
 const realmUpsert = (type, obj) => {
-    realmDB.write(() => {
-        return realmDB.create(type, obj, true);
+    return new Promise((resolve, reject) => {
+        realmDB.write(() => {
+            resolve(realmDB.create(type, obj, true));
+        });
     });
 };
 
@@ -124,33 +160,34 @@ const buildUpsertObj = (type, data) => {
     }
 }
 
-const opSwitch = (type, op, data) => {
-    if (op == 'upsert') {
+const opSwitch = data => {
+    const { type, op } = data;
+    if (op === 'upsert') {
         const upsertObject = buildUpsertObj(type, data);
         if (!isEmptyObj(upsertObject)) {
             return realmUpsert(type, upsertObject);
         }
-        return resErr(strings().database.errors[4]);
+        return Promise.reject(buildDatabaseError(4));
     } else {
         const { uid } = data;
         if (isDef(uid)) {
-            if (op == 'delete') {
+            if (op === 'delete') {
                 return realmDelete(type, uid);
             } else {
-                return realmGet(type, uid);
+                return realmGetUid(type, uid);
             }
-        } else {
-            return resErr(strings().database.errors[3]);
         }
+        const { filtered } = data;
+        return realmGetAll(type, filtered);
     }
 }
 
 const realmOp = data => {
-    let { type, op } = data;
-    if (!isStr(type) || !isStr(op)) {
-        return resErr(strings().database.errors[0]);
+    const { type, op } = data;
+    if (!isStr(type)) {
+        return Promise.reject(buildDatabaseError(0));
     }
-    return opSwitch(type, op, data);
+    return opSwitch(data);
 };
 
 const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
