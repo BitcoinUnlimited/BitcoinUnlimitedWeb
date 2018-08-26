@@ -4,6 +4,6 @@ node_modules
 src/public/components
 .DS_Store
 package-lock.json
-realmDB.realm
-realmDB.realm.lock
-realmDB.realm.management
+*.realm
+*.realm.lock
+*.realm.management

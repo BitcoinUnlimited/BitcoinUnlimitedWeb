@@ -29,8 +29,8 @@ class LoginForm extends React.Component {
         this.verifySignature({ pubkey: this.state.pubkey, challenge: this.props.challenge, signature: this.state.sig });
     }
 
-    verifySignature(user) {
-        const { pubkey, challenge, signature } = user;
+    verifySignature(auth) {
+        const { pubkey, challenge, signature } = auth;
         Axios.post('/sig_verify', {
             pubkey: pubkey,
             challenge: challenge,

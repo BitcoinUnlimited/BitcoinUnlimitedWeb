@@ -52,7 +52,8 @@
     "passport-jwt": "^4.0.0",
     "process-env": "^1.1.0",
     "react-modal": "^1.7.7",
-    "realm": "^2.14.0"
+    "realm": "^2.14.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
