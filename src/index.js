@@ -58,6 +58,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.post('/sig_verify', (req, res) => { res.send(signatureVerify(req.body)); });
 app.post('/realm', passport.authenticate('jwt', { session: false }), (req, res) => realmOp(req.body).then(result => res.send(result)).catch(err => res.send(err)));
 app.get('/get_auth', passport.authenticate('jwt', { session: false }),(req, res) => (req.user) ? res.send(req.user) : res.send(resErr(strings().auth.errors[6])));
+app.get('/:type/:uid', (req, res) => realmOp({ type:req.params.type, uid: req.params.uid }).then(result => res.send(result)).catch(err => res.send(err)));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));

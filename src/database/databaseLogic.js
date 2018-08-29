@@ -176,9 +176,10 @@ const opSwitch = data => {
             } else {
                 return realmGetUid(type, uid);
             }
+        } else {
+            const { filtered } = data;
+            return realmGetAll(type, filtered);
         }
-        const { filtered } = data;
-        return realmGetAll(type, filtered);
     }
 }
 
