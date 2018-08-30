@@ -71,6 +71,71 @@ const signatureVerify = data => {
     return buildAuthErr(5);
 };
 
+const hasRequiredProps = (props, data) => {
+    let hasRequired = true;
+    Object.keys(props).forEach(function(key) {
+        const isRequired = isReq(props[key]);
+        if (isRequired && !hasKey(data, key)) {
+            hasRequired = false;
+        }
+    });
+    return hasRequired;
+}
+
+const schemaProperties = type => {
+    const schemas = getSchemas();
+    if (!isDef(schemas)) {
+        return false;
+    }
+    const schema = schemas.filter(obj => obj.name === type);
+    if (!isDef(schema[0])) {
+        return false;
+    }
+    return schema[0].properties;
+}
+
+const checkData = (type, data) => {
+    const schemaProps = schemaProperties(type);
+    if (!schemaProps || !hasRequiredProps(props, data)) {
+        return false;
+    }
+    return data;
+}
+
+const realmSave = (type, uid, data) => {
+    return new Promise((resolve, reject) => {
+        data.uid = uuidv4();
+        const hasRequiredParams = checkData(data);
+        if (!hasRequiredParams) {
+            reject(buildDBErr(5));
+        }
+        realmDB.write(() => {
+            const result = realmDB.create(type, hasRequiredParams, true);
+            resolve(result);
+        });
+    }).catch(e => {
+        reject(e);
+    });
+}
+
+const realmUpdate = (type, uid, data) => {
+    return new Promise((resolve, reject) => {
+        realmDB.write(() => {
+            const updated = realmDB.create(type, data, true);
+            resolve(updated);
+        });
+    }).catch(e => {
+        reject(e);
+    });
+}
+
+const realmUpsert = data => {
+    const { type, uid } = data;
+    if (!isStr(type)) {
+        return Promise.reject(buildDBErr(0));
+    }
+    return (uid) ? realmUpdate(type, uid, data) : realmSave(type, data);
+}
 
 const realmGetAll = (type, filtered) => {
     return new Promise((resolve, reject) => {
@@ -84,139 +149,6 @@ const realmGetAll = (type, filtered) => {
             }
         });
     });
-}
-
-// const opSwitch = data => {
-//     const { type, op } = data;
-//     if (op === 'upsert') {
-//         const upsertObject = buildUpsertObj(type, data);
-//         if (!isEmptyObj(upsertObject)) {
-//             return realmUpsert(type, upsertObject);
-//         }
-//         return Promise.reject(buildDBErr(4));
-//     } else {
-//         const { uid } = data;
-//         if (isDef(uid)) {
-//             if (op === 'delete') {
-//                 return realmDelete(type, uid);
-//             } else {
-//                 return realmGetUid(type, uid);
-//             }
-//         } else {
-//             const { filtered } = data;
-//             return realmGetAll(type, filtered);
-//         }
-//     }
-// }
-
-// const realmOp = data => {
-//     const { type, op } = data;
-//     if (!isStr(type)) {
-//         return Promise.reject(buildDBErr(0));
-//     }
-//     return opSwitch(data);
-// }
-
-/////
-
-// const realmUpsert = (type, obj) => {
-//     return new Promise((resolve, reject) => {
-//         realmDB.write(() => {
-//             resolve(realmDB.create(type, obj, true));
-//         });
-//     });
-// };
-
-const hasRequiredProps = (props, data) => {
-    let hasRequired = true;
-    Object.keys(props).forEach(function(key) {
-        const isRequired = isReq(props[key]);
-        if (isRequired && !hasKey(data, key)) {
-            hasRequired = false;
-        }
-    });
-    return hasRequired;
-}
-
-const buildProps = (props, data) => {
-    let obj = {};
-    Object.keys(props).forEach(function(key) {
-        if (hasKey(data, key)) {
-            obj[key] = data[key];
-        }
-    });
-    return obj;
-}
-
-const schemaProperties = type => {
-    const schemas = getSchemas();
-    if (!isDef(schemas)) {
-        return '';
-    }
-    const schema = schemas.filter(obj => obj.name === type);
-    if (isDef(schema[0])) {
-        return schema[0].properties;
-    }
-    return '';
-}
-
-const buildUpsertObj = (type, data) => {
-    const schemaProps = schemaProperties(type);
-    data.uid = data.uid || uuidv4();
-    if (isStr(schemaProps) || !hasRequiredProps(props, data)) {
-        return {};
-    }
-    return buildProps(props, data);
-}
-
-//////
-// const upsertObject = buildUpsertObj(type, data);
-// if (!isEmptyObj(upsertObject)) {
-//     return realmUpsert(type, upsertObject);
-// }
-// return Promise.reject(buildDBErr(4));
-
-
-
-
-const realmSave = (type, uid, data) => {
-    return new Promise((resolve, reject) => {
-        //
-        //
-        // check required data, add uid
-        //
-        //
-        realmDB.write(() => {
-            const result = realmDB.create(type, obj);
-            resolve(result);
-        });
-    }).catch(e => {
-        reject(e);
-    });
-}
-
-const realmUpdate = (type, uid, data) => {
-    return new Promise((resolve, reject) => {
-        //
-        //
-        // check required data, add uid
-        //
-        //
-        realmDB.write(() => {
-            const update = realmDB.create(type, data, true);
-            resolve(update);
-        });
-    }).catch(e => {
-        reject(e);
-    });
-}
-
-const realmUpsert = data => {
-    const { type, uid } = data;
-    if (!isStr(type)) {
-        return Promise.reject(buildDBErr(0));
-    }
-    return (uid) ? realmUpdate(type, uid, data) : realmSave(type, data);
 }
 
 const realmGetUid = (type, uid) => {
@@ -265,25 +197,6 @@ const realmDelete = data => {
 }
 
 const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
-
-const testing = () => {
-    return new Promise((resolve, reject) => {
-        realmDB.write(() => {
-            let post = realmDB.create('Post', {
-                uid: '1112',
-                title: 'some title changed again',
-                subtitle: 'some subtitle updated',
-                body: 'here is the body',
-                published: true,
-                author: { uid: '12323' },
-                created: new Date()
-            }, true);
-            resolve(post);
-        });
-    }).catch(e => {
-        reject(e);
-    });
-};
 
 module.exports = {
     signatureVerify,
