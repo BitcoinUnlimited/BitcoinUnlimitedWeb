@@ -677,6 +677,7 @@
             "Realm object not found.",
             "uid not specified.",
             "Object is missing required parameters.",
+            "Schema not found.",
             "User not found.",
             "Post not found.",
             "Role not found."

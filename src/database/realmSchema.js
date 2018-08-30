@@ -24,7 +24,7 @@ const UserSchema = {
         email: 'string?',
         icon: 'string?',
         bio: 'string?',
-        role: 'string?'
+        role: 'Role?'
     }
 }
 
@@ -51,14 +51,14 @@ const PostSchema = {
     primaryKey: 'uid',
     properties: {
         uid: 'string',
+        author: 'User',
         title: 'string',
         subtitle: 'string',
         body: 'string',
-        created: 'date', // new Date.now()
-        updated: 'date?', // optional properties can be set to `null` or `undefined`
+        created: 'date',
         published: 'bool',
-        tags: 'string?[]',
-        author: 'string'
+        updated: 'date?',
+        tags: 'string?[]'
     }
 };
 
