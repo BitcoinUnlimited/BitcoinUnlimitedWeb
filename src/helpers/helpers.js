@@ -10,6 +10,8 @@ const isReq = prop => (prop.indexOf('?') === -1) ? true : false;
 const isArr = prop => (prop.indexOf('[]') !== -1) ? true : false;
 const isEmptyObj = obj => Object.keys(obj).length === 0;
 const hasKey = (obj, key) => Object.keys(obj).indexOf(key) !== -1;
+const monthName = idx => ['January','February','March','April','May','June','July','August','September','October','November','December'].filter((month, i) => i == idx)[0];
+const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`
 
 module.exports = {
     resErr,
@@ -21,5 +23,6 @@ module.exports = {
     isReq,
     isArr,
     isEmptyObj,
-    hasKey
+    hasKey,
+    formatDate
 }

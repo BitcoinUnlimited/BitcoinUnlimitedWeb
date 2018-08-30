@@ -8,7 +8,7 @@ import redirects from './data/redirects.json';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { signatureVerify, validateAuth, realmOp, getAuth, removeAuth } from './database/databaseLogic.js';
+import { signatureVerify, validateAuth, realmGet, realmUpsert, realmDelete, getAuth, removeAuth, testing } from './database/databaseLogic.js';
 import { resErr } from './helpers/helpers.js';
 
 import passport from 'passport';
@@ -51,14 +51,49 @@ app.get('/downloads/:file', (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, './public')));
-
 app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.post('/sig_verify', (req, res) => { res.send(signatureVerify(req.body)); });
-app.post('/realm', passport.authenticate('jwt', { session: false }), (req, res) => realmOp(req.body).then(result => res.send(result)).catch(err => res.send(err)));
-app.get('/get_auth', passport.authenticate('jwt', { session: false }),(req, res) => (req.user) ? res.send(req.user) : res.send(resErr(strings().auth.errors[6])));
-app.get('/:type/:uid', (req, res) => realmOp({ type:req.params.type, uid: req.params.uid }).then(result => res.send(result)).catch(err => res.send(err)));
+
+app.get('/get_auth', passport.authenticate('jwt', { session: false }), (req, res) => (req.user) ? res.send(req.user) : res.send(resErr(strings().auth.errors[6])));
+
+app.post('/sig_verify', (req, res) => {
+    res.send(signatureVerify(req.body));
+});
+
+app.post('/realm_get', (req, res) => {
+    realmGet(req.body).then(result => {
+        res.send(result);
+    }).catch(err => {
+        res.send(err)
+    });
+});
+
+app.post('/realm_upsert', passport.authenticate('jwt', { session: false }), (req, res) => {
+    realmOp(req.body).then(result => {
+        res.send(result);
+    }).catch(err => {
+        res.send(err);
+    });
+});
+
+app.post('/realm_delete', passport.authenticate('jwt', { session: false }), (req, res) => {
+    realmOp(req.body).then(result => {
+        res.send(result);
+    }).catch(err => {
+        res.send(err);
+    });
+});
+
+app.post('/test', passport.authenticate('jwt', { session: false }), (req, res) => {
+    testing().then(post => {
+        console.log(post);
+        res.send(post);
+    }).catch(e => {
+        res.send(e);
+    });
+});
+app.get('/Post/:uid', (req, res) => realmOp({ type: 'Post', uid: req.params.uid }).then(result => res.send(result)).catch(err => res.send(err)));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
