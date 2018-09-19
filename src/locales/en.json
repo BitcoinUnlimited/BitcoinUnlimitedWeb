@@ -205,7 +205,8 @@
             "reddit2": "Reddit /r/bitcoin_unlimited",
             "slack": "Slack",
             "irc": "#btc on IRC",
-            "issues": "Issues Tracker"
+            "issues": "Issues Tracker",
+            "gpgkeysintro": "please use this GPG keys to communicate sensible info with BU developers"
         }
     },
     "faq": {
