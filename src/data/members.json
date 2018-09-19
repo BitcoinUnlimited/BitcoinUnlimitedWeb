@@ -71,18 +71,6 @@
         ]
     },
     {
-        "avatar": "Haiyang",
-        "name": "Haipo Yang",
-        "publicKey": "18cBEMRxXHqzWWCxZNtU91F5sbUNKhL5PX",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31181",
-        "photoUrl": "img/about/Haipo_Yang.png",
-        "title": "CEO ViaBTC / BU member",
-        "bio": [
-            "Haipo Yang is ViaBTC's founder and CEO.",
-            "Haipo got to know Bitcoin in 2011, began his investments in 2013, and founded ViaBTC in May 2016. He has grown ViaBTC to be one of the largest and most advanced mining pools globally. An experienced developer, he independently set up the technical infrastructure for the pool and took it from 0 to 1."
-        ]
-    },
-    {
     	"avatar": "digitsu",
     	"name": "Jerry Chan",
     	"publicKey": "1DJCRBbdsDErAPdK2JwAe8SSBxdhuzj3wo",
@@ -192,7 +180,7 @@
     {
         "avatar": "marcus",
         "name": "",
-        "publicKey": "1KVTtx1tx8YnoUk42GEq6QNRbzQp6VCmNF",
+        "publicKey": "1FNVPWE64siunMdhP43sjCfMvqZu6ZipK8",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-8#post-35332"
     },
     {
@@ -230,18 +218,6 @@
         "name": "",
         "publicKey": "19a3fheZVGragEreBzXhjWMuSev2PrHToF",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/#post-3946"
-    },
-    {
-        "avatar": "Joel Dalais",
-        "name": "",
-        "publicKey": "1GUJQD3g3K2piLgZsj6JoHGQq7CfPq8jSe",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-9#post-35831"
-    },
-    {
-        "avatar": "drwasho",
-        "name": "",
-        "publicKey": "19xt9beTPVRbrWNfrEABPTSpETwp7LKuKm",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-9#post-36133"
     },
     {
         "avatar": "Ken Shishido",
@@ -326,5 +302,17 @@
         "name": "",
         "publicKey": "1WFcajYTxFXZWxQJvM2tETtdzzCaA6pd1",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-7#post-33342"
+    },
+    {
+        "avatar": "imaginary_username",
+        "name": "",
+        "publicKey": "1KNvUAmquf9v2BgyrTsLjE8GdKwu1PaJed",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-14#post-63962"
+    },
+    {
+        "avatar": "Shaun Chong",
+        "name": "Shaun Chong",
+        "publicKey": "1BZTJSoLVgwwKrKpV6DGyDQeUUGw5wthuu",
+        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-14#post-63980"
     }
 ]
