@@ -606,7 +606,7 @@
         "installation": {
             "title": "Installation Notes",
             "helpZero": "Once you downloaded the file that matches your system in the section above (e.g. 64 bit linux), open a terminal window then type:",
-            "helpOne": "If you're running an Ubuntu system you could use our official repository. It supports four archs - amd64, i386, arm and arm64 - and 3 Ubuntu versions - 14.04, 16.04 and 16.10. To install the binaries from the repository execute these commands from a console:",
+            "helpOne": "If you're running an Ubuntu system you could use our official repository. It supports four archs - amd64, i386, arm and arm64. To install the binaries from the repository execute these commands from a console:",
             "helpTwo": "If you want to compile from source just follow and execute these commands:"
         },
         "older": {
