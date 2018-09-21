@@ -3,16 +3,20 @@ const env = require('dotenv').config();
 
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import express from 'express';
 import redirects from './data/redirects.json';
 import bodyParser from 'body-parser';
+import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { signatureVerify, validateAuth, realmGet, realmUpsert, realmDelete, getAuth, removeAuth, testing } from './database/databaseLogic.js';
-import { resErr } from './helpers/helpers.js';
+import { signatureVerify, validateAuth, realmGet, realmUpsert, realmDelete, getAuth, removeAuth, getPublicFiles } from './database/databaseLogic.js';
+import { resErr, checkPath } from './helpers/helpers.js';
 
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
+
+const uploadDir = path.join(__dirname, './public/img');
 
 const passportOpts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -56,44 +60,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/get_auth', passport.authenticate('jwt', { session: false }), (req, res) => (req.user) ? res.send(req.user) : res.send(resErr(strings().auth.errors[6])));
+app.post('/sig_verify', (req, res) => res.send(signatureVerify(req.body)));
+app.post('/api/get', (req, res) => realmGet(req.body).then(result => res.send(result)).catch(err => res.send(err)));
+app.get('/api/getFiles', passport.authenticate('jwt', { session: false }), (req, res) => getPublicFiles(uploadDir).then(result => res.send(result)).catch(err => res.send(err)));
+app.post('/api/upsert', passport.authenticate('jwt', { session: false }), (req, res) => realmUpsert(req.body).then(result => res.send(result)).catch(err => res.send(err)));
+app.post('/api/delete', passport.authenticate('jwt', { session: false }), (req, res) => realmDelete(req.body).then(result => res.send(result)).catch(err => res.send(err)));
 
-app.post('/sig_verify', (req, res) => {
-    res.send(signatureVerify(req.body));
-});
-
-app.post('/realm_get', (req, res) => {
-    realmGet(req.body).then(result => {
-        res.send(result);
-    }).catch(err => {
-        res.send(err)
+app.post('/api/upload', passport.authenticate('jwt', { session: false }), (req, res) => {
+    let busboy = new Busboy({ headers: req.headers });
+    let saveTo = null;
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        let fileType = filename.split('.').pop();
+        let saveTo = path.join(__dirname, './public/uploads/', fileType, '/', filename);
+        if (checkPath(saveTo, fileType)) {
+            file.pipe(fs.createWriteStream(saveTo));
+        }
     });
-});
-
-app.post('/realm_upsert', passport.authenticate('jwt', { session: false }), (req, res) => {
-    realmOp(req.body).then(result => {
-        res.send(result);
-    }).catch(err => {
-        res.send(err);
+    busboy.on('finish', function() {
+        res.send(saveTo);
     });
+    req.pipe(busboy);
 });
-
-app.post('/realm_delete', passport.authenticate('jwt', { session: false }), (req, res) => {
-    realmOp(req.body).then(result => {
-        res.send(result);
-    }).catch(err => {
-        res.send(err);
-    });
-});
-
-app.post('/test', passport.authenticate('jwt', { session: false }), (req, res) => {
-    testing().then(post => {
-        console.log(post);
-        res.send(post);
-    }).catch(e => {
-        res.send(e);
-    });
-});
-app.get('/Post/:uid', (req, res) => realmOp({ type: 'Post', uid: req.params.uid }).then(result => res.send(result)).catch(err => res.send(err)));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));

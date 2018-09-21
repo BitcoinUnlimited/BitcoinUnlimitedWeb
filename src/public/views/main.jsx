@@ -18,10 +18,12 @@ import EmergentConsensus from './pages/emergent-consensus.jsx';
 import DevelopTestingAccord from './pages/develop-testing-accord.jsx';
 import Login from './pages/login.jsx';
 import Blog from './pages/blog.jsx';
+import BlogPost from './pages/blog-post.jsx';
 import NotFound from './pages/not-found.jsx';
 
 import Auth from './pages/protected/auth.jsx';
 import Dashboard from './pages/protected/dashboard.jsx';
+import SchemaUpdate from './pages/protected/schema-update.jsx';
 
 ReactDOM.render((
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
@@ -41,8 +43,11 @@ ReactDOM.render((
             <Route path='login' component={Login} />
             <Route component={Auth}>
                 <Route path='dashboard' component={Dashboard} />
+                <Route path='update/:realmType/:uid' component={SchemaUpdate} />
             </Route>
             <Route path='blog' component={Blog} />
+            <Route path='blog/:uid' component={BlogPost} />
+            <Route path='not-found' component={NotFound} />
             <Route path='*' component={NotFound} />
         </Route>
     </Router>
