@@ -6,7 +6,7 @@ import Footer from './footer.jsx';
 import Section from './components/section.jsx';
 import Posts from './components/protected/posts.jsx';
 
-class Editor extends React.Component {
+class Admin extends React.Component {
 
     render() {
         return (
@@ -39,4 +39,4 @@ class Editor extends React.Component {
     }
 }
 
-export default Editor
+export default Admin

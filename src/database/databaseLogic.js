@@ -1,16 +1,18 @@
 'use strict';
 
 import jwt from 'jsonwebtoken';
-import uuidv4 from 'uuid/v4';
+import fs from 'fs';
 import Promise from 'promise';
-import { realmDB, getSchemas, authDB, getDB } from './realmSchema.js';
+import { getDBSchema, getAuthSchema } from './realmSchema.js';
+import { realmDatabase, authDatabase } from './realmDB.js';
 import { validateAddress, fixAddressFormat, messageVerify, jwtSecret } from './verifySignature.js';
-import { resErr, resSuccess, toInt, isDef, isStr, checkDate, isReq, isArr, isEmptyObj, hasKey } from '../helpers/helpers.js';
+import { resErr, resSuccess, toInt, isDef, isStr, checkDate, isReq, isArr, isEmptyObj, hasKey, getUid, relativeImgPath } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 import Axois from 'axios';
 
 const buildDBErr = idx => resErr(strings().database.errors[idx]);
 const buildAuthErr = idx => resErr(strings().auth.errors[idx]);
+const typeIsValid = type => getDBSchema().filter(schema => schema.name === type).length > 0;
 
 /*
  * 7200 === 2 hrs
@@ -20,8 +22,8 @@ const authExiprationSeconds = 7200;
 
 const insertAuth = data => new Promise((resolve, reject) => {
     const { pubkey, challenge, signature, expires } = data;
-    authDB.write(() => {
-        let auth = authDB.create('Auth', { pubkey: pubkey, challenge: challenge, signature: signature, expires: expires }, true);
+    authDatabase.write(() => {
+        let auth = authDatabase.create('Auth', { pubkey: pubkey, challenge: challenge, signature: signature, expires: expires }, true);
     });
     if (isDef(auth)) {
         resolve(auth);
@@ -31,10 +33,10 @@ const insertAuth = data => new Promise((resolve, reject) => {
 });
 
 const removeAuth = pubkey => new Promise((resolve, reject) => {
-    authDB.write(() => {
-        let auth = authDB.objects('Auth').filtered('pubkey == $0', pubkey);
+    authDatabase.write(() => {
+        let auth = authDatabase.objects('Auth').filtered('pubkey == $0', pubkey);
         if (isDef(auth) && isDef(auth[0])) {
-            realmDB.delete(auth);
+            authDatabase.delete(auth);
         }
     });
     resolve();
@@ -42,7 +44,7 @@ const removeAuth = pubkey => new Promise((resolve, reject) => {
 
 const getAuth = pubkey => new Promise((resolve, reject) => {
     try {
-        let auth = authDB.objects('Auth').filtered('pubkey == $0', pubkey);
+        let auth = authDatabase.objects('Auth').filtered('pubkey == $0', pubkey);
         if (isDef(auth) && isDef(auth[0])) {
             resolve(auth[0]);
         } else {
@@ -82,121 +84,129 @@ const hasRequiredProps = (props, data) => {
     return hasRequired;
 }
 
-const schemaProperties = type => {
-    const schemas = getSchemas();
+const schemaProperties = realmType => {
+    const schemas = getgetDBSchema();
     if (!isDef(schemas)) {
         return false;
     }
-    const schema = schemas.filter(obj => obj.name === type);
+    const schema = schemas.filter(obj => obj.name === realmType);
     if (!isDef(schema[0])) {
         return false;
     }
     return schema[0].properties;
 }
 
-const checkData = (type, data) => {
-    const schemaProps = schemaProperties(type);
+const checkData = (realmType, data) => {
+    const schemaProps = schemaProperties(realmType);
     if (!schemaProps || !hasRequiredProps(props, data)) {
         return false;
     }
     return data;
 }
 
-const realmSave = (type, uid, data) => {
-    return new Promise((resolve, reject) => {
-        data.uid = uuidv4();
-        const hasRequiredParams = checkData(data);
-        if (!hasRequiredParams) {
-            reject(buildDBErr(5));
-        }
-        realmDB.write(() => {
-            const result = realmDB.create(type, hasRequiredParams, true);
-            resolve(result);
-        });
-    }).catch(e => {
-        reject(e);
+const realmSave = (realmType, uid, data) => new Promise((resolve, reject) => {
+    data.uid = getUid();
+    const hasRequiredParams = checkData(data);
+    if (!hasRequiredParams) {
+        reject(buildDBErr(5));
+    }
+    realmDatabase.write(() => {
+        const result = realmDatabase.create(realmType, hasRequiredParams, true);
+        resolve(result);
     });
-}
+}).catch(e => {
+    reject(e);
+});
 
-const realmUpdate = (type, uid, data) => {
-    return new Promise((resolve, reject) => {
-        realmDB.write(() => {
-            const updated = realmDB.create(type, data, true);
-            resolve(updated);
-        });
-    }).catch(e => {
-        reject(e);
+const realmUpdate = (realmType, uid, data) => new Promise((resolve, reject) => {
+    realmDatabase.write(() => {
+        const updated = realmDatabase.create(realmType, data, true);
+        resolve(updated);
     });
-}
+}).catch(e => {
+    reject(e);
+});
 
 const realmUpsert = data => {
-    const { type, uid } = data;
-    if (!isStr(type)) {
+    const { realmType, uid } = data;
+    if (!isStr(realmType)) {
         return Promise.reject(buildDBErr(0));
     }
-    return (uid) ? realmUpdate(type, uid, data) : realmSave(type, data);
+    return (uid) ? realmUpdate(realmType, uid, data) : realmSave(realmType, data);
 }
 
-const realmGetAll = (type, filtered) => {
-    return new Promise((resolve, reject) => {
-        realmDB.write(() => {
-            if (isDef(filtered)) {
-                let result = realmDB.objects(type).filtered(filtered);
-                resolve(result);
-            } else {
-                let result = realmDB.objects(type);
-                resolve(result);
-            }
-        });
+const realmGetAll = (realmType, filtered) => new Promise((resolve, reject) => {
+    realmDatabase.write(() => {
+        if (isDef(filtered)) {
+            let result = realmDatabase.objects(realmType).filtered(filtered);
+            resolve(result);
+        } else {
+            let result = realmDatabase.objects(realmType);
+            resolve(result);
+        }
     });
-}
+});
 
-const realmGetUid = (type, uid) => {
-    return new Promise((resolve, reject) => {
-        realmDB.write(() => {
-            const result = realmDB.objects(type).filtered('uid == $0', uid);
-            if (isDef(result)) {
-                resolve(result);
-            } else {
-                reject(buildDBErr(2));
-            }
-        });
+const realmGetUid = (realmType, uid) => new Promise((resolve, reject) => {
+    realmDatabase.write(() => {
+        const result = realmDatabase.objects(realmType).filtered('uid == $0', uid);
+        if (isDef(result)) {
+            resolve(result);
+        } else {
+            reject(buildDBErr(2));
+        }
     });
-};
+});
 
-const realmDeleteUid = (type, uid) => {
-    return new Promise((resolve, reject) => {
-        realmGetUid(type, uid).then(realmObj => {
-            realmDB.write(() => {
-                realmDB.delete(realmObj);
-                resolve(resSuccess());
-            });
-        }).catch(e => {
-            reject(e);
+const realmDeleteUid = (realmType, uid) => new Promise((resolve, reject) => {
+    realmGetUid(realmType, uid).then(realmObj => {
+        realmDatabase.write(() => {
+            realmDatabase.delete(realmObj);
+            resolve(resSuccess());
         });
+    }).catch(e => {
+        reject(e);
     });
-}
+});
 
 const realmGet = data => {
-    const { type, uid } = data;
-    if (!isStr(type)) {
+    const { realmType, uid } = data;
+    if (!isStr(realmType) || !typeIsValid(realmType)) {
         return Promise.reject(buildDBErr(0));
     }
-    return (uid) ? realmGetUid(type, uid) : realmGetAll(type);
+    return (uid) ? realmGetUid(realmType, uid) : realmGetAll(realmType);
 }
 
 const realmDelete = data => {
-    const { type, uid } = data;
-    if (!isStr(type)) {
+    const { realmType, uid } = data;
+    if (!isStr(realmType)) {
         return Promise.reject(buildDBErr(0));
     }
     if (!isStr(uid)) {
         return Promise.reject(buildDBErr(1));
     }
-    return realmDeleteUid(type, uid);
+    return realmDeleteUid(realmType, uid);
 }
 
 const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
+
+const getPublicFiles = (dir) => new Promise((resolve, reject) => {
+    try {
+        let results = [];
+        fs.readdirSync(dir).forEach((file) => {
+            file = dir + '/' + file;
+            let stat = fs.statSync(file);
+            if (stat && stat.isDirectory()) {
+                getPublicFiles(file).then(result => results.push(result));
+            } else {
+                results.push(relativeImgPath(file));
+            }
+        });
+        resolve(results);
+    } catch(e) {
+        reject(e);
+    }
+});
 
 module.exports = {
     signatureVerify,
@@ -206,5 +216,5 @@ module.exports = {
     realmDelete,
     getAuth,
     removeAuth,
-    testing
+    getPublicFiles
 }

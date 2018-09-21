@@ -1,8 +1,5 @@
 'use strict';
 
-const env = require('dotenv').config();
-const Realm = require('realm');
-
 const AuthSchema = {
     name: 'Auth',
     primaryKey: 'pubkey',
@@ -11,6 +8,15 @@ const AuthSchema = {
         challenge: 'string',
         signature: 'string',
         expires: 'int'
+    }
+}
+
+const RedirectSchema = {
+    name: 'Redirect',
+    primaryKey: 'uid',
+    properties: {
+        uid: 'string',
+        url: 'string'
     }
 }
 
@@ -23,26 +29,7 @@ const UserSchema = {
         name: 'string?',
         email: 'string?',
         icon: 'string?',
-        bio: 'string?',
-        role: 'Role?'
-    }
-}
-
-const RoleSchema = {
-    name: 'Role',
-    primaryKey: 'uid',
-    properties: {
-        uid: 'string',
-        role: 'string'
-    }
-}
-
-const TagSchema = {
-    name: 'Tag',
-    primaryKey: 'uid',
-    properties: {
-        uid: 'string',
-        term: 'string'
+        bio: 'string?'
     }
 }
 
@@ -51,42 +38,27 @@ const PostSchema = {
     primaryKey: 'uid',
     properties: {
         uid: 'string',
-        author: 'User',
         title: 'string',
         subtitle: 'string',
         body: 'string',
         created: 'date',
         published: 'bool',
-        updated: 'date?',
-        tags: 'string?[]'
-    }
-};
-
-const getSchemas = () => {
-    return [UserSchema, RoleSchema, TagSchema, PostSchema];
-}
-
-const getDB = type => {
-    try {
-        return (type == 'auth') ? process.env.DB_AUTH_NAME : process.env.DB_NAME;
-    } catch(e) {
-        return (type == 'auth') ? 'realmDBauth.realm' : 'realmDB.realm';
+        url: 'Redirect?',
+        author: 'User?',
+        tags: 'string?[]',
+        updated: 'date?'
     }
 }
 
-const authDB = new Realm({
-    path: getDB('auth'),
-    schema: [AuthSchema]
-});
+const getDBSchema = () => {
+    return [RedirectSchema, UserSchema, PostSchema];
+}
 
-const realmDB = new Realm({
-  path: getDB(),
-  schema: getSchemas()
-});
+const getAuthSchema = () => {
+    return [AuthSchema];
+}
 
 module.exports = {
-    realmDB,
-    getSchemas,
-    authDB,
-    getDB,
+    getDBSchema,
+    getAuthSchema
 }

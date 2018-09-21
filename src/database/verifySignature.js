@@ -32,8 +32,11 @@ const messageVerify = message => {
     }
 }
 
+const testSomething = () => 'true';
+
 module.exports = {
     validateAddress,
     fixAddressFormat,
     messageVerify,
+    testSomething
 }
