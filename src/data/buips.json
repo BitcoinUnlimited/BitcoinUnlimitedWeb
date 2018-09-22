@@ -766,5 +766,13 @@
         "submitted":"2018-08-21",
         "status":   "draft",
         "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/098.mediawiki"
+    },
+    {
+        "number":   "BUIP093",
+        "title":    "Specification - Graphene Relay",
+        "proposer": "George Bissias (@bissias) and Brian Levine (@b-lev)",
+        "submitted":"2018-08-21",
+        "status":   "draft",
+        "href":     "https://github.com/BitcoinUnlimited/BUIP/blob/master/093.mediawiki"
     }
 ]
