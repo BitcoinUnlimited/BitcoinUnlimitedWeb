@@ -10,13 +10,11 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { signatureVerify, validateAuth, realmGet, realmUpsert, realmDelete, getAuth, removeAuth, getPublicFiles } from './database/databaseLogic.js';
-import { resErr, checkPath } from './helpers/helpers.js';
+import { signatureVerify, validateAuth, realmGet, realmUpsert, realmDelete, getAuth, removeAuth } from './database/databaseLogic.js';
+import { resErr, checkPath, toBase64 } from './helpers/helpers.js';
 
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
-
-const uploadDir = path.join(__dirname, './public/img');
 
 const passportOpts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -38,6 +36,8 @@ const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
 
 passport.use(jwtStrategy);
 
+const jwtMiddleware = () => passport.authenticate('jwt', { session: false });
+
 let app = express();
 
 redirects.forEach(redirect => {
@@ -58,28 +58,33 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.get('/get_auth', passport.authenticate('jwt', { session: false }), (req, res) => (req.user) ? res.send(req.user) : res.send(resErr(strings().auth.errors[6])));
 app.post('/sig_verify', (req, res) => res.send(signatureVerify(req.body)));
 app.post('/api/get', (req, res) => realmGet(req.body).then(result => res.send(result)).catch(err => res.send(err)));
-app.get('/api/getFiles', passport.authenticate('jwt', { session: false }), (req, res) => getPublicFiles(uploadDir).then(result => res.send(result)).catch(err => res.send(err)));
-app.post('/api/upsert', passport.authenticate('jwt', { session: false }), (req, res) => realmUpsert(req.body).then(result => res.send(result)).catch(err => res.send(err)));
-app.post('/api/delete', passport.authenticate('jwt', { session: false }), (req, res) => realmDelete(req.body).then(result => res.send(result)).catch(err => res.send(err)));
-
-app.post('/api/upload', passport.authenticate('jwt', { session: false }), (req, res) => {
-    let busboy = new Busboy({ headers: req.headers });
-    let saveTo = null;
-    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-        let fileType = filename.split('.').pop();
-        let saveTo = path.join(__dirname, './public/uploads/', fileType, '/', filename);
-        if (checkPath(saveTo, fileType)) {
-            file.pipe(fs.createWriteStream(saveTo));
+app.post('/api/delete', jwtMiddleware(), (req, res) => realmDelete(req.body).then(result => res.send(result)).catch(err => res.send(err)));
+app.post('/api/upsert', jwtMiddleware(), (req, res) => {
+    try {
+        let busboy = new Busboy({ headers: req.headers });
+        let fields = {};
+        if (isDef(res.user)) {
+            fields.auth = res.user;
         }
-    });
-    busboy.on('finish', function() {
-        res.send(saveTo);
-    });
-    req.pipe(busboy);
+        busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+            file.on('end', function() {
+                // store images in the database for now
+                fields[fieldname] = toBase64(file);
+            });
+        });
+        busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+            fields[fieldname] = val;
+        });
+        busboy.on('finish', function() {
+            realmUpsert(fields).then(result => res.send(result)).catch(err => res.send(err))
+        });
+        req.pipe(busboy);
+    } catch(e) {
+        res.send({status: 'error', message: e});
+    }
 });
 
 app.get('*', (req, res) => {

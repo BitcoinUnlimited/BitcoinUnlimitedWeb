@@ -703,6 +703,11 @@
             "Role not found."
         ]
     },
+    "forms": {
+        "errors": [
+            "Missing required value"
+        ]
+    },
     "auth": {
         "errors": [
             "The public key is invalid. Please use the key associated with your Bitcoin Unlimited membership.",

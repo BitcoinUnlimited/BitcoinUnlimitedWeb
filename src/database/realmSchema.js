@@ -1,5 +1,16 @@
 'use strict';
 
+/*
+ * When declaring additional schemas use the following rules to auto-generate forms:
+ *
+ * - All primary keys on the main content store should use uid.
+ * - Image types should have a key suffixed with _img.
+ * - Text that needs an editor input should have a key suffixed with _editor.
+ * - Realm type associations should include the optional ? identifier.
+ *
+ * Additional rules are available at: https://realm.io/docs/javascript/latest/#models
+ */
+
 const AuthSchema = {
     name: 'Auth',
     primaryKey: 'pubkey',
@@ -11,15 +22,6 @@ const AuthSchema = {
     }
 }
 
-const RedirectSchema = {
-    name: 'Redirect',
-    primaryKey: 'uid',
-    properties: {
-        uid: 'string',
-        url: 'string'
-    }
-}
-
 const UserSchema = {
     name: 'User',
     primaryKey: 'uid',
@@ -27,9 +29,26 @@ const UserSchema = {
         uid: 'string',
         pubkey: 'string',
         name: 'string?',
-        email: 'string?',
-        icon: 'string?',
-        bio: 'string?'
+        icon_img: 'string?',
+        bio_editor: 'string?'
+    }
+}
+
+const HeroSchema = {
+    name: 'Hero',
+    primaryKey: 'uid',
+    properties: {
+        uid: 'string',
+        created: {type: 'date', default: new Date()},
+        updated: {type: 'date', optional: true, default: new Date()},
+        title: 'string',
+        billboard_img: 'string',
+        subtitle_editor: 'string?',
+        urltext: 'string?',
+        url: 'string?',
+        published: 'bool',
+        tags: 'string?',
+        author: 'User?'
     }
 }
 
@@ -38,20 +57,20 @@ const PostSchema = {
     primaryKey: 'uid',
     properties: {
         uid: 'string',
+        created: {type: 'date', default: new Date()},
+        updated: {type: 'date', optional: true, default: new Date()},
         title: 'string',
         subtitle: 'string',
-        body: 'string',
-        created: 'date',
+        header_img: 'string?',
+        body_editor: 'string',
         published: 'bool',
-        url: 'Redirect?',
         author: 'User?',
-        tags: 'string?[]',
-        updated: 'date?'
+        tags: 'string?'
     }
 }
 
 const getDBSchema = () => {
-    return [RedirectSchema, UserSchema, PostSchema];
+    return [UserSchema, HeroSchema, PostSchema];
 }
 
 const getAuthSchema = () => {
