@@ -8,7 +8,7 @@ import { strings } from '../../../lib/i18n';
 import { isDef, getUid, resError, isEmptyObj, getSchema, isReq, isArr } from '../../../../helpers/helpers.js';
 
 import Base from '../../base.jsx';
-import FormWrapper from '../../components/forms/form-wrapper.jsx';
+import RealmFormWrapper from '../../components/forms/realm-form-wrapper.jsx';
 
 class SchemaUpdate extends React.Component {
     constructor(props) {
@@ -84,7 +84,7 @@ class SchemaUpdate extends React.Component {
 
     render() {
         let { realmObject } = this.state;
-        let { realmType } = this.props.params;
+        let { realmType, uid } = this.props.params;
         if (!isDef(realmType)) {
             return (
                 <ReactLoading type="balls" color="#ccc" />
@@ -93,13 +93,13 @@ class SchemaUpdate extends React.Component {
         if (!isDef(realmObject)) {
             return (
                 <Base name="schema-update">
-                    <FormWrapper realmType={realmType} />
+                    <RealmFormWrapper realmType={realmType} uid={uid} />
                 </Base>
             );
         }
         return (
             <Base name="schema-update">
-                <FormWrapper realmType={realmType} />
+                <RealmFormWrapper realmType={realmType} uid={uid} />
             </Base>
         );
     }

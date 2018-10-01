@@ -14,12 +14,12 @@ const getDB = type => {
 }
 
 const authDatabase = new Realm({
-    path: getDB('auth'),
+    path: './databases/' + getDB('auth'),
     schema: getAuthSchema()
 });
 
 const realmDatabase = new Realm({
-  path: getDB(),
+  path: './databases/' + getDB(),
   schema: getDBSchema()
 });
 

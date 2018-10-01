@@ -3,10 +3,10 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { strings } from '../../../lib/i18n';
-import { isDef, getUid } from '../../../../helpers/helpers.js';
+import { isDef, getUid, toBase64 } from '../../../../helpers/helpers.js';
 import Admin from '../../admin.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
-import FormWrapper from '../../components/forms/form-wrapper.jsx';
+import RealmFormWrapper from '../../components/forms/realm-form-wrapper.jsx';
 import Axios from 'axios';
 
 import { EditorState } from 'draft-js';
@@ -20,16 +20,6 @@ function FormWrap(props) {
       {props.children}
     </div>
   );
-}
-
-const toBase64 = file => {
-    return new Promise((resolve, reject) => {
-        let reader = new FileReader();
-        reader.onloadend = () => {
-            resolve(reader.result);
-        }
-        reader.readAsDataURL(file);
-    }).catch(e => reject(e));
 }
 
 class Dashboard extends React.Component {
@@ -233,13 +223,13 @@ class Dashboard extends React.Component {
         console.log(e);
         // e.preventDefault();
         // let file = e.target.files[0];
-        // toBase64(file).then(res => {
-        //     this.setState({
-        //         file: file,
-        //         image: res
-        //     });
-        //     this.getAllImages();
-        // });
+        toBase64(file).then(res => {
+            this.setState({
+                file: file,
+                image: res
+            });
+            this.getAllImages();
+        });
     }
 
     getModules() {
@@ -294,7 +284,7 @@ class Dashboard extends React.Component {
         return (
             <Admin name="dashboard" title={ strings().dashboard.title } >
 
-                <FormWrapper formTitle="Add Post" formSubmit={ this.formSubmit } formErrors={ this.state.inputname_error }>
+                <RealmFormWrapper formTitle="Add Post" formSubmit={ this.formSubmit } formErrors={ this.state.inputname_error }>
                     <InputElement
                         inputType="text"
                         inputName="inputname"
@@ -303,7 +293,7 @@ class Dashboard extends React.Component {
                         inputChange={ this.didChange }
                         inputError={ this.state.inputname_error }
                     />
-                </FormWrapper>
+                </RealmFormWrapper>
 
 
                 <FormWrap title="Add Post">
