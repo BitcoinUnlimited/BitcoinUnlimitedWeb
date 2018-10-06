@@ -58,20 +58,26 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.get('/get_auth', passport.authenticate('jwt', { session: false }), (req, res) => (req.user) ? res.send(req.user) : res.send(resErr(strings().auth.errors[6])));
+
+app.get('/get_auth', passport.authenticate('jwt', { session: false }), (req, res) => (req.user) ? res.json(req.user) : res.json(resErr(strings().auth.errors[6])));
 app.post('/sig_verify', (req, res) => res.send(signatureVerify(req.body)));
-app.post('/api/get', (req, res) => realmGet(req.body).then(result => res.send(result)).catch(err => res.send(err)));
-app.post('/api/delete', jwtMiddleware(), (req, res) => realmDelete(req.body).then(result => res.send(result)).catch(err => res.send(err)));
+
+app.get('/api/get/:type/:uid', (req, res) => {
+    console.log('get--');
+    console.log(req.params.type);
+    console.log(req.params.uid);
+    realmGet({ realmType: req.params.type, uid: req.params.uid }).then(result => res.json(result)).catch(err => res.json(resErr(err)));
+});
+app.post('/api/delete', jwtMiddleware(), (req, res) => realmDelete(req.body).then(result => res.json(result)).catch(err => res.json(resErr(err))));
 app.post('/api/upsert', jwtMiddleware(), (req, res) => {
     try {
         let busboy = new Busboy({ headers: req.headers });
         let fields = {};
-        if (isDef(res.user)) {
-            fields.auth = res.user;
+        if (req.user && req.user.pubkey) {
+            fields.pubkey = req.user.pubkey;
         }
         busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
             file.on('end', function() {
-                // store images in the database for now
                 fields[fieldname] = toBase64(file);
             });
         });
@@ -79,7 +85,7 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
             fields[fieldname] = val;
         });
         busboy.on('finish', function() {
-            realmUpsert(fields).then(result => res.send(result)).catch(err => res.send(err))
+            realmUpsert(fields).then(result => res.json(result)).catch(err => res.json(resErr(err)))
         });
         req.pipe(busboy);
     } catch(e) {

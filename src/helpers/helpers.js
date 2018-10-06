@@ -47,6 +47,12 @@ const getModelPropType = (propKey, propType) => {
     return 'hidden';
 }
 
+const getRealmType = modelType => {
+    modelType = isStr(modelType) ? modelType : modelType.type;
+    let results = getDBSchemas().filter(schema => modelType.indexOf(schema.name) !== -1);
+    return results.length > 0 ? results[0].name : false;
+}
+
 const getDBModel = name => {
     let schema = getSchema(name);
     if (!isDef(schema)) {
@@ -55,15 +61,18 @@ const getDBModel = name => {
     let props = schema.properties;
     let model = {};
     Object.keys(props).map(propKey => {
-        let prop = { name: propKey, error: '' };
-        prop.required = (!isOptional(props[propKey])) ? true : false;
-        prop.type = getModelPropType(propKey, props[propKey]);
+        let schemaString = props[propKey];
+        let prop = { name: propKey, realmType: getRealmType(schemaString), error: '' };
+        prop.required = (!isOptional(schemaString)) ? true : false;
+        prop.type = getModelPropType(propKey, schemaString);
         prop.value = (prop.type === 'editor') ? EditorState.createEmpty() : '';
         prop.fieldInfo = fieldInfo(propKey);
         model[propKey] = prop;
     });
     return model;
 }
+
+const getKeyForType = name => getSchema(name).primaryKey;
 
 const toBase64 = image => {
     return new Promise((resolve, reject) => {
@@ -106,7 +115,7 @@ const fieldInfo = key => {
         subtitle_editor: { label: 'Subtitle', description: 'A small description or abstract.' },
         urltext: { label: 'Link Title', description: '' },
         url: { label: 'Link', description: '' },
-        pubkey: { label: 'Public BCH or BTC Address', description: 'This address can match your Bitcoin Unlimited public address.' },
+        pubkey: { label: 'Public BCH or BTC Address', description: '', readonly: true },
         name: { label: 'Name, alias or pseudonom', description: '' },
         email: { label: 'Email', description: 'Optionally add your contact email.' },
         icon_img: { label: 'User Image', description: 'The image should have an equal height/width and be no greater than 100px wide.' },
@@ -140,5 +149,6 @@ module.exports = {
     checkPath,
     toBase64,
     getDBModel,
-    fieldInfo
+    fieldInfo,
+    getKeyForType
 }

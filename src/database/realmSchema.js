@@ -24,9 +24,8 @@ const AuthSchema = {
 
 const UserSchema = {
     name: 'User',
-    primaryKey: 'uid',
+    primaryKey: 'pubkey',
     properties: {
-        uid: 'string',
         pubkey: 'string',
         name: 'string?',
         icon_img: 'string?',
@@ -47,8 +46,7 @@ const HeroSchema = {
         urltext: 'string?',
         url: 'string?',
         published: 'bool',
-        tags: 'string?',
-        author: 'User?'
+        tags: 'string?'
     }
 }
 
