@@ -6,7 +6,7 @@ import Promise from 'promise';
 import { getDBSchema, getAuthSchema } from './realmSchema.js';
 import { realmDatabase, authDatabase } from './realmDB.js';
 import { validateAddress, fixAddressFormat, messageVerify, jwtSecret } from './verifySignature.js';
-import { resErr, resSuccess, toInt, isDef, isStr, checkDate, isOptional, isArr, isEmptyObj, hasKey, getUid, relativeImgPath, checkPath, getKeyForType } from '../helpers/helpers.js';
+import { resErr, resErrList, resSuccess, toInt, isDef, isStr, checkDate, isOptional, isArr, isEmptyObj, hasKey, getUid, relativeImgPath, checkPath, getKeyForType } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 import Axois from 'axios';
 
@@ -73,37 +73,41 @@ const signatureVerify = data => {
     return buildAuthErr(5);
 };
 
-
-
 const hasRequiredProps = (props, data) => {
     let hasRequired = true;
+    let missing = [];
     Object.keys(props).forEach(function(key) {
         const isRequired = !isOptional(props[key]);
         if (isRequired && !hasKey(data, key)) {
+            missing.push(key);
             hasRequired = false;
         }
     });
-    return hasRequired;
+    return hasRequired ? hasRequired : missing;
 }
 
-const schemaProperties = realmType => {
+const getSchemaProps = realmType => {
     const schemas = getgetDBSchema();
     if (!isDef(schemas)) {
         return false;
     }
     const schema = schemas.filter(obj => obj.name === realmType);
-    if (!isDef(schema[0])) {
+    if (!isDef(schema[0]) || !isDef(schema[0].properties)) {
         return false;
     }
     return schema[0].properties;
 }
 
-const checkData = (realmType, data) => {
-    const schemaProps = schemaProperties(realmType);
-    if (!schemaProps || !hasRequiredProps(schemaProps, data)) {
-        return false;
+const checkRequiredParams = (realmType, data) => {
+    const schemaProps = getSchemaProps(realmType);
+    if (!schemaProps) {
+        return resErr(buildDBErr(4));
     }
-    return data;
+    let hasRequired = hasRequiredProps(schemaProps, data);
+    if (hasRequired !== true) {
+        return resErrList(hasRequired);
+    }
+    return true;
 }
 
 const setAuth = pubkey => {
@@ -114,30 +118,41 @@ const setAuth = pubkey => {
     return { uid: getUid(), pubkey: pubkey };
 }
 
-const realmSave = (realmType, data) => new Promise((resolve, reject) => {
-    console.log('realmSave:');
-
+const propSaveFixesForType = (realmType, data) => {
     data.uid = getUid();
     data.created = new Date();
     data.updated = data.created;
     data.published = (data.published === 'true') ? true : false;
+    return data;
+}
 
-    // const hasRequiredParams = checkData(data);
-    // console.log(hasRequiredParams);
-    // if (!hasRequiredParams) {
-    //     reject(buildDBErr(5));
-    // }
-
+const realmSave = (realmType, data) => new Promise((resolve, reject) => {
+    console.log('realmSave:');
     console.log(data);
+
+    // set defaults per each realmType
+    // give this a better name
+    data = propSaveFixesForType(realmType);
+
+    let hasRequired = checkRequiredParams(data);
+    if (hasRequired !== true) {
+        reject(resErr(hasRequired));
+    }
 
     // check for errors (missing required values)
     // apply auth info
 
     realmDatabase.write(() => {
         try {
-            if (isStr(data.pubkey)) {
-                data.author = setAuth(data.pubkey);
-            }
+
+            /*
+             * Todo: If model has a realm association, get that association if it exists.
+             * associations should be optional and non-breaking
+             */
+
+            // if (isStr(data.pubkey)) {
+            //     data.author = setAuth(data.pubkey);
+            // }
 
             // if (isDef(data.auth)) {
             //     let userObject = {};
@@ -155,12 +170,12 @@ const realmSave = (realmType, data) => new Promise((resolve, reject) => {
             // }
             // get user if data.auth is set
 
+
+            console.log('realmSave-after data:');
+            console.log(data);
             const result = realmDatabase.create(realmType, data, true);
-            //console.log(result);
-            //console.log('after realm save');
             resolve(result);
         } catch(err) {
-            //console.log('error: ' + err);
             reject(err);
         }
     });
@@ -170,13 +185,17 @@ const realmSave = (realmType, data) => new Promise((resolve, reject) => {
 
 const realmUpdate = (realmType, data) => new Promise((resolve, reject) => {
     console.log('realmUpdate:');
+    console.log(data);
 
+    // update info
     data.updated = new Date();
     data.published = (data.published === 'true') ? true : false;
 
-    console.log(data);
-
     realmDatabase.write(() => {
+
+
+        console.log('realmUpdate-after data:');
+        console.log(data);
         const updated = realmDatabase.create(realmType, data, true);
         resolve(updated);
     });
@@ -186,7 +205,6 @@ const realmUpdate = (realmType, data) => new Promise((resolve, reject) => {
 
 const realmUpsert = data => {
     const { realmType, uid } = data;
-    console.log(data);
     if (!isStr(realmType)) {
         return Promise.reject(buildDBErr(0));
     }
