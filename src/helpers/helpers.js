@@ -5,6 +5,7 @@ import { EditorState } from 'draft-js';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 
 const resErr = e => ({ status: 'error', message: `${e}` });
+const resErrList = list => ({ status: 'error', message: list });
 const resSuccess = data => ({ status: 'success', data: data });
 const resError = data => data.status && data.status == 'error';
 const toInt = value => Math.trunc(value);
@@ -130,6 +131,7 @@ const fieldInfo = key => {
 
 module.exports = {
     resErr,
+    resErrList,
     resSuccess,
     resError,
     toInt,
