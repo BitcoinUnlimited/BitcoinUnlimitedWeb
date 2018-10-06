@@ -6,7 +6,7 @@ import { strings } from '../../../lib/i18n';
 import { isDef, getUid, toBase64 } from '../../../../helpers/helpers.js';
 import Admin from '../../admin.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
-import RealmFormWrapper from '../../components/forms/realm-form-wrapper.jsx';
+import RealmFormWrapper from './realm-form-wrapper.jsx';
 import Axios from 'axios';
 
 import { EditorState } from 'draft-js';
