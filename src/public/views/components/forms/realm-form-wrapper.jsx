@@ -105,21 +105,42 @@ class RealmFormWrapper extends React.Component {
                 }
             }
         });
+        console.log('set state values');
         this.setState({ realmModel });
+    }
+
+    getModel(realmType) {
+        let realmModel = getDBModel(realmType);
+        this.setState({ realmModel });
+    }
+
+    getUidData(realmType, uid) {
+        Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
+            console.log('axios call to get prefill data');
+            if (res.data && res.data[0]) {
+                console.log('set values');
+                this.setValues(res.data[0]);
+            }
+        });
+    }
+
+    componentDidUpdate(previousProps) {
+        let { realmType, uid } = this.props;
+        if (previousProps.realmType && previousProps.realmType !== realmType) {
+            this.getModel(realmType);
+        }
+        if (isDef(previousProps.uid) && isDef(uid) && previousProps.uid !== uid) {
+            this.getUidData(realmType, uid);
+        }
     }
 
     componentDidMount() {
         let { realmType, uid } = this.props;
         if (isDef(realmType)) {
-            let realmModel = getDBModel(realmType);
-            this.setState({ realmModel });
+            this.getModel(realmType);
         }
         if (isDef(uid)) {
-            Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
-                if (res.data && res.data[0]) {
-                    this.setValues(res.data[0]);
-                }
-            });
+            this.getUidData(realmType, uid);
         }
     }
 
