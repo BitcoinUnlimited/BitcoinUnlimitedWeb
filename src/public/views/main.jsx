@@ -23,7 +23,7 @@ import NotFound from './pages/not-found.jsx';
 
 import Auth from './pages/protected/auth.jsx';
 import Dashboard from './pages/protected/dashboard.jsx';
-import SchemaUpdate from './pages/protected/schema-update.jsx';
+import RealmFormWrapper from './pages/protected/realm-form-wrapper.jsx';
 
 ReactDOM.render((
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
@@ -43,8 +43,8 @@ ReactDOM.render((
             <Route path='login' component={Login} />
             <Route component={Auth}>
                 <Route path='dashboard' component={Dashboard} />
-                <Route path='create/:realmType' component={SchemaUpdate} />
-                <Route path='update/:realmType/:uid' component={SchemaUpdate} />
+                <Route path='create/:realmType' component={RealmFormWrapper} />
+                <Route path='update/:realmType/:uid' component={RealmFormWrapper} />
             </Route>
             <Route path='blog' component={BlogList} />
             <Route path='content/:realmType/:uid' component={ContentDisplay} />

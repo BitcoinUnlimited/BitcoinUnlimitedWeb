@@ -1,16 +1,18 @@
 'use strict';
 
 import React from 'react';
+import ReactLoading from "react-loading";
 import { EditorState, convertFromRaw, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import Axios from 'axios';
 import { strings } from '../../../lib/i18n';
+import Base from '../../base.jsx';
 
 import { getDBModel, toBase64, isEmptyObj, isDef, getUid } from '../../../../helpers/helpers.js';
 
-import InputElement from './input-element.jsx';
+import InputElement from '../../components/forms/input-element.jsx';
 
 const relativeImgPath = fullPath => fullPath.split('/public').pop();
 
@@ -56,10 +58,12 @@ class RealmFormWrapper extends React.Component {
         if (data) {
             Axios.post('/api/upsert', data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
                 console.log(res);
-                // splash success
+                if (res && res.data && !isEmptyObj(res.data)) {
+                    this.setSplash(`Updated ${this.state.realmType}`);
+                }
             }).catch(e => {
+                this.setSplash(`There was an error updating your ${this.state.realmType}. See console for details.`);
                 console.log(e);
-                // splash failure
             });
         }
     }
@@ -105,7 +109,6 @@ class RealmFormWrapper extends React.Component {
                 }
             }
         });
-        console.log('set state values');
         this.setState({ realmModel });
     }
 
@@ -116,9 +119,7 @@ class RealmFormWrapper extends React.Component {
 
     getUidData(realmType, uid) {
         Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
-            console.log('axios call to get prefill data');
             if (res.data && res.data[0]) {
-                console.log('set values');
                 this.setValues(res.data[0]);
             }
         });
@@ -196,24 +197,25 @@ class RealmFormWrapper extends React.Component {
         let { realmModel } = this.state;
         if (!realmModel) {
             return (
-                <div>
-                Loading...
-                </div>
+                <Base name="schema-update">
+                    <ReactLoading type="balls" color="#ccc" />
+                </Base>
             );
         }
-        console.log(realmModel);
         return (
-            <div className="form-wrapper">
-                {this.getSplash()}
-                <h2 className="form-title">Update { realmType }</h2>
-                <form className="post__form" onSubmit={ this.formSubmit } encType="multipart/form-data">
-                    {Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx))}
-                    <input type="hidden" value={realmType} />
-                    <input type="submit" value="Save" />
-                </form>
-            </div>
+            <Base name="schema-update">
+                <div className="form-wrapper">
+                    {this.getSplash()}
+                    <h2 className="form-title">Update { realmType }</h2>
+                    <form className="post__form" onSubmit={ this.formSubmit } encType="multipart/form-data">
+                        {Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx))}
+                        <input type="hidden" value={realmType} />
+                        <input type="submit" value="Save" />
+                    </form>
+                </div>
+            </Base>
         );
     }
 }
 
-export default RealmFormWrapper;
+export default withRouter(RealmFormWrapper);
