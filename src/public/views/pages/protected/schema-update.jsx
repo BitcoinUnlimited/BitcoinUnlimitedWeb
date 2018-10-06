@@ -30,7 +30,7 @@ class SchemaUpdate extends React.Component {
     }
 
     getRealmObject(request) {
-        Axios.post('/api/get', request).then(res => {
+        Axios.get('/api/get', request).then(res => {
             if (!res.data || resError(res.data)) {
                 this.redirectNotFound();
             } else if (!isEmptyObj(res.data)) {
@@ -45,7 +45,7 @@ class SchemaUpdate extends React.Component {
     }
 
     componentDidMount() {
-        let realmType = this.props.params.realmType || '';
+        // let realmType = this.props.params.realmType || '';
         //let form = getTypeForm(realmType);
 
         // let schema = getSchema(realmType);
@@ -83,18 +83,11 @@ class SchemaUpdate extends React.Component {
     // }
 
     render() {
-        let { realmObject } = this.state;
+        console.log(this.props);
         let { realmType, uid } = this.props.params;
         if (!isDef(realmType)) {
             return (
                 <ReactLoading type="balls" color="#ccc" />
-            );
-        }
-        if (!isDef(realmObject)) {
-            return (
-                <Base name="schema-update">
-                    <RealmFormWrapper realmType={realmType} uid={uid} />
-                </Base>
             );
         }
         return (

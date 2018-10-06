@@ -18,27 +18,15 @@ class RealmFormWrapper extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            splash: '',
+            splash: 'Default splash',
             uid: this.props.uid || '',
             realmType: this.props.realmType || '',
             realmModel: null
         }
+        this.removeSplash = this.removeSplash.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.imageChange = this.imageChange.bind(this);
-    }
-
-    getError(prop) {
-        if (prop.required && prop.type !== 'hidden') {
-            if (prop.type === 'checkbox') {
-                if (!isDef(prop.value)) {
-                    return strings().forms.errors[0];
-                }
-            } else if (!prop.value) {
-                return strings().forms.errors[0];
-            }
-        }
-        return false;
     }
 
     addFormValue(formData, key, prop) {
@@ -49,31 +37,16 @@ class RealmFormWrapper extends React.Component {
         let model = this.state.realmModel;
         let formData = new FormData();
         formData.append('realmType', this.props.realmType);
-
-        let errors = {};
         Object.keys(model).map(key => {
             let prop = model[key];
-            let error = this.getError(prop);
-            if (error) {
-                errors[key] = error;
-            } else {
-                if (prop.name === 'uid') {
-                    if (prop.value) {
-                        this.addFormValue(formData, key, prop);
-                    }
-                } else {
+            if (prop.name === 'uid') {
+                if (prop.value) {
                     this.addFormValue(formData, key, prop);
                 }
+            } else {
+                this.addFormValue(formData, key, prop);
             }
         });
-        if (!isEmptyObj(errors)) {
-            let realmModel = this.state.realmModel;
-            Object.keys(errors).map(key => {
-                realmModel[key].error = errors[key];
-            });
-            this.setState({ realmModel });
-            return false;
-        }
         return formData;
     }
 
@@ -96,7 +69,6 @@ class RealmFormWrapper extends React.Component {
     }
 
     inputChange(e) {
-        //console.log(e);
         const { name, type } = e.target;
         const value = (type === 'checkbox') ? e.target.checked : e.target.value;
         let realmModel = this.state.realmModel;
@@ -114,13 +86,41 @@ class RealmFormWrapper extends React.Component {
         });
     }
 
-    componentDidMount() {
-        // get uid and set all of this.state values where they exist
-        let realmModel = getDBModel(this.props.realmType);
+    convertToEditor(content) {
+        const blocksFromHtml = htmlToDraft(content);
+        const { contentBlocks, entityMap } = blocksFromHtml;
+        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+        return EditorState.createWithContent(contentState);
+    }
+
+    setValues(values) {
+        let realmModel = this.state.realmModel;
+        Object.keys(realmModel).map(key => {
+            if (values[key]) {
+                let modelRow = realmModel[key];
+                if (modelRow.type === 'editor') {
+                    realmModel[key].value = this.convertToEditor(values[key]);
+                } else {
+                    realmModel[key].value = values[key];
+                }
+            }
+        });
         this.setState({ realmModel });
-        // fetch uid from database
-        //console.log('empty editor state:');
-        //console.log(EditorState.createEmpty());
+    }
+
+    componentDidMount() {
+        let { realmType, uid } = this.props;
+        if (isDef(realmType)) {
+            let realmModel = getDBModel(realmType);
+            this.setState({ realmModel });
+        }
+        if (isDef(uid)) {
+            Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
+                if (res.data && res.data[0]) {
+                    this.setValues(res.data[0]);
+                }
+            });
+        }
     }
 
     editorStateChange(e, name) {
@@ -129,7 +129,7 @@ class RealmFormWrapper extends React.Component {
         this.setState({ realmModel });
     }
 
-    getChange(name, type) {
+    getChangeFN(name, type) {
         if (type === 'file') return this.imageChange;
         if (type === 'editor') return (e) => this.editorStateChange(e, name);
         return this.inputChange;
@@ -145,22 +145,26 @@ class RealmFormWrapper extends React.Component {
                 inputLabel={(input.fieldInfo) ? ((input.fieldInfo.label) ? input.fieldInfo.label: null) : null}
                 inputName={input.name}
                 inputValue={input.value}
-                inputChange={this.getChange(input.name, input.type)}
+                inputChange={this.getChangeFN(input.name, input.type)}
                 inputError={(input.error) ? input.error : null}
                 inputDescription={(input.fieldInfo) ? ((input.fieldInfo.description) ? input.fieldInfo.description: null) : null}
             />
         );
     }
 
+    setSplash(splash) {
+        this.setState({ splash })
+    }
+
     removeSplash() {
-        this.setState({ splash: null });
+        this.setState({ splash: '' });
     }
 
     getSplash() {
         let { splash } = this.state;
         if (splash.length > 0) {
             return (
-                <div className="splash">{splash} <div className="remove-btn" onClick={this.removeSplash()}>close</div></div>
+                <div className="splash">{splash} <div className="remove-btn" onClick={this.removeSplash}>close</div></div>
             );
         }
         return null;

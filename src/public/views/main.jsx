@@ -17,8 +17,8 @@ import EmergentConsensusBU from './pages/emergent-consensus-bu.jsx';
 import EmergentConsensus from './pages/emergent-consensus.jsx';
 import DevelopTestingAccord from './pages/develop-testing-accord.jsx';
 import Login from './pages/login.jsx';
-import Blog from './pages/blog.jsx';
-import BlogPost from './pages/blog-post.jsx';
+import BlogList from './pages/blog-list.jsx';
+import ContentDisplay from './pages/content-display.jsx';
 import NotFound from './pages/not-found.jsx';
 
 import Auth from './pages/protected/auth.jsx';
@@ -43,10 +43,11 @@ ReactDOM.render((
             <Route path='login' component={Login} />
             <Route component={Auth}>
                 <Route path='dashboard' component={Dashboard} />
+                <Route path='create/:realmType' component={SchemaUpdate} />
                 <Route path='update/:realmType/:uid' component={SchemaUpdate} />
             </Route>
-            <Route path='blog' component={Blog} />
-            <Route path='blog/:uid' component={BlogPost} />
+            <Route path='blog' component={BlogList} />
+            <Route path='content/:realmType/:uid' component={ContentDisplay} />
             <Route path='not-found' component={NotFound} />
             <Route path='*' component={NotFound} />
         </Route>

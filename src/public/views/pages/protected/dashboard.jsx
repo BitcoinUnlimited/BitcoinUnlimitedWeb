@@ -216,7 +216,7 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        this.getAllImages();
+        //this.getAllImages();
     }
 
     imageChange(e) {

@@ -4,6 +4,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import { strings } from '../../../lib/i18n';
 import Dropdown from '../dropdown.jsx'
+import UserArea from '../protected/user-area.jsx'
 
 class WebHeader extends React.Component {
 
@@ -54,8 +55,12 @@ class WebHeader extends React.Component {
                         <Link className='non-decorated black block p2' to='/about/contact'>{strings().header.about.contact}</Link>
                     </Dropdown>
 
+                    <Link className='non-decorated black inline-block mx2 py2' to='/blog'>Blog</Link>
+
                     <Link className='inline-block mx2 py2 dim btn--secondary' to='/donate'>{strings().header.donate}</Link>
                     <Link className='inline-block mx2 py2 dim btn--primary' to='/download'>{strings().header.download.title}</Link>
+
+                    <UserArea />
                 </div>
             </div>
         )
