@@ -549,7 +549,7 @@
             "download": "Download the latest Bitcoin Cash compatible release of Bitcoin Unlimited",
             "version": "v1.5.0.0",
             "date": "Oct 12, 2018",
-            "notes": "This release implements Bitcoin Cash, compliant with the latest hard fork (May 15, 2018), including 32MB blocks, extended OP_RETURN data and additional opcodes",
+            "notes": "This release implements Bitcoin Cash, compliant with the latest activated protocol upgrade (May 15, 2018) and implements features as defined in the specification of Nov 15, 2018 network upgrade. For the activation of such features and BIP135 miner voting scheme see ",
             "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  Bitcoin Cash is a better bitcoin, delivering onchain scalability that has resulted in penny transaction fees and fast confirmations."
         },
         "windows": "Windows",
