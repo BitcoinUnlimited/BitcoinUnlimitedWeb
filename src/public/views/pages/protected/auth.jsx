@@ -17,7 +17,6 @@ class Auth extends React.Component {
     }
 
     removeJwtAndRedirect() {
-        console.log('remove jwt and redirect');
         if ('localStorage' in window) {
             localStorage.removeItem('jwt');
         }
@@ -41,15 +40,13 @@ class Auth extends React.Component {
         } else {
             Axios.get('/get_auth', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 if (res.data && res.data.pubkey) {
-                    console.log('set authed: ' + res.data.pubkey);
                     this.getUser(res.data.pubkey);
                     this.setState({ isAuthed: true });
                 } else {
-                    console.log('no jwt, redirect');
                     this.removeJwtAndRedirect();
                 }
             }).catch(e => {
-                console.log('catch type error: ' + e);
+                console.log('auth.jsx: ' + e);
                 this.removeJwtAndRedirect();
             });
         }

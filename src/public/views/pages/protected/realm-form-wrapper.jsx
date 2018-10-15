@@ -1,6 +1,8 @@
 'use strict';
 
 import React from 'react';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import ReactLoading from "react-loading";
 import { EditorState, convertFromRaw, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
@@ -113,13 +115,16 @@ class RealmFormWrapper extends React.Component {
     }
 
     getModel(realmType) {
+        console.log('getModel:');
         let realmModel = getDBModel(realmType);
         this.setState({ realmModel });
     }
 
     getUidData(realmType, uid) {
+        console.log('getUidData:');
         Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
             if (res.data && res.data[0]) {
+                console.log(res.data[0]);
                 this.setValues(res.data[0]);
             }
         });
@@ -136,7 +141,7 @@ class RealmFormWrapper extends React.Component {
     }
 
     componentDidMount() {
-        let { realmType, uid } = this.props;
+        let { realmType, uid } = this.props.params;
         if (isDef(realmType)) {
             this.getModel(realmType);
         }
@@ -198,6 +203,7 @@ class RealmFormWrapper extends React.Component {
         if (!realmModel) {
             return (
                 <Base name="schema-update">
+                    loading
                     <ReactLoading type="balls" color="#ccc" />
                 </Base>
             );
@@ -219,3 +225,9 @@ class RealmFormWrapper extends React.Component {
 }
 
 export default withRouter(RealmFormWrapper);
+
+RealmFormWrapper.propTypes = {
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+};

@@ -6,7 +6,6 @@ import { strings } from '../../../lib/i18n';
 import { isDef, getUid, toBase64 } from '../../../../helpers/helpers.js';
 import Admin from '../../admin.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
-import RealmFormWrapper from './realm-form-wrapper.jsx';
 import Axios from 'axios';
 
 import { EditorState } from 'draft-js';
@@ -283,18 +282,6 @@ class Dashboard extends React.Component {
 
         return (
             <Admin name="dashboard" title={ strings().dashboard.title } >
-
-                <RealmFormWrapper formTitle="Add Post" formSubmit={ this.formSubmit } formErrors={ this.state.inputname_error }>
-                    <InputElement
-                        inputType="text"
-                        inputName="inputname"
-                        inputClass="class-name"
-                        inputState={ this.state.inputname }
-                        inputChange={ this.didChange }
-                        inputError={ this.state.inputname_error }
-                    />
-                </RealmFormWrapper>
-
 
                 <FormWrap title="Add Post">
                     <form className="post__form" onSubmit={ this.postSubmit } encType="multipart/form-data">
