@@ -4,8 +4,8 @@ import fs from 'fs';
 import { EditorState } from 'draft-js';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 
-const resErr = e => ({ status: 'error', message: `${e}` });
-const resErrList = list => ({ status: 'error', message: list });
+const resErr = (e, fn) => ({ status: 'error', message: `${e}`, fn: ((fn) ? fn : '') });
+const resErrList = (list, fn) => ({ status: 'error', message: `Missing required parameters: ${list.join(', ')}`, fn: ((fn) ? fn : '') });
 const resSuccess = data => ({ status: 'success', data: data });
 const resError = data => data.status && data.status == 'error';
 const toInt = value => Math.trunc(value);
@@ -13,8 +13,8 @@ const isDef = obj => typeof obj !== 'undefined';
 const isObj = obj => isDef(obj) && typeof obj === 'object';
 const isStr = obj => isDef(obj) && typeof obj === 'string';
 const checkDate = expires => Math.floor(Date.now() / 1000) < expires;
-// db schema types
-const isOptionalProp = prop => prop.hasOwnProperty('optional') && prop.optional === true;
+// db schema operations
+const isOptionalProp = prop => prop.hasOwnProperty('optional') && prop.optional === true && !prop.hasOwnProperty('default');
 const checkRealmType = (prop, str_idx) => isStr(prop) ? prop.indexOf(str_idx) !== -1 : isOptionalProp(prop);
 const isOptional = prop => (checkRealmType(prop, '?')) ? true : false;
 const isArr = prop => (checkRealmType(prop, '[]')) ? true : false;
