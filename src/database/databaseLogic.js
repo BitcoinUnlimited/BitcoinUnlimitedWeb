@@ -81,11 +81,7 @@ const signatureVerify = data => {
  */
 const realmLog = data => {
     realmDatabase.write(() => {
-        try {
-            realmDatabase.create('Log', data, true);
-        } catch(e) {
-            console.log(e);
-        }
+        realmDatabase.create('Log', data, true);
     });
 }
 
@@ -117,7 +113,9 @@ const getSchemaProps = realmType => {
 const checkRequiredParams = (realmType, data) => {
     const schemaProps = getSchemaProps(realmType);
     if (!schemaProps) {
-        return resErr(buildDBErr(4));
+        let error = resErr(buildDBErr(4), 'checkRequiredParams()');
+        realmLog(error);
+        return error;
     }
     let hasRequired = hasRequiredProps(schemaProps, data);
     if (hasRequired !== true) {
@@ -130,14 +128,21 @@ const checkRequiredParams = (realmType, data) => {
 
 const realmSave = (realmType, data) => new Promise((resolve, reject) => {
     console.log('realmSave:');
+    console.log(data);
+
     let errorCheck = checkRequiredParams(realmType);
     if (errorCheck !== true) {
         reject(errorCheck);
     } else {
         setProtocolValues(realmType, data).then(res => {
+
+            console.log('setProtocolValues');
+            console.log(res);
+
             realmDatabase.write(() => {
                 try {
                     const result = realmDatabase.create(realmType, data, true);
+                    console.log('realmSave result:');
                     console.log(result);
                     resolve(result);
                 } catch(e) {
@@ -157,11 +162,6 @@ const realmSave = (realmType, data) => new Promise((resolve, reject) => {
     realmLog(error);
     reject(error);
 });
-
-/*
- * Todo: If model has a realm association, get that association if it exists.
- * associations should be optional and non-breaking
- */
 
 // if (isStr(data.pubkey)) {
 //     data.author = setAuth(data.pubkey);
@@ -183,6 +183,15 @@ const realmSave = (realmType, data) => new Promise((resolve, reject) => {
 // }
 // get user if data.auth is set
 
+//let associations = [{field: 'author', model: 'User'}];
+// const setAuthor = pubkey => {
+//     let author = realmDatabase.objects('User').filtered('pubkey == $0', pubkey);
+//     if (!isEmptyObj(author)) {
+//         return author;
+//     }
+//     return { uid: getUid(), pubkey: pubkey };
+// }
+
 const realmUpdate = (realmType, data) => new Promise((resolve, reject) => {
     console.log('realmUpdate:');
     console.log(data);
@@ -193,9 +202,12 @@ const realmUpdate = (realmType, data) => new Promise((resolve, reject) => {
     } else {
         setProtocolValues(realmType, data).then(res => {
 
+            console.log('setProtocolValues');
+            console.log(res);
+
             realmDatabase.write(() => {
                 const updated = realmDatabase.create(realmType, res, true);
-                console.log('realmUpdate-after data:');
+                console.log('realmUpdate result:');
                 console.log(updated);
                 resolve(updated);
             });
