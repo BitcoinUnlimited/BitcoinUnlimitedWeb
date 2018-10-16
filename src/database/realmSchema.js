@@ -68,7 +68,7 @@ const PostSchema = {
     }
 }
 
-/* Admin debugging */
+/* Admin */
 const LogSchema = {
     name: 'Log',
     primaryKey: 'uid',
