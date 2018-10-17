@@ -1,12 +1,12 @@
 'use strict';
 
+import { strings } from '../public/lib/i18n';
+
 /*
- * Declare types that will have custom values
+ * Declare types that require extra processing
  */
-const models = ['Post','Hero','User'];
-
-const typeHasProtocol = type => models.indexOf(type) !== -1;
-
+const modelProtocols = ['Post','Hero','User'];
+const typeHasProtocol = type => modelProtocols.indexOf(type) !== -1;
 const protocol = {};
 
 /*
@@ -26,7 +26,7 @@ protocol.Hero = data => {
 
 protocol.User = data => {
     if (!data.pubkey) {
-        throw 'Pubkey not available.';
+        throw strings().database.errors[9];
     }
     return data;
 }
@@ -41,5 +41,5 @@ const setProtocolValues = (type, data) => new Promise((resolve, reject) => {
 });
 
 module.exports = {
-    setProtocolValues,
+    setProtocolValues
 }

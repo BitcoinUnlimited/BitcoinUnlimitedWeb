@@ -1,6 +1,6 @@
 'use strict';
 
-import { getUid } from '../helpers/helpers.js';
+import uuidv4 from 'uuid/v4';
 /*
  * When declaring additional schemas use the following rules to auto-generate forms:
  *
@@ -38,7 +38,7 @@ const HeroSchema = {
     name: 'Hero',
     primaryKey: 'uid',
     properties: {
-        uid: {type: 'string', default: getUid()},
+        uid: {type: 'string', default: uuidv4()},
         created: {type: 'date', default: new Date()},
         updated: {type: 'date', optional: true, default: new Date()},
         title: 'string',
@@ -46,8 +46,7 @@ const HeroSchema = {
         subtitle_editor: 'string?',
         urltext: 'string?',
         url: 'string?',
-        published: {type: 'bool', default: false},
-        tags: 'string?'
+        author: 'User?'
     }
 }
 
@@ -55,7 +54,7 @@ const PostSchema = {
     name: 'Post',
     primaryKey: 'uid',
     properties: {
-        uid: {type: 'string', default: getUid()},
+        uid: {type: 'string', default: uuidv4()},
         created: {type: 'date', default: new Date()},
         updated: {type: 'date', optional: true, default: new Date()},
         title: 'string',
@@ -73,7 +72,7 @@ const LogSchema = {
     name: 'Log',
     primaryKey: 'uid',
     properties: {
-        uid: {type: 'string', default: getUid()},
+        uid: {type: 'string', default: uuidv4()},
         created: {type: 'date', default: new Date()},
         status: 'string?',
         message: 'string?',

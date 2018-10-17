@@ -61,11 +61,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/get_auth', passport.authenticate('jwt', { session: false }), (req, res) => (req.user) ? res.json(req.user) : res.json(resErr(strings().auth.errors[6])));
 app.post('/sig_verify', (req, res) => res.send(signatureVerify(req.body)));
-app.get('/api/get/:type/:uid', (req, res) => {
+app.get('/api/get/:type/:uid?', (req, res) => {
     if (!req.params.type) {
         res.redirect('/not-found');
     } else {
-        realmGet({ realmType: req.params.type, uid: (req.params.uid || '') }).then(result => res.json(result)).catch(err => res.json(resErr(err)));        
+        realmGet({ realmType: req.params.type, uid: (req.params.uid || '') }).then(result => res.json(result)).catch(err => res.json(resErr(err)));
     }
 });
 app.post('/api/delete', jwtMiddleware(), (req, res) => realmDelete(req.body).then(result => res.json(result)).catch(err => res.json(resErr(err))));
