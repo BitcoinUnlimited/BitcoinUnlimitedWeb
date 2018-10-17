@@ -13,15 +13,18 @@ const getDB = type => {
     }
 }
 
-const authDatabase = new Realm({
+const database = {
+    path: './databases/' + getDB(),
+    schema: getDBSchema()
+}
+
+const auth = {
     path: './databases/' + getDB('auth'),
     schema: getAuthSchema()
-});
+}
 
-const realmDatabase = new Realm({
-  path: './databases/' + getDB(),
-  schema: getDBSchema()
-});
+const authDatabase = new Realm(auth);
+const realmDatabase = new Realm(database);
 
 module.exports = {
     realmDatabase,

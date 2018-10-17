@@ -11,8 +11,8 @@ import { resErr, resErrList, resSuccess, toInt, isDef, isStr, checkDate, isOptio
 import { strings } from '../public/lib/i18n';
 import Axois from 'axios';
 
-const buildDBErr = idx => resErr(strings().database.errors[idx]);
-const buildAuthErr = idx => resErr(strings().auth.errors[idx]);
+const buildDBErr = idx => strings().database.errors[idx];
+const buildAuthErr = idx => strings().auth.errors[idx];
 const typeIsValid = type => getDBSchema().filter(schema => schema.name === type).length > 0;
 
 /*
@@ -81,8 +81,16 @@ const signatureVerify = data => {
  */
 const realmLog = data => {
     realmDatabase.write(() => {
-        realmDatabase.create('Log', data, true);
+        let result = realmDatabase.create('Log', data, true);
+        console.log(result);
     });
+}
+
+const rejectWithLog = (errorText, fn) => {
+    fn = (fn) ? fn : '';
+    let error = resErr(errorText, fn);
+    realmLog(error);
+    return error;
 }
 
 const hasRequiredProps = (props, data) => {
@@ -113,9 +121,7 @@ const getSchemaProps = realmType => {
 const checkRequiredParams = (realmType, data) => {
     const schemaProps = getSchemaProps(realmType);
     if (!schemaProps) {
-        let error = resErr(buildDBErr(4), 'checkRequiredParams()');
-        realmLog(error);
-        return error;
+        return rejectWithLog(buildDBErr(4), 'checkRequiredParams()');
     }
     let hasRequired = hasRequiredProps(schemaProps, data);
     if (hasRequired !== true) {
@@ -139,28 +145,24 @@ const realmSave = (realmType, data) => new Promise((resolve, reject) => {
             console.log('setProtocolValues');
             console.log(res);
 
-            realmDatabase.write(() => {
-                try {
-                    const result = realmDatabase.create(realmType, data, true);
+            try {
+                realmDatabase.write(() => {
+
+                    const saved = realmDatabase.create(realmType, result, true);
                     console.log('realmSave result:');
-                    console.log(result);
-                    resolve(result);
-                } catch(e) {
-                    let error = resErr(e, 'realmSave()');
-                    realmLog(error);
-                    reject(error);
-                }
-            });
+                    console.log(saved);
+                    resolve(saved);
+
+                });
+            } catch(e) {
+                reject(rejectWithLog(e, 'realmSave()'));
+            }
         }).catch(e => {
-            let error = resErr(e, 'realmSave()');
-            realmLog(error);
-            reject(error);
+            reject(rejectWithLog(e, 'realmSave()'));
         });
-    }
+    } // required parameter check
 }).catch(e => {
-    let error = resErr(e, 'realmSave()');
-    realmLog(error);
-    reject(error);
+    reject(rejectWithLog(e, 'realmSave()'));
 });
 
 // if (isStr(data.pubkey)) {
@@ -193,6 +195,7 @@ const realmSave = (realmType, data) => new Promise((resolve, reject) => {
 // }
 
 const realmUpdate = (realmType, data) => new Promise((resolve, reject) => {
+
     console.log('realmUpdate:');
     console.log(data);
 
@@ -205,36 +208,38 @@ const realmUpdate = (realmType, data) => new Promise((resolve, reject) => {
             console.log('setProtocolValues');
             console.log(res);
 
-            realmDatabase.write(() => {
-                const updated = realmDatabase.create(realmType, res, true);
-                console.log('realmUpdate result:');
-                console.log(updated);
-                resolve(updated);
-            });
+            try {
+                realmDatabase.write(() => {
+
+                    const updated = realmDatabase.create(realmType, res, true);
+                    console.log('realmUpdate result:');
+                    console.log(updated);
+                    resolve(updated);
+
+                });
+            } catch(e) {
+                reject(rejectWithLog(e, 'realmUpdate()'));
+            };
 
         }).catch(e => {
-            let error = resErr(e, 'realmUpdate()');
-            realmLog(error);
-            reject(error);
+            reject(rejectWithLog(e, 'realmUpdate()'));
         });
-    }
+    } // required parameter check
 }).catch(e => {
-    let error = resErr(e, 'realmUpdate()');
-    realmLog(error);
-    reject(error);
+    reject(rejectWithLog(e, 'realmUpdate()'));
 });
 
 const realmUpsert = data => {
     const { realmType, uid } = data;
     if (!isStr(realmType)) {
-        let error = resErr(buildDBErr(0), 'realmUpsert()');
-        realmLog(error);
-        return Promise.reject(error);
+        return Promise.reject(rejectWithLog(buildDBErr(0), 'realmUpsert()'));
     }
     return (uid) ? realmUpdate(realmType, data) : realmSave(realmType, data);
 }
 
-// Optionally pass filter string
+/*
+ * Optionally pass filter string
+ */
 const realmGetAll = (realmType, filtered) => new Promise((resolve, reject) => {
     realmDatabase.write(() => {
         if (isDef(filtered)) {
@@ -249,13 +254,11 @@ const realmGetAll = (realmType, filtered) => new Promise((resolve, reject) => {
 const realmGetUid = (realmType, uid, key) => new Promise((resolve, reject) => {
     realmDatabase.write(() => {
         const predicate = `${key} == "${uid}"`;
-        const result = realmDatabase.objects(realmType).filtered(predicate);
+        const { "0": result } = realmDatabase.objects(realmType).filtered(predicate);
         if (isDef(result)) {
             resolve(result);
         } else {
-            let error = resErr(buildDBErr(2), 'realmGetUid()');
-            realmLog(error);
-            reject(error);
+            reject(rejectWithLog(buildDBErr(2), 'realmGetUid()'));
         }
     });
 });
@@ -268,16 +271,16 @@ const realmDeleteUid = (realmType, uid) => new Promise((resolve, reject) => {
             resolve(resSuccess());
         });
     }).catch(e => {
-        let error = resErr(e, 'realmDeleteUid()');
-        realmLog(error);
-        reject(error);
+        reject(rejectWithLog(e, 'realmDeleteUid()'));
     });
 });
 
 const realmGet = data => {
     const { realmType, uid } = data;
     if (!isStr(realmType) || !typeIsValid(realmType)) {
+
         let error = resErr(buildDBErr(0), 'realmGet()');
+        console.log(error);
         realmLog(error);
         return Promise.reject(error);
     }
@@ -316,7 +319,7 @@ const getPublicFiles = (dir) => new Promise((resolve, reject) => {
             reject();
         }
     } catch(e) {
-        reject(e);
+        reject(rejectWithLog(e, 'getPublicFiles()'));
     }
 });
 

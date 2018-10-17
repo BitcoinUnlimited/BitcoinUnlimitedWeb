@@ -680,7 +680,8 @@
             "Schema not found.",
             "User not found.",
             "Post not found.",
-            "Role not found."
+            "Role not found.",
+            "Pubkey not available."
         ]
     },
     "forms": {
