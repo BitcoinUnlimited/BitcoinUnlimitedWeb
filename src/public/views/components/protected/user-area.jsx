@@ -15,17 +15,16 @@ class UserArea extends React.Component {
         }
     }
 
-    getNameDisplay() {
-        let { pubkey, name } = this.state.user;
-        pubkey = (pubkey) ? pubkey.substr(0, 6) + '..' : null;
-        return name || pubkey;
+    getNameDisplay(pubkey) {
+        let { user : { name } } = this.state;
+        return (name) ? name : pubkey.substr(0, 6) + '..';
     }
 
     getEditLink() {
-        let { pubkey } = this.state.user;
+        let { user : { pubkey, name } } = this.state;
         if (pubkey) {
             return (
-                <Link className='user-edit' to={`/update/User/${pubkey}`}>{this.getNameDisplay()}</Link>
+                <Link className='user-edit' to={`/update/User/${pubkey}`}>{this.getNameDisplay(pubkey)}</Link>
             );
         }
         return null;
@@ -36,7 +35,7 @@ class UserArea extends React.Component {
             let user = localStorage.getItem('user');
             if (user) {
                 user = JSON.parse(user);
-                if (!isEmptyObj(user)) {
+                if (user) {
                     this.setState({ hasUser: true, user: user });
                 }
             }
@@ -48,9 +47,8 @@ class UserArea extends React.Component {
     }
 
     render() {
-        if (!this.state.hasUser) {
-            return null;
-        }
+        let { hasUser } = this.state;
+        if (!hasUser) return null;
         return (
             <div className="user-header">
                 <UserIcon width="20" height="20" />

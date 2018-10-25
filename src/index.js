@@ -2,6 +2,7 @@
 const env = require('dotenv').config();
 
 import path from 'path';
+import Axios from 'axios';
 import fs from 'fs';
 import os from 'os';
 import express from 'express';
@@ -10,8 +11,8 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { signatureVerify, validateAuth, realmGet, realmUpsert, realmDelete, getAuth, removeAuth } from './database/databaseLogic.js';
-import { resErr, checkPath, toBase64 } from './helpers/helpers.js';
+import { signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs } from './database/databaseLogic.js';
+import { resErr, checkPath, toBase64, getKeyForType } from './helpers/helpers.js';
 
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
@@ -22,7 +23,7 @@ const passportOpts = {
 }
 
 const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
-    const auth = getAuth(payload.pubkey).then(auth => {
+    getAuth(payload.pubkey).then(auth => {
         if (validateAuth(auth)) {
             next(null, auth);
         } else {
@@ -30,6 +31,7 @@ const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
             next(null, false);
         }
     }).catch(e => {
+        console.log('catch jwt strat error: ' + e);
         next(null, false);
     });
 });
@@ -59,16 +61,39 @@ app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/get_auth', passport.authenticate('jwt', { session: false }), (req, res) => (req.user) ? res.json(req.user) : res.json(resErr(strings().auth.errors[6])));
-app.post('/sig_verify', (req, res) => res.send(signatureVerify(req.body)));
+app.get('/user_auth', jwtMiddleware(), (req, res) => (req.user) ? res.json(req.user) : res.json('Req.user is not set in /user_auth'));
+
+app.get('/get_logs', jwtMiddleware(), (req, res) => {
+    getLogs().then(result => {
+        res.json(result);
+    }).catch(e => {
+        res.json(resErr(e, 'getLogs()'));
+    })
+});
+
+app.post('/sig_verify', (req, res) => {
+    signatureVerify(req.body).then(result => res.json(result)).catch(e => res.json(resErr(e)));
+});
 app.get('/api/get/:type/:uid?', (req, res) => {
-    if (!req.params.type) {
+    if (!req.params.type || !typeIsValid(req.params.type)) {
         res.redirect('/not-found');
     } else {
-        realmGet({ realmType: req.params.type, uid: (req.params.uid || '') }).then(result => res.json(result)).catch(err => res.json(resErr(err)));
+        realmGet({ realmType: req.params.type, uid: (req.params.uid || '') }).then(result => res.json(result)).catch(e => res.json(resErr(e)));
     }
 });
-app.post('/api/delete', jwtMiddleware(), (req, res) => realmDelete(req.body).then(result => res.json(result)).catch(err => res.json(resErr(err))));
+app.post('/api/delete', jwtMiddleware(), (req, res) => {
+    const { realmType } = req.body;
+    if (!realmType || !typeIsValid(realmType)) {
+        res.json(resErr('Invalid Type.'))
+    } else {
+        const typePrimaryKey = getKeyForType(realmType);
+        if (!req.body[typePrimaryKey]) {
+            res.json(resErr(`Missing ${typePrimaryKey}.`))
+        } else {
+            realmDelete(req.body).then(result => res.json(result)).catch(e => res.json(resErr(e)));
+        }
+    }
+});
 app.post('/api/upsert', jwtMiddleware(), (req, res) => {
     try {
         let busboy = new Busboy({ headers: req.headers });
@@ -85,11 +110,16 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
             fields[fieldname] = val;
         });
         busboy.on('finish', function() {
-            realmUpsert(fields).then(result => res.json(result)).catch(err => res.json(resErr(err)))
+            if (!fields.realmType || !typeIsValid(fields.realmType)) throw 'Incorrect realmType or not specified.';
+            realmSave(fields).then(result => res.json(result)).catch(e => {
+                console.log('realmSave from /api/upsert');
+                console.log(e);
+                res.json(resErr(e));
+            })
         });
         req.pipe(busboy);
     } catch(e) {
-        res.send({status: 'error', message: e});
+        res.json({status: 'error', message: e});
     }
 });
 

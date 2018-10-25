@@ -26,18 +26,16 @@ protocol.Hero = data => {
 
 protocol.User = data => {
     if (!data.pubkey) {
-        throw strings().database.errors[9];
+        throw 'Pubkey does not exist. fn: protocol.User()';
     }
     return data;
 }
 
 const setProtocolValues = (type, data) => new Promise((resolve, reject) => {
-    if (!typeHasProtocol(type)) resolve(data);
+    if (!typeHasProtocol(type)) return resolve(data);
     try {
         resolve(protocol[type](data));
-    } catch(e) {
-        reject(e);
-    }
+    } catch(e) { reject(e) }
 });
 
 module.exports = {

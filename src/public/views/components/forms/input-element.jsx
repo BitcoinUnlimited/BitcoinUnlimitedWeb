@@ -30,10 +30,10 @@ class InputElement extends React.Component {
         if (!inputType || !inputName || !inputChange) {
             return null;
         }
-        if (inputType === 'hidden') {
+        if (inputType === 'hidden' || inputType === 'primaryKey') {
             return (
                 <input
-                    type={inputType}
+                    type="hidden"
                     name={inputName}
                     value={inputValue}
                 />

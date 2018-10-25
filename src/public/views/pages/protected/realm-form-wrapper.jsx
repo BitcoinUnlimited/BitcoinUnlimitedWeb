@@ -22,15 +22,16 @@ class RealmFormWrapper extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            splash: 'Default splash',
-            uid: this.props.uid || '',
-            realmType: this.props.realmType || '',
+            splash: '',
+            uid: this.props.params.uid || '',
+            realmType: this.props.params.realmType || '',
             realmModel: null
         }
         this.removeSplash = this.removeSplash.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.imageChange = this.imageChange.bind(this);
+        this.deleteConfirm = this.deleteConfirm.bind(this);
     }
 
     addFormValue(formData, key, prop) {
@@ -40,7 +41,7 @@ class RealmFormWrapper extends React.Component {
     buildFormData() {
         let model = this.state.realmModel;
         let formData = new FormData();
-        formData.append('realmType', this.props.realmType);
+        formData.append('realmType', this.props.params.realmType);
         Object.keys(model).map(key => {
             let prop = model[key];
             if (prop.name === 'uid') {
@@ -59,8 +60,9 @@ class RealmFormWrapper extends React.Component {
         let data = this.buildFormData();
         if (data) {
             Axios.post('/api/upsert', data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+                console.log('formSubmitResult:');
                 console.log(res);
-                if (res && res.data && !isEmptyObj(res.data)) {
+                if (res && res.data) {
                     this.setSplash(`Updated ${this.state.realmType}`);
                 }
             }).catch(e => {
@@ -115,39 +117,33 @@ class RealmFormWrapper extends React.Component {
     }
 
     getModel(realmType) {
-        console.log('getModel:');
         let realmModel = getDBModel(realmType);
         this.setState({ realmModel });
     }
 
     getUidData(realmType, uid) {
-        console.log('getUidData:');
         Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
-            if (res.data && res.data[0]) {
-                console.log(res.data[0]);
-                this.setValues(res.data[0]);
+            if (res.data) {
+                this.setValues(res.data);
             }
         });
     }
 
     componentDidUpdate(previousProps) {
-        let { realmType, uid } = this.props;
-        if (previousProps.realmType && previousProps.realmType !== realmType) {
-            this.getModel(realmType);
+        let { params: { realmType: currentType, uid }, route: { path } } = this.props;
+        let { params: { realmType: previousType, previousUid }, route: { path: previousPath } } = previousProps;
+        if ((currentType && previousType && previousType !== currentType) || path !== previousPath) {
+            this.getModel(currentType);
         }
-        if (isDef(previousProps.uid) && isDef(uid) && previousProps.uid !== uid) {
-            this.getUidData(realmType, uid);
+        if (currentType && uid && previousUid && previousUid !== uid) {
+            this.getUidData(currentType, uid);
         }
     }
 
     componentDidMount() {
-        let { realmType, uid } = this.props.params;
-        if (isDef(realmType)) {
-            this.getModel(realmType);
-        }
-        if (isDef(uid)) {
-            this.getUidData(realmType, uid);
-        }
+        let { params: { realmType, uid } } = this.props;
+        if (realmType) this.getModel(realmType);
+        if (realmType && uid) this.getUidData(realmType, uid);
     }
 
     editorStateChange(e, name) {
@@ -189,7 +185,7 @@ class RealmFormWrapper extends React.Component {
 
     getSplash() {
         let { splash } = this.state;
-        if (splash.length > 0) {
+        if (splash) {
             return (
                 <div className="splash">{splash} <div className="remove-btn" onClick={this.removeSplash}>close</div></div>
             );
@@ -197,17 +193,34 @@ class RealmFormWrapper extends React.Component {
         return null;
     }
 
+    deleteConfirm(e) {
+        e.preventDefault();
+        let { uid, realmType } = this.state;
+        //if (uid && realmType) alert(`Delete ${realmType} ${uid}?`);
+        // display modal to confirm/deny
+        Axios.post('/api/delete', { uid, realmType }, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+            let { data: { status } } = res;
+            if (status && status === 'success') {
+                this.props.router.push(`/create/${realmType}`);
+            } else {
+                console.log(res);
+            }
+        }).catch(e => {
+            this.setSplash(`There was an error updating your ${this.state.realmType}. See console for details.`);
+            console.log(e);
+        });
+    }
+
     render() {
-        let { realmType, uid } = this.props;
-        let { realmModel } = this.state;
-        if (!realmModel) {
+        let { realmType, realmModel } = this.state;
+        if (!realmType || !realmModel) {
             return (
                 <Base name="schema-update">
-                    loading
                     <ReactLoading type="balls" color="#ccc" />
                 </Base>
             );
         }
+        let { uid } = this.state;
         return (
             <Base name="schema-update">
                 <div className="form-wrapper">
@@ -217,6 +230,7 @@ class RealmFormWrapper extends React.Component {
                         {Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx))}
                         <input type="hidden" value={realmType} />
                         <input type="submit" value="Save" />
+                        {(uid) ? (<button onClick={this.deleteConfirm}>Delete</button>) : null}
                     </form>
                 </div>
             </Base>
