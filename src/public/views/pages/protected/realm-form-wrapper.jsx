@@ -104,12 +104,13 @@ class RealmFormWrapper extends React.Component {
     setValues(values) {
         let realmModel = this.state.realmModel;
         Object.keys(realmModel).map(key => {
-            if (values[key]) {
+            let val = values[key];
+            if (val) {
                 let modelRow = realmModel[key];
-                if (modelRow.type === 'editor') {
-                    realmModel[key].value = this.convertToEditor(values[key]);
+                if (modelRow.type === 'editor' && val) {
+                    realmModel[key].value = this.convertToEditor(val);
                 } else {
-                    realmModel[key].value = values[key];
+                    realmModel[key].value = val;
                 }
             }
         });
@@ -123,24 +124,36 @@ class RealmFormWrapper extends React.Component {
 
     getUidData(realmType, uid) {
         Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
-            if (res.data) {
+            console.log(res.data);
+            let { data: { status }} = res;
+            if (status !== 'error') {
                 this.setValues(res.data);
+            } else {
+                this.getModel(realmType);
             }
         });
     }
 
     componentDidUpdate(previousProps) {
-        let { params: { realmType: currentType, uid }, route: { path } } = this.props;
-        let { params: { realmType: previousType, previousUid }, route: { path: previousPath } } = previousProps;
-        if ((currentType && previousType && previousType !== currentType) || path !== previousPath) {
+        let { params: { realmType: currentType, uid: currentUid }, route: { path: currentPath } } = this.props;
+        let { params: { realmType: previousType, uid: previousUid }, route: { path: previousPath } } = previousProps;
+        if (!currentType || !previousType || !currentPath || !previousPath) return;
+        if (previousType !== currentType || currentPath !== previousPath) {
             this.getModel(currentType);
         }
-        if (currentType && uid && previousUid && previousUid !== uid) {
-            this.getUidData(currentType, uid);
+        if (currentUid) {
+            if (!previousUid) {
+                this.getUidData(currentType, currentUid);
+            } else {
+                if (currentUid !== previousUid) {
+                    this.getUidData(currentType, currentUid);
+                }
+            }
         }
     }
 
     componentDidMount() {
+        console.log('componentDidMount()');
         let { params: { realmType, uid } } = this.props;
         if (realmType) this.getModel(realmType);
         if (realmType && uid) this.getUidData(realmType, uid);
@@ -196,19 +209,20 @@ class RealmFormWrapper extends React.Component {
     deleteConfirm(e) {
         e.preventDefault();
         let { uid, realmType } = this.state;
-        //if (uid && realmType) alert(`Delete ${realmType} ${uid}?`);
-        // display modal to confirm/deny
-        Axios.post('/api/delete', { uid, realmType }, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
-            let { data: { status } } = res;
-            if (status && status === 'success') {
-                this.props.router.push(`/create/${realmType}`);
-            } else {
-                console.log(res);
-            }
-        }).catch(e => {
-            this.setSplash(`There was an error updating your ${this.state.realmType}. See console for details.`);
-            console.log(e);
-        });
+        let confirmed = confirm(`Delete ${realmType} ${uid}?`);
+        if (confirmed) {
+            Axios.post('/api/delete', { uid, realmType }, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+                let { data: { status } } = res;
+                if (status && status === 'success') {
+                    this.props.router.push(`/create/${realmType}`);
+                } else {
+                    this.setSplash(`There was an error deleting ${realmType} ${uid}. See console for details.`);
+                }
+            }).catch(e => {
+                this.setSplash(`There was an error deleting your ${realmType} ${uid}. See console for details.`);
+                console.log(e);
+            });
+        }
     }
 
     render() {
