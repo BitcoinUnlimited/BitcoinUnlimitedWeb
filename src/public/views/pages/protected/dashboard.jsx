@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import { strings } from '../../../lib/i18n';
 import { isDef, getUid, toBase64 } from '../../../../helpers/helpers.js';
 import Admin from '../../admin.jsx';
@@ -34,9 +35,28 @@ class Dashboard extends React.Component {
 
         this.didChange = this.didChange.bind(this);
 
+        this.getLogs = this.getLogs.bind(this);
         // this.getModules = this.getModules.bind(this);
         // this.getFormats = this.getFormats.bind(this);
-        this.state = { inputname: '', inputname_error: '', required: [], error:'', editorState: EditorState.createEmpty(), title: '', subtitle: '', body: '', published: false, pubkey: '', author: '', user: undefined, file: undefined, image: undefined, allImages: undefined };
+        this.state = {
+            logs: null,
+            latestLog: null,
+            inputname: '',
+            inputname_error: '',
+            required: [],
+            error:'',
+            editorState: EditorState.createEmpty(),
+            title: '',
+            subtitle: '',
+            body: '',
+            published: false,
+            pubkey: '',
+            author: '',
+            user: undefined,
+            file: undefined,
+            image: undefined, 
+            allImages: undefined
+        };
     }
 
     change(e) {
@@ -182,13 +202,11 @@ class Dashboard extends React.Component {
     }
 
     handleEditorChange(content, delta, source, editor) {
-        console.log(content);
-        console.log(delta);
-
-        console.log(source);
-
-        console.log(editor);
-        console.log(editor.getContents());
+        // console.log(content);
+        // console.log(delta);
+        // console.log(source);
+        // console.log(editor);
+        // console.log(editor.getContents());
         //e.preventDefault();
         //console.log('editor changed');
     }
@@ -216,10 +234,11 @@ class Dashboard extends React.Component {
 
     componentDidMount() {
         //this.getAllImages();
+        this.getLogs();
     }
 
     imageChange(e) {
-        console.log(e);
+        //console.log(e);
         // e.preventDefault();
         // let file = e.target.files[0];
         toBase64(file).then(res => {
@@ -259,77 +278,51 @@ class Dashboard extends React.Component {
         });
     }
 
-    render() {
-        let { image } = this.state;
-        let imagePreview = null;
-        if (image) {
-            imagePreview = (<img src={image} />);
-        }
-
-        let images = this.processAllImages();
-        //console.log(images);
-        let renderImages = null;
-        if (images.length > 0) {
-            renderImages = images.map((img, idx) => {
-                return (<img key={idx} src={img} />);
+    getLogs(pubkey) {
+        let jwt = localStorage.getItem('jwt');
+        if (!jwt) {
+            console.log('no jwt set');
+        } else {
+            Axios.get('/get_logs', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
+                console.log(res);
+                this.setState({ latestLog: res.data[0].message });
+            }).catch(e => {
+                console.log('getLogs error: ' + e);
             });
         }
+    }
 
-        const { editorState } = this.state;
-
-
-
-
+    render() {
+        let { latestLog } = this.state;
         return (
             <Admin name="dashboard" title={ strings().dashboard.title } >
-
-                <FormWrap title="Add Post">
-                    <form className="post__form" onSubmit={ this.postSubmit } encType="multipart/form-data">
-                        <div className={ this.state.error.length > 0 ? "error" : "error false" }>{ this.state.error }</div>
-
-                        <label className="post__label">
-                            <span>Title</span>
-                            <input className="post__title" type="text" name="title" value={ this.state.title } onChange={ this.change } />
-                        </label>
-                        <label className="post__label">
-                            <span>Author</span>
-                            <input className="post__author" type="text" name="author" value={ this.state.author } onChange={ this.change } />
-                        </label>
-                        <label className="post__label">
-                            <span>Subtitle</span>
-                            <input className="post__subtitle" type="text" name="subtitle" value={ this.state.subtitle } onChange={ this.change } />
-                        </label>
-                        <label className="post__label">
-                            <span>Editor</span>
-                            <Editor
-                                editorState={editorState}
-                                toolbarClassName="toolbarClassName"
-                                wrapperClassName="wrapperClassName"
-                                editorClassName="editorClassName"
-                                onEditorStateChange={this.onEditorStateChange}
-                            />
-                        </label>
-
-                        <label className="post__label">
-                            <span>Hero Image</span>
-                            <input type="file" name="hero" accept="image/*" multiple="multiple" onChange={ this.imageChange } />
-                            {imagePreview}
-                        </label>
-
-                        <label className="post__label">
-                            <span>Published</span>
-                            <input className="post__published" type="checkbox" name="published" value={ this.state.published } onChange={ this.change } />
-                        </label>
-                        <input type="hidden" name="type" value="Post"/>
-                        <input type="hidden" name="uid" value={ this.state.uid } />
-                        <input className="post__submit" type="submit" value="Submit" />
-                    </form>
-                </FormWrap>
-                {renderImages}
-
+                {(latestLog) ? latestLog : null}
             </Admin>
         );
     }
 }
 
 export default withRouter(Dashboard);
+
+Dashboard.propTypes = {
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+};
+
+// let { image } = this.state;
+// let imagePreview = null;
+// if (image) {
+//     imagePreview = (<img src={image} />);
+// }
+//
+// let images = this.processAllImages();
+// //console.log(images);
+// let renderImages = null;
+// if (images.length > 0) {
+//     renderImages = images.map((img, idx) => {
+//         return (<img key={idx} src={img} />);
+//     });
+// }
+//
+// const { editorState } = this.state;

@@ -3,7 +3,6 @@
 import { getDBSchema, getAuthSchema } from './realmSchema.js';
 
 const env = require('dotenv').config();
-const Realm = require('realm');
 
 const getDB = type => {
     try {
@@ -13,18 +12,15 @@ const getDB = type => {
     }
 }
 
-const database = {
+const realmDatabase = {
     path: './databases/' + getDB(),
     schema: getDBSchema()
 }
 
-const auth = {
+const authDatabase = {
     path: './databases/' + getDB('auth'),
     schema: getAuthSchema()
 }
-
-const authDatabase = new Realm(auth);
-const realmDatabase = new Realm(database);
 
 module.exports = {
     realmDatabase,

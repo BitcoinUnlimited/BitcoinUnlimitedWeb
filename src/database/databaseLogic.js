@@ -1,5 +1,6 @@
 'use strict';
 
+import Realm from 'realm';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import Promise from 'promise';
@@ -7,72 +8,70 @@ import { getDBSchema, getAuthSchema } from './realmSchema.js';
 import { realmDatabase, authDatabase } from './realmDB.js';
 import { setProtocolValues } from './modelProtocols.js';
 import { validateAddress, fixAddressFormat, messageVerify, jwtSecret } from './verifySignature.js';
-import { resErr, resErrList, resSuccess, toInt, isDef, isStr, checkDate, isOptional, isArr, isEmptyObj, hasKey, getUid, relativeImgPath, checkPath, getKeyForType } from '../helpers/helpers.js';
+import { resErr, resErrList, resSuccess, toInt, isDef, isStr, checkDate, isOptional, isArr, isEmptyObj, hasKey, relativeImgPath, checkPath, getKeyForType } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
-import Axois from 'axios';
 
 const buildDBErr = idx => strings().database.errors[idx];
 const buildAuthErr = idx => strings().auth.errors[idx];
 const typeIsValid = type => getDBSchema().filter(schema => schema.name === type).length > 0;
+const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
 
 /*
  * 7200 === 2 hrs
  * todo: add interface for role 0 to adjust value
  */
 const authExiprationSeconds = 7200;
+let realmLogListener = null;
 
-const insertAuth = data => new Promise((resolve, reject) => {
-    const { pubkey, challenge, signature, expires } = data;
-    authDatabase.write(() => {
-        let auth = authDatabase.create('Auth', { pubkey, challenge, signature, expires }, true);
-    });
-    if (isDef(auth)) {
-        resolve(auth);
-    } else {
-        reject(buildAuthErr(6));
-    }
-});
-
-const removeAuth = pubkey => new Promise((resolve, reject) => {
-    authDatabase.write(() => {
-        let auth = authDatabase.objects('Auth').filtered('pubkey == $0', pubkey);
-        if (isDef(auth) && isDef(auth[0])) {
-            authDatabase.delete(auth);
+const realmWrite = (db, fn) => new Promise((resolve, reject) => {
+    Realm.open(db).then(realm => {
+        try {
+            realm.write(() => {
+                resolve(fn(realm));
+            });
+        } catch(e) {
+            reject(e);
         }
-    });
-    resolve();
+    }).catch(e => reject(e));
 });
 
-const getAuth = pubkey => new Promise((resolve, reject) => {
-    try {
-        let auth = authDatabase.objects('Auth').filtered('pubkey == $0', pubkey);
-        if (isDef(auth) && isDef(auth[0])) {
-            resolve(auth[0]);
-        } else {
-            reject(buildAuthErr(4));
+const realmFetch = (db, fn) => new Promise((resolve, reject) => {
+    Realm.open(db).then(realm => {
+        try {
+            resolve(fn(realm));
+        } catch(e) {
+            reject(e);
         }
-    } catch (e) {
-        reject(e);
-    }
+    }).catch(e => reject(e));
 });
 
-const signatureVerify = data => {
-    const { pubkey, challenge, signature } = data;
-    if (!isStr(pubkey) || !isStr(challenge) || !isStr(signature)) {
-        return resErr(strings().auth.errors[5]);
-    } else if (messageVerify(data)) {
-        const expires = Math.floor(Date.now() / 1000) + authExiprationSeconds;
-        insertAuth({ pubkey: pubkey, challenge: challenge, signature: signature, expires: expires });
-        const token = jwt.sign({
-            pubkey: pubkey,
-            challenge: challenge,
-            signature: signature,
-            expires: expires,
-        }, process.env.JWT_SECRET);
-        return token;
-    }
-    return buildAuthErr(5);
-};
+const logListener = (logs, changes) => {
+    // Update UI in response to inserted objects
+    changes.insertions.forEach((index) => {
+        let insertedLog = logs[index];
+        console.log('inserted');
+        console.log(insertedLog);
+    });
+
+    // Update UI in response to modified objects
+    changes.modifications.forEach((index) => {
+        let modifiedLog = logs[index];
+        console.log('changed');
+        console.log(modifiedLog);
+    });
+
+    // Update UI in response to deleted objects
+    changes.deletions.forEach((index) => {
+        console.log('deleted');
+    });
+}
+
+const realmNotify = db => {
+    Realm.open(db).then(realm => {
+        realmLogListener = realm.objects('Log');
+        realmLogListener.addListener(logListener);
+    }).catch(e => console.log(e));
+}
 
 /*
  * Log messages are not editable
@@ -80,34 +79,92 @@ const signatureVerify = data => {
  * {status: ['success' or 'error'], description: 'log message', fn: someFn.name}
  */
 const realmLog = data => {
-    realmDatabase.write(() => {
-        let result = realmDatabase.create('Log', data, true);
-        console.log(result);
-    });
+    if (data) {
+        realmWrite(realmDatabase, realm => {
+            realm.create('Log', data, true);
+        }).then(() => {
+            realmNotify(realmDatabase);
+        });
+    }
 }
 
 const rejectWithLog = (errorText, fn) => {
     fn = (fn) ? fn : '';
+    errorText = (errorText && isStr(errorText)) ? errorText : 'There was an error.';
     let error = resErr(errorText, fn);
     realmLog(error);
     return error;
 }
 
-const hasRequiredProps = (props, data) => {
-    let hasRequired = true;
-    let missing = [];
-    Object.keys(props).forEach(function(key) {
-        const isRequired = !isOptional(props[key]);
-        if (isRequired && !hasKey(data, key)) {
-            missing.push(key);
-            hasRequired = false;
-        }
-    });
-    return hasRequired ? hasRequired : missing;
-}
+const insertAuth = data => new Promise((resolve, reject) => {
+    const { pubkey, challenge, signature, expires } = data;
+    realmWrite(authDatabase, realm => {
+        const result = realm.create('Auth', { pubkey, challenge, signature, expires }, true);
+        if (!result || isEmptyObj(result)) throw 'Insert auth failed.';
+        return result;
+    }).then(res => {
+        realmWrite(realmDatabase, realm => {
+            realm.create('User', { pubkey }, true);
+        }).then(_ => {
+            realmLog(resSuccess(`Added User ${pubkey}`, 'insertAuth()'));
+        }).catch(e => {
+            realmLog(resErr(e, 'insertAuth()'));
+        });
+        resolve(res);
+    }).catch(e => reject(e));
+});
+
+// test delete of auth
+const removeAuth = pubkey => new Promise((resolve, reject) => {
+    realmWrite(authDatabase, realm => {
+        let user = realm.objects('Auth').filtered('pubkey == $0', pubkey);
+        let { "0": result } = user;
+        if (result) realm.delete(user);
+    }).then(res => resolve(resSuccess(`Deleted pubkey: ${pubkey}`))).catch(e => reject(e));
+});
+
+const getAuth = pubkey => new Promise((resolve, reject) => {
+    realmFetch(authDatabase, realm => {
+        let user = realm.objects('Auth').filtered('pubkey == $0', pubkey);
+        let { "0": result } = user;
+        if (!result) throw 'Pubkey not found.';
+        return result;
+    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
+});
+
+const getLogs = () => new Promise((resolve, reject) => {
+    realmFetch(realmDatabase, realm => {
+        let logs = realm.objects('Log');
+        console.log(logs);
+        return logs;
+    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
+});
+
+const signatureVerify = data => new Promise((resolve, reject) => {
+    const { pubkey, challenge, signature } = data;
+    if (!isStr(pubkey) || !isStr(challenge) || !isStr(signature)) {
+        reject(rejectWithLog('Missing data for messageVerify', 'signatureVerify()'));
+    }
+    if (messageVerify(data)) {
+        const expires = Math.floor(Date.now() / 1000) + authExiprationSeconds;
+        insertAuth({ pubkey, challenge, signature, expires }).then(res => {
+            if (!res.pubkey || !res.challenge || !res.signature || !res.expires) throw 'Missing required jwt data.';
+            const token = jwt.sign({
+                pubkey: res.pubkey,
+                challenge: res.challenge,
+                signature: res.signature,
+                expires: res.expires
+            }, process.env.JWT_SECRET);
+            if (!token) throw 'Token creation error.';
+            resolve(token);
+        }).catch(e => reject(rejectWithLog(e, 'signatureVerify()')));
+    } else {
+        reject(rejectWithLog('Challenge could not be verified.', 'signatureVerify()'));
+    }
+});
 
 const getSchemaProps = realmType => {
-    const schemas = getgetDBSchema();
+    const schemas = getDBSchema();
     if (!isDef(schemas)) {
         return false;
     }
@@ -118,188 +175,100 @@ const getSchemaProps = realmType => {
     return schema[0].properties;
 }
 
+const hasRequiredProps = (props, data) => {
+    let hasRequired = true;
+    let missingProps = [];
+    Object.keys(props).forEach(function(key) {
+        const isRequired = !isOptional(props[key]);
+        if (isRequired && !hasKey(data, key)) {
+            missingProps.push(key);
+            hasRequired = false;
+        }
+    });
+    return hasRequired ? hasRequired : missingProps;
+}
+
 const checkRequiredParams = (realmType, data) => {
     const schemaProps = getSchemaProps(realmType);
     if (!schemaProps) {
-        return rejectWithLog(buildDBErr(4), 'checkRequiredParams()');
+        return rejectWithLog(`Unable to get schema properties for ${realmType}`, 'checkRequiredParams()');
     }
-    let hasRequired = hasRequiredProps(schemaProps, data);
-    if (hasRequired !== true) {
-        let error = resErrList(hasRequired, 'checkRequiredParams()');
+    let requiredPropsExist = hasRequiredProps(schemaProps, data);
+    if (requiredPropsExist !== true) {
+        let error = resErrList(requiredPropsExist, 'checkRequiredParams()');
         realmLog(error);
         return error;
     }
     return true;
 }
 
-const realmSave = (realmType, data) => new Promise((resolve, reject) => {
-    console.log('realmSave:');
-    console.log(data);
+const realmSave = data => new Promise((resolve, reject) => {
 
-    let errorCheck = checkRequiredParams(realmType);
+    let { realmType } = data;
+
+    // console.log(`realmSave ${realmType} (data):`);
+    // console.log(data);
+
+    let errorCheck = checkRequiredParams(realmType, data);
     if (errorCheck !== true) {
         reject(errorCheck);
     } else {
         setProtocolValues(realmType, data).then(res => {
 
-            console.log('setProtocolValues');
-            console.log(res);
+            // console.log('setProtocolValues');
+            // console.log(res);
 
-            try {
-                realmDatabase.write(() => {
+            realmWrite(realmDatabase, realm => {
+                const saved = realm.create(realmType, res, true);
+                if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
 
-                    const saved = realmDatabase.create(realmType, result, true);
-                    console.log('realmSave result:');
-                    console.log(saved);
-                    resolve(saved);
+                // console.log('saved! ');
+                // console.log(saved);
 
-                });
-            } catch(e) {
-                reject(rejectWithLog(e, 'realmSave()'));
-            }
-        }).catch(e => {
-            reject(rejectWithLog(e, 'realmSave()'));
-        });
+                return saved;
+            }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e, 'realmSave()')));
+        }).catch(e => reject(rejectWithLog(e, 'realmSave()')));
     } // required parameter check
-}).catch(e => {
-    reject(rejectWithLog(e, 'realmSave()'));
 });
-
-// if (isStr(data.pubkey)) {
-//     data.author = setAuth(data.pubkey);
-// }
-
-// if (isDef(data.auth)) {
-//     let userObject = {};
-//     console.log(data.auth);
-//     console.log(data.auth.RealmObject.pubkey);
-//     console.log(data.auth[0]);
-//     console.log(data.auth[0].pubkey);
-//     if (isDef(data.auth[0]) && isDef(data.auth[0].pubkey)) {
-//         userObject = realm.objects('User').filtered('pubkey CONTAINS[c] $0',data.auth[0].pubkey);
-//         console.log('userObject:');
-//         console.log(userObject);
-//     }
-//     delete data.realmType;
-//     delete data.auth;
-// }
-// get user if data.auth is set
-
-//let associations = [{field: 'author', model: 'User'}];
-// const setAuthor = pubkey => {
-//     let author = realmDatabase.objects('User').filtered('pubkey == $0', pubkey);
-//     if (!isEmptyObj(author)) {
-//         return author;
-//     }
-//     return { uid: getUid(), pubkey: pubkey };
-// }
-
-const realmUpdate = (realmType, data) => new Promise((resolve, reject) => {
-
-    console.log('realmUpdate:');
-    console.log(data);
-
-    let errorCheck = checkRequiredParams(realmType);
-    if (errorCheck !== true) {
-        reject(errorCheck);
-    } else {
-        setProtocolValues(realmType, data).then(res => {
-
-            console.log('setProtocolValues');
-            console.log(res);
-
-            try {
-                realmDatabase.write(() => {
-
-                    const updated = realmDatabase.create(realmType, res, true);
-                    console.log('realmUpdate result:');
-                    console.log(updated);
-                    resolve(updated);
-
-                });
-            } catch(e) {
-                reject(rejectWithLog(e, 'realmUpdate()'));
-            };
-
-        }).catch(e => {
-            reject(rejectWithLog(e, 'realmUpdate()'));
-        });
-    } // required parameter check
-}).catch(e => {
-    reject(rejectWithLog(e, 'realmUpdate()'));
-});
-
-const realmUpsert = data => {
-    const { realmType, uid } = data;
-    if (!isStr(realmType)) {
-        return Promise.reject(rejectWithLog(buildDBErr(0), 'realmUpsert()'));
-    }
-    return (uid) ? realmUpdate(realmType, data) : realmSave(realmType, data);
-}
 
 /*
  * Optionally pass filter string
  */
 const realmGetAll = (realmType, filtered) => new Promise((resolve, reject) => {
-    realmDatabase.write(() => {
-        if (isDef(filtered)) {
-            let result = realmDatabase.objects(realmType).filtered(filtered);
-            resolve(result);
-        }
-        let result = realmDatabase.objects(realmType);
-        resolve(result);
-    });
+    realmFetch(realmDatabase, realm => {
+        let result = (filtered) ? realm.objects(realmType).filtered(filtered) : realm.objects(realmType);
+        if (!result || isEmptyObj(result)) throw `No results found for ${realmType}.`;
+        return result;
+    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e, 'realmGetAll()')));
 });
 
 const realmGetUid = (realmType, uid, key) => new Promise((resolve, reject) => {
-    realmDatabase.write(() => {
+    realmFetch(realmDatabase, realm => {
         const predicate = `${key} == "${uid}"`;
-        const { "0": result } = realmDatabase.objects(realmType).filtered(predicate);
-        if (isDef(result)) {
-            resolve(result);
-        } else {
-            reject(rejectWithLog(buildDBErr(2), 'realmGetUid()'));
-        }
-    });
+        const { "0": result } = realm.objects(realmType).filtered(predicate);
+        if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
+        return result;
+    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e, 'realmGetUid()')));
 });
 
-const realmDeleteUid = (realmType, uid) => new Promise((resolve, reject) => {
-    let key = getKeyForType(realmType);
-    realmGetUid(realmType, uid, key).then(realmObj => {
-        realmDatabase.write(() => {
-            realmDatabase.delete(realmObj);
-            resolve(resSuccess());
-        });
-    }).catch(e => {
-        reject(rejectWithLog(e, 'realmDeleteUid()'));
-    });
+const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) => {
+    realmGetUid(realmType, uid, key).then(res => {
+        realmWrite(realmDatabase, realm => {
+            realm.delete(res);
+        }).then(res => resolve(resSuccess())).catch(e => reject(e));
+    }).catch(e => reject(rejectWithLog(e, 'realmDeleteUid()')));
 });
 
 const realmGet = data => {
     const { realmType, uid } = data;
-    if (!isStr(realmType) || !typeIsValid(realmType)) {
-
-        let error = resErr(buildDBErr(0), 'realmGet()');
-        console.log(error);
-        realmLog(error);
-        return Promise.reject(error);
-    }
-    let key = getKeyForType(realmType);
-    return (uid) ? realmGetUid(realmType, uid, key) : realmGetAll(realmType);
+    return (uid) ? realmGetUid(realmType, uid, getKeyForType(realmType)) : realmGetAll(realmType);
 }
 
 const realmDelete = data => {
-    const { realmType, uid } = data;
-    if (!isStr(realmType)) {
-        return Promise.reject(buildDBErr(0));
-    }
-    if (!isStr(uid)) {
-        return Promise.reject(buildDBErr(1));
-    }
-    return realmDeleteUid(realmType, uid);
+    const { realmType } = data;
+    const key = getKeyForType(realmType);
+    return realmDeleteUid(realmType, data[key], key);
 }
-
-const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
 
 const getPublicFiles = (dir) => new Promise((resolve, reject) => {
     try {
@@ -326,10 +295,12 @@ const getPublicFiles = (dir) => new Promise((resolve, reject) => {
 module.exports = {
     signatureVerify,
     validateAuth,
+    typeIsValid,
     realmGet,
-    realmUpsert,
+    realmSave,
     realmDelete,
     getAuth,
     removeAuth,
-    getPublicFiles
+    getPublicFiles,
+    getLogs
 }

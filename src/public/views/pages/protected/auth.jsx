@@ -16,9 +16,17 @@ class Auth extends React.Component {
         }
     }
 
+    getJwt() {
+        if ('localStorage' in window) {
+            return localStorage.getItem('jwt');
+        }
+        return false;
+    }
+
     removeJwtAndRedirect() {
         if ('localStorage' in window) {
             localStorage.removeItem('jwt');
+            localStorage.removeItem('user');
         }
         this.props.router.push('/login');
     }
@@ -26,46 +34,52 @@ class Auth extends React.Component {
     getUser(pubkey) {
         if ('localStorage' in window) {
             Axios.get(`/api/get/User/${pubkey}`).then(res => {
-                if (res.data && res.data[0]) {
-                    localStorage.setItem('user',JSON.stringify(res.data[0]));
+                let { data: { pubkey: userPubkey } } = res;
+                if (userPubkey) {
+                    localStorage.setItem('user', JSON.stringify(res.data));
+                    this.setState({ isAuthed: true });
                 }
             });
         }
     }
 
-    componentDidMount() {
-        let jwt = localStorage.getItem('jwt');
+    authenticateUser() {
+        let jwt = this.getJwt();
         if (!jwt) {
-            this.props.router.push('/login');
+            removeJwtAndRedirect();
         } else {
-            Axios.get('/get_auth', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
-                if (res.data && res.data.pubkey) {
+            Axios.get('/user_auth', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
+                let { data: { pubkey } } = res;
+                if (pubkey) {
                     this.getUser(res.data.pubkey);
-                    this.setState({ isAuthed: true });
                 } else {
                     this.removeJwtAndRedirect();
                 }
             }).catch(e => {
-                console.log('auth.jsx: ' + e);
                 this.removeJwtAndRedirect();
             });
         }
     }
 
+    componentDidMount() {
+        this.authenticateUser();
+    }
+
     render() {
-        if (this.state.isAuthed) {
+        let { isAuthed } = this.state;
+        if (!isAuthed) {
             return (
-                <div>
-                  {this.props.children}
-                </div>
+                <Page>
+                    <div className="react-loading">
+                        <ReactLoading type="balls" color="#ccc" />
+                    </div>
+                </Page>
             );
         }
         return (
-            <Page>
-                <div className="react-loading">
-                    <ReactLoading type="balls" color="#ccc" />
-                </div>
-            </Page>
+            <div>
+                {this.props.children}
+            </div>
         );
     }
 }

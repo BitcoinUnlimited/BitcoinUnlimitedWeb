@@ -6,7 +6,7 @@ import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema
 
 const resErr = (e, fn) => ({ status: 'error', message: `${e}`, fn: ((fn) ? fn : '') });
 const resErrList = (list, fn) => ({ status: 'error', message: `Missing required parameters: ${list.join(', ')}`, fn: ((fn) ? fn : '') });
-const resSuccess = data => ({ status: 'success', data: data });
+const resSuccess = msg => ({ status: 'success', message: ((msg) ? msg : '') });
 const resError = data => data.status && data.status == 'error';
 const toInt = value => Math.trunc(value);
 const isDef = obj => typeof obj !== 'undefined';
@@ -37,7 +37,8 @@ const getUid = () => uuidv4();
 const getDBSchemas = type => (type == 'auth') ? getAuthSchema() : getDBSchema();
 const getSchema = (name, db = '') => getDBSchemas(db).filter(schema => schema.name === name)[0];
 
-const getModelPropType = (propKey, propType) => {
+const getModelPropType = (propKey, propType, primaryKey) => {
+    if (propKey === primaryKey) return 'hidden';
     propType = isObj(propType) ? propType.type : propType;
     if (isEditor(propKey)) return 'editor';
     if (isImage(propKey)) return 'file';
@@ -59,13 +60,14 @@ const getDBModel = name => {
     if (!isDef(schema)) {
         return {};
     }
+    let primaryKey = schema.primaryKey;
     let props = schema.properties;
     let model = {};
     Object.keys(props).map(propKey => {
         let schemaString = props[propKey];
         let prop = { name: propKey, realmType: getRealmType(schemaString), error: '' };
         prop.required = (!isOptional(schemaString)) ? true : false;
-        prop.type = getModelPropType(propKey, schemaString);
+        prop.type = getModelPropType(propKey, schemaString, primaryKey);
         prop.value = (prop.type === 'editor') ? EditorState.createEmpty() : '';
         prop.fieldInfo = fieldInfo(propKey);
         model[propKey] = prop;
