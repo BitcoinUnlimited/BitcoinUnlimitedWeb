@@ -16,8 +16,13 @@ class UserArea extends React.Component {
     }
 
     getNameDisplay(pubkey) {
-        let { user : { name } } = this.state;
+        let { user: { name } } = this.state;
         return (name) ? name : pubkey.substr(0, 6) + '..';
+    }
+
+    getUserIcon() {
+        let { user: { icon_img: icon } } = this.state;
+        return (icon) ? (<img src={icon} />) : (<div className="icon"><UserIcon width="20" height="20" /></div>);
     }
 
     getEditLink() {
@@ -67,7 +72,7 @@ class UserArea extends React.Component {
         if (!hasUser) return null;
         return (
             <div className="user-header">
-                <UserIcon width="20" height="20" />
+                {this.getUserIcon()}
                 {this.getEditLink()}
             </div>
         );

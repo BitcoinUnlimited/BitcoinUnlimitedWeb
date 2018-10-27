@@ -66,17 +66,27 @@
 
 .user-header
     float: right
-    background-color: #efefef
-    border-radius: 50%
     width: 36px
     height: 36px
+    margin-top: 7px
     text-align: center
     line-height: 14px
     margin-left: 16px
     font-size: 12px
 
-.user-header svg
-    margin-top: 7px
+.user-header img
+    width: 100%
+    height: auto
+    border-radius: 50%
+
+.user-header .icon
+    width: 36px
+    height: 36px
+    background-color: #efefef
+    border-radius: 50%
+
+.user-header .icon svg
+    margin-top: 6px
 
 .user-header a.user-edit
     font-size: 10px
@@ -84,6 +94,7 @@
     display: block
     margin-top: 6px
     line-height: 12px
+    overflow: hidden
 
 @media (max-width: 1050px)
     .font-thin

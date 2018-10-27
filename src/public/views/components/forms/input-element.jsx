@@ -25,6 +25,14 @@ class InputElement extends React.Component {
         }
         return null;
     }
+    getRemoveBtn() {
+        let { inputValue } = this.props;
+        if (inputValue) {
+            let { inputRemove } = this.props;
+            return (<button onClick={inputRemove}>Remove</button>);
+        }
+        return null;
+    }
     render() {
         let { inputType, inputName, inputChange, inputValue } = this.props;
         if (!inputType || !inputName || !inputChange) {
@@ -76,7 +84,8 @@ class InputElement extends React.Component {
                     </div>
                     {this.getDescription()}
                     {this.getError()}
-                    <img src={inputValue} />
+                    <div className="preview"><img src={inputValue} /></div>
+                    {this.getRemoveBtn()}
                 </div>
             );
         }

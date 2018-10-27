@@ -98,10 +98,24 @@ class RealmFormWrapper extends React.Component {
         e.preventDefault();
         const { name, files } = e.target;
         toBase64(files[0]).then(base64img => {
-            let realmModel = this.state.realmModel;
+            let { realmModel } = this.state;
             realmModel[name].value = base64img;
             this.setState({ realmModel });
+        }).catch(e => {
+            this.setSplash(`There was an error updating your ${this.state.realmType}. See console for details.`);
+            console.log(e);
         });
+    }
+
+    fileRemove(name, type) {
+        if (type === 'file') {
+            return () => {
+                let { realmModel } = this.state;
+                realmModel[name].value = '';
+                this.setState({ realmModel });
+            }
+        }
+        return null;
     }
 
     convertToEditor(content) {
@@ -134,7 +148,6 @@ class RealmFormWrapper extends React.Component {
 
     getUidData(realmType, uid) {
         Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
-            console.log(res.data);
             let { data: { status }} = res;
             if (status !== 'error') {
                 this.setValues(res.data);
@@ -163,7 +176,6 @@ class RealmFormWrapper extends React.Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount()');
         let { params: { realmType, uid } } = this.props;
         if (realmType) this.getModel(realmType);
         if (realmType && uid) this.getUidData(realmType, uid);
@@ -175,7 +187,7 @@ class RealmFormWrapper extends React.Component {
         this.setState({ realmModel });
     }
 
-    getChangeFN(name, type) {
+    getChangeFn(name, type) {
         if (type === 'file') return this.imageChange;
         if (type === 'editor') return (e) => this.editorStateChange(e, name);
         return this.inputChange;
@@ -191,7 +203,8 @@ class RealmFormWrapper extends React.Component {
                 inputLabel={(input.fieldInfo) ? ((input.fieldInfo.label) ? input.fieldInfo.label: null) : null}
                 inputName={input.name}
                 inputValue={input.value}
-                inputChange={this.getChangeFN(input.name, input.type)}
+                inputChange={this.getChangeFn(input.name, input.type)}
+                inputRemove={this.fileRemove(input.name, input.type)}
                 inputError={(input.error) ? input.error : null}
                 inputDescription={(input.fieldInfo) ? ((input.fieldInfo.description) ? input.fieldInfo.description: null) : null}
             />
