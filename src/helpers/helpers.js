@@ -4,6 +4,7 @@ import fs from 'fs';
 import { EditorState } from 'draft-js';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 
+const resObject = (message = '', funcName = '', status = 'log') => ({ message, funcName, status });
 const resErr = (e, fn) => ({ status: 'error', message: `${e}`, fn: ((fn) ? fn : '') });
 const resErrList = (list, fn) => ({ status: 'error', message: `Missing required parameters: ${list.join(', ')}`, fn: ((fn) ? fn : '') });
 const resSuccess = msg => ({ status: 'success', message: ((msg) ? msg : '') });
@@ -132,6 +133,7 @@ const fieldInfo = key => {
 }
 
 module.exports = {
+    resObject,
     resErr,
     resErrList,
     resSuccess,

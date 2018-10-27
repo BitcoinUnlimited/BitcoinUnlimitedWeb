@@ -30,16 +30,32 @@ class UserArea extends React.Component {
         return null;
     }
 
+    userDidChange(newUser) {
+        let { user } = this.state;
+        if (!user || isEmptyObj(user)) return true;
+        let changed = false;
+        Object.keys(user).map(key => {
+            if (user[key] !== newUser[key]) {
+                changed = true;
+            }
+        });
+        return changed;
+    }
+
     setUser() {
         if ('localStorage' in window) {
             let user = localStorage.getItem('user');
             if (user) {
                 user = JSON.parse(user);
-                if (user) {
+                if (this.userDidChange(user)) {
                     this.setState({ hasUser: true, user: user });
                 }
             }
         }
+    }
+
+    componentDidUpdate() {
+        this.setUser();
     }
 
     componentDidMount() {

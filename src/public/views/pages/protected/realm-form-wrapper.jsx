@@ -10,13 +10,9 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import Axios from 'axios';
 import { strings } from '../../../lib/i18n';
-import Base from '../../base.jsx';
-
 import { getDBModel, toBase64, isEmptyObj, isDef, getUid } from '../../../../helpers/helpers.js';
-
+import Base from '../../base.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
-
-const relativeImgPath = fullPath => fullPath.split('/public').pop();
 
 class RealmFormWrapper extends React.Component {
     constructor(props) {
@@ -60,15 +56,29 @@ class RealmFormWrapper extends React.Component {
         let data = this.buildFormData();
         if (data) {
             Axios.post('/api/upsert', data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
-                console.log('formSubmitResult:');
-                console.log(res);
                 if (res && res.data) {
                     this.setSplash(`Updated ${this.state.realmType}`);
+                    this.postSave(res.data);
                 }
             }).catch(e => {
                 this.setSplash(`There was an error updating your ${this.state.realmType}. See console for details.`);
                 console.log(e);
             });
+        }
+    }
+
+    /*
+     * Optionally make post-save UI changes here from the returned result object
+     */
+    postSave(result) {
+        switch (this.state.realmType) {
+            case 'User':
+                if ('localStorage' in window) {
+                    localStorage.setItem('user', JSON.stringify(result));
+                    this.forceUpdate();
+                }
+            default:
+            break;
         }
     }
 
