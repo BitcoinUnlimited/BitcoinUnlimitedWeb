@@ -45,33 +45,33 @@ const realmFetch = (db, fn) => new Promise((resolve, reject) => {
     }).catch(e => reject(e));
 });
 
-const logListener = (logs, changes) => {
-    // Update UI in response to inserted objects
-    changes.insertions.forEach((index) => {
-        let insertedLog = logs[index];
-        console.log('inserted');
-        console.log(insertedLog);
-    });
-
-    // Update UI in response to modified objects
-    changes.modifications.forEach((index) => {
-        let modifiedLog = logs[index];
-        console.log('changed');
-        console.log(modifiedLog);
-    });
-
-    // Update UI in response to deleted objects
-    changes.deletions.forEach((index) => {
-        console.log('deleted');
-    });
-}
-
-const realmNotify = db => {
-    Realm.open(db).then(realm => {
-        realmLogListener = realm.objects('Log');
-        realmLogListener.addListener(logListener);
-    }).catch(e => console.log(e));
-}
+// const logListener = (logs, changes) => {
+//     // Update UI in response to inserted objects
+//     changes.insertions.forEach((index) => {
+//         let insertedLog = logs[index];
+//         console.log('inserted');
+//         console.log(insertedLog);
+//     });
+//
+//     // Update UI in response to modified objects
+//     changes.modifications.forEach((index) => {
+//         let modifiedLog = logs[index];
+//         console.log('changed');
+//         console.log(modifiedLog);
+//     });
+//
+//     // Update UI in response to deleted objects
+//     changes.deletions.forEach((index) => {
+//         console.log('deleted');
+//     });
+// }
+//
+// const realmNotify = db => {
+//     Realm.open(db).then(realm => {
+//         realmLogListener = realm.objects('Log');
+//         realmLogListener.addListener(logListener);
+//     }).catch(e => console.log(e));
+// }
 
 /*
  * Log messages are not editable
@@ -83,7 +83,7 @@ const realmLog = data => {
         realmWrite(realmDatabase, realm => {
             realm.create('Log', data, true);
         }).then(() => {
-            realmNotify(realmDatabase);
+            //realmNotify(realmDatabase);
         });
     }
 }
@@ -175,11 +175,12 @@ const getSchemaProps = realmType => {
     return schema[0].properties;
 }
 
-const hasRequiredProps = (props, data) => {
+const hasRequiredProps = (schemaProps, data, primaryKey) => {
     let hasRequired = true;
     let missingProps = [];
-    Object.keys(props).forEach(function(key) {
-        const isRequired = !isOptional(props[key]);
+    Object.keys(schemaProps).forEach(function(key) {
+        if (key === primaryKey) return;
+        const isRequired = !isOptional(schemaProps[key]);
         if (isRequired && !hasKey(data, key)) {
             missingProps.push(key);
             hasRequired = false;
@@ -193,7 +194,8 @@ const checkRequiredParams = (realmType, data) => {
     if (!schemaProps) {
         return rejectWithLog(`Unable to get schema properties for ${realmType}`, 'checkRequiredParams()');
     }
-    let requiredPropsExist = hasRequiredProps(schemaProps, data);
+    const primaryKey = getKeyForType(realmType);
+    const requiredPropsExist = hasRequiredProps(schemaProps, data, primaryKey);
     if (requiredPropsExist !== true) {
         let error = resErrList(requiredPropsExist, 'checkRequiredParams()');
         realmLog(error);
@@ -215,19 +217,27 @@ const realmSave = data => new Promise((resolve, reject) => {
     } else {
         setProtocolValues(realmType, data).then(res => {
 
-            // console.log('setProtocolValues');
-            // console.log(res);
+            console.log('setProtocolValues:');
+            console.log(res);
 
             realmWrite(realmDatabase, realm => {
                 const saved = realm.create(realmType, res, true);
+                console.log('saved:');
+                console.log(saved);
                 if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
 
                 // console.log('saved! ');
                 // console.log(saved);
 
                 return saved;
-            }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e, 'realmSave()')));
-        }).catch(e => reject(rejectWithLog(e, 'realmSave()')));
+            }).then(res => resolve(res)).catch(e => {
+                console.log(e);
+                reject(rejectWithLog(e, 'realmSave()'));
+            });
+        }).catch(e => {
+            console.log(e);
+            reject(rejectWithLog(e, 'realmSave(.)'))
+        });
     } // required parameter check
 });
 
