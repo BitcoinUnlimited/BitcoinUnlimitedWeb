@@ -78,15 +78,13 @@ const getDBModel = name => {
 
 const getKeyForType = name => getSchema(name).primaryKey;
 
-const toBase64 = image => {
-    return new Promise((resolve, reject) => {
-        let reader = new FileReader();
-        reader.onloadend = () => {
-            resolve(reader.result);
-        }
-        reader.readAsDataURL(image);
-    }).catch(e => reject(e));
-}
+const toBase64 = image => new Promise((resolve, reject) => {
+    let reader = new FileReader();
+    reader.onloadend = () => {
+        resolve(reader.result);
+    }
+    reader.readAsDataURL(image);
+});
 
 const checkPath = (path, fileType) => {
     let pathArr = path.split('/').filter(dir => dir !== '');
