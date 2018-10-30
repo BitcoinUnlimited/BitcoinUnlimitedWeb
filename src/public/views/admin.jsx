@@ -4,7 +4,6 @@ import React from 'react';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
 import Section from './components/section.jsx';
-import Posts from './components/protected/posts.jsx';
 
 class Admin extends React.Component {
 
@@ -16,7 +15,7 @@ class Admin extends React.Component {
                     <div className='section__editor'>
 
                         <div className="section_sidebar">
-                            <Posts />
+                        sidebar
                         </div>
 
                         <div className="section_mainbar">

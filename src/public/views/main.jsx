@@ -17,7 +17,7 @@ import EmergentConsensusBU from './pages/emergent-consensus-bu.jsx';
 import EmergentConsensus from './pages/emergent-consensus.jsx';
 import DevelopTestingAccord from './pages/develop-testing-accord.jsx';
 import Login from './pages/login.jsx';
-import BlogList from './pages/blog-list.jsx';
+import BlogList from './pages/models/blog-list.jsx';
 import ContentDisplay from './pages/content-display.jsx';
 import NotFound from './pages/not-found.jsx';
 
