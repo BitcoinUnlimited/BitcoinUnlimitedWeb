@@ -4,9 +4,9 @@ import fs from 'fs';
 import { EditorState } from 'draft-js';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 
-const resObject = (message = '', funcName = '', status = 'log') => ({ message, funcName, status });
-const resErr = (e, fn) => ({ status: 'error', message: `${e}`, fn: ((fn) ? fn : '') });
-const resErrList = (list, fn) => ({ status: 'error', message: `Missing required parameters: ${list.join(', ')}`, fn: ((fn) ? fn : '') });
+const resObject = (status = 'log', message = '') => ({ status, message });
+const resErr = e => ({ status: 'error', message: `${e}` });
+const resErrList = list => ({ status: 'error', message: `Missing required parameters: ${list.join(', ')}` });
 const resSuccess = msg => ({ status: 'success', message: ((msg) ? msg : '') });
 const resError = data => data.status && data.status == 'error';
 const toInt = value => Math.trunc(value);
@@ -32,6 +32,7 @@ const isEmptyArr = arr => arr.length === 0;
 const hasKey = (obj, key) => Object.keys(obj).indexOf(key) !== -1;
 const monthName = idx => ['January','February','March','April','May','June','July','August','September','October','November','December'].filter((month, i) => i == idx)[0];
 const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`;
+const formatDateFull = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 const relativeImgPath = fullPath => fullPath.split('/public').pop();
 
 const getUid = () => uuidv4();
@@ -102,6 +103,13 @@ const checkPath = (path, fileType) => {
     return true;
 }
 
+const getJwt = _ => {
+    if ('localStorage' in window) {
+        return localStorage.getItem('jwt');
+    }
+    return false;
+}
+
 const fieldInfo = key => {
     let extraFieldInfo = {
         title: { label: 'Title', description: 'The title of the post or content.' },
@@ -146,6 +154,7 @@ module.exports = {
     isEmptyArr,
     hasKey,
     formatDate,
+    formatDateFull,
     relativeImgPath,
     getUid,
     getDBSchemas,
@@ -154,5 +163,6 @@ module.exports = {
     toBase64,
     getDBModel,
     fieldInfo,
+    getJwt,
     getKeyForType
 }

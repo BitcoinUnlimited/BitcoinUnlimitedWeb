@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import Axios from 'axios';
 import Page from '../../page.jsx'
-import { isDef } from '../../../../helpers/helpers.js';
+import { getJwt } from '../../../../helpers/helpers.js';
 
 class Auth extends React.Component {
     constructor(props) {
@@ -14,13 +14,6 @@ class Auth extends React.Component {
         this.state = {
             isAuthed: false
         }
-    }
-
-    getJwt() {
-        if ('localStorage' in window) {
-            return localStorage.getItem('jwt');
-        }
-        return false;
     }
 
     removeJwtAndRedirect() {
@@ -44,7 +37,7 @@ class Auth extends React.Component {
     }
 
     authenticateUser() {
-        let jwt = this.getJwt();
+        let jwt = getJwt();
         if (!jwt) {
             removeJwtAndRedirect();
         } else {

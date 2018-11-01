@@ -12,6 +12,7 @@ import uuidv4 from 'uuid/v4';
  * Additional rules are available at: https://realm.io/docs/javascript/latest/#models
  */
 
+ /* Admin */
 const AuthSchema = {
     name: 'Auth',
     primaryKey: 'pubkey',
@@ -23,6 +24,18 @@ const AuthSchema = {
     }
 }
 
+const LogSchema = {
+    name: 'Log',
+    primaryKey: 'uid',
+    properties: {
+        uid: {type: 'string', default: uuidv4()},
+        created: {type: 'date', default: new Date()},
+        status: 'string?',
+        message: 'string?'
+    }
+}
+
+/* Public */
 const UserSchema = {
     name: 'User',
     primaryKey: 'pubkey',
@@ -67,25 +80,12 @@ const PostSchema = {
     }
 }
 
-/* Admin */
-const LogSchema = {
-    name: 'Log',
-    primaryKey: 'uid',
-    properties: {
-        uid: {type: 'string', default: uuidv4()},
-        created: {type: 'date', default: new Date()},
-        status: 'string?',
-        message: 'string?',
-        fn: 'string?'
-    }
-}
-
 const getDBSchema = () => {
-    return [UserSchema, HeroSchema, PostSchema, LogSchema];
+    return [UserSchema, HeroSchema, PostSchema];
 }
 
 const getAuthSchema = () => {
-    return [AuthSchema];
+    return [AuthSchema, LogSchema];
 }
 
 module.exports = {
