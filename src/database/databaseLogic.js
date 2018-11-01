@@ -21,7 +21,6 @@ const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
  * todo: add interface for role 0 to adjust value
  */
 const authExiprationSeconds = 7200;
-let realmLogListener = null;
 
 const realmWrite = (db, fn) => new Promise((resolve, reject) => {
     Realm.open(db).then(realm => {
@@ -45,53 +44,22 @@ const realmFetch = (db, fn) => new Promise((resolve, reject) => {
     }).catch(e => reject(e));
 });
 
-// const logListener = (logs, changes) => {
-//     // Update UI in response to inserted objects
-//     changes.insertions.forEach((index) => {
-//         let insertedLog = logs[index];
-//         console.log('inserted');
-//         console.log(insertedLog);
-//     });
-//
-//     // Update UI in response to modified objects
-//     changes.modifications.forEach((index) => {
-//         let modifiedLog = logs[index];
-//         console.log('changed');
-//         console.log(modifiedLog);
-//     });
-//
-//     // Update UI in response to deleted objects
-//     changes.deletions.forEach((index) => {
-//         console.log('deleted');
-//     });
-// }
-//
-// const realmNotify = db => {
-//     Realm.open(db).then(realm => {
-//         realmLogListener = realm.objects('Log');
-//         realmLogListener.addListener(logListener);
-//     }).catch(e => console.log(e));
-// }
-
 /*
- * Log messages are not editable
+ * Log messages are not editable post creation
  * data (object):
- * {status: ['success' or 'error'], description: 'log message', fn: someFn.name}
+ * {status: ['success' or 'error'], description: 'log message'}
  */
 const realmLog = data => {
     if (data) {
-        realmWrite(realmDatabase, realm => {
+        realmWrite(authDatabase, realm => {
             realm.create('Log', data, true);
-        }).then(() => {
-            //realmNotify(realmDatabase);
         });
     }
 }
 
-const rejectWithLog = (errorText, fn) => {
-    fn = (fn) ? fn : '';
-    errorText = (errorText && isStr(errorText)) ? errorText : 'There was an error.';
-    let error = resErr(errorText, fn);
+const rejectWithLog = errorText => {
+    errorText = (errorText && isStr(errorText)) ? errorText : 'There was an unknown error.';
+    let error = resErr(errorText);
     realmLog(error);
     return error;
 }
@@ -133,17 +101,15 @@ const getAuth = pubkey => new Promise((resolve, reject) => {
 });
 
 const getLogs = () => new Promise((resolve, reject) => {
-    realmFetch(realmDatabase, realm => {
-        let logs = realm.objects('Log');
-        console.log(logs);
-        return logs;
+    realmFetch(authDatabase, realm => {
+        return realm.objects('Log').sorted('created', true);
     }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
 });
 
 const signatureVerify = data => new Promise((resolve, reject) => {
     const { pubkey, challenge, signature } = data;
     if (!isStr(pubkey) || !isStr(challenge) || !isStr(signature)) {
-        reject(rejectWithLog('Missing data for messageVerify', 'signatureVerify()'));
+        reject(rejectWithLog('signatureVerify(): Missing data for messageVerify'));
     }
     if (messageVerify(data)) {
         const expires = Math.floor(Date.now() / 1000) + authExiprationSeconds;
@@ -157,9 +123,9 @@ const signatureVerify = data => new Promise((resolve, reject) => {
             }, process.env.JWT_SECRET);
             if (!token) throw 'Token creation error.';
             resolve(token);
-        }).catch(e => reject(rejectWithLog(e, 'signatureVerify()')));
+        }).catch(e => reject(rejectWithLog(`signatureVerify(): ${e}`)));
     } else {
-        reject(rejectWithLog('Challenge could not be verified.', 'signatureVerify()'));
+        reject(rejectWithLog('signatureVerify(): Challenge could not be verified.'));
     }
 });
 
@@ -192,7 +158,7 @@ const hasRequiredProps = (schemaProps, data, primaryKey) => {
 const checkRequiredParams = (realmType, data) => {
     const schemaProps = getSchemaProps(realmType);
     if (!schemaProps) {
-        return rejectWithLog(`Unable to get schema properties for ${realmType}`, 'checkRequiredParams()');
+        return rejectWithLog(`checkRequiredParams(): Unable to get schema properties for ${realmType}`);
     }
     const primaryKey = getKeyForType(realmType);
     const requiredPropsExist = hasRequiredProps(schemaProps, data, primaryKey);
@@ -205,38 +171,21 @@ const checkRequiredParams = (realmType, data) => {
 }
 
 const realmSave = data => new Promise((resolve, reject) => {
-
     let { realmType } = data;
-
-    // console.log(`realmSave ${realmType} (data):`);
-    // console.log(data);
-
     let errorCheck = checkRequiredParams(realmType, data);
     if (errorCheck !== true) {
         reject(errorCheck);
     } else {
         setProtocolValues(realmType, data).then(res => {
-
-            console.log('setProtocolValues:');
-            console.log(res);
-
             realmWrite(realmDatabase, realm => {
                 const saved = realm.create(realmType, res, true);
-                console.log('saved:');
-                console.log(saved);
                 if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
-
-                // console.log('saved! ');
-                // console.log(saved);
-
                 return saved;
             }).then(res => resolve(res)).catch(e => {
-                console.log(e);
-                reject(rejectWithLog(e, 'realmSave()'));
+                reject(rejectWithLog(`realmSave(): ${e}`));
             });
         }).catch(e => {
-            console.log(e);
-            reject(rejectWithLog(e, 'realmSave(.)'))
+            reject(rejectWithLog(`realmSave(): ${e}`));
         });
     } // required parameter check
 });
@@ -249,7 +198,7 @@ const realmGetAll = (realmType, filtered) => new Promise((resolve, reject) => {
         let result = (filtered) ? realm.objects(realmType).filtered(filtered) : realm.objects(realmType);
         if (!result || isEmptyObj(result)) throw `No results found for ${realmType}.`;
         return result;
-    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e, 'realmGetAll()')));
+    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(`realmGetAll(): ${e}`)));
 });
 
 const realmGetUid = (realmType, uid, key) => new Promise((resolve, reject) => {
@@ -258,7 +207,7 @@ const realmGetUid = (realmType, uid, key) => new Promise((resolve, reject) => {
         const { "0": result } = realm.objects(realmType).filtered(predicate);
         if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
         return result;
-    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e, 'realmGetUid()')));
+    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(`realmGetUid(): ${e}`)));
 });
 
 const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) => {
@@ -266,7 +215,7 @@ const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) =>
         realmWrite(realmDatabase, realm => {
             realm.delete(res);
         }).then(res => resolve(resSuccess())).catch(e => reject(e));
-    }).catch(e => reject(rejectWithLog(e, 'realmDeleteUid()')));
+    }).catch(e => reject(rejectWithLog(`realmDeleteUid(): ${e}`)));
 });
 
 const realmGet = data => {
@@ -298,7 +247,7 @@ const getPublicFiles = (dir) => new Promise((resolve, reject) => {
             reject();
         }
     } catch(e) {
-        reject(rejectWithLog(e, 'getPublicFiles()'));
+        reject(rejectWithLog(`getPublicFiles(): ${e}`));
     }
 });
 

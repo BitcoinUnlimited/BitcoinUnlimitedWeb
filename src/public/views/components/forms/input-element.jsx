@@ -33,6 +33,26 @@ class InputElement extends React.Component {
         }
         return null;
     }
+    // getModules() {
+    //     return {
+    //         toolbar: [
+    //             [{ 'color': [] }, { 'background': [] }],
+    //             ['bold', 'italic', 'underline','strike', 'blockquote'],
+    //             [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+    //             ['link', 'image', 'video'],
+    //             ['clean']
+    //         ]
+    //     }
+    // }
+    // getFormats() {
+    //     return [
+    //         'color', 'background',
+    //         'bold', 'italic', 'underline', 'strike', 'blockquote',
+    //         'list', 'bullet', 'indent',
+    //         'link', 'image', 'video',
+    //         'clean'
+    //     ];
+    // }
     render() {
         let { inputType, inputName, inputChange, inputValue } = this.props;
         if (!inputType || !inputName || !inputChange) {
