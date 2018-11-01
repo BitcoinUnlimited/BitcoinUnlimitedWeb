@@ -77,7 +77,6 @@ class LogList extends React.Component {
                             <th scope="col">Created</th>
                             <th scope="col">Status</th>
                             <th scope="col">Message</th>
-                            <th scope="col">Referrer</th>
                         </tr>
                     </thead>
                     { this.displayLogs(logs) }

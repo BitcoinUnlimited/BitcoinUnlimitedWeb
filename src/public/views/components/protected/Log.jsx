@@ -9,14 +9,13 @@ class Log extends React.Component {
         super(props);
     }
     render() {
-        let { item: { uid, created, status, message, fn } } = this.props;
+        let { item: { uid, created, status, message } } = this.props;
         return (
             <tr>
               <th scope="row">{ uid }</th>
               <td>{ formatDateFull(new Date(created)) }</td>
               <td>{ status }</td>
               <td>{ message }</td>
-              <td>{ fn }</td>
             </tr>
         );
     }
