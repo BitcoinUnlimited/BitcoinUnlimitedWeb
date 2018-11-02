@@ -28,7 +28,6 @@ Log.propTypes = {
     uid: PropTypes.string.isRequired,
     created: PropTypes.any.isRequired,
     status: PropTypes.string,
-    message: PropTypes.string,
-    fn: PropTypes.string
+    message: PropTypes.string
   }).isRequired
 }

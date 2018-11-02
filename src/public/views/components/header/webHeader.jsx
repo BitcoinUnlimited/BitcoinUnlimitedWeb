@@ -4,7 +4,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import { strings } from '../../../lib/i18n';
 import Dropdown from '../dropdown.jsx'
-import UserArea from '../protected/user-area.jsx'
+import UserArea from '../protected/UserArea.jsx'
 
 class WebHeader extends React.Component {
 

@@ -47,6 +47,18 @@ const UserSchema = {
     }
 }
 
+const AlertSchema = {
+    name: 'Alert',
+    primaryKey: 'uid',
+    properties: {
+        uid: {type: 'string', default: uuidv4()},
+        created: {type: 'date', default: new Date()},
+        expires: {type: 'date', optional: true},
+        message_editor: 'string',
+        type: {type: 'int', default: 0} // [announce, alert, security]
+    }
+}
+
 const HeroSchema = {
     name: 'Hero',
     primaryKey: 'uid',
@@ -81,7 +93,7 @@ const PostSchema = {
 }
 
 const getDBSchema = () => {
-    return [UserSchema, HeroSchema, PostSchema];
+    return [UserSchema, HeroSchema, PostSchema, AlertSchema];
 }
 
 const getAuthSchema = () => {

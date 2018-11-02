@@ -248,8 +248,17 @@ class RealmFormWrapper extends React.Component {
         }
     }
 
+    getTitle() {
+        let { route: { path }, params: { realmType } } = this.props;
+        if (path && realmType) {
+            return path.split('/')[0] + ' ' + realmType;
+        }
+        return;
+    }
+
     render() {
-        let { realmType, realmModel } = this.state;
+        let { realmModel } = this.state;
+        let { params: { realmType } } = this.props;
         if (!realmType || !realmModel) {
             return (
                 <Base name="schema-update">
@@ -262,7 +271,7 @@ class RealmFormWrapper extends React.Component {
             <Base name="schema-update">
                 <div className="form-wrapper">
                     {this.getSplash()}
-                    <h2 className="form-title">Update { realmType }</h2>
+                    <h2 className="form-title">{this.getTitle()}</h2>
                     <form className="post__form" onSubmit={ this.formSubmit } encType="multipart/form-data">
                         {Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx))}
                         <input type="hidden" value={realmType} />

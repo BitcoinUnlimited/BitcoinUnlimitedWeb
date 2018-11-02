@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import Axios from 'axios';
 import Page from '../../page.jsx'
-import { getJwt } from '../../../../helpers/helpers.js';
+import { getLocalstorageKey } from '../../../../helpers/helpers.js';
 
 class Auth extends React.Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class Auth extends React.Component {
     }
 
     authenticateUser() {
-        let jwt = getJwt();
+        let jwt = getLocalstorageKey('jwt');
         if (!jwt) {
             removeJwtAndRedirect();
         } else {

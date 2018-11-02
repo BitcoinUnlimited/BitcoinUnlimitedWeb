@@ -103,9 +103,9 @@ const checkPath = (path, fileType) => {
     return true;
 }
 
-const getJwt = _ => {
+const getLocalstorageKey = key => {
     if ('localStorage' in window) {
-        return localStorage.getItem('jwt');
+        return localStorage.getItem(key);
     }
     return false;
 }
@@ -163,6 +163,6 @@ module.exports = {
     toBase64,
     getDBModel,
     fieldInfo,
-    getJwt,
+    getLocalstorageKey,
     getKeyForType
 }
