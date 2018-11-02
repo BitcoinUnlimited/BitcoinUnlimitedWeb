@@ -4,7 +4,7 @@ import React from 'react';
 import Axios from 'axios';
 import ReactLoading from "react-loading";
 import Log from './Log.jsx';
-import { getJwt } from '../../../../helpers/helpers.js';
+import { getLocalstorageKey } from '../../../../helpers/helpers.js';
 
 class LogList extends React.Component {
 
@@ -18,7 +18,7 @@ class LogList extends React.Component {
     }
 
     getLogs(pubkey) {
-        let jwt = getJwt();
+        let jwt = getLocalstorageKey('jwt');
         if (jwt) {
             Axios.get('/get_logs', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: logs } = res;

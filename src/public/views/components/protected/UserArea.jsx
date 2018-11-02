@@ -6,7 +6,6 @@ import UserIcon from '../icons/userIcon.jsx';
 import { isEmptyObj } from '../../../../helpers/helpers.js';
 
 class UserArea extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -14,17 +13,14 @@ class UserArea extends React.Component {
             user: {}
         }
     }
-
     getNameDisplay(pubkey) {
         let { user: { name } } = this.state;
         return (name) ? name : pubkey.substr(0, 6) + '..';
     }
-
     getUserIcon() {
         let { user: { icon_img: icon } } = this.state;
         return (icon) ? (<img src={icon} />) : (<div className="icon"><UserIcon width="20" height="20" /></div>);
     }
-
     getEditLink() {
         let { user : { pubkey, name } } = this.state;
         if (pubkey) {
@@ -34,7 +30,6 @@ class UserArea extends React.Component {
         }
         return null;
     }
-
     userDidChange(newUser) {
         let { user } = this.state;
         if (!user || isEmptyObj(user)) return true;
@@ -46,7 +41,6 @@ class UserArea extends React.Component {
         });
         return changed;
     }
-
     setUser() {
         if ('localStorage' in window) {
             let user = localStorage.getItem('user');
@@ -58,22 +52,18 @@ class UserArea extends React.Component {
             }
         }
     }
-
     componentDidUpdate() {
         this.setUser();
     }
-
     componentDidMount() {
         this.setUser();
     }
-
     render() {
         let { hasUser } = this.state;
         if (!hasUser) return null;
         return (
             <div className="user-header">
                 {this.getUserIcon()}
-                {this.getEditLink()}
             </div>
         );
     }

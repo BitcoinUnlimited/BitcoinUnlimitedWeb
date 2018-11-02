@@ -7,7 +7,7 @@ import { strings } from '../public/lib/i18n';
  *
  * E.g., const modelProtocols = ['Post','Hero','User','Yourmodelname' ...];
  */
-const modelProtocols = ['Post','Hero','User'];
+const modelProtocols = ['Post', 'Hero', 'User', 'Alert'];
 const typeHasProtocol = type => modelProtocols.indexOf(type) !== -1;
 const protocol = {};
 
@@ -62,6 +62,13 @@ protocol.Hero = data => {
 protocol.User = data => {
     if (!data.pubkey) {
         throw 'Pubkey does not exist. fn: protocol.User()';
+    }
+    return data;
+}
+
+protocol.Alert = data => {
+    if (data.type) {
+        data.type = Number(data.type);
     }
     return data;
 }

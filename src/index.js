@@ -67,7 +67,7 @@ app.get('/get_logs', jwtMiddleware(), (req, res) => {
     getLogs().then(result => {
         res.json(result);
     }).catch(e => {
-        res.json(resErr(e, 'getLogs()'));
+        res.json(resErr(`getLogs(): ${e}`));
     })
 });
 
@@ -112,8 +112,6 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
         busboy.on('finish', function() {
             if (!fields.realmType || !typeIsValid(fields.realmType)) throw 'Incorrect realmType or not specified.';
             realmSave(fields).then(result => res.json(result)).catch(e => {
-                console.log('realmSave from /api/upsert');
-                console.log(e);
                 res.json(resErr(e));
             })
         });
