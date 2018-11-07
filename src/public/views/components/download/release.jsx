@@ -16,11 +16,6 @@ class Release extends React.Component {
                             { this.props.osx64Mirror ? <a className='dim black' href={this.props.osx64Mirror}>({strings().download.mirror})</a> : '' }
                         </div>
                         <div>
-                            {strings().download.bit32}&nbsp;
-                            <a className='dim black' href={this.props.osx32}>({strings().download.tar})</a>&nbsp;
-                            { this.props.osx32Mirror ? <a className='dim black' href={this.props.osx32Mirror}>({strings().download.mirror})</a> : '' }
-                        </div>
-                        <div>
                             {strings().download.dmg}&nbsp;
                             <a className='dim black' href={this.props.osxDmg}>({strings().download.dmg})</a>&nbsp;
                             { this.props.osxDmgMirror ? <a className='dim black' href={this.props.osxDmgMirror}>({strings().download.mirror})</a> : '' }
