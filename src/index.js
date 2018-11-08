@@ -12,7 +12,7 @@ import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
 import { signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs } from './database/databaseLogic.js';
-import { resErr, checkPath, toBase64, getKeyForType } from './helpers/helpers.js';
+import { resErr, eToStr, checkPath, toBase64, getKeyForType } from './helpers/helpers.js';
 
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
@@ -31,7 +31,7 @@ const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
             next(null, false);
         }
     }).catch(e => {
-        console.log('catch jwt strat error: ' + e);
+        console.log(eToStr(e));
         next(null, false);
     });
 });
@@ -74,11 +74,15 @@ app.get('/get_logs', jwtMiddleware(), (req, res) => {
 app.post('/sig_verify', (req, res) => {
     signatureVerify(req.body).then(result => res.json(result)).catch(e => res.json(resErr(e)));
 });
+
 app.get('/api/get/:type/:uid?', (req, res) => {
-    if (!req.params.type || !typeIsValid(req.params.type)) {
+    let { params: { type, uid } } = req;
+    let { query } = req;
+    console.log(`type: ${type} uid: ${uid}`);
+    if (!type || !typeIsValid(type)) {
         res.redirect('/not-found');
     } else {
-        realmGet({ realmType: req.params.type, uid: (req.params.uid || '') }).then(result => res.json(result)).catch(e => res.json(resErr(e)));
+        realmGet({ realmType: type, uid, query }).then(result => res.json(result)).catch(e => res.json(resErr(e)));
     }
 });
 app.post('/api/delete', jwtMiddleware(), (req, res) => {
@@ -117,7 +121,7 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
         });
         req.pipe(busboy);
     } catch(e) {
-        res.json({status: 'error', message: e});
+        res.json({status: 'error', message: eToStr(e)});
     }
 });
 

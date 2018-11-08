@@ -5,9 +5,10 @@ import { EditorState } from 'draft-js';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 
 const resObject = (status = 'log', message = '') => ({ status, message });
-const resErr = e => ({ status: 'error', message: `${e}` });
+const eToStr = e => (isObj(e)) ? JSON.stringify(e) : e;
+const resErr = e => ({ status: 'error', message: `${eToStr(e)}` });
 const resErrList = list => ({ status: 'error', message: `Missing required parameters: ${list.join(', ')}` });
-const resSuccess = msg => ({ status: 'success', message: ((msg) ? msg : '') });
+const resSuccess = msg => ({ status: 'success', message: ((msg) ? eToStr(msg) : '') });
 const resError = data => data.status && data.status == 'error';
 const toInt = value => Math.trunc(value);
 const isDef = obj => typeof obj !== 'undefined';
@@ -38,9 +39,10 @@ const relativeImgPath = fullPath => fullPath.split('/public').pop();
 const getUid = () => uuidv4();
 const getDBSchemas = type => (type == 'auth') ? getAuthSchema() : getDBSchema();
 const getSchema = (name, db = '') => getDBSchemas(db).filter(schema => schema.name === name)[0];
+const readOnlyKeys = key => ['created', 'changed'].indexOf(key) !== -1;
 
 const getModelPropType = (propKey, propType, primaryKey) => {
-    if (propKey === primaryKey) return 'hidden';
+    if (propKey === primaryKey || readOnlyKeys(propKey)) return 'hidden';
     propType = isObj(propType) ? propType.type : propType;
     if (isEditor(propKey)) return 'editor';
     if (isImage(propKey)) return 'file';
@@ -56,7 +58,11 @@ const getRealmType = modelType => {
     let results = getDBSchemas().filter(schema => modelType.indexOf(schema.name) !== -1);
     return results.length > 0 ? results[0].name : false;
 }
-
+/*
+ * Builds info about each property on a decalred schema.
+ *
+ * realmType is used for model to model associations
+ */
 const getDBModel = name => {
     let schema = getSchema(name);
     if (!isDef(schema)) {
@@ -91,7 +97,7 @@ const checkPath = (path, fileType) => {
     let pathArr = path.split('/').filter(dir => dir !== '');
     for (var i = 0; i < pathArr.length; i++) {
         let segment = '/' + pathArr.filter((p, idx) => idx <= i).join('/');
-        if (segment.indexOf('.' + fileType) != -1) break;
+        if (segment.indexOf('.' + fileType) !== -1) break;
         if (!fs.existsSync(segment)) {
             try {
                 fs.mkdirSync(segment);
@@ -118,6 +124,7 @@ const fieldInfo = key => {
         body_editor: { label: 'Content', description: 'This image will go above the post.' },
         created: { label: 'Created Date', description: '' },
         updated: { label: 'Updated Date', description: '' },
+        expires: { label: 'Expiration Date', description: 'Set a time limit for this content to be visible.' },
         author: { label: 'Content Author', description: '' },
         tags: { label: 'Terms', description: 'List terms, separated with commas.' },
         published: { label: 'Publish Content', description: 'Leave unchecked for draft mode.' },
@@ -129,7 +136,8 @@ const fieldInfo = key => {
         name: { label: 'Name, alias or pseudonom', description: '' },
         email: { label: 'Email', description: 'Optionally add your contact email.' },
         icon_img: { label: 'User Image', description: 'The image should have an equal height/width and be no greater than 100px wide.' },
-        bio_editor:  { label: 'Bio', description: 'A short biography or statement of purpose.' }
+        bio_editor:  { label: 'Bio', description: 'A short biography or statement of purpose.' },
+        alert_type: { labe: 'Alert type', description: `Set to: 'announce', 'alert' or 'security'. Defaults to announce.`}
     }
     let fieldData = extraFieldInfo[key];
     if (fieldData) {
@@ -140,6 +148,7 @@ const fieldInfo = key => {
 
 module.exports = {
     resObject,
+    eToStr,
     resErr,
     resErrList,
     resSuccess,

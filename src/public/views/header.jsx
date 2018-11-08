@@ -12,11 +12,6 @@ import { getLocalstorageKey, getDBSchemas } from '../../helpers/helpers.js';
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        this.showCreateModels = this.showCreateModels.bind(this);
-        this.state = {
-            showAdminBar: false,
-            links: null
-        }
     }
 
     renderSecurityMessage() {
@@ -60,36 +55,36 @@ class Header extends React.Component {
         //)
     }
 
-    showCreateModels() {
+    showCreateLinks() {
         let models = getDBSchemas();
         let modelNames = [];
+        let { active: currentName = '' } = this.props;
         models.map(model => {
-            if (model.name !== 'User') {
+            if (model.name !== 'User' && model.name !== currentName) {
                 modelNames.push(model.name);
             }
         });
         let links = modelNames.map((name, idx) => {
             return (<Link key={idx} className='link' to={`/create/${name}`}>Create {name}</Link>);
         });
-        this.setState({ showAdminBar: true, links });
+        return links;
+    }
+
+    getDashboardLink() {
+        let { active: currentName = '' } = this.props;
+        if (currentName !== 'dashboard') {
+            return (<Link className='link' to='/dashboard'>Dashboard</Link>);
+        }
+        return;
     }
 
     showAdminBar() {
-        let { showAdminBar, links } = this.state;
-        if (showAdminBar && links) {
-            return (
-                <div className="btn">
-                    <Link className='link' to='/dashboard'>Dashboard</Link>
-                    {links}
-                </div>
-            );
-        }
         let user = getLocalstorageKey('user');
         if (user) {
             return (
                 <div className="btn">
-                    <Link className='link' to='/dashboard'>Dashboard</Link>
-                    <div className="link" onClick={this.showCreateModels}>Create &raquo;</div>
+                    {this.getDashboardLink()}
+                    {this.showCreateLinks()}
                 </div>
             );
         }
