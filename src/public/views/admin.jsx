@@ -6,8 +6,8 @@ import Footer from './footer.jsx';
 import Section from './components/section.jsx';
 
 class Admin extends React.Component {
-
     render() {
+        console.log(this.props);
         return (
             <div id={this.props.name}>
                 <Header active={this.props.name} />

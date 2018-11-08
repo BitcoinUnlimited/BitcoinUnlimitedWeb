@@ -35,7 +35,7 @@ class RealmFormWrapper extends React.Component {
     }
 
     buildFormData() {
-        let model = this.state.realmModel;
+        let { realmModel: model } = this.state;
         let formData = new FormData();
         formData.append('realmType', this.props.params.realmType);
         Object.keys(model).map(key => {
@@ -89,6 +89,7 @@ class RealmFormWrapper extends React.Component {
     inputChange(e) {
         const { name, type } = e.target;
         const value = (type === 'checkbox') ? e.target.checked : e.target.value;
+        console.log(value);
         let realmModel = this.state.realmModel;
         realmModel[name].value = value;
         this.setState({ realmModel });
@@ -196,6 +197,7 @@ class RealmFormWrapper extends React.Component {
     buildInput(prop, idx) {
         let { realmModel } = this.state;
         let input = realmModel[prop];
+        console.log(input);
         return (
             <InputElement
                 key={idx}
@@ -268,7 +270,7 @@ class RealmFormWrapper extends React.Component {
         }
         let { uid } = this.state;
         return (
-            <Base name="schema-update">
+            <Base name={realmType}>
                 <div className="form-wrapper">
                     {this.getSplash()}
                     <h2 className="form-title">{this.getTitle()}</h2>

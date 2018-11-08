@@ -28,10 +28,13 @@ class Auth extends React.Component {
         if ('localStorage' in window) {
             Axios.get(`/api/get/User/${pubkey}`).then(res => {
                 let { data: { pubkey: userPubkey } } = res;
+                console.log(res.data);
                 if (userPubkey) {
                     localStorage.setItem('user', JSON.stringify(res.data));
                     this.setState({ isAuthed: true });
                 }
+            }).catch(e => {
+                console.log(e);
             });
         }
     }

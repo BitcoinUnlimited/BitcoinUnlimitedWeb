@@ -85,9 +85,9 @@ class InputElement extends React.Component {
                 <div className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
                     {this.getLabel()}
                     <input
-                        type={inputType}
+                        type="checkbox"
                         name={inputName}
-                        value={inputValue}
+                        checked={inputValue}
                         onChange={inputChange}
                     />
                     {this.getDescription()}
@@ -118,6 +118,22 @@ class InputElement extends React.Component {
                         name={inputName}
                         value={inputValue}
                         placeholder={inputName}
+                        onChange={inputChange}
+                    />
+                    {this.getDescription()}
+                    {this.getError()}
+                </div>
+            );
+        }
+        if (inputType === 'date') {
+            let formattedDate = (inputValue.indexOf('T') !== -1) ? inputValue.split('T')[0] : '';
+            return (
+                <div className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                    {this.getLabel()}
+                    <input
+                        type={inputType}
+                        name={inputName}
+                        value={formattedDate}
                         onChange={inputChange}
                     />
                     {this.getDescription()}

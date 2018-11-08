@@ -41,6 +41,7 @@ const UserSchema = {
     primaryKey: 'pubkey',
     properties: {
         pubkey: 'string',
+        created: {type: 'date', default: new Date()},
         name: 'string?',
         icon_img: 'string?',
         bio_editor: 'string?'
@@ -53,9 +54,10 @@ const AlertSchema = {
     properties: {
         uid: {type: 'string', default: uuidv4()},
         created: {type: 'date', default: new Date()},
-        expires: {type: 'date', optional: true},
         message_editor: 'string',
-        type: {type: 'int', default: 0} // [announce, alert, security]
+        expires: {type: 'date', optional: true},
+        published: {type: 'bool', default: false},
+        alert_type: {type: 'string', default: 'announce'}
     }
 }
 
