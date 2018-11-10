@@ -4,12 +4,16 @@ import uuidv4 from 'uuid/v4';
 /*
  * When declaring additional schemas use the following rules to auto-generate forms:
  *
- * - All primary keys on the main content store should use uid.
+ * - All primary keys on the main content store should use uid. User is an explicit exception.
+ * - All content should have a created date for optional ASC/DESC sorting
  * - Image types should have a key suffixed with _img.
  * - Text that needs an editor input should have a key suffixed with _editor.
  * - Realm model associations should include the optional ? identifier.
  *
  * Additional rules are available at: https://realm.io/docs/javascript/latest/#models
+ *
+ * Auth and Log are separated from the main content realmDatabase. These realmTypes
+ * are excluded from the auto-generating RealmFormWrapper and ContentList components.
  */
 
  /* Admin */
@@ -55,7 +59,6 @@ const AlertSchema = {
         uid: {type: 'string', default: uuidv4()},
         created: {type: 'date', default: new Date()},
         message_editor: 'string',
-        expires: {type: 'date', optional: true},
         published: {type: 'bool', default: false},
         alert_type: {type: 'string', default: 'announce'}
     }

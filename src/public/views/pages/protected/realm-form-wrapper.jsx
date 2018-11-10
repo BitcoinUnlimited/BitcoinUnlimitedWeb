@@ -89,7 +89,6 @@ class RealmFormWrapper extends React.Component {
     inputChange(e) {
         const { name, type } = e.target;
         const value = (type === 'checkbox') ? e.target.checked : e.target.value;
-        console.log(value);
         let realmModel = this.state.realmModel;
         realmModel[name].value = value;
         this.setState({ realmModel });
@@ -197,7 +196,6 @@ class RealmFormWrapper extends React.Component {
     buildInput(prop, idx) {
         let { realmModel } = this.state;
         let input = realmModel[prop];
-        console.log(input);
         return (
             <InputElement
                 key={idx}
@@ -205,6 +203,7 @@ class RealmFormWrapper extends React.Component {
                 inputLabel={(input.fieldInfo) ? ((input.fieldInfo.label) ? input.fieldInfo.label: null) : null}
                 inputName={input.name}
                 inputValue={input.value}
+                inputPlaceholder={(input.fieldInfo) ? ((input.fieldInfo.placeholder) ? input.fieldInfo.placeholder: null) : null}
                 inputChange={this.getChangeFn(input.name, input.type)}
                 inputRemove={this.fileRemove(input.name, input.type)}
                 inputError={(input.error) ? input.error : null}

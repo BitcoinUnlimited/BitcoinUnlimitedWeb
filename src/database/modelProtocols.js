@@ -56,16 +56,6 @@ protocol.setAuthor = data => {
     return data;
 }
 
-protocol.setExpires = data => {
-    let { expires } = data;
-    if (expires === '') {
-        delete data.expires;
-    } else if (expires) {
-        data.expires = new Date(expires);
-    }
-    return data;
-}
-
 protocol.validateAlertType = data => {
     let { alert_type: type } = data;
     if (type) {
@@ -116,7 +106,7 @@ protocol.User = data => {
 }
 
 protocol.Alert = data => {
-    let ops = ['setPrimaryKey', 'setCreated', 'setExpires', 'setPublished', 'validateAlertType'];
+    let ops = ['setPrimaryKey', 'setCreated', 'setPublished', 'validateAlertType'];
     return runOps(ops, data);
 }
 
