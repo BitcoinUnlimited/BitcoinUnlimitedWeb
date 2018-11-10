@@ -72,6 +72,7 @@ protocol.checkPubkey = data => {
     if (!data.pubkey) {
         throw 'Pubkey does not exist. fn: protocol.User()';
     }
+    return data;
 }
 
 const runOps = (ops, data) => {

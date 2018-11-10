@@ -41,12 +41,7 @@ class Dashboard extends React.Component {
 
     showBackupUrl() {
         let { backupUrl } = this.state;
-        if (backupUrl) {
-            return (
-                <a className='underline link' href={backupUrl} download>Download</a>
-            );
-        }
-        return;
+        return (backupUrl) ? (<a className='underline link' href={backupUrl} download>Download Backup</a>) : null;
     }
 
     render() {
