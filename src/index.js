@@ -11,11 +11,12 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs } from './database/databaseLogic.js';
-import { resErr, eToStr, checkPath, toBase64, getKeyForType } from './helpers/helpers.js';
-
+import { signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath } from './database/databaseLogic.js';
+import { resErr, eToStr, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
+
+const staticFilesDir = path.join(__dirname, '../assets');
 
 const passportOpts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -56,7 +57,11 @@ app.get('/downloads/:file', (req, res) => {
     res.redirect('/components/bitcoin-unlimited-web-downloads/' + req.params.file);
 });
 
+if (checkPath(staticFilesDir)) {
+    app.use('/static', express.static(staticFilesDir));
+}
 app.use(express.static(path.join(__dirname, './public')));
+
 app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -71,6 +76,18 @@ app.get('/get_logs', jwtMiddleware(), (req, res) => {
     })
 });
 
+app.get('/get_backup', jwtMiddleware(), (req, res) => {
+    let backupName = '/backup-' + saveDateFormat(new Date()) + '.json';
+    realmBackup().then(result => {
+        let saveName = staticFilesDir + backupName;
+        fs.writeFile(saveName, JSON.stringify(result));
+    }).then(val => {
+        res.send('/static' + backupName);
+    }).catch(e => {
+        res.send(resErr(`getBackup(): ${e}`));
+    })
+});
+
 app.post('/sig_verify', (req, res) => {
     signatureVerify(req.body).then(result => res.json(result)).catch(e => res.json(resErr(e)));
 });
@@ -78,7 +95,8 @@ app.post('/sig_verify', (req, res) => {
 app.get('/api/get/:type/:uid?', (req, res) => {
     let { params: { type, uid } } = req;
     let { query } = req;
-    console.log(`type: ${type} uid: ${uid}`);
+    //console.log(`type: ${type} uid: ${uid}`);
+    if (query) console.log(query);
     if (!type || !typeIsValid(type)) {
         res.redirect('/not-found');
     } else {
@@ -109,6 +127,9 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
             file.on('end', function() {
                 fields[fieldname] = toBase64(file);
             });
+        });
+        busboy.on('data', function(data) {
+            console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
         });
         busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
             fields[fieldname] = val;

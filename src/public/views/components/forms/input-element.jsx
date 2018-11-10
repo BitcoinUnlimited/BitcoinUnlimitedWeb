@@ -7,7 +7,7 @@ class InputElement extends React.Component {
     getLabel() {
         let label = this.props.inputLabel;
         if (label) {
-            return (<label className="input-label">{label}</label>);
+            return (<legend className="input-label">{label}</legend>);
         }
         return null;
     }
@@ -54,7 +54,7 @@ class InputElement extends React.Component {
     //     ];
     // }
     render() {
-        let { inputType, inputName, inputChange, inputValue } = this.props;
+        let { inputType, inputName, inputChange, inputValue, inputPlaceholder } = this.props;
         if (!inputType || !inputName || !inputChange) {
             return null;
         }
@@ -69,7 +69,7 @@ class InputElement extends React.Component {
         }
         if (inputType === 'editor') {
             return (
-                <div className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
                     {this.getLabel()}
                     <Editor
                         editorState={inputValue}
@@ -77,12 +77,12 @@ class InputElement extends React.Component {
                     />
                     {this.getDescription()}
                     {this.getError()}
-                </div>
+                </fieldset>
             );
         }
         if (inputType === 'checkbox') {
             return (
-                <div className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
                     {this.getLabel()}
                     <input
                         type="checkbox"
@@ -92,12 +92,12 @@ class InputElement extends React.Component {
                     />
                     {this.getDescription()}
                     {this.getError()}
-                </div>
+                </fieldset>
             );
         }
         if (inputType === 'file') {
             return (
-                <div className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
                     {this.getLabel()}
                     <div className="file-upload">
                         <input type={inputType} name={inputName} onChange={inputChange} />
@@ -106,29 +106,29 @@ class InputElement extends React.Component {
                     {this.getError()}
                     <div className="preview"><img src={inputValue} /></div>
                     {this.getRemoveBtn()}
-                </div>
+                </fieldset>
             );
         }
         if (inputType === 'text') {
             return (
-                <div className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
                     {this.getLabel()}
                     <input
                         type={inputType}
                         name={inputName}
                         value={inputValue}
-                        placeholder={inputName}
+                        placeholder={(inputPlaceholder) ? inputPlaceholder : inputName}
                         onChange={inputChange}
                     />
                     {this.getDescription()}
                     {this.getError()}
-                </div>
+                </fieldset>
             );
         }
         if (inputType === 'date') {
-            let formattedDate = (inputValue.indexOf('T') !== -1) ? inputValue.split('T')[0] : '';
+            let formattedDate = (inputValue.indexOf('T') !== -1) ? inputValue.split('T')[0] : inputValue;
             return (
-                <div className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
                     {this.getLabel()}
                     <input
                         type={inputType}
@@ -138,7 +138,7 @@ class InputElement extends React.Component {
                     />
                     {this.getDescription()}
                     {this.getError()}
-                </div>
+                </fieldset>
             );
         }
         return null;

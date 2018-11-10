@@ -7,3 +7,4 @@ package-lock.json
 *.realm
 *.realm.lock
 *.realm.management
+assets

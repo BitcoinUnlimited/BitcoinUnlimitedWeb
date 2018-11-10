@@ -1,6 +1,5 @@
 'use strict';
 import uuidv4 from 'uuid/v4';
-import fs from 'fs';
 import { EditorState } from 'draft-js';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 
@@ -34,12 +33,13 @@ const hasKey = (obj, key) => Object.keys(obj).indexOf(key) !== -1;
 const monthName = idx => ['January','February','March','April','May','June','July','August','September','October','November','December'].filter((month, i) => i == idx)[0];
 const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`;
 const formatDateFull = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+const saveDateFormat = date => `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
 const relativeImgPath = fullPath => fullPath.split('/public').pop();
 
 const getUid = () => uuidv4();
 const getDBSchemas = type => (type == 'auth') ? getAuthSchema() : getDBSchema();
 const getSchema = (name, db = '') => getDBSchemas(db).filter(schema => schema.name === name)[0];
-const readOnlyKeys = key => ['created', 'changed'].indexOf(key) !== -1;
+const readOnlyKeys = key => ['created', 'updated'].indexOf(key) !== -1;
 
 const getModelPropType = (propKey, propType, primaryKey) => {
     if (propKey === primaryKey || readOnlyKeys(propKey)) return 'hidden';
@@ -93,22 +93,6 @@ const toBase64 = image => new Promise((resolve, reject) => {
     reader.readAsDataURL(image);
 });
 
-const checkPath = (path, fileType) => {
-    let pathArr = path.split('/').filter(dir => dir !== '');
-    for (var i = 0; i < pathArr.length; i++) {
-        let segment = '/' + pathArr.filter((p, idx) => idx <= i).join('/');
-        if (segment.indexOf('.' + fileType) !== -1) break;
-        if (!fs.existsSync(segment)) {
-            try {
-                fs.mkdirSync(segment);
-            } catch(e) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
 const getLocalstorageKey = key => {
     if ('localStorage' in window) {
         return localStorage.getItem(key);
@@ -118,8 +102,8 @@ const getLocalstorageKey = key => {
 
 const fieldInfo = key => {
     let extraFieldInfo = {
-        title: { label: 'Title', description: 'The title of the post or content.' },
-        subtitle: { label: 'Subtitle', description: 'A small description used in a list view.' },
+        title: { label: 'Title', placeholder: 'Title', description: 'The title of the post or content.' },
+        subtitle: { label: 'Subtitle', placeholder: 'Subtitle', description: 'A small description used in a list view.' },
         header_img: { label: 'Billboard Image', description: 'This image will go above the post.' },
         body_editor: { label: 'Content', description: 'This image will go above the post.' },
         created: { label: 'Created Date', description: '' },
@@ -129,15 +113,16 @@ const fieldInfo = key => {
         tags: { label: 'Terms', description: 'List terms, separated with commas.' },
         published: { label: 'Publish Content', description: 'Leave unchecked for draft mode.' },
         billboard_img: { label: 'Billboard Image', description: 'This banner image will go behind the title, subtitle and link.' },
+        message_editor: { label: 'Message', description: 'The content that will be displayed.' },
         subtitle_editor: { label: 'Subtitle', description: 'A small description or abstract.' },
-        urltext: { label: 'Link Title', description: '' },
-        url: { label: 'Link', description: '' },
+        urltext: { label: 'Link Title', placeholder: 'URL Title', description: '' },
+        url: { label: 'Link', placeholder: 'URL', description: '' },
         pubkey: { label: 'Public BCH or BTC Address', description: '', readonly: true },
         name: { label: 'Name, alias or pseudonom', description: '' },
         email: { label: 'Email', description: 'Optionally add your contact email.' },
         icon_img: { label: 'User Image', description: 'The image should have an equal height/width and be no greater than 100px wide.' },
         bio_editor:  { label: 'Bio', description: 'A short biography or statement of purpose.' },
-        alert_type: { labe: 'Alert type', description: `Set to: 'announce', 'alert' or 'security'. Defaults to announce.`}
+        alert_type: { label: 'Alert type', placeholder: 'announce', description: `Set to: 'announce', 'alert' or 'security'. Defaults to announce.`}
     }
     let fieldData = extraFieldInfo[key];
     if (fieldData) {
@@ -164,11 +149,11 @@ module.exports = {
     hasKey,
     formatDate,
     formatDateFull,
+    saveDateFormat,
     relativeImgPath,
     getUid,
     getDBSchemas,
     getSchema,
-    checkPath,
     toBase64,
     getDBModel,
     fieldInfo,

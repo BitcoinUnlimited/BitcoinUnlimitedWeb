@@ -8,7 +8,7 @@ import { getDBSchema, getAuthSchema } from './realmSchema.js';
 import { realmDatabase, authDatabase } from './realmDB.js';
 import { setProtocolValues } from './modelProtocols.js';
 import { validateAddress, fixAddressFormat, messageVerify, jwtSecret } from './verifySignature.js';
-import { resErr, eToStr, resErrList, resSuccess, toInt, isDef, isStr, checkDate, isOptional, isArr, isEmptyObj, hasKey, relativeImgPath, checkPath, getKeyForType } from '../helpers/helpers.js';
+import { resErr, eToStr, resErrList, resSuccess, toInt, isDef, isStr, checkDate, isOptional, isArr, isEmptyObj, hasKey, relativeImgPath, getKeyForType } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 
 const buildDBErr = idx => strings().database.errors[idx];
@@ -42,6 +42,20 @@ const realmFetch = (db, fn) => new Promise((resolve, reject) => {
             reject(e);
         }
     }).catch(e => reject(e));
+});
+
+const realmBackup = _ => new Promise((resolve, reject) => {
+    let promiseMap = getDBSchema().map(schema => {
+        return realmFetch(realmDatabase, realm => {
+            return realm.objects(schema.name);
+        }).then(res => {
+            return res;
+        });
+    });
+    Promise.all(promiseMap).then(results => {
+        console.log(results);
+        resolve(results);
+    });
 });
 
 /*
@@ -178,11 +192,7 @@ const realmSave = data => new Promise((resolve, reject) => {
     } else {
         setProtocolValues(realmType, data).then(res => {
             realmWrite(realmDatabase, realm => {
-                console.log('res');
-                console.log(res);
                 let saved = realm.create(realmType, res, true);
-                console.log('saved');
-                console.log(saved);
                 if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
                 return saved;
             }).then(res => resolve(res)).catch(e => {
@@ -244,11 +254,27 @@ const realmDelete = data => {
     return realmDeleteUid(realmType, data[key], key);
 }
 
+const checkPath = (path, fileType = '') => {
+    let pathArr = path.split('/').filter(dir => dir !== '');
+    for (var i = 0; i < pathArr.length; i++) {
+        let segment = '/' + pathArr.filter((p, idx) => idx <= i).join('/');
+        if (segment.indexOf('.' + fileType) !== -1) break;
+        if (!fs.existsSync(segment)) {
+            try {
+                fs.mkdirSync(segment);
+            } catch(e) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 const getPublicFiles = (dir) => new Promise((resolve, reject) => {
     try {
         if (checkPath(dir)) {
             let results = [];
-            fs.readdirSync(dir).forEach((file) => {
+            fs.readdirSync(dir).forEach(file => {
                 file = dir + '/' + file;
                 let stat = fs.statSync(file);
                 if (stat && stat.isDirectory()) {
@@ -259,7 +285,7 @@ const getPublicFiles = (dir) => new Promise((resolve, reject) => {
             });
             resolve(results);
         } else {
-            reject();
+            reject(`Path ${dir} was not created.`);
         }
     } catch(e) {
         reject(rejectWithLog(`getPublicFiles(): ${eToStr(e)}`));
@@ -267,6 +293,7 @@ const getPublicFiles = (dir) => new Promise((resolve, reject) => {
 });
 
 module.exports = {
+    realmBackup,
     signatureVerify,
     validateAuth,
     typeIsValid,
@@ -275,6 +302,7 @@ module.exports = {
     realmDelete,
     getAuth,
     removeAuth,
+    checkPath,
     getPublicFiles,
     getLogs
 }
