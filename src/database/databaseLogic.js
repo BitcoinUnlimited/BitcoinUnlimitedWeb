@@ -53,7 +53,6 @@ const realmBackup = _ => new Promise((resolve, reject) => {
         });
     });
     Promise.all(promiseMap).then(results => {
-        console.log(results);
         resolve(results);
     });
 });

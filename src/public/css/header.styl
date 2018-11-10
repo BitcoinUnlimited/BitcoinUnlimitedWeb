@@ -26,10 +26,6 @@
 .header__link
     text-decoration: none
     transition: color .15s ease-in
-    -webkit-transition: color .15s ease-in
-    -moz-transition: color .15s ease-in
-    -o-transition: color .15s ease-in
-    -ms-transition: color .15s ease-in
 
 .header__link:hover
     color: currentColor
@@ -37,10 +33,6 @@
     padding-bottom: 1px
     text-decoration: none
     transition: color .15s ease-in
-    -webkit-transition: color .15s ease-in
-    -moz-transition: color .15s ease-in
-    -o-transition: color .15s ease-in
-    -ms-transition: color .15s ease-in
 
 .header__link:active
     color: currentColor
@@ -48,10 +40,6 @@
     padding-bottom: 1px
     text-decoration: none
     transition: color .15s ease-in
-    -webkit-transition: color .15s ease-in
-    -moz-transition: color .15s ease-in
-    -o-transition: color .15s ease-in
-    -ms-transition: color .15s ease-in
 
 .header__link:focus
     color: currentColor
@@ -59,19 +47,15 @@
     padding-bottom: 1px
     text-decoration: none
     transition: color .15s ease-in
-    -webkit-transition: color .15s ease-in
-    -moz-transition: color .15s ease-in
-    -o-transition: color .15s ease-in
-    -ms-transition: color .15s ease-in
 
 .user-header
     float: right
     width: 36px
     height: 36px
-    margin-top: 7px
+    margin-top: 4px
     text-align: center
     line-height: 14px
-    margin-left: 16px
+    margin-left: 13px
     font-size: 12px
 
 .user-header img
@@ -84,6 +68,12 @@
     height: 36px
     background-color: #efefef
     border-radius: 50%
+    border: 3px solid #fff
+    transition: border .15s ease-in
+    cursor: pointer
+
+.user-header .icon:hover
+    border: 3px solid $orange
 
 .user-header .icon svg
     margin-top: 6px

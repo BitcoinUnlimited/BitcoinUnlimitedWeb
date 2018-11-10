@@ -12,7 +12,7 @@ import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
 import { signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath } from './database/databaseLogic.js';
-import { resErr, eToStr, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
+import { resErr, eToStr, isEmptyObj, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 
@@ -95,8 +95,10 @@ app.post('/sig_verify', (req, res) => {
 app.get('/api/get/:type/:uid?', (req, res) => {
     let { params: { type, uid } } = req;
     let { query } = req;
+
     //console.log(`type: ${type} uid: ${uid}`);
-    if (query) console.log(query);
+    if (!isEmptyObj(query)) console.log(query);
+
     if (!type || !typeIsValid(type)) {
         res.redirect('/not-found');
     } else {
@@ -129,7 +131,7 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
             });
         });
         busboy.on('data', function(data) {
-            console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+            //console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
         });
         busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
             fields[fieldname] = val;

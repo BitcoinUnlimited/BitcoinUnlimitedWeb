@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import UserIcon from '../icons/userIcon.jsx';
-import { isEmptyObj } from '../../../../helpers/helpers.js';
+import { isEmptyObj, getLocalstorageKey } from '../../../../helpers/helpers.js';
 
 class UserArea extends React.Component {
     constructor(props) {
@@ -17,15 +17,19 @@ class UserArea extends React.Component {
         let { user: { name } } = this.state;
         return (name) ? name : pubkey.substr(0, 6) + '..';
     }
-    getUserIcon() {
-        let { user: { icon_img: icon } } = this.state;
-        return (icon) ? (<img src={icon} />) : (<div className="icon"><UserIcon width="20" height="20" /></div>);
+    getIconLink(pubkey, icon) {
+        return (<Link to={`/update/User/${pubkey}`}><img className="icon" src={icon} /></Link>);
     }
-    getEditLink() {
-        let { user : { pubkey, name } } = this.state;
+    getDefaultLink(pubkey) {
+        return (<Link to={`/update/User/${pubkey}`}><div className="icon"><UserIcon width="20" height="20" /></div></Link>);
+    }
+    getUserIcon() {
+        let { user: { icon_img: icon, pubkey } } = this.state;
         if (pubkey) {
             return (
-                <Link className='user-edit' to={`/update/User/${pubkey}`}>{this.getNameDisplay(pubkey)}</Link>
+                <div className="user-header">
+                    {(icon) ? this.getIconLink(pubkey, icon) : this.getDefaultLink(pubkey)}
+                </div>
             );
         }
         return null;
@@ -42,13 +46,11 @@ class UserArea extends React.Component {
         return changed;
     }
     setUser() {
-        if ('localStorage' in window) {
-            let user = localStorage.getItem('user');
-            if (user) {
-                user = JSON.parse(user);
-                if (this.userDidChange(user)) {
-                    this.setState({ hasUser: true, user: user });
-                }
+        let user = getLocalstorageKey('user');
+        if (user) {
+            user = JSON.parse(user);
+            if (this.userDidChange(user)) {
+                this.setState({ hasUser: true, user: user });
             }
         }
     }
@@ -61,11 +63,7 @@ class UserArea extends React.Component {
     render() {
         let { hasUser } = this.state;
         if (!hasUser) return null;
-        return (
-            <div className="user-header">
-                {this.getUserIcon()}
-            </div>
-        );
+        return this.getUserIcon();
     }
 }
 
