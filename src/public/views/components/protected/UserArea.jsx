@@ -24,7 +24,7 @@ class UserArea extends React.Component {
         return (<Link to={`/update/User/${pubkey}`}><div className="icon"><UserIcon width="20" height="20" /></div></Link>);
     }
     getUserIcon() {
-        let { user: { icon_img: icon, pubkey } } = this.state;
+        let { user: { icon_img_64: icon, pubkey } } = this.state;
         if (pubkey) {
             return (
                 <div className="user-header">

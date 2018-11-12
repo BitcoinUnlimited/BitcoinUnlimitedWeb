@@ -10,7 +10,7 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import Axios from 'axios';
 import { strings } from '../../../lib/i18n';
-import { getDBModel, toBase64, isEmptyObj, isDef, getUid } from '../../../../helpers/helpers.js';
+import { getDBModel, toBase64, isEmptyObj, isDef, getUid, isImage64 } from '../../../../helpers/helpers.js';
 import Base from '../../base.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
 
@@ -27,6 +27,7 @@ class RealmFormWrapper extends React.Component {
         this.formSubmit = this.formSubmit.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.imageChange = this.imageChange.bind(this);
+        this.fileUpload = this.fileUpload.bind(this);
         this.deleteConfirm = this.deleteConfirm.bind(this);
     }
 
@@ -104,6 +105,29 @@ class RealmFormWrapper extends React.Component {
         }).catch(e => {
             this.setSplash(`There was an error updating your ${this.state.realmType}. See console for details.`);
             console.log(e);
+        });
+    }
+
+    fileUpload(e) {
+        e.preventDefault();
+        const { name, files } = e.target;
+        var formData = new FormData();
+        if (!files[0]) return;
+        formData.append('file', files[0]);
+        let { realmModel } = this.state;
+        realmModel[name].fetching = true;
+        this.setState({ realmModel });
+        Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+            let { realmModel } = this.state;
+            let { data: { message } } = res;
+            if (message) {
+                realmModel[name].value = message;
+                realmModel[name].fetching = false;
+            } else {
+                realmModel[name].error = 'There was an error with the upload.';
+                realmModel[name].fetching = false;
+            }
+            this.setState({ realmModel });
         });
     }
 
@@ -188,7 +212,13 @@ class RealmFormWrapper extends React.Component {
     }
 
     getChangeFn(name, type) {
-        if (type === 'file') return this.imageChange;
+        if (type === 'file') {
+            if (isImage64(name)) {
+                return this.imageChange;
+            } else {
+                return this.fileUpload;
+            }
+        }
         if (type === 'editor') return (e) => this.editorStateChange(e, name);
         return this.inputChange;
     }
@@ -205,6 +235,7 @@ class RealmFormWrapper extends React.Component {
                 inputValue={input.value}
                 inputPlaceholder={(input.fieldInfo) ? ((input.fieldInfo.placeholder) ? input.fieldInfo.placeholder: null) : null}
                 inputChange={this.getChangeFn(input.name, input.type)}
+                inputFetching={(input.type === 'file') ? input.fetching : false}
                 inputRemove={this.fileRemove(input.name, input.type)}
                 inputError={(input.error) ? input.error : null}
                 inputDescription={(input.fieldInfo) ? ((input.fieldInfo.description) ? input.fieldInfo.description: null) : null}

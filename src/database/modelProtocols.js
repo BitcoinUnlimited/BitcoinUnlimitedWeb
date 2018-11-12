@@ -5,11 +5,11 @@ import uuidv4 from 'uuid/v4';
 import { getKeyForType } from '../helpers/helpers.js';
 
 /*
- * Declare types that require extra processing
+ * Declare types that require processing
  *
  * E.g., const contentNames = ['Post','Hero','User','Yourmodelname' ...];
  */
-const contentNames = ['Post', 'Hero', 'User', 'Alert'];
+const contentNames = ['Post', 'Hero', 'User', 'Alert', 'Data'];
 const protocol = {};
 
 /*
@@ -108,6 +108,11 @@ protocol.User = data => {
 
 protocol.Alert = data => {
     let ops = ['setPrimaryKey', 'setCreated', 'setPublished', 'validateAlertType'];
+    return runOps(ops, data);
+}
+
+protocol.Data = data => {
+    let ops = ['setPrimaryKey', 'setCreated', 'setUpdated'];
     return runOps(ops, data);
 }
 

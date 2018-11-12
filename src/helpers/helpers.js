@@ -24,9 +24,13 @@ const isText = prop => (checkRealmType(prop, 'string')) ? true : false;
 const isBool = prop => (checkRealmType(prop, 'bool')) ? true : false;
 const isDate = prop => (checkRealmType(prop, 'date')) ? true : false;
 // check keys for input type specifiers
-const isEditor = key => (key.indexOf('editor') !== -1) ? true : false;
-const isImage = key => (key.indexOf('img') !== -1) ? true : false;
 const isUid = key => (key.indexOf('uid') !== -1) ? true : false;
+const isEditor = key => (key.indexOf('editor') !== -1) ? true : false;
+const isImage64 = key => (key.indexOf('_img_64') !== -1) ? true : false;
+const isImage = key => (key.indexOf('_img') !== -1) ? true : false;
+const isFile = key => (key.indexOf('_file') !== -1) ? true : false;
+const isTextarea = key => (key.indexOf('_data') !== -1) ? true : false;
+const isFileInput = key => (isFile(key) || isImage(key)) ? true : false;
 
 const isEmptyObj = obj => Object.keys(obj).length === 0;
 const isEmptyArr = arr => arr.length === 0;
@@ -38,17 +42,20 @@ const saveDateFormat = date => `${date.getMonth()}-${date.getDate()}-${date.getF
 const relativeImgPath = fullPath => fullPath.split('/public').pop();
 
 const getUid = () => uuidv4();
+const getLocalstorageKey = key => ('localStorage' in window) ? localStorage.getItem(key) : false;
+
 const getDBSchemas = type => (type == 'auth') ? getAuthSchema() : getDBSchema();
 const getSchema = (name, db = '') => getDBSchemas(db).filter(schema => schema.name === name)[0];
 const readOnlyKeys = key => ['created', 'updated'].indexOf(key) !== -1;
-const getLocalstorageKey = key => ('localStorage' in window) ? localStorage.getItem(key) : false;
 
 const getModelPropType = (propKey, propType, primaryKey) => {
-    if (propKey === primaryKey || readOnlyKeys(propKey)) return 'hidden';
-    propType = isObj(propType) ? propType.type : propType;
+    // key checking
+    if (propKey === primaryKey || readOnlyKeys(propKey) || isUid(propKey)) return 'hidden';
+    if (isTextarea(propKey)) return 'textarea';
     if (isEditor(propKey)) return 'editor';
-    if (isImage(propKey)) return 'file';
-    if (isUid(propKey)) return 'hidden';
+    if (isFileInput(propKey)) return 'file';
+    // type checking
+    propType = isObj(propType) ? propType.type : propType;
     if (isBool(propType)) return 'checkbox';
     if (isDate(propType)) return 'date';
     if (isText(propType)) return 'text';
@@ -78,6 +85,9 @@ const getDBModel = name => {
         let prop = { name: propKey, realmType: getRealmType(schemaString), error: '' };
         prop.required = (!isOptional(schemaString)) ? true : false;
         prop.type = getModelPropType(propKey, schemaString, primaryKey);
+        if (prop.type === 'file') {
+            prop.fetching = false;
+        }
         prop.value = (prop.type === 'editor') ? EditorState.createEmpty() : '';
         prop.fieldInfo = getModelPropInfo(propKey);
         model[propKey] = prop;
@@ -105,6 +115,9 @@ module.exports = {
     toInt,
     isDef,
     isStr,
+    isImage,
+    isImage64,
+    isFile,
     checkDate,
     isOptional,
     isArr,

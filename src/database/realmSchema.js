@@ -14,6 +14,8 @@ import uuidv4 from 'uuid/v4';
  *
  * Auth and Log are separated from the main content realmDatabase. These realmTypes
  * are excluded from the auto-generating RealmFormWrapper and ContentList components.
+ *
+ * Make sure to update modelProtocols.js with preprocessing
  */
 
  /* Admin */
@@ -46,8 +48,8 @@ const UserSchema = {
     properties: {
         pubkey: 'string',
         created: {type: 'date', default: new Date()},
-        name: 'string?',
-        icon_img: 'string?',
+        displayname: 'string?',
+        icon_img_64: 'string?',
         bio_editor: 'string?'
     }
 }
@@ -58,6 +60,7 @@ const AlertSchema = {
     properties: {
         uid: {type: 'string', default: uuidv4()},
         created: {type: 'date', default: new Date()},
+        name: 'string?',
         message_editor: 'string',
         published: {type: 'bool', default: false},
         alert_type: {type: 'string', default: 'announce'}
@@ -71,6 +74,7 @@ const HeroSchema = {
         uid: {type: 'string', default: uuidv4()},
         created: {type: 'date', default: new Date()},
         updated: {type: 'date', optional: true, default: new Date()},
+        name: 'string?',
         title: 'string',
         billboard_img: 'string?',
         subtitle_editor: 'string?',
@@ -87,6 +91,7 @@ const PostSchema = {
         uid: {type: 'string', default: uuidv4()},
         created: {type: 'date', default: new Date()},
         updated: {type: 'date', optional: true, default: new Date()},
+        name: 'string?',
         title: 'string',
         subtitle: 'string?',
         header_img: 'string?',
@@ -97,8 +102,21 @@ const PostSchema = {
     }
 }
 
+const DataSchema = {
+    name: 'Data',
+    primaryKey: 'uid',
+    properties: {
+        uid: {type: 'string', default: uuidv4()},
+        created: {type: 'date', default: new Date()},
+        updated: {type: 'date', optional: true, default: new Date()},
+        name: 'string?',
+        upload_file: 'string?',
+        misc_data: 'string?'
+    }
+}
+
 const getDBSchema = () => {
-    return [UserSchema, HeroSchema, PostSchema, AlertSchema];
+    return [UserSchema, HeroSchema, PostSchema, AlertSchema, DataSchema];
 }
 
 const getAuthSchema = () => {
