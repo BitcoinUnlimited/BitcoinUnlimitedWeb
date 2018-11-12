@@ -89,7 +89,7 @@ const insertAuth = data => new Promise((resolve, reject) => {
         }).then(_ => {
             realmLog(resSuccess(`Added User ${pubkey}`, 'insertAuth()'));
         }).catch(e => {
-            realmLog(resErr(e, 'insertAuth()'));
+            realmLog(resErr(`insertAuth() ${eToStr(e)}`));
         });
         resolve(res);
     }).catch(e => reject(e));

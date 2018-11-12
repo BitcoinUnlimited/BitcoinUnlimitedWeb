@@ -11,8 +11,8 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath } from './database/databaseLogic.js';
-import { resErr, eToStr, isEmptyObj, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
+import { signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath, realmLog } from './database/databaseLogic.js';
+import { resErr, resSuccess, eToStr, isEmptyObj, isImage64, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 
@@ -118,6 +118,27 @@ app.post('/api/delete', jwtMiddleware(), (req, res) => {
         }
     }
 });
+app.post('/api/upload', jwtMiddleware(), (req, res) => {
+    try {
+        let busboy = new Busboy({ headers: req.headers });
+        let filePath;
+        busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+            let type = mimetype.split('/')[1] || mimetype.split('/')[0];
+            filePath = path.join(staticFilesDir, type, filename);
+            if (checkPath(filePath)) {
+                file.pipe(fs.createWriteStream(filePath));
+            }
+        });
+        busboy.on('finish', function() {
+            let pathArr = filePath.split('/');
+            let staticFilePath = '/static/' + pathArr.slice(pathArr.indexOf('assets') + 1).join('/');
+            res.json(resSuccess(staticFilePath));
+        });
+        req.pipe(busboy);
+    } catch(e) {
+        res.json(resErr(`/api/upload: ${eToStr(e)}`));
+    }
+});
 app.post('/api/upsert', jwtMiddleware(), (req, res) => {
     try {
         let busboy = new Busboy({ headers: req.headers });
@@ -125,14 +146,6 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
         if (req.user && req.user.pubkey) {
             fields.pubkey = req.user.pubkey;
         }
-        busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-            file.on('end', function() {
-                fields[fieldname] = toBase64(file);
-            });
-        });
-        busboy.on('data', function(data) {
-            //console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
-        });
         busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
             fields[fieldname] = val;
         });

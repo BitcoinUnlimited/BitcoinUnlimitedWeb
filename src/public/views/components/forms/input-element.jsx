@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
+import ReactLoading from "react-loading";
+import { isImage } from '../../../../helpers/helpers.js';
 
 class InputElement extends React.Component {
     getLabel() {
@@ -33,6 +35,24 @@ class InputElement extends React.Component {
         }
         return null;
     }
+    getFileType(inputName, inputChange) {
+        if (isImage(inputName)) {
+            return (<input type="file" accept="image/*" name={inputName} onChange={inputChange} />);
+        }
+        return (<input type="file" accept=".exe,.zip,.gz,.pdf,.json" name={inputName} onChange={inputChange} />);
+    }
+    getReactLoading(isFetching) {
+        if (isFetching) {
+            return (<ReactLoading type="balls" color="#ccc" />);
+        }
+        return;
+    }
+    getFilePreview(inputName, inputValue) {
+        if (isImage(inputName)) {
+            return (<div className="image-preview"><img src={inputValue} /></div>);
+        }
+        return (<div className="clear file-preview"><a className='underline link' href={inputValue} download>{inputValue}</a></div>);
+    }
     // getModules() {
     //     return {
     //         toolbar: [
@@ -54,7 +74,7 @@ class InputElement extends React.Component {
     //     ];
     // }
     render() {
-        let { inputType, inputName, inputChange, inputValue, inputPlaceholder } = this.props;
+        let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching } = this.props;
         if (!inputType || !inputName || !inputChange) {
             return null;
         }
@@ -100,11 +120,12 @@ class InputElement extends React.Component {
                 <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
                     {this.getLabel()}
                     <div className="file-upload">
-                        <input type={inputType} name={inputName} onChange={inputChange} />
+                        {this.getFileType(inputName, inputChange)}
                     </div>
+                    {this.getReactLoading(inputFetching)}
+                    {this.getFilePreview(inputName, inputValue)}
                     {this.getDescription()}
                     {this.getError()}
-                    <div className="preview"><img src={inputValue} /></div>
                     {this.getRemoveBtn()}
                 </fieldset>
             );
@@ -136,6 +157,22 @@ class InputElement extends React.Component {
                         value={formattedDate}
                         onChange={inputChange}
                     />
+                    {this.getDescription()}
+                    {this.getError()}
+                </fieldset>
+            );
+        }
+        if (inputType === 'textarea') {
+            return (
+                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                    {this.getLabel()}
+                    <textarea
+                        className="textarea"
+                        name={inputName}
+                        placeholder={(inputPlaceholder) ? inputPlaceholder : null}
+                        value={inputValue}
+                        onChange={inputChange}>
+                    ></textarea>
                     {this.getDescription()}
                     {this.getError()}
                 </fieldset>
