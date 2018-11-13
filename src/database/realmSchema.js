@@ -41,6 +41,24 @@ const LogSchema = {
     }
 }
 
+const AdminSchema = {
+    name: 'Admin',
+    primaryKey: 'pubkey',
+    properties: {
+        pubkey: 'string',
+        role:  {type: 'Role', optional: true}
+    }
+}
+
+const RoleSchema = {
+    name: 'Role',
+    primaryKey: 'rid',
+    properties: {
+        rid: 'string',
+        rolename: 'string'
+    }
+}
+
 /* Public */
 const UserSchema = {
     name: 'User',
@@ -120,7 +138,7 @@ const getDBSchema = () => {
 }
 
 const getAuthSchema = () => {
-    return [AuthSchema, LogSchema];
+    return [AuthSchema, LogSchema, AdminSchema, RoleSchema];
 }
 
 module.exports = {

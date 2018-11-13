@@ -11,7 +11,7 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath, realmLog } from './database/databaseLogic.js';
+import { isAdmin, signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath, realmLog } from './database/databaseLogic.js';
 import { resErr, resSuccess, eToStr, isEmptyObj, isImage64, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
@@ -24,15 +24,20 @@ const passportOpts = {
 }
 
 const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
-    getAuth(payload.pubkey).then(auth => {
-        if (validateAuth(auth)) {
-            next(null, auth);
-        } else {
+    isAdmin(payload.pubkey).then(res => {
+        getAuth(payload.pubkey).then(auth => {
+            if (validateAuth(auth)) {
+                next(null, auth);
+            } else {
+                removeAuth(payload.pubkey);
+                next(null, false);
+            }
+        }).catch(e => {
             removeAuth(payload.pubkey);
             next(null, false);
-        }
+        });
     }).catch(e => {
-        console.log(eToStr(e));
+        removeAuth(payload.pubkey);
         next(null, false);
     });
 });
@@ -72,7 +77,7 @@ app.get('/get_logs', jwtMiddleware(), (req, res) => {
     getLogs().then(result => {
         res.json(result);
     }).catch(e => {
-        res.json(resErr(`getLogs(): ${e}`));
+        res.json(resErr(`getLogs(): ${eToStr(e)}`));
     })
 });
 
