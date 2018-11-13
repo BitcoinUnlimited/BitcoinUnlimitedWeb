@@ -6,12 +6,6 @@ import AddrFormat from 'bchaddrjs';
 import { strings } from '../public/lib/i18n';
 
 /*
- * Address must be a BU member public key
- * address {string}
- */
-const validateAddress = address => { return strings().auth.validAddresses.filter(addr => addr === address).length > 0; }
-
-/*
  * Converts BitcoinCash and Bitpay addresses to legacy for verification
  * address {string}
  */
@@ -35,7 +29,6 @@ const messageVerify = message => {
 const testSomething = () => 'true';
 
 module.exports = {
-    validateAddress,
     fixAddressFormat,
     messageVerify,
     testSomething

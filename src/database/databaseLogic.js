@@ -7,7 +7,7 @@ import Promise from 'promise';
 import { getDBSchema, getAuthSchema } from './realmSchema.js';
 import { realmDatabase, authDatabase } from './realmDB.js';
 import { setProtocolValues } from './modelProtocols.js';
-import { validateAddress, fixAddressFormat, messageVerify, jwtSecret } from './verifySignature.js';
+import { fixAddressFormat, messageVerify, jwtSecret } from './verifySignature.js';
 import { resErr, eToStr, resErrList, resSuccess, toInt, isDef, isStr, checkDate, isOptional, isArr, isEmptyObj, hasKey, relativeImgPath, getKeyForType } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 
@@ -21,6 +21,8 @@ const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
  * todo: add interface for role 0 to adjust value
  */
 const authExiprationSeconds = 7200;
+
+const isSuperAdmin = pubkey => (process.env.DB_ADMIN_PUBKEY.indexOf(pubkey) !== -1);
 
 const realmWrite = (db, fn) => new Promise((resolve, reject) => {
     Realm.open(db).then(realm => {
@@ -70,9 +72,9 @@ const realmLog = data => {
     }
 }
 
-const rejectWithLog = errorText => {
-    errorText = (errorText && isStr(errorText)) ? errorText : 'There was an unknown error.';
-    let error = resErr(errorText);
+const rejectWithLog = e => {
+    e = (e) ? e : 'There was an unknown error.';
+    let error = resErr(e);
     realmLog(error);
     return error;
 }
@@ -119,27 +121,44 @@ const getLogs = () => new Promise((resolve, reject) => {
     }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
 });
 
+const isAdmin = pubkey => new Promise((resolve, reject) => {
+    if (isSuperAdmin(pubkey)) {
+        resolve(true);
+    } else {
+        realmFetch(authDatabase, realm => {
+            const predicate = `pubkey == "${pubkey}"`;
+            const { "0": result } = realm.objects('Admin').filtered(predicate);
+            if (!result || isEmptyObj(result)) throw `Invalid pubkey: pubkey not found.`;
+            resolve(result);
+        }).then(res => resolve(res)).catch(e => reject(rejectWithLog(`isAdmin(): ${eToStr(e)}`)));
+    }
+});
+
 const signatureVerify = data => new Promise((resolve, reject) => {
     const { pubkey, challenge, signature } = data;
     if (!isStr(pubkey) || !isStr(challenge) || !isStr(signature)) {
-        reject(rejectWithLog('signatureVerify(): Missing data for messageVerify'));
+        reject(rejectWithLog('signatureVerify(): Missing data for messageVerify.'));
     }
-    if (messageVerify(data)) {
-        const expires = Math.floor(Date.now() / 1000) + authExiprationSeconds;
-        insertAuth({ pubkey, challenge, signature, expires }).then(res => {
-            if (!res.pubkey || !res.challenge || !res.signature || !res.expires) throw 'Missing required jwt data.';
-            const token = jwt.sign({
-                pubkey: res.pubkey,
-                challenge: res.challenge,
-                signature: res.signature,
-                expires: res.expires
-            }, process.env.JWT_SECRET);
-            if (!token) throw 'Token creation error.';
-            resolve(token);
-        }).catch(e => reject(rejectWithLog(`signatureVerify(): ${eToStr(e)}`)));
-    } else {
-        reject(rejectWithLog('signatureVerify(): Challenge could not be verified.'));
-    }
+    isAdmin(pubkey).then(res => {
+        if (messageVerify(data)) {
+            const expires = Math.floor(Date.now() / 1000) + authExiprationSeconds;
+            insertAuth({ pubkey, challenge, signature, expires }).then(res => {
+                if (!res.pubkey || !res.challenge || !res.signature || !res.expires) throw 'Missing required jwt data.';
+                const token = jwt.sign({
+                    pubkey: res.pubkey,
+                    challenge: res.challenge,
+                    signature: res.signature,
+                    expires: res.expires
+                }, process.env.JWT_SECRET);
+                if (!token) throw 'Token creation error.';
+                resolve(token);
+            }).catch(e => reject(rejectWithLog(`signatureVerify(): ${eToStr(e)}`)));
+        } else {
+            reject(rejectWithLog('signatureVerify(): Challenge could not be verified.'));
+        }
+    }).catch(e => {
+        reject(rejectWithLog(`signatureVerify(): ${eToStr(e)}`));
+    });
 });
 
 const getSchemaProps = realmType => {
@@ -293,6 +312,7 @@ const getPublicFiles = (dir) => new Promise((resolve, reject) => {
 
 module.exports = {
     realmBackup,
+    isAdmin,
     signatureVerify,
     validateAuth,
     typeIsValid,

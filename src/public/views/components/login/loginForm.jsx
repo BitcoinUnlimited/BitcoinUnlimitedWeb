@@ -4,7 +4,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { strings } from '../../../lib/i18n';
-import { validateAddress } from '../../../../database/verifySignature.js';
 import Axios from 'axios';
 
 class LoginForm extends React.Component {
@@ -50,9 +49,8 @@ class LoginForm extends React.Component {
     validate() {
         if (!this.state.sig || !this.state.pubkey) {
             return 1;
-        } else if (!validateAddress(this.state.pubkey)) {
-            return 0;
         }
+        return null;
     }
 
     render() {
