@@ -547,10 +547,10 @@
         "bitcoincash": {
             "title": "Official Bitcoin Cash (BCH) Release",
             "download": "Download the latest Bitcoin Cash compatible release of Bitcoin Unlimited",
-            "version": "v1.5.0.1",
-            "date": "Nov 5, 2018",
+            "version": "v1.5.0.2",
+            "date": "Nov 13, 2018",
             "notes": "This release implements Bitcoin Cash, compliant with the latest activated protocol upgrade (May 15, 2018) and implements features as defined in the ABC and SV specifications for the contentious Nov 15, 2018 network upgrades. For the activation of such features and BIP135 miner voting scheme see ",
-            "notes2": "BUCash 1.5.0.1 MacOS dmg won't be available for this release",
+            "notes2": "",
             "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  Bitcoin Cash is a better bitcoin, delivering onchain scalability that has resulted in penny transaction fees and fast confirmations."
         },
         "windows": "Windows",
@@ -568,6 +568,7 @@
         "source": "source code",
         "notes": {
             "title": "Release Notes",
+            "releasenotes_buc_1_5_0_2": "BUcash 1.5.0.2: Release notes are ",
             "releasenotes_buc_1_5_0_1": "BUcash 1.5.0.1: Release notes are ",
             "releasenotes_buc_1_5_0_0": "BUcash 1.5.0.0: Release notes are ",
             "releasenotes_buc_1_4_0_0": "BUcash 1.4.0.0: Release notes are ",
@@ -602,7 +603,7 @@
             "andrew": "By: Andrew Stone (thezerg)",
             "awemany": "By: awemany",
             "sickpig": "By: Andrea Suisani (sickpig)",
-            "griffith": "By:Greg Griffith (griffith)",
+            "griffith": "By: Greg Griffith (griffith)",
             "deadalnix": "By: Amaury SECHET (deadalnix)",
             "freetrader": "By: freetrader",
             "thezerg": "",
