@@ -15,7 +15,7 @@ class AdminList extends React.Component {
         this.state = {
             schema: null,
             fetching: false,
-            admins: {},
+            adminList: {},
             newAdmin: {
                 pubkey: '',
                 role: ''
@@ -34,14 +34,14 @@ class AdminList extends React.Component {
     getAdminList() {
         let jwt = getLocalstorageKey('jwt');
         if (jwt) {
-            this.setState({ fetching: true, admins: {} });
+            this.setState({ fetching: true, adminList: {} });
             Axios.get('/get/secure/Admin', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
-                let { data: admins } = res;
-                if (admins) {
-                    this.setState({ fetching: false, admins });
+                let { data: adminList } = res;
+                if (adminList) {
+                    this.setState({ fetching: false, adminList });
                 }
             }).catch(e => {
-                this.setState({ fetching: false, admins: {} });
+                this.setState({ fetching: false, adminList: {} });
                 console.log(e);
             });
         }
@@ -53,49 +53,49 @@ class AdminList extends React.Component {
         this.getAdminList();
     }
 
-    addAdmin() {
-        console.log('add');
+    buildAdminData() {
+        let { newAdmin: { pubkey, role } } = this.state;
+        let formData = new FormData();
+        formData.append('realmType', 'Admin');
+        formData.append('pubkey', pubkey);
+        return formData;
+    }
+
+    addAdmin(e) {
+        e.preventDefault();
+        let jwt = getLocalstorageKey('jwt');
+        if (jwt) {
+            this.setState({ fetching: true, adminList: {} });
+            let data = this.buildAdminData();
+            Axios.post('/api/upsert', data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+                let { data: { pubkey } } = res;
+                if (pubkey) this.getAdminList();
+            }).catch(e => {
+                this.setSplash(`There was an error updating your ${this.state.realmType}. See console for details.`);
+                console.log(e);
+            });
+        }
     }
 
     removeAdmin(e) {
         e.preventDefault();
-        let pubkey = e.target.getAttribute('data-pubkey')
-        console.log('pubkey');
-        let confirmed = confirm(`Remove pubkey ${pubkey} from the admin list?`);
-        if (confirmed) {
-            console.log('confirm');
-            // Axios.post('/api/delete', { uid, realmType }, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
-            //     let { data: { status } } = res;
-            //     if (status && status === 'success') {
-            //         this.props.router.push(`/create/${realmType}`);
-            //     } else {
-            //         this.setSplash(`There was an error deleting ${realmType} ${uid}. See console for details.`);
-            //     }
-            // }).catch(e => {
-            //     this.setSplash(`There was an error deleting your ${realmType} ${uid}. See console for details.`);
-            //     console.log(e);
-            // });
+        let jwt = getLocalstorageKey('jwt');
+        if (jwt) {
+            let pubkey = e.target.getAttribute('data-pubkey')
+            let confirmed = confirm(`Remove pubkey ${pubkey} from the admin list?`);
+            if (confirmed) {
+                Axios.post('/api/delete', { pubkey, realmType: 'Admin' }, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
+                    let { data: { status } } = res;
+                    if (status === 'success') {
+                        this.getAdminList();
+                    }
+                }).catch(e => {
+                    this.setSplash(`There was an error deleting your ${realmType} ${pubkey}. See console for details.`);
+                    console.log(`${e}`);
+                });
+            }
         }
     }
-
-    // removeAdminConfirm(e) {
-    //     e.preventDefault();
-    //     let { uid, realmType } = this.state;
-    //     let confirmed = confirm(`Delete ${realmType} ${uid}?`);
-    //     if (confirmed) {
-    //         Axios.post('/api/delete', { uid, realmType }, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
-    //             let { data: { status } } = res;
-    //             if (status && status === 'success') {
-    //                 this.props.router.push(`/create/${realmType}`);
-    //             } else {
-    //                 this.setSplash(`There was an error deleting ${realmType} ${uid}. See console for details.`);
-    //             }
-    //         }).catch(e => {
-    //             this.setSplash(`There was an error deleting your ${realmType} ${uid}. See console for details.`);
-    //             console.log(e);
-    //         });
-    //     }
-    // }
 
     buildHeader() {
         let { schema: { properties: props } } = this.state;
@@ -105,36 +105,38 @@ class AdminList extends React.Component {
         return (<tr>{results}<th scope="col">Edit</th></tr>);
     }
 
-    displayAdmins(admins, newAdmin) {
-        if (!isEmptyObj(admins)) {
-            let results = Object.keys(admins).map((key, idx) => {
-                let { pubkey, role } = admins[key];
-                return (
-                    <tr key={idx}>
-                      <th scope="row">{ pubkey }</th>
-                      <td>{ role }</td>
-                      <td><button data-pubkey={pubkey} onClick={this.removeAdmin}>Remove</button></td>
-                    </tr>
-                );
-            });
+    displayAdmins(adminList, newAdmin) {
+        let results = Object.keys(adminList).map((key, idx) => {
+            let { pubkey, role } = adminList[key];
             return (
-                <tbody>
-                    {results}
-                    <tr>
-                      <th scope="row"><label className="clear">Add Pubkey:</label><input type="text" name="pubkey" placeholder="Pubkey" value={newAdmin.pubkey} onChange={this.inputChange}/></th>
-                      <td><label className="clear">Role:</label><input type="text" name="role" placeholder="Role(soon)" value={newAdmin.role} onChange={this.inputChange} disabled/></td>
-                      <td><button onClick={this.addAdmin}>Add</button></td>
-                    </tr>
-                </tbody>
+                <tr key={idx}>
+                  <th scope="row">{ pubkey }</th>
+                  <td>{ role }</td>
+                  <td><button data-pubkey={pubkey} onClick={this.removeAdmin}>Remove</button></td>
+                </tr>
             );
-        }
-        return null;
+        });
+        return (
+            <tbody>
+                {results}
+                <tr>
+                    <th scope="row">
+                        <label className="clear">Add Pubkey:</label>
+                        <input type="text" name="pubkey" placeholder="Pubkey" value={newAdmin.pubkey} onChange={this.inputChange}/>
+                    </th>
+                    <td>
+                        <label className="clear">Role:</label>
+                        <input type="text" name="role" placeholder="Role(soon)" value={newAdmin.role} onChange={this.inputChange} disabled/>
+                    </td>
+                    <td><button onClick={this.addAdmin}>Add</button></td>
+                </tr>
+            </tbody>
+        );
     }
 
-
     render() {
-        let { schema, admins, fetching, newAdmin } = this.state;
-        if (!schema || isEmptyArr(admins) || fetching) {
+        let { schema, adminList, fetching, newAdmin } = this.state;
+        if (!schema || fetching) {
             return (
                 <div className="admin-list">
                     <ReactLoading type="balls" color="#ccc" />
@@ -148,7 +150,7 @@ class AdminList extends React.Component {
                     <thead className="thead-dark">
                         { this.buildHeader() }
                     </thead>
-                    { this.displayAdmins(admins, newAdmin) }
+                    { this.displayAdmins(adminList, newAdmin) }
                 </table>
             </div>
         );
