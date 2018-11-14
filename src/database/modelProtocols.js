@@ -9,7 +9,7 @@ import { getKeyForType } from '../helpers/helpers.js';
  *
  * E.g., const contentNames = ['Post','Hero','User','Yourmodelname' ...];
  */
-const contentNames = ['Post', 'Hero', 'User', 'Alert', 'Data'];
+const contentNames = ['Post', 'Hero', 'User', 'Alert', 'Data', 'Admin'];
 const protocol = {};
 
 /*
@@ -75,6 +75,11 @@ protocol.checkPubkey = data => {
     return data;
 }
 
+protocol.removeRole = data => {
+    delete data.role;
+    return data;
+}
+
 const runOps = (ops, data) => {
     ops.map(fn => {
         data = protocol[fn](data);
@@ -113,6 +118,11 @@ protocol.Alert = data => {
 
 protocol.Data = data => {
     let ops = ['setPrimaryKey', 'setCreated', 'setUpdated'];
+    return runOps(ops, data);
+}
+
+protocol.Admin = data => {
+    let ops = ['removeRole'];
     return runOps(ops, data);
 }
 

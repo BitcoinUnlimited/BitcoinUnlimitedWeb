@@ -13,8 +13,18 @@ import { strings } from '../public/lib/i18n';
 
 const buildDBErr = idx => strings().database.errors[idx];
 const buildAuthErr = idx => strings().auth.errors[idx];
-const typeIsValid = type => getDBSchema().filter(schema => schema.name === type).length > 0;
 const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
+const typeIsValid = type => {
+    return getDBSchema().filter(schema => schema.name === type).length > 0 || getAuthSchema().filter(schema => schema.name === type).length > 0;
+}
+
+const getDatabaseType = type => {
+    if (getDBSchema().filter(schema => schema.name === type).length > 0) {
+        return realmDatabase;
+    } else {
+        return authDatabase;
+    }
+}
 
 /*
  * 7200 === 2 hrs
@@ -115,9 +125,9 @@ const getAuth = pubkey => new Promise((resolve, reject) => {
     }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
 });
 
-const getLogs = () => new Promise((resolve, reject) => {
+const getSecure = type => new Promise((resolve, reject) => {
     realmFetch(authDatabase, realm => {
-        return realm.objects('Log').sorted('created', true);
+        return realm.objects(type);
     }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
 });
 
@@ -162,7 +172,7 @@ const signatureVerify = data => new Promise((resolve, reject) => {
 });
 
 const getSchemaProps = realmType => {
-    const schemas = getDBSchema();
+    const schemas = (isAuthDB()) ? getAuthSchema() : getDBSchema();
     if (!isDef(schemas)) {
         return false;
     }
@@ -209,7 +219,8 @@ const realmSave = data => new Promise((resolve, reject) => {
         reject(errorCheck);
     } else {
         setProtocolValues(realmType, data).then(res => {
-            realmWrite(realmDatabase, realm => {
+            let db = getDatabaseType(realmType);
+            realmWrite(db, realm => {
                 let saved = realm.create(realmType, res, true);
                 if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
                 return saved;
@@ -323,5 +334,5 @@ module.exports = {
     removeAuth,
     checkPath,
     getPublicFiles,
-    getLogs
+    getSecure
 }

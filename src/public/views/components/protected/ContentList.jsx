@@ -29,19 +29,19 @@ class ContentList extends React.Component {
 
         // if (desc) = .sorted('created', true); == most recent first, else sorted('created');
 
-        let jwt = getLocalstorageKey('jwt');
-        let { realmType } = this.props;
-        if (jwt) {
-            // /api/get/type
-            Axios.get(`/api/get/${realmType}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
-                let { data: logs } = res;
-                if (logs) {
-                    this.setState({ logs });
-                }
-            }).catch(e => {
-                console.log('getContent error: ' + e);
-            });
-        }
+        // let jwt = getLocalstorageKey('jwt');
+        // let { realmType } = this.props;
+        // if (jwt) {
+        //     // /api/get/type
+        //     Axios.get(`/api/get/${realmType}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
+        //         let { data: logs } = res;
+        //         if (logs) {
+        //             this.setState({ logs });
+        //         }
+        //     }).catch(e => {
+        //         console.log('getContent error: ' + e);
+        //     });
+        // }
     }
 
     displayLogs(logs) {

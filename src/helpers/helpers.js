@@ -44,7 +44,7 @@ const relativeImgPath = fullPath => fullPath.split('/public').pop();
 const getUid = () => uuidv4();
 const getLocalstorageKey = key => ('localStorage' in window) ? localStorage.getItem(key) : false;
 
-const getDBSchemas = type => (type == 'auth') ? getAuthSchema() : getDBSchema();
+const getDBSchemas = type => (type == 'Auth') ? getAuthSchema() : getDBSchema();
 const getSchema = (name, db = '') => getDBSchemas(db).filter(schema => schema.name === name)[0];
 const readOnlyKeys = key => ['created', 'updated'].indexOf(key) !== -1;
 
@@ -73,7 +73,7 @@ const getRealmType = modelType => {
  * realmType is used for model to model associations
  */
 const getDBModel = name => {
-    let schema = getSchema(name);
+    let schema = getSchema(name) || getSchema(name,'Auth');
     if (!isDef(schema)) {
         return {};
     }
@@ -95,7 +95,10 @@ const getDBModel = name => {
     return model;
 }
 
-const getKeyForType = name => getSchema(name).primaryKey;
+const getKeyForType = name => {
+    let schema = getSchema(name) || getSchema(name, 'Auth');
+    return schema.primaryKey;
+}
 
 const toBase64 = image => new Promise((resolve, reject) => {
     let reader = new FileReader();

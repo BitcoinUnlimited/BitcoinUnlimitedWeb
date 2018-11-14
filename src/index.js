@@ -11,7 +11,7 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { isAdmin, signatureVerify, validateAuth, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath, realmLog } from './database/databaseLogic.js';
+import { isAdmin, signatureVerify, validateAuth, getSecure, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath, realmLog } from './database/databaseLogic.js';
 import { resErr, resSuccess, eToStr, isEmptyObj, isImage64, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
@@ -73,21 +73,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/user_auth', jwtMiddleware(), (req, res) => (req.user) ? res.json(req.user) : res.json('Req.user is not set in /user_auth'));
 
-app.get('/get_logs', jwtMiddleware(), (req, res) => {
-    getLogs().then(result => {
+app.get('/get/secure/:type', jwtMiddleware(), (req, res) => {
+    let { params: { type } } = req;
+    getSecure(type).then(result => {
         res.json(result);
     }).catch(e => {
-        res.json(resErr(`getLogs(): ${eToStr(e)}`));
+        res.json(resErr(`getSecure(${type}): ${eToStr(e)}`));
     })
 });
 
 app.get('/get_backup', jwtMiddleware(), (req, res) => {
-    let backupName = '/backup-' + saveDateFormat(new Date()) + '.json';
+    let backupName = '/' + saveDateFormat(new Date()) + '.json';
     realmBackup().then(result => {
-        let saveName = staticFilesDir + backupName;
-        fs.writeFile(saveName, JSON.stringify(result));
+        let saveName = staticFilesDir + '/backups' + backupName;
+        if (checkPath(saveName)) {
+            fs.writeFile(saveName, JSON.stringify(result));
+        }
     }).then(val => {
-        res.send('/static' + backupName);
+        res.send('/static/backups' + backupName);
     }).catch(e => {
         res.send(resErr(`getBackup(): ${e}`));
     })
@@ -155,7 +158,8 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
             fields[fieldname] = val;
         });
         busboy.on('finish', function() {
-            if (!fields.realmType || !typeIsValid(fields.realmType)) throw 'Incorrect realmType or not specified.';
+            if (!fields.realmType) throw 'realmType not specified.';
+            if (!typeIsValid(fields.realmType)) throw 'Invalid realmType specified.';
             realmSave(fields).then(result => res.json(result)).catch(e => {
                 res.json(resErr(e));
             })
