@@ -17,6 +17,7 @@ const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
 const typeIsValid = type => {
     return getDBSchema().filter(schema => schema.name === type).length > 0 || getAuthSchema().filter(schema => schema.name === type).length > 0;
 }
+const isAuthTypeDB = type => getAuthSchema().filter(schema => schema.name === type).length > 0;
 
 const getDatabaseType = type => {
     if (getDBSchema().filter(schema => schema.name === type).length > 0) {
@@ -172,7 +173,8 @@ const signatureVerify = data => new Promise((resolve, reject) => {
 });
 
 const getSchemaProps = realmType => {
-    const schemas = (isAuthDB()) ? getAuthSchema() : getDBSchema();
+    console.log(realmType);
+    const schemas = isAuthTypeDB(realmType) ? getAuthSchema() : getDBSchema();
     if (!isDef(schemas)) {
         return false;
     }
@@ -199,10 +201,12 @@ const hasRequiredProps = (schemaProps, data, primaryKey) => {
 
 const checkRequiredParams = (realmType, data) => {
     const schemaProps = getSchemaProps(realmType);
+    console.log(schemaProps);
     if (!schemaProps) {
         return rejectWithLog(`checkRequiredParams(): Unable to get schema properties for ${realmType}`);
     }
     const primaryKey = getKeyForType(realmType);
+    console.log(primaryKey);
     const requiredPropsExist = hasRequiredProps(schemaProps, data, primaryKey);
     if (requiredPropsExist !== true) {
         let error = resErrList(requiredPropsExist, 'checkRequiredParams()');
@@ -214,11 +218,15 @@ const checkRequiredParams = (realmType, data) => {
 
 const realmSave = data => new Promise((resolve, reject) => {
     let { realmType } = data;
+    console.log(data);
+
     let errorCheck = checkRequiredParams(realmType, data);
+    console.log(errorCheck);
     if (errorCheck !== true) {
         reject(errorCheck);
     } else {
         setProtocolValues(realmType, data).then(res => {
+            console.log(res);
             let db = getDatabaseType(realmType);
             realmWrite(db, realm => {
                 let saved = realm.create(realmType, res, true);
@@ -236,9 +244,9 @@ const realmSave = data => new Promise((resolve, reject) => {
 /*
  * Optionally pass filter string
  */
-const realmGetAll = (realmType, query = '') => new Promise((resolve, reject) => {
+const realmGetAll = (db, realmType, query = '') => new Promise((resolve, reject) => {
     let { ordered = 'DESC', start = '', end = '' } = query;
-    realmFetch(realmDatabase, realm => {
+    realmFetch(db, realm => {
         // default is ascending order
         let result;
         if (ordered !== 'DESC') {
@@ -255,8 +263,8 @@ const realmGetAll = (realmType, query = '') => new Promise((resolve, reject) => 
     }).then(res => resolve(res)).catch(e => reject(rejectWithLog(`realmGetAll(): ${eToStr(e)}`)));
 });
 
-const realmGetUid = (realmType, uid, key) => new Promise((resolve, reject) => {
-    realmFetch(realmDatabase, realm => {
+const realmGetUid = (db, realmType, uid, key) => new Promise((resolve, reject) => {
+    realmFetch(db, realm => {
         const predicate = `${key} == "${uid}"`;
         const { "0": result } = realm.objects(realmType).filtered(predicate);
         if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
@@ -265,8 +273,9 @@ const realmGetUid = (realmType, uid, key) => new Promise((resolve, reject) => {
 });
 
 const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) => {
-    realmGetUid(realmType, uid, key).then(res => {
-        realmWrite(realmDatabase, realm => {
+    let db = getDatabaseType(realmType);
+    realmGetUid(db, realmType, uid, key).then(res => {
+        realmWrite(db, realm => {
             realm.delete(res);
         }).then(res => resolve(resSuccess())).catch(e => reject(e));
     }).catch(e => reject(rejectWithLog(`realmDeleteUid(): ${eToStr(e)}`)));
@@ -274,7 +283,8 @@ const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) =>
 
 const realmGet = data => {
     const { realmType, uid, query } = data;
-    return (uid) ? realmGetUid(realmType, uid, getKeyForType(realmType)) : realmGetAll(realmType, query);
+    let db = getDatabaseType(realmType);
+    return (uid) ? realmGetUid(db, realmType, uid, getKeyForType(realmType)) : realmGetAll(db, realmType, query);
 }
 
 const realmDelete = data => {
