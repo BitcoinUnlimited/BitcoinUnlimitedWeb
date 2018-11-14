@@ -17,16 +17,16 @@ class LogList extends React.Component {
         }
     }
 
-    getLogs(pubkey) {
+    getLogs() {
         let jwt = getLocalstorageKey('jwt');
         if (jwt) {
-            Axios.get('/get_logs', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
+            Axios.get('/get/secure/Log', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: logs } = res;
                 if (logs) {
                     this.setState({ logs });
                 }
             }).catch(e => {
-                console.log('getLogs error: ' + e);
+                console.log(e);
             });
         }
     }

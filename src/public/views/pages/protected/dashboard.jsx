@@ -8,6 +8,7 @@ import { strings } from '../../../lib/i18n';
 import Admin from '../../admin.jsx';
 import Axios from 'axios';
 import LogList from '../../components/protected/LogList.jsx';
+import AdminList from '../../components/protected/AdminList.jsx';
 
 import { isStr } from '../../../../helpers/helpers.js';
 
@@ -47,6 +48,7 @@ class Dashboard extends React.Component {
     render() {
         return (
             <Admin name="dashboard" title={ strings().dashboard.title } >
+                <AdminList />
                 <LogList />
                 <button onClick={this.getBackup}>Backup Database</button>
                 {this.showBackupUrl()}
