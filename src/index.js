@@ -104,7 +104,7 @@ app.get('/api/get/:type/:uid?', (req, res) => {
     let { params: { type, uid } } = req;
     let { query } = req;
 
-    //console.log(`type: ${type} uid: ${uid}`);
+    console.log(`type: ${type} uid: ${uid}`);
     if (!isEmptyObj(query)) console.log(query);
 
     if (!type || !typeIsValid(type)) {

@@ -43,6 +43,7 @@ const relativeImgPath = fullPath => fullPath.split('/public').pop();
 
 const getUid = () => uuidv4();
 const getLocalstorageKey = key => ('localStorage' in window) ? localStorage.getItem(key) : false;
+const setLocalstorageKey = (key, value) => ('localStorage' in window) ? localStorage.setItem(key, value) : false;
 
 const getDBSchemas = type => (type == 'Auth') ? getAuthSchema() : getDBSchema();
 const getSchema = (name, db = '') => getDBSchemas(db).filter(schema => schema.name === name)[0];
@@ -136,6 +137,7 @@ module.exports = {
     getSchema,
     toBase64,
     getDBModel,
+    setLocalstorageKey,
     getLocalstorageKey,
     getKeyForType
 }

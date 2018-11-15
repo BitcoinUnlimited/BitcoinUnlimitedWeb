@@ -1,10 +1,24 @@
 
 .alert__banner
     background-color: $near-black
+    opacity: 1
     color: $orange
+    opacity: 0.95
+    position: absolute
+    width: 100%
+    transition: all 0.15s ease-in
+
+.alert__banner.close
+    opacity:0
+    margin-top: 20px
+
+.alert__banner p
+    color: white
+    font-weight: bold
+    line-height: 1.6em
 
 .header--mobile
-  display: none;
+  display: none
 
 .header__container
     height: 110px
@@ -85,15 +99,32 @@
     line-height: 12px
     overflow: hidden
 
+.alert-close
+    position: absolute
+    bottom: 10px
+    right: 10px
+    width: 20px
+    height: 20px
+    border: 1px solid rgba(255, 123, 0, .5)
+    border-radius: 4px
+    line-height: 20px
+    color: rgba(255, 123, 0, .5)
+    cursor: pointer
+    transition: all 0.15s ease-in
+
+.alert-close:hover
+    color: $orange
+    border: 1px solid $orange
+
 @media (max-width: 1050px)
     .font-thin
         font-weight: normal
 
     .header--web
-        display: none;
+        display: none
 
     .header--mobile
-        display: block;
+        display: block
 
     .header__logo
         padding: 30px 40px

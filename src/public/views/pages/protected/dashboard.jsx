@@ -65,4 +65,4 @@ Dashboard.propTypes = {
   router: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired
-};
+}

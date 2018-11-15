@@ -173,7 +173,6 @@ const signatureVerify = data => new Promise((resolve, reject) => {
 });
 
 const getSchemaProps = realmType => {
-    console.log(realmType);
     const schemas = isAuthTypeDB(realmType) ? getAuthSchema() : getDBSchema();
     if (!isDef(schemas)) {
         return false;
@@ -201,12 +200,10 @@ const hasRequiredProps = (schemaProps, data, primaryKey) => {
 
 const checkRequiredParams = (realmType, data) => {
     const schemaProps = getSchemaProps(realmType);
-    console.log(schemaProps);
     if (!schemaProps) {
         return rejectWithLog(`checkRequiredParams(): Unable to get schema properties for ${realmType}`);
     }
     const primaryKey = getKeyForType(realmType);
-    console.log(primaryKey);
     const requiredPropsExist = hasRequiredProps(schemaProps, data, primaryKey);
     if (requiredPropsExist !== true) {
         let error = resErrList(requiredPropsExist, 'checkRequiredParams()');
@@ -219,7 +216,6 @@ const checkRequiredParams = (realmType, data) => {
 const realmSave = data => new Promise((resolve, reject) => {
     let { realmType } = data;
     console.log(data);
-
     let errorCheck = checkRequiredParams(realmType, data);
     console.log(errorCheck);
     if (errorCheck !== true) {
