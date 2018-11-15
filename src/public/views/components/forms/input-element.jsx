@@ -1,11 +1,40 @@
 'use strict';
 
+/* WYSIWYS and inspirations from https://jpuri.github.io/react-draft-wysiwyg/#/demo */
+
 import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import ReactLoading from "react-loading";
+import Axios from 'axios';
 import { isImage } from '../../../../helpers/helpers.js';
 
 class InputElement extends React.Component {
+    constructor(props) {
+        super(props);
+        this.wysiwygFileUpload = this.wysiwygFileUpload.bind(this);
+        // this.state = {
+        //     uploadImages: []
+        // }
+    }
+    wysiwygFileUpload(file) {
+        return new Promise((resolve, reject) => {
+            const formData = new FormData();
+            formData.append('file', file);
+            Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+                let { message } = res.data;
+                if (message) {
+                    resolve({ data: { link: message }});
+                } else {
+                    throw "No path returned.";
+                }
+            }).catch(e => {
+                console.log(e);
+                reject(e);
+            });
+        }).catch(e => {
+            console.log(e);
+        });
+    }
     getLabel() {
         let label = this.props.inputLabel;
         if (label) {
@@ -94,6 +123,18 @@ class InputElement extends React.Component {
                     <Editor
                         editorState={inputValue}
                         onEditorStateChange={inputChange}
+                        toolbar={{
+                            inline: { inDropdown: true },
+                            list: { inDropdown: true },
+                            textAlign: { inDropdown: true },
+                            link: { inDropdown: true },
+                            history: { inDropdown: true },
+                            image: {
+                                uploadCallback: this.wysiwygFileUpload,
+                                previewImage: true,
+                                inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                            }
+                        }}
                     />
                     {this.getDescription()}
                     {this.getError()}

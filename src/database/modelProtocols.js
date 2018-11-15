@@ -42,15 +42,10 @@ protocol.setPublished = data => {
 }
 
 protocol.setAuthor = data => {
-    if (typeof data.author === 'object') return data;
-    if (data.author === '') {
-        if (data.pubkey) {
-            data.author = { pubkey: data.pubkey };
-        } else {
-            delete data.author;
-        }
-    } else if (data.author) {
-        data.author = { pubkey: data.author };
+    if (data.pubkey) {
+        data.author = { pubkey: data.pubkey };
+    } else {
+        delete data.author;
     }
     delete data.pubkey;
     return data;
@@ -112,7 +107,7 @@ protocol.User = data => {
 }
 
 protocol.Alert = data => {
-    let ops = ['setPrimaryKey', 'setCreated', 'setPublished', 'validateAlertType'];
+    let ops = ['setPrimaryKey', 'setCreated', 'validateAlertType'];
     return runOps(ops, data);
 }
 

@@ -22,10 +22,6 @@ class Dashboard extends React.Component {
         }
     }
 
-    componentDidMount() {
-        // get Posts
-    }
-
     getBackup() {
         if ('localStorage' in window) {
             let jwt = localStorage.getItem('jwt');
