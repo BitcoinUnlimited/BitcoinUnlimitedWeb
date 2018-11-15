@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ReactLoading from 'react-loading';
 import { strings } from '../../../lib/i18n';
-import Page from '../../page.jsx'
-
+import Post from '../../post.jsx'
+import { formatDate } from '../../../../helpers/helpers.js';
 
 class BlogPost extends React.Component {
     constructor(props) {
@@ -27,12 +27,11 @@ class BlogPost extends React.Component {
         let { params: { uid } } = this.props;
         let { params: { uid: previousUid } } = previousProps;
         if (!uid) this.redirectToBlog();
-        if (uid !== previousUid) {
-            this.getPost(uid);
-        }
+        if (uid !== previousUid) this.getPost(uid);
     }
 
     componentDidMount() {
+        //console.log(this.props);
         let { params: { uid } } = this.props;
         if (uid) {
             this.getPost(uid);
@@ -42,37 +41,52 @@ class BlogPost extends React.Component {
     }
 
     getPost(uid) {
-        this.setState({ fetching: true, post: null, uid });
+        this.setState({ fetching: true, post: null, uid: uid });
         Axios.get(`/api/get/Post/${uid}`).then(res => {
-            let { data: { uid } } = res;
-            if (uid) {
-                this.setState({ post: res.data, fetching: false });
-            } else {
-                this.redirectToBlog();
-            }
+            // console.log(res.data);
+            let { data: { uid, published } } = res;
+            if (!uid || !published) this.redirectToBlog();
+            this.setState({ post: res.data, fetching: false });
         }).catch(e => {
             console.log(e);
             this.redirectToBlog();
         });
     }
 
+    displayTitle(title) {
+        return (title) ? (<div className="title h1 mt4">{ title }</div>) : null;
+    }
+
+    displayCreated(date) {
+        return (date) ? (<div className="date my1">{ formatDate(new Date(date)) }</div>) : null;
+    }
+
+    displaySubtitle(subtitle) {
+        return (subtitle) ? (<div className="subtitle h3 mt2 mb3">{ subtitle }</div>) : null;
+    }
+
     render() {
-        let { post, fetching } = this.state;
-        if (!post || fetching) {
+        let { post, fetching, uid } = this.state;
+        if (!post || !uid || fetching) {
             return (
-                <Page>
+                <Post name="blog">
                     <div className="react-loading">
                         <ReactLoading type="balls" color="#ccc" />
                     </div>
-                </Page>
+                </Post>
             );
         }
+        console.log(post);
+        let { header_img, title, subtitle, created } = post;
         return (
-            <Page name="blog" title={post.title} subtitle={post.subtitle} >
+            <Post name="blog" banner={ header_img }>
+                {this.displayTitle(title)}
+                {this.displayCreated(created)}
+                {this.displaySubtitle(subtitle)}
                 {/* HTML stored in the database is created in the secure auth area and is presumed to be safe */}
                 <div className="body-content" dangerouslySetInnerHTML={{ __html: post.body_editor}}>
                 </div>
-            </Page>
+            </Post>
         );
     }
 }

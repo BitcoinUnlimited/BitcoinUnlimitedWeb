@@ -215,14 +215,11 @@ const checkRequiredParams = (realmType, data) => {
 
 const realmSave = data => new Promise((resolve, reject) => {
     let { realmType } = data;
-    console.log(data);
     let errorCheck = checkRequiredParams(realmType, data);
-    console.log(errorCheck);
     if (errorCheck !== true) {
         reject(errorCheck);
     } else {
         setProtocolValues(realmType, data).then(res => {
-            console.log(res);
             let db = getDatabaseType(realmType);
             realmWrite(db, realm => {
                 let saved = realm.create(realmType, res, true);
@@ -265,7 +262,10 @@ const realmGetUid = (db, realmType, uid, key) => new Promise((resolve, reject) =
         const { "0": result } = realm.objects(realmType).filtered(predicate);
         if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
         return result;
-    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(`realmGetUid(): ${eToStr(e)}`)));
+    }).then(res => resolve(res)).catch(e => {
+        console.log(e);
+        reject(rejectWithLog(`realmGetUid()`))
+    });
 });
 
 const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) => {

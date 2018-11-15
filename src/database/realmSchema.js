@@ -80,7 +80,6 @@ const AlertSchema = {
         created: {type: 'date', default: new Date()},
         name: 'string?',
         message_editor: 'string',
-        published: {type: 'bool', default: false},
         alert_type: {type: 'string', default: 'announce'}
     }
 }
