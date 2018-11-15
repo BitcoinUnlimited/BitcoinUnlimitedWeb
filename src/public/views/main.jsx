@@ -18,7 +18,7 @@ import EmergentConsensus from './pages/emergent-consensus.jsx';
 import DevelopTestingAccord from './pages/develop-testing-accord.jsx';
 import Login from './pages/login.jsx';
 import BlogList from './pages/models/blog-list.jsx';
-import ContentDisplay from './pages/content-display.jsx';
+import BlogPost from './pages/models/blog-post.jsx';
 import NotFound from './pages/not-found.jsx';
 
 import Auth from './pages/protected/auth.jsx';
@@ -47,7 +47,7 @@ ReactDOM.render((
                 <Route path='update/:realmType/:uid' component={RealmFormWrapper} />
             </Route>
             <Route path='blog' component={BlogList} />
-            <Route path='content/:realmType/:uid' component={ContentDisplay} />
+            <Route path='blog/:uid' component={BlogPost} />
             <Route path='not-found' component={NotFound} />
             <Route path='*' component={NotFound} />
         </Route>
