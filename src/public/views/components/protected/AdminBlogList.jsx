@@ -41,7 +41,9 @@ class AdminBlogList extends React.Component {
             let post = blogList[key];
             return (
                 <div className="blog-row" key={idx}>
-                    <h4 className="title">{ post.title }</h4>
+                    <h4 className="title">
+                        <Link to={`/blog/${post.uid}`}>{ post.title }</Link>
+                    </h4>
                     <div className="date">{ formatDate(new Date(post.created)) }</div>
                     <div className="subtitle">{ post.subtitle }</div>
                     <Link className="link underline" to={`/update/Post/${post.uid}`}>Edit »</Link>
