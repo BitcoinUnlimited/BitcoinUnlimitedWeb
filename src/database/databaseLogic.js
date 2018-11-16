@@ -264,8 +264,7 @@ const realmGetUid = (db, realmType, uid, key) => new Promise((resolve, reject) =
         if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
         return result;
     }).then(res => resolve(res)).catch(e => {
-        console.log(e);
-        reject(rejectWithLog(`realmGetUid()`))
+        reject(rejectWithLog(eToStr(e)))
     });
 });
 

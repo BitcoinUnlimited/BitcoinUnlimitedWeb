@@ -23,8 +23,6 @@ class AdminBlogList extends React.Component {
             this.setState({ fetching: true, blogList: {} });
             Axios.get('/get/secure/Post', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: blogList } = res;
-                console.log('res data results');
-                console.log(res.data);
                 if (blogList) {
                     this.setState({ fetching: false, blogList });
                 }

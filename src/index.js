@@ -103,16 +103,13 @@ app.post('/sig_verify', (req, res) => {
 app.get('/api/get/:type/:uid?', (req, res) => {
     let { params: { type, uid } } = req;
     let { query } = req;
-
-    console.log(`type: ${type} uid: ${uid}`);
-    if (!isEmptyObj(query)) console.log(query);
-
     if (!type || !typeIsValid(type)) {
         res.redirect('/not-found');
     } else {
         realmGet({ realmType: type, uid, query }).then(result => res.json(result)).catch(e => res.json(resErr(e)));
     }
 });
+
 app.post('/api/delete', jwtMiddleware(), (req, res) => {
     const { realmType } = req.body;
     if (!realmType || !typeIsValid(realmType)) {
@@ -126,6 +123,7 @@ app.post('/api/delete', jwtMiddleware(), (req, res) => {
         }
     }
 });
+
 app.post('/api/upload', jwtMiddleware(), (req, res) => {
     try {
         let busboy = new Busboy({ headers: req.headers });
@@ -147,6 +145,7 @@ app.post('/api/upload', jwtMiddleware(), (req, res) => {
         res.json(resErr(`/api/upload: ${eToStr(e)}`));
     }
 });
+
 app.post('/api/upsert', jwtMiddleware(), (req, res) => {
     try {
         let busboy = new Busboy({ headers: req.headers });

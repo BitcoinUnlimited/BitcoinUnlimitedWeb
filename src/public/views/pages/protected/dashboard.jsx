@@ -9,6 +9,7 @@ import Axios from 'axios';
 import LogList from '../../components/protected/LogList.jsx';
 import AdminList from '../../components/protected/AdminList.jsx';
 import AdminBlogList from '../../components/protected/AdminBlogList.jsx';
+import AdminAlertList from '../../components/protected/AdminAlertList.jsx';
 
 import { isStr } from '../../../../helpers/helpers.js';
 
@@ -45,6 +46,7 @@ class Dashboard extends React.Component {
         return (
             <Admin name="dashboard" title={ strings().dashboard.title } >
                 <AdminBlogList />
+                <AdminAlertList />
                 <AdminList />
                 <LogList />
                 <button onClick={this.getBackup}>Backup Database</button>
