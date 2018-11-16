@@ -1,14 +1,14 @@
 'use strict';
 
 import React from 'react';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import { strings } from '../../../lib/i18n';
 import Admin from '../../admin.jsx';
 import Axios from 'axios';
 import LogList from '../../components/protected/LogList.jsx';
 import AdminList from '../../components/protected/AdminList.jsx';
+import AdminBlogList from '../../components/protected/AdminBlogList.jsx';
 
 import { isStr } from '../../../../helpers/helpers.js';
 
@@ -44,6 +44,7 @@ class Dashboard extends React.Component {
     render() {
         return (
             <Admin name="dashboard" title={ strings().dashboard.title } >
+                <AdminBlogList />
                 <AdminList />
                 <LogList />
                 <button onClick={this.getBackup}>Backup Database</button>

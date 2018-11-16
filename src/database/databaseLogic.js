@@ -127,7 +127,8 @@ const getAuth = pubkey => new Promise((resolve, reject) => {
 });
 
 const getSecure = type => new Promise((resolve, reject) => {
-    realmFetch(authDatabase, realm => {
+    let db = getDatabaseType(type);
+    realmFetch(db, realm => {
         return realm.objects(type);
     }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
 });
