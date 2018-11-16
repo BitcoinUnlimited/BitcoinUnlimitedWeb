@@ -52,11 +52,10 @@ class RealmFormWrapper extends React.Component {
         return formData;
     }
 
-    getLinkForType() {
-        let { realmType, uid } = this.state;
+    getLinkForType(realmType, uid) {
         if (realmType && uid) {
             let segment = (realmType === 'Post') ? 'blog' : 'content';
-            return (<Link className="link" to={`/${segment}/${uid}`}>View {realmType}</Link>);
+            return (<Link className="link view-link" to={`/${segment}/${uid}`}>View {realmType}</Link>);
         }
         return null;
     }
@@ -314,8 +313,8 @@ class RealmFormWrapper extends React.Component {
                 <div className="form-wrapper">
                     {this.getSplash()}
                     <h2 className="form-title">{this.getTitle()}</h2>
-                    {this.getLinkForType()}
                     <form className="post__form" onSubmit={ this.formSubmit } encType="multipart/form-data">
+                        {this.getLinkForType(realmType, uid)}
                         {Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx))}
                         <input type="hidden" value={realmType} />
                         <input type="submit" value="Save" />
