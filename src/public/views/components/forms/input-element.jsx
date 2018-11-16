@@ -82,6 +82,37 @@ class InputElement extends React.Component {
         }
         return (<div className="clear file-preview"><a className='underline link' href={inputValue} download>{inputValue}</a></div>);
     }
+
+    getToolbar(toolbar) {
+        if (toolbar === 'simplified') {
+            return {
+                options: ['inline','link', 'history'],
+                inline: {
+                    inDropdown: true,
+                    options: ['bold', 'italic', 'underline', 'strikethrough']
+                },
+                link: { inDropdown: true }
+            }
+        } else {
+            return {
+                options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'history'],
+                inline: {
+                    inDropdown: true,
+                    options: ['bold', 'italic', 'underline', 'strikethrough']
+                },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+                history: { inDropdown: true },
+                image: {
+                    uploadCallback: this.wysiwygFileUpload,
+                    previewImage: true,
+                    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg'
+                }
+            }
+        }
+    }
+
     // getModules() {
     //     return {
     //         toolbar: [
@@ -103,7 +134,7 @@ class InputElement extends React.Component {
     //     ];
     // }
     render() {
-        let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching } = this.props;
+        let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching, inputToolbar } = this.props;
         if (!inputType || !inputName || !inputChange) {
             return null;
         }
@@ -123,18 +154,7 @@ class InputElement extends React.Component {
                     <Editor
                         editorState={inputValue}
                         onEditorStateChange={inputChange}
-                        toolbar={{
-                            inline: { inDropdown: true },
-                            list: { inDropdown: true },
-                            textAlign: { inDropdown: true },
-                            link: { inDropdown: true },
-                            history: { inDropdown: true },
-                            image: {
-                                uploadCallback: this.wysiwygFileUpload,
-                                previewImage: true,
-                                inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
-                            }
-                        }}
+                        toolbar={this.getToolbar(inputToolbar)}
                     />
                     {this.getDescription()}
                     {this.getError()}

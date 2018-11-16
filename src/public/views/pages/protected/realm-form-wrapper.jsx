@@ -242,6 +242,7 @@ class RealmFormWrapper extends React.Component {
                 inputLabel={(input.fieldInfo) ? ((input.fieldInfo.label) ? input.fieldInfo.label: null) : null}
                 inputName={input.name}
                 inputValue={input.value}
+                inputToolbar={(input.fieldInfo) ? ((input.fieldInfo.toolbar) ? input.fieldInfo.toolbar: null) : null}
                 inputPlaceholder={(input.fieldInfo) ? ((input.fieldInfo.placeholder) ? input.fieldInfo.placeholder: null) : null}
                 inputChange={this.getChangeFn(input.name, input.type)}
                 inputFetching={(input.type === 'file') ? input.fetching : false}

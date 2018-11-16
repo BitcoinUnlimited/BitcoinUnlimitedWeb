@@ -4,9 +4,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import WebHeader from './components/header/webHeader.jsx'
 import MobileHeader from './components/header/mobileHeader.jsx'
-import SecurityBanner from './components/header/securityBanner.jsx'
-import AnnounceBanner from './components/header/announceBanner.jsx'
-import AlertBanner from './components/header/alertBanner.jsx'
+import Banner from './components/header/Banner.jsx'
 import { getLocalstorageKey, getDBSchemas } from '../../helpers/helpers.js';
 
 class Header extends React.Component {
@@ -30,13 +28,13 @@ class Header extends React.Component {
 
     renderAnnounceMessage() {
         return (
-             <div className='inline-block'>
-               <p>
-                  <a title="Download BUCash 1.3.0.1" href="/download" className="link--underline white bold">
+            <div className='inline-block'>
+                <p>
+                    <a title="Download BUCash 1.3.0.1" href="/download" className="link--underline white bold">
                     BU Bitcoin Cash (BCH) release 1.3.0.1 is available
-                  </a>
-               </p>
-             </div>
+                    </a>
+                </p>
+            </div>
         )
     }
 
@@ -53,6 +51,19 @@ class Header extends React.Component {
         //        </p>
         //     </div>
         //)
+    }
+
+    getType() {
+        if (this.renderSecurityMessage()) {
+            return 'Security alert:';
+        } else if (this.renderAlertMessage()) {
+            return 'ALERT:';
+        }
+        return 'Announcement:';
+    }
+
+    getMessage() {
+        return this.renderSecurityMessage() || this.renderAlertMessage() || this.renderAnnounceMessage();
     }
 
     showCreateLinks() {
@@ -97,9 +108,7 @@ class Header extends React.Component {
                 <WebHeader />
                 <MobileHeader />
                 <div className='banner'>{ this.showAdminBar() }<div className="clear"></div></div>
-                <SecurityBanner message={ this.renderSecurityMessage() }/>
-                <AnnounceBanner message={ this.renderAnnounceMessage() }/>
-                <AlertBanner message={ this.renderAlertMessage() }/>
+                <Banner message={ this.getMessage() } type={ this.getType() }/>
             </div>
         );
     }
