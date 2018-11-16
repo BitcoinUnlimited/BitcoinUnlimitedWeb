@@ -36,7 +36,7 @@ class ContentDisplay extends React.Component {
             );
         }
         return (
-            <Page name="blog" title={content.title} subtitle={content.subtitle} >
+            <Page name={ realmType }>
                 <div className="body-content"> body area here</div>
             </Page>
         );

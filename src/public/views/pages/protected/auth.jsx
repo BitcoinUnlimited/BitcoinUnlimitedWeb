@@ -41,7 +41,7 @@ class Auth extends React.Component {
     authenticateUser() {
         let jwt = getLocalstorageKey('jwt');
         if (!jwt) {
-            removeJwtAndRedirect();
+            this.removeJwtAndRedirect();
         } else {
             Axios.get('/user_auth', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: { pubkey } } = res;

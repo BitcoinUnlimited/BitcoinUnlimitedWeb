@@ -31,7 +31,6 @@ class BlogPost extends React.Component {
     }
 
     componentDidMount() {
-        //console.log(this.props);
         let { params: { uid } } = this.props;
         if (uid) {
             this.getPost(uid);
@@ -43,7 +42,6 @@ class BlogPost extends React.Component {
     getPost(uid) {
         this.setState({ fetching: true, post: null, uid: uid });
         Axios.get(`/api/get/Post/${uid}`).then(res => {
-            // console.log(res.data);
             let { data: { uid, published } } = res;
             if (!uid || !published) this.redirectToBlog();
             this.setState({ post: res.data, fetching: false });
@@ -76,7 +74,6 @@ class BlogPost extends React.Component {
                 </Post>
             );
         }
-        console.log(post);
         let { header_img, title, subtitle, created } = post;
         return (
             <Post name="blog" banner={ header_img }>
@@ -86,6 +83,7 @@ class BlogPost extends React.Component {
                 {/* HTML stored in the database is created in the secure auth area and is presumed to be safe */}
                 <div className="body-content" dangerouslySetInnerHTML={{ __html: post.body_editor}}>
                 </div>
+                <Link className="link underline" to={`/update/Post/${uid}`}>Temp Edit Link</Link>
             </Post>
         );
     }

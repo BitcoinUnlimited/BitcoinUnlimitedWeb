@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import ReactLoading from "react-loading";
 import { EditorState, convertFromRaw, convertToRaw, ContentState } from 'draft-js';
@@ -28,7 +28,6 @@ class RealmFormWrapper extends React.Component {
         this.inputChange = this.inputChange.bind(this);
         this.imageChange = this.imageChange.bind(this);
         this.fileUpload = this.fileUpload.bind(this);
-        // this.wysiwygFileUpload = this.wysiwygFileUpload.bind(this);
         this.deleteConfirm = this.deleteConfirm.bind(this);
     }
 
@@ -53,15 +52,23 @@ class RealmFormWrapper extends React.Component {
         return formData;
     }
 
+    getLinkForType() {
+        let { realmType, uid } = this.state;
+        if (realmType && uid) {
+            let segment = (realmType === 'Post') ? 'blog' : 'content';
+            return (<Link className="link" to={`/${segment}/${uid}`}>View {realmType}</Link>);
+        }
+        return null;
+    }
+
     formSubmit(e) {
         e.preventDefault();
         let data = this.buildFormData();
         if (data) {
             Axios.post('/api/upsert', data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
                 if (res && res.data) {
-                    console.log(res.data);
                     window.scrollTo(0, 0);
-                    this.setSplash(`Updated ${this.state.realmType}`);
+                    this.setSplash(`Updated ${this.state.realmType}.`);
                     this.postSave(res.data);
                 }
             }).catch(e => {
@@ -133,21 +140,6 @@ class RealmFormWrapper extends React.Component {
             this.setState({ realmModel });
         });
     }
-
-    // wysiwygFileUpload(file) {
-    //     return new Promise((resolve, reject) => {
-    //         const formdata = new FormData();
-    //         data.append('file', file);
-    //         Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
-    //             console.log('fileuploadresult:');
-    //             console.log(res.data);
-    //             resolve({ data: { link: res.data }});
-    //         }).catch(e => {
-    //             console.log(e);
-    //             reject(e);
-    //         });
-    //     });
-    // }
 
     fileRemove(name, type) {
         if (type === 'file') {
@@ -241,13 +233,6 @@ class RealmFormWrapper extends React.Component {
         return this.inputChange;
     }
 
-    // getEditorImageFn(type) {
-    //     if (type === 'editor') {
-    //         return this.wysiwygFileUpload;
-    //     }
-    //     return null;
-    // }
-
     buildInput(prop, idx) {
         let { realmModel } = this.state;
         let input = realmModel[prop];
@@ -260,7 +245,6 @@ class RealmFormWrapper extends React.Component {
                 inputValue={input.value}
                 inputPlaceholder={(input.fieldInfo) ? ((input.fieldInfo.placeholder) ? input.fieldInfo.placeholder: null) : null}
                 inputChange={this.getChangeFn(input.name, input.type)}
-                // editorImageCallback={this.getEditorImageFn(input.type)}
                 inputFetching={(input.type === 'file') ? input.fetching : false}
                 inputRemove={this.fileRemove(input.name, input.type)}
                 inputError={(input.error) ? input.error : null}
@@ -330,6 +314,7 @@ class RealmFormWrapper extends React.Component {
                 <div className="form-wrapper">
                     {this.getSplash()}
                     <h2 className="form-title">{this.getTitle()}</h2>
+                    {this.getLinkForType()}
                     <form className="post__form" onSubmit={ this.formSubmit } encType="multipart/form-data">
                         {Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx))}
                         <input type="hidden" value={realmType} />
