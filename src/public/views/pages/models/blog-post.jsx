@@ -61,7 +61,7 @@ class BlogPost extends React.Component {
     }
 
     displayAuthor(author) {
-        return (author && author.displayname) ? (<div className="author mb1 italics">{ author.displayname }</div>) : null;
+        return (author && author.displayname) ? (<div className="author mb1 italics">By { author.displayname }</div>) : null;
     }
 
     displaySubtitle(subtitle) {
@@ -84,8 +84,8 @@ class BlogPost extends React.Component {
         return (
             <Post name="blog" banner={ header_img }>
                 {this.displayTitle(title)}
-                {this.displayCreated(created)}
                 {this.displayAuthor(author)}
+                {this.displayCreated(created)}
                 {this.displaySubtitle(subtitle)}
                 {/* HTML stored in the database is created in the secure auth area and is presumed to be safe */}
                 <div className="body-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.body_editor) }}>
