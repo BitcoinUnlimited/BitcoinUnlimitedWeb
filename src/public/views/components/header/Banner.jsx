@@ -6,6 +6,7 @@ import Axios from 'axios';
 import ReactLoading from "react-loading";
 import { strings } from '../../../lib/i18n';
 import { getLocalstorageKey, setLocalstorageKey, isStr } from '../../../../helpers/helpers.js';
+var sanitizeHtml = require('sanitize-html');
 
 class Banner extends React.Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class Banner extends React.Component {
         Axios.get('/api/get/Alert').then(res => {
             let { "0": alert } = res.data;
             if (alert) {
-                let alertObj = (<span className="message-text" dangerouslySetInnerHTML={{ __html: alert.message_editor }}></span>);
+                let alertObj = (<span className="message-text" dangerouslySetInnerHTML={{ __html: sanitizeHtml(alert.message_editor) }}></span>);
                 this.setState({ fetching: false, type: this.getTypeString(alert.alert_type), message: alertObj });
             }
             this.setState({ fetching: false });

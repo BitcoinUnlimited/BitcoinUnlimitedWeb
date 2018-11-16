@@ -8,6 +8,7 @@ import ReactLoading from 'react-loading';
 import { strings } from '../../../lib/i18n';
 import Post from '../../post.jsx'
 import { formatDate } from '../../../../helpers/helpers.js';
+const sanitizeHtml = require('sanitize-html');
 
 class BlogPost extends React.Component {
     constructor(props) {
@@ -59,6 +60,10 @@ class BlogPost extends React.Component {
         return (date) ? (<div className="date my1">{ formatDate(new Date(date)) }</div>) : null;
     }
 
+    displayAuthor(author) {
+        return (author && author.displayname) ? (<div className="author mb1 italics">{ author.displayname }</div>) : null;
+    }
+
     displaySubtitle(subtitle) {
         return (subtitle) ? (<div className="subtitle h3 mt2 mb3">{ subtitle }</div>) : null;
     }
@@ -74,14 +79,16 @@ class BlogPost extends React.Component {
                 </Post>
             );
         }
-        let { header_img, title, subtitle, created } = post;
+        console.log(post);
+        let { header_img, title, subtitle, created, author } = post;
         return (
             <Post name="blog" banner={ header_img }>
                 {this.displayTitle(title)}
                 {this.displayCreated(created)}
+                {this.displayAuthor(author)}
                 {this.displaySubtitle(subtitle)}
                 {/* HTML stored in the database is created in the secure auth area and is presumed to be safe */}
-                <div className="body-content" dangerouslySetInnerHTML={{ __html: post.body_editor}}>
+                <div className="body-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.body_editor) }}>
                 </div>
                 <Link className="link underline" to={`/update/Post/${uid}`}>Temp Edit Link</Link>
             </Post>

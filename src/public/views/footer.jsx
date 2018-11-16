@@ -48,6 +48,7 @@ class Footer extends React.Component {
                             <h4><Link className='white text-decoration-none' to='/faq'>{strings().header.faq.title}</Link></h4>
                             <h4><Link className='white text-decoration-none' to='/download'>{strings().header.download.title}</Link></h4>
                             <h4><Link className='white text-decoration-none' to='/donate'>{strings().header.donate}</Link></h4>
+                            <h4><Link className='white text-decoration-none' to='/login'>Login</Link></h4>
                         </div>
                     </div>
                     <div className="py3 center">

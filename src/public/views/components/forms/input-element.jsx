@@ -100,6 +100,10 @@ class InputElement extends React.Component {
                     inDropdown: true,
                     options: ['bold', 'italic', 'underline', 'strikethrough']
                 },
+                blockType: {
+                    inDropdown: true,
+                    options: ['Normal', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code'],
+                },
                 list: { inDropdown: true },
                 textAlign: { inDropdown: true },
                 link: { inDropdown: true },
@@ -113,26 +117,6 @@ class InputElement extends React.Component {
         }
     }
 
-    // getModules() {
-    //     return {
-    //         toolbar: [
-    //             [{ 'color': [] }, { 'background': [] }],
-    //             ['bold', 'italic', 'underline','strike', 'blockquote'],
-    //             [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-    //             ['link', 'image', 'video'],
-    //             ['clean']
-    //         ]
-    //     }
-    // }
-    // getFormats() {
-    //     return [
-    //         'color', 'background',
-    //         'bold', 'italic', 'underline', 'strike', 'blockquote',
-    //         'list', 'bullet', 'indent',
-    //         'link', 'image', 'video',
-    //         'clean'
-    //     ];
-    // }
     render() {
         let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching, inputToolbar } = this.props;
         if (!inputType || !inputName || !inputChange) {
