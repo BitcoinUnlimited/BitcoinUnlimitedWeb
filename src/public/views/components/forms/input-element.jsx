@@ -6,15 +6,12 @@ import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import ReactLoading from "react-loading";
 import Axios from 'axios';
-import { isImage } from '../../../../helpers/helpers.js';
+import { isImage, eToStr } from '../../../../helpers/helpers.js';
 
 class InputElement extends React.Component {
     constructor(props) {
         super(props);
         this.wysiwygFileUpload = this.wysiwygFileUpload.bind(this);
-        // this.state = {
-        //     uploadImages: []
-        // }
     }
     wysiwygFileUpload(file) {
         return new Promise((resolve, reject) => {
@@ -28,11 +25,10 @@ class InputElement extends React.Component {
                     throw "No path returned.";
                 }
             }).catch(e => {
-                console.log(e);
-                reject(e);
+                reject(eToStr(e));
             });
         }).catch(e => {
-            console.log(e);
+            reject(eToStr(e));
         });
     }
     getLabel() {
@@ -95,7 +91,7 @@ class InputElement extends React.Component {
             }
         } else {
             return {
-                options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'history'],
+                options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'history', 'remove'],
                 inline: {
                     inDropdown: true,
                     options: ['bold', 'italic', 'underline', 'strikethrough']
