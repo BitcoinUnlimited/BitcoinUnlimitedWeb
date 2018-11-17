@@ -8,7 +8,6 @@ import ReactLoading from 'react-loading';
 import { strings } from '../../../lib/i18n';
 import Post from '../../post.jsx'
 import { formatDate } from '../../../../helpers/helpers.js';
-const sanitizeHtml = require('sanitize-html');
 
 class BlogPost extends React.Component {
     constructor(props) {
@@ -88,7 +87,7 @@ class BlogPost extends React.Component {
                 {this.displayCreated(created)}
                 {this.displaySubtitle(subtitle)}
                 {/* HTML stored in the database is created in the secure auth area and is presumed to be safe */}
-                <div className="body-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.body_editor) }}>
+                <div className="body-content" dangerouslySetInnerHTML={{ __html: post.body_editor }}>
                 </div>
                 <Link className="link underline" to={`/update/Post/${uid}`}>Temp Edit Link</Link>
             </Post>

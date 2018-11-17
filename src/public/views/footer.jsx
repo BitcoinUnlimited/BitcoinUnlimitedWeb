@@ -3,8 +3,31 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { strings } from '../lib/i18n';
+import { getLocalstorageKey } from '../../helpers/helpers.js';
 
 class Footer extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+
+    logout() {
+        window.scrollTo(0, 0)
+        if ('localStorage' in window) {
+            localStorage.removeItem('jwt');
+            localStorage.removeItem('user');
+        }
+    }
+
+    loginLogoutLink() {
+        if (getLocalstorageKey('jwt')) {
+            return (<h4><Link className='white text-decoration-none' to='#' onClick={ this.logout }>Logout</Link></h4>);
+        } else {
+            return (<h4><Link className='white text-decoration-none' to='/login'>Login</Link></h4>);
+        }
+    }
+
     render() {
         return (
             <div>
@@ -49,7 +72,7 @@ class Footer extends React.Component {
                             <h4><Link className='white text-decoration-none' to='/faq'>{strings().header.faq.title}</Link></h4>
                             <h4><Link className='white text-decoration-none' to='/download'>{strings().header.download.title}</Link></h4>
                             <h4><Link className='white text-decoration-none' to='/donate'>{strings().header.donate}</Link></h4>
-                            <h4><Link className='white text-decoration-none' to='/login'>Login</Link></h4>
+                            { this.loginLogoutLink() }
                         </div>
                     </div>
                     <div className="py3 center">
