@@ -24,7 +24,6 @@ class BlogList extends React.Component {
         this.setState({ fetching: true, blogList: {} });
         Axios.get('/api/get/Post').then(res => {
             let { data: blogList } = res;
-            console.log(blogList);
             if (blogList && !blogList.status) {
                 this.setState({ fetching: false, blogList });
             } else if (blogList && blogList.status) {
@@ -37,6 +36,13 @@ class BlogList extends React.Component {
         });
     }
 
+    getAuthorDisplay(post) {
+        if (post && post.author && post.author.displayname) {
+            return (<div className="author">By { post.author.displayname }</div>);
+        }
+        return null;
+    }
+
     buildBlogList() {
         let { blogList } = this.state;
         let results = Object.keys(blogList).map((key, idx) => {
@@ -47,6 +53,7 @@ class BlogList extends React.Component {
                     <div className="hover-bg-gradient"></div>
                     <h4 className="title">{ post.title }</h4>
                     <div className="date">{ formatDate(new Date(post.created)) }</div>
+                    {this.getAuthorDisplay(post)}
                     <div className="subtitle">{ post.subtitle }</div>
                 </Link>
             );

@@ -12,11 +12,16 @@ import { formatDate } from '../../../../helpers/helpers.js';
 class BlogPost extends React.Component {
     constructor(props) {
         super(props);
+        this.goTop = this.goTop.bind(this);
         this.state = {
             fetching: false,
             uid: null,
             post: null
         }
+    }
+
+    goTop() {
+        window.scrollTo(0, 0);
     }
 
     redirectToBlog() {
@@ -87,9 +92,8 @@ class BlogPost extends React.Component {
                 {this.displayCreated(created)}
                 {this.displaySubtitle(subtitle)}
                 {/* HTML stored in the database is created in the secure auth area and is presumed to be safe */}
-                <div className="body-content" dangerouslySetInnerHTML={{ __html: post.body_editor }}>
-                </div>
-                <Link className="link underline" to={`/update/Post/${uid}`}>Temp Edit Link</Link>
+                <div className="body-content" dangerouslySetInnerHTML={{ __html: post.body_editor }}></div>
+                <Link className="link underline" to="/blog" onClick={this.goTop}>« Back to Blog</Link>
             </Post>
         );
     }
