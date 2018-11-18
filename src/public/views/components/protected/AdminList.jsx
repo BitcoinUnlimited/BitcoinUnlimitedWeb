@@ -126,7 +126,7 @@ class AdminList extends React.Component {
                     </th>
                     <td>
                         <label className="clear">Role:</label>
-                        <input type="text" name="role" placeholder="Role(soon)" value={newAdmin.role} onChange={this.inputChange} disabled/>
+                        <input type="text" name="role" placeholder="(available soon)" value={newAdmin.role} onChange={this.inputChange} disabled/>
                     </td>
                     <td><button onClick={this.addAdmin}>Add</button></td>
                 </tr>

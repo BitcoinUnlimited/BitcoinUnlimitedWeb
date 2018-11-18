@@ -87,7 +87,10 @@ class InputElement extends React.Component {
                     inDropdown: true,
                     options: ['bold', 'italic', 'underline', 'strikethrough']
                 },
-                link: { inDropdown: true }
+                link: {
+                    inDropdown: true,
+                    defaultTargetOption: '_blank'
+                }
             }
         } else {
             return {
@@ -98,11 +101,14 @@ class InputElement extends React.Component {
                 },
                 blockType: {
                     inDropdown: true,
-                    options: ['Normal', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code'],
+                    options: ['Normal', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code']
                 },
                 list: { inDropdown: true },
                 textAlign: { inDropdown: true },
-                link: { inDropdown: true },
+                link: {
+                    inDropdown: true,
+                    defaultTargetOption: '_blank'
+                },
                 history: { inDropdown: true },
                 image: {
                     uploadCallback: this.wysiwygFileUpload,
@@ -111,6 +117,18 @@ class InputElement extends React.Component {
                 }
             }
         }
+    }
+
+    getWrapperClass(inputName) {
+        return (inputName) ? inputName + '__wrapper' : '';
+    }
+
+    getTypeClass(inputType) {
+        return (inputType) ? 'type-' + inputType.toLowerCase() : '';
+    }
+
+    getErrorClass() {
+        return (this.getError()) ? 'input-error' : '';
     }
 
     render() {
@@ -129,7 +147,7 @@ class InputElement extends React.Component {
         }
         if (inputType === 'editor') {
             return (
-                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
                     {this.getLabel()}
                     <Editor
                         editorState={inputValue}
@@ -143,7 +161,7 @@ class InputElement extends React.Component {
         }
         if (inputType === 'checkbox') {
             return (
-                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
                     {this.getLabel()}
                     <input
                         type="checkbox"
@@ -158,7 +176,7 @@ class InputElement extends React.Component {
         }
         if (inputType === 'file') {
             return (
-                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
                     {this.getLabel()}
                     <div className="file-upload">
                         {this.getFileType(inputName, inputChange)}
@@ -173,7 +191,7 @@ class InputElement extends React.Component {
         }
         if (inputType === 'text') {
             return (
-                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
                     {this.getLabel()}
                     <input
                         type={inputType}
@@ -190,7 +208,7 @@ class InputElement extends React.Component {
         if (inputType === 'date') {
             let formattedDate = (inputValue.indexOf('T') !== -1) ? inputValue.split('T')[0] : inputValue;
             return (
-                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
                     {this.getLabel()}
                     <input
                         type={inputType}
@@ -205,7 +223,7 @@ class InputElement extends React.Component {
         }
         if (inputType === 'textarea') {
             return (
-                <fieldset className={`input__wrapper ${(inputName) ? inputName + '__wrapper' : ''} ${(this.getError()) ? 'input-error' : ''}`}>
+                <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
                     {this.getLabel()}
                     <textarea
                         className="textarea"
