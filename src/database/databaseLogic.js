@@ -126,12 +126,25 @@ const getAuth = pubkey => new Promise((resolve, reject) => {
     }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
 });
 
-const getSecure = type => new Promise((resolve, reject) => {
-    let db = getDatabaseType(type);
+const realmGetAllSecure = (db, realmType) => new Promise((resolve, reject) => {
     realmFetch(db, realm => {
-        return realm.objects(type);
+        return realm.objects(realmType);
     }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
 });
+
+const realmGetSecureUid = (db, realmType, key, uid) => new Promise((resolve, reject) => {
+    realmFetch(db, realm => {
+        const predicate = `${key} == "${uid}"`;
+        const { "0": result } = realm.objects(realmType).filtered(predicate);
+        if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
+        return result;
+    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
+});
+
+const realmGetSecure = (realmType, uid) => {
+    let db = getDatabaseType(realmType);
+    return (uid) ? realmGetSecureUid(db, realmType, getKeyForType(realmType), uid) : realmGetAllSecure(db, realmType);
+}
 
 const isAdmin = pubkey => new Promise((resolve, reject) => {
     if (isSuperAdmin(pubkey)) {
@@ -236,31 +249,35 @@ const realmSave = data => new Promise((resolve, reject) => {
 });
 
 /*
- * Optionally pass filter string
+ * Optionally pass start and end indexes (pagination)
  */
 const realmGetAll = (db, realmType, query = '') => new Promise((resolve, reject) => {
     let { ordered = 'DESC', start = '', end = '' } = query;
     realmFetch(db, realm => {
-        // default is ascending order
         let result;
         if (ordered !== 'DESC') {
-            result = realm.objects(realmType).sorted('created', false);
+            result = realm.objects(realmType).sorted('created', false).filtered('published == true');
         } else {
-            result = realm.objects(realmType).sorted('created', true);
+            result = realm.objects(realmType).sorted('created', true).filtered('published == true');
         }
-        if (start && end && result) {
+        if (result && start && end) {
+            // todo: result.length limts for start, end pagination
             result = result.slice(start, end);
         }
-        if (!result || isEmptyObj(result)) throw `No results for ${realmType}. ${(ordered) ? ordered : ''} ${(start && end) ? start + '-' + end : ''}`;
-        return result;
-
-    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(`realmGetAll(): ${eToStr(e)}`)));
+        if (!result || isEmptyObj(result)) {
+            realmLog(`No results for ${realmType}. ${(ordered) ? ordered : ''} ${(start && end) ? start + '-' + end : ''}`);
+        }
+        return result || {};
+    }).then(res => resolve(res)).catch(e => {
+        console.log(e);
+        reject(rejectWithLog(`${eToStr(e)}`))
+    });
 });
 
-const realmGetUid = (db, realmType, uid, key) => new Promise((resolve, reject) => {
+const realmGetUid = (db, realmType, key, uid) => new Promise((resolve, reject) => {
     realmFetch(db, realm => {
         const predicate = `${key} == "${uid}"`;
-        const { "0": result } = realm.objects(realmType).filtered(predicate);
+        const { "0": result } = realm.objects(realmType).filtered(predicate).filtered('published == true');
         if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
         return result;
     }).then(res => resolve(res)).catch(e => {
@@ -270,7 +287,7 @@ const realmGetUid = (db, realmType, uid, key) => new Promise((resolve, reject) =
 
 const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) => {
     let db = getDatabaseType(realmType);
-    realmGetUid(db, realmType, uid, key).then(res => {
+    realmGetSecureUid(db, realmType, key, uid).then(res => {
         realmWrite(db, realm => {
             realm.delete(res);
         }).then(res => resolve(resSuccess())).catch(e => reject(e));
@@ -280,7 +297,7 @@ const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) =>
 const realmGet = data => {
     const { realmType, uid, query } = data;
     let db = getDatabaseType(realmType);
-    return (uid) ? realmGetUid(db, realmType, uid, getKeyForType(realmType)) : realmGetAll(db, realmType, query);
+    return (uid) ? realmGetUid(db, realmType, getKeyForType(realmType), uid) : realmGetAll(db, realmType, query);
 }
 
 const realmDelete = data => {
@@ -340,5 +357,5 @@ module.exports = {
     removeAuth,
     checkPath,
     getPublicFiles,
-    getSecure
+    realmGetSecure
 }

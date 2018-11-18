@@ -10,7 +10,7 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import Axios from 'axios';
 import { strings } from '../../../lib/i18n';
-import { getDBModel, toBase64, isEmptyObj, isDef, getUid, isImage64 } from '../../../../helpers/helpers.js';
+import { getDBModel, toBase64, isEmptyObj, isDef, getUid, isImage64, getLocalstorageKey } from '../../../../helpers/helpers.js';
 import Base from '../../base.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
 
@@ -29,6 +29,14 @@ class RealmFormWrapper extends React.Component {
         this.imageChange = this.imageChange.bind(this);
         this.fileUpload = this.fileUpload.bind(this);
         this.deleteConfirm = this.deleteConfirm.bind(this);
+    }
+
+    removeJwtAndRedirect() {
+        if ('localStorage' in window) {
+            localStorage.removeItem('jwt');
+            localStorage.removeItem('user');
+        }
+        this.props.router.push('/login');
     }
 
     addFormValue(formData, key, prop) {
@@ -180,14 +188,19 @@ class RealmFormWrapper extends React.Component {
     }
 
     getUidData(realmType, uid) {
-        Axios.get(`/api/get/${realmType}/${uid}`).then(res => {
-            let { data: { status }} = res;
-            if (status !== 'error') {
-                this.setValues(res.data);
-            } else {
-                this.getModel(realmType);
-            }
-        });
+        let jwt = getLocalstorageKey('jwt');
+        if (jwt) {
+            Axios.get(`/get/secure/${realmType}/${uid}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
+                let { data: { status }} = res;
+                if (status !== 'error') {
+                    this.setValues(res.data);
+                } else {
+                    this.getModel(realmType);
+                }
+            });
+        } else {
+            this.removeJwtAndRedirect();
+        }
     }
 
     componentDidUpdate(previousProps) {

@@ -11,7 +11,7 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { isAdmin, signatureVerify, validateAuth, getSecure, typeIsValid, realmGet, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath, realmLog } from './database/databaseLogic.js';
+import { isAdmin, signatureVerify, validateAuth, getSecure, typeIsValid, realmGet, realmGetSecure, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath, realmLog } from './database/databaseLogic.js';
 import { resErr, resSuccess, eToStr, isEmptyObj, isImage64, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
@@ -73,13 +73,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/user_auth', jwtMiddleware(), (req, res) => (req.user) ? res.json(req.user) : res.json('Req.user is not set in /user_auth'));
 
-app.get('/get/secure/:type', jwtMiddleware(), (req, res) => {
-    let { params: { type } } = req;
-    getSecure(type).then(result => {
-        res.json(result);
-    }).catch(e => {
-        res.json(resErr(`getSecure(${type}): ${eToStr(e)}`));
-    })
+app.get('/get/secure/:type/:uid?', jwtMiddleware(), (req, res) => {
+    let { params: { type, uid } } = req;
+    if (!type || !typeIsValid(type)) {
+        res.redirect('/dashboard');
+    } else {
+        realmGetSecure(type, uid).then(result => {
+            res.json(result);
+        }).catch(e => {
+            res.json(resErr(`getSecure(${type}): ${eToStr(e)}`));
+        })
+    }
 });
 
 app.get('/get_backup', jwtMiddleware(), (req, res) => {
