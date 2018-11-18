@@ -321,7 +321,7 @@ const checkPath = (path, fileType = '') => {
     return true;
 }
 
-const getPublicFiles = (dir) => new Promise((resolve, reject) => {
+const getStaticFiles = (dir) => new Promise((resolve, reject) => {
     try {
         if (checkPath(dir)) {
             let results = [];
@@ -329,7 +329,7 @@ const getPublicFiles = (dir) => new Promise((resolve, reject) => {
                 file = dir + '/' + file;
                 let stat = fs.statSync(file);
                 if (stat && stat.isDirectory()) {
-                    getPublicFiles(file).then(result => results.push(result));
+                    getStaticFiles(file).then(result => results.push(result));
                 } else {
                     results.push(relativeImgPath(file));
                 }
@@ -355,6 +355,6 @@ module.exports = {
     getAuth,
     removeAuth,
     checkPath,
-    getPublicFiles,
+    getStaticFiles,
     realmGetSecure
 }

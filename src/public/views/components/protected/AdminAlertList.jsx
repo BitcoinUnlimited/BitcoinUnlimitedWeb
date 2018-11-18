@@ -41,7 +41,7 @@ class AdminAlertList extends React.Component {
                 <div className="content-row" key={idx}>
                     <h4 className="title">{ alert.name }</h4>
                     <div className="date">{ formatDateFull(new Date(alert.created)) }</div>
-                    <Link className="link underline" to={`/update/Alert/${alert.uid}`}>Edit »</Link>
+                    <Link className="link underline edit-link" to={`/update/Alert/${alert.uid}`}>Edit »</Link>
                 </div>
             );
         });

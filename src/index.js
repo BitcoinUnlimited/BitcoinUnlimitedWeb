@@ -11,8 +11,19 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-import { isAdmin, signatureVerify, validateAuth, getSecure, typeIsValid, realmGet, realmGetSecure, realmSave, realmDelete, getAuth, removeAuth, getLogs, realmBackup, checkPath, realmLog } from './database/databaseLogic.js';
-import { resErr, resSuccess, eToStr, isEmptyObj, isImage64, toBase64, getKeyForType, saveDateFormat } from './helpers/helpers.js';
+
+import { isAdmin, signatureVerify, validateAuth,
+    getSecure, typeIsValid, realmGet,
+    realmGetSecure, realmSave, realmDelete,
+    getAuth, removeAuth, getLogs,
+    realmBackup, checkPath, realmLog
+} from './database/databaseLogic.js';
+
+import { resErr, resSuccess, eToStr,
+    isEmptyObj, isImage64, toBase64,
+    getKeyForType, saveDateFormat
+} from './helpers/helpers.js';
+
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 

@@ -52,7 +52,7 @@ class AdminBlogList extends React.Component {
                     <div className="date">{ formatDate(new Date(post.created)) }</div>
                     {this.getAuthorDisplay(post)}
                     <div className="subtitle">{ post.subtitle }</div>
-                    <Link className="link underline" to={`/update/Post/${post.uid}`}>Edit »</Link>
+                    <Link className="link underline edit-link" to={`/update/Post/${post.uid}`}>Edit »</Link>
                 </div>
             );
         });
