@@ -63,7 +63,7 @@ class RealmFormWrapper extends React.Component {
     getLinkForType(realmType, uid) {
         if (realmType && uid) {
             let segment = (realmType === 'Post') ? 'blog' : 'content';
-            return (<Link className="link view-link" to={`/${segment}/${uid}`}>View {realmType}</Link>);
+            return (<Link className="link view-link" to={`/${segment}/${uid}`}>View {realmType} »</Link>);
         }
         return null;
     }
@@ -278,7 +278,7 @@ class RealmFormWrapper extends React.Component {
         let { splash } = this.state;
         if (splash) {
             return (
-                <div className="splash">{splash} <div className="remove-btn" onClick={this.removeSplash}>close</div></div>
+                <div className="splash">{splash} <div className="remove-btn" onClick={this.removeSplash}>x</div></div>
             );
         }
         return null;

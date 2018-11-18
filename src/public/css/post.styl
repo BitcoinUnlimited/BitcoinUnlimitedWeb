@@ -123,11 +123,18 @@
 .container-bloglist .blog-row .title
     margin: 0
     font-size: 30px
-    margin-bottom: 10px
+    margin-bottom: 6px
 
-.container-bloglist .blog-row .date
+.container-bloglist .blog-row .date,
+.container-bloglist .blog-row .author
+    font-size: 14px
+    color: #8e8e8e
+    transition: color 0.15s linear
+
+.container-bloglist .blog-row:hover .date
+    color: #000
 
 .container-bloglist .blog-row .subtitle
-    margin: 12px 0
+    margin: 12px 0 6px
     font-size: 18px
-    margin-bottom: 6px
+    line-height: 1.5em;

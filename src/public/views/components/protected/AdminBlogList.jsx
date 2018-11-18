@@ -33,6 +33,13 @@ class AdminBlogList extends React.Component {
         }
     }
 
+    getAuthorDisplay(post) {
+        if (post && post.author && post.author.displayname) {
+            return (<div className="author">By { post.author.displayname }</div>);
+        }
+        return null;
+    }
+
     buildBlogList() {
         let { blogList } = this.state;
         let results = Object.keys(blogList).map((key, idx) => {
@@ -43,6 +50,7 @@ class AdminBlogList extends React.Component {
                         <Link to={`/blog/${post.uid}`}>{ post.title }</Link>
                     </h4>
                     <div className="date">{ formatDate(new Date(post.created)) }</div>
+                    {this.getAuthorDisplay(post)}
                     <div className="subtitle">{ post.subtitle }</div>
                     <Link className="link underline" to={`/update/Post/${post.uid}`}>Edit »</Link>
                 </div>

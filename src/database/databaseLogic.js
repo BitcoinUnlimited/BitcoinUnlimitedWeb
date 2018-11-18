@@ -138,7 +138,7 @@ const realmGetSecureUid = (db, realmType, key, uid) => new Promise((resolve, rej
         const { "0": result } = realm.objects(realmType).filtered(predicate);
         if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
         return result;
-    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(e)));
+    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(eToStr(e))));
 });
 
 const realmGetSecure = (realmType, uid) => {
@@ -155,7 +155,7 @@ const isAdmin = pubkey => new Promise((resolve, reject) => {
             const { "0": result } = realm.objects('Admin').filtered(predicate);
             if (!result || isEmptyObj(result)) throw `Invalid pubkey: pubkey not found.`;
             resolve(result);
-        }).then(res => resolve(res)).catch(e => reject(rejectWithLog(`isAdmin(): ${eToStr(e)}`)));
+        }).then(res => resolve(res)).catch(e => reject(rejectWithLog(eToStr(e))));
     }
 });
 
@@ -177,12 +177,12 @@ const signatureVerify = data => new Promise((resolve, reject) => {
                 }, process.env.JWT_SECRET);
                 if (!token) throw 'Token creation error.';
                 resolve(token);
-            }).catch(e => reject(rejectWithLog(`signatureVerify(): ${eToStr(e)}`)));
+            }).catch(e => reject(eToStr(e)));
         } else {
             reject(rejectWithLog('signatureVerify(): Challenge could not be verified.'));
         }
     }).catch(e => {
-        reject(rejectWithLog(`signatureVerify(): ${eToStr(e)}`));
+        reject(rejectWithLog(eToStr(e)));
     });
 });
 
@@ -240,10 +240,10 @@ const realmSave = data => new Promise((resolve, reject) => {
                 if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
                 return saved;
             }).then(res => resolve(res)).catch(e => {
-                reject(rejectWithLog(`realmSave(): ${eToStr(e)}`));
+                reject(rejectWithLog(eToStr(e)));
             });
         }).catch(e => {
-            reject(rejectWithLog(`realmSave(): ${eToStr(e)}`));
+            reject(rejectWithLog(eToStr(e)));
         });
     } // required parameter check
 });
@@ -269,8 +269,7 @@ const realmGetAll = (db, realmType, query = '') => new Promise((resolve, reject)
         }
         return result || {};
     }).then(res => resolve(res)).catch(e => {
-        console.log(e);
-        reject(rejectWithLog(`${eToStr(e)}`))
+        reject(rejectWithLog(eToStr(e)))
     });
 });
 
