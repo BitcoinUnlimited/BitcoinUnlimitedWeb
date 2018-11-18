@@ -107,12 +107,12 @@ protocol.User = data => {
 }
 
 protocol.Alert = data => {
-    let ops = ['setPrimaryKey', 'setCreated', 'validateAlertType'];
+    let ops = ['setPrimaryKey', 'setCreated', 'setPublished', 'validateAlertType'];
     return runOps(ops, data);
 }
 
 protocol.Data = data => {
-    let ops = ['setPrimaryKey', 'setCreated', 'setUpdated'];
+    let ops = ['setPrimaryKey', 'setCreated', 'setUpdated', 'setPublished'];
     return runOps(ops, data);
 }
 

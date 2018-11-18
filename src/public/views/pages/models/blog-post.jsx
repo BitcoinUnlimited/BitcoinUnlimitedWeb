@@ -43,7 +43,7 @@ class BlogPost extends React.Component {
         this.setState({ fetching: true, post: null, uid: uid });
         Axios.get(`/api/get/Post/${uid}`).then(res => {
             let { data: { uid, published } } = res;
-            if (!uid || !published) this.redirectToBlog();
+            if (!uid) this.redirectToBlog();
             this.setState({ post: res.data, fetching: false });
         }).catch(e => {
             console.log(e);

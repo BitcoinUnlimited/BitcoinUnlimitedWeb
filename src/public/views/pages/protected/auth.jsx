@@ -25,8 +25,9 @@ class Auth extends React.Component {
     }
 
     getUser(pubkey) {
-        if ('localStorage' in window) {
-            Axios.get(`/api/get/User/${pubkey}`).then(res => {
+        let jwt = getLocalstorageKey('jwt');
+        if (jwt) {
+            Axios.get(`/get/secure/User/${pubkey}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: { pubkey: userPubkey } } = res;
                 if (userPubkey) {
                     localStorage.setItem('user', JSON.stringify(res.data));
@@ -35,6 +36,8 @@ class Auth extends React.Component {
             }).catch(e => {
                 console.log(e);
             });
+        } else {
+            this.removeJwtAndRedirect();
         }
     }
 

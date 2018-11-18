@@ -80,7 +80,8 @@ const AlertSchema = {
         created: {type: 'date', default: new Date()},
         name: 'string?',
         message_editor: 'string',
-        alert_type: {type: 'string', default: 'announce'}
+        alert_type: {type: 'string', default: 'announce'},
+        published: {type: 'bool', default: false}
     }
 }
 
@@ -97,6 +98,7 @@ const HeroSchema = {
         subtitle_editor: 'string?',
         urltext: 'string?',
         url: 'string?',
+        published: {type: 'bool', default: false},
         author: 'User?'
     }
 }
@@ -128,7 +130,8 @@ const DataSchema = {
         updated: {type: 'date', optional: true, default: new Date()},
         name: 'string?',
         upload_file: 'string?',
-        misc_data: 'string?'
+        misc_data: 'string?',
+        published: {type: 'bool', default: false}
     }
 }
 
