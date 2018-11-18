@@ -102,7 +102,7 @@ const insertAuth = data => new Promise((resolve, reject) => {
         }).then(_ => {
             realmLog(resSuccess(`Added User ${pubkey}`, 'insertAuth()'));
         }).catch(e => {
-            realmLog(resErr(`insertAuth() ${eToStr(e)}`));
+            realmLog(resErr(eToStr(e)));
         });
         resolve(res);
     }).catch(e => reject(e));
@@ -290,7 +290,7 @@ const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) =>
         realmWrite(db, realm => {
             realm.delete(res);
         }).then(res => resolve(resSuccess())).catch(e => reject(e));
-    }).catch(e => reject(rejectWithLog(`realmDeleteUid(): ${eToStr(e)}`)));
+    }).catch(e => reject(rejectWithLog(eToStr(e))));
 });
 
 const realmGet = data => {
@@ -339,7 +339,7 @@ const getPublicFiles = (dir) => new Promise((resolve, reject) => {
             reject(`Path ${dir} was not created.`);
         }
     } catch(e) {
-        reject(rejectWithLog(`getPublicFiles(): ${eToStr(e)}`));
+        reject(rejectWithLog(eToStr(e)));
     }
 });
 
