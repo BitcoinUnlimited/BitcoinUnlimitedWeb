@@ -16,7 +16,7 @@ import {
     getSecure, typeIsValid, realmGet,
     realmGetSecure, realmSave, realmDelete,
     getAuth, removeAuth, getLogs,
-    realmBackup, realmLog
+    realmBackup, realmLog, getLoginChallenge
 } from './database/databaseLogic.js';
 import {
     resErr, resSuccess, eToStr,
@@ -82,6 +82,14 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.get('/get_login_challenge', (req, res) => {
+    getLoginChallenge().then(result => {
+        res.send(result)
+    }).catch(e => {
+        res.send(resErr(e));
+    });
+});
 
 app.get('/user_auth', jwtMiddleware(), (req, res) => (req.user) ? res.json(req.user) : res.json('Req.user is not set in /user_auth'));
 
