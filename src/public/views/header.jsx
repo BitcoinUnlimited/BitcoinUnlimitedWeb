@@ -71,22 +71,26 @@ class Header extends React.Component {
         let modelNames = [];
         let { active: currentName = '' } = this.props;
         models.map(model => {
-            if (model.name !== 'User' && model.name !== currentName) {
+            if (model.name !== 'User') {
                 modelNames.push(model.name);
             }
         });
         let links = modelNames.map((name, idx) => {
-            return (<Link key={idx} className='link' to={`/create/${name}`}>Create {name}</Link>);
+            if (name === currentName) {
+                return (<Link key={idx} className='link active' to={`/create/${name}`}>Create {name}</Link>);
+            } else {
+                return (<Link key={idx} className='link' to={`/create/${name}`}>Create {name}</Link>);
+            }
         });
         return links;
     }
 
     getDashboardLink() {
         let { active: currentName = '' } = this.props;
-        if (currentName !== 'dashboard') {
-            return (<Link className='link' to='/dashboard'>Dashboard</Link>);
+        if (currentName === 'dashboard') {
+            return (<Link className='link active' to='/dashboard'>Dashboard</Link>);
         }
-        return;
+        return (<Link className='link' to='/dashboard'>Dashboard</Link>);
     }
 
     showAdminBar() {
