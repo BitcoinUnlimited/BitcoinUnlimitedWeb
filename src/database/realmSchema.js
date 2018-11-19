@@ -59,6 +59,15 @@ const RoleSchema = {
     }
 }
 
+const ChallengeSchema = {
+    name: 'Challenge',
+    primaryKey: 'uid',
+    properties: {
+        uid: 'string',
+        challenge: 'string'
+    }
+}
+
 /* Public */
 const UserSchema = {
     name: 'User',
@@ -142,7 +151,7 @@ const getDBSchema = () => {
 }
 
 const getAuthSchema = () => {
-    return [AuthSchema, LogSchema, AdminSchema, RoleSchema];
+    return [AuthSchema, LogSchema, AdminSchema, RoleSchema, ChallengeSchema];
 }
 
 module.exports = {

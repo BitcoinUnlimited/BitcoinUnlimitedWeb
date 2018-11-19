@@ -13,7 +13,7 @@ import {
     resSuccess, toInt, isDef,
     isStr, checkDate, isOptional,
     isArr, isEmptyObj, hasKey,
-    getKeyForType
+    getKeyForType, getUid
 } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 
@@ -165,27 +165,60 @@ const isAdmin = pubkey => new Promise((resolve, reject) => {
     }
 });
 
+const isTesting = true;
+
+const getChallengeString = _ => {
+
+    if (isTesting) return 'hello, world';
+
+    let wordArr = strings().auth.wordpool.split(' ');
+    let challenge = '',
+        wordCount = 12;
+    for (var i=0; i < wordCount; i++) {
+        challenge += ' ' + wordArr[Math.floor(Math.random()*wordArr.length)];
+    }
+    return challenge.trim()
+}
+
+const getLoginChallenge = _ => new Promise((resolve, reject) => {
+    realmWrite(authDatabase, realm => {
+        let saved = realm.create('Challenge', { uid: getUid(), challenge: getChallengeString() });
+        if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
+        resolve(saved);
+    }).then(res => resolve(res)).catch(e => {
+        reject(rejectWithLog(eToStr(e)));
+    });
+});
+
 const signatureVerify = data => new Promise((resolve, reject) => {
-    const { pubkey, challenge, signature } = data;
-    if (!isStr(pubkey) || !isStr(challenge) || !isStr(signature)) {
+    const { pubkey, challenge, signature, uid } = data;
+    if (!isStr(pubkey) || !isStr(challenge) || !isStr(signature) || !isStr(uid)) {
         reject(rejectWithLog('signatureVerify(): Missing data for messageVerify.'));
     }
-    isAdmin(pubkey).then(res => {
-        if (messageVerify(data)) {
-            const expires = Math.floor(Date.now() / 1000) + authExiprationSeconds;
-            insertAuth({ pubkey, challenge, signature, expires }).then(res => {
-                if (!res.pubkey || !res.challenge || !res.signature || !res.expires) throw 'Missing required jwt data.';
-                const token = jwt.sign({
-                    pubkey: res.pubkey,
-                    challenge: res.challenge,
-                    signature: res.signature,
-                    expires: res.expires
-                }, process.env.JWT_SECRET);
-                if (!token) throw 'Token creation error.';
-                resolve(token);
-            }).catch(e => reject(eToStr(e)));
+    realmGetSecure('Challenge', uid).then(result => {
+        if (!result || !result.challenge || result.challenge !== challenge) {
+            throw 'Invalid challenge';
         } else {
-            reject(rejectWithLog('signatureVerify(): Challenge could not be verified.'));
+            isAdmin(pubkey).then(res => {
+                if (messageVerify(data)) {
+                    const expires = Math.floor(Date.now() / 1000) + authExiprationSeconds;
+                    insertAuth({ pubkey, challenge, signature, expires }).then(res => {
+                        if (!res.pubkey || !res.challenge || !res.signature || !res.expires) throw 'Missing required jwt data.';
+                        const token = jwt.sign({
+                            pubkey: res.pubkey,
+                            challenge: res.challenge,
+                            signature: res.signature,
+                            expires: res.expires
+                        }, process.env.JWT_SECRET);
+                        if (!token) throw 'Token creation error.';
+                        resolve(token);
+                    }).catch(e => reject(eToStr(e)));
+                } else {
+                    reject(rejectWithLog('signatureVerify(): Challenge could not be verified.'));
+                }
+            }).catch(e => {
+                reject(rejectWithLog(eToStr(e)));
+            });
         }
     }).catch(e => {
         reject(rejectWithLog(eToStr(e)));
@@ -322,5 +355,6 @@ module.exports = {
     realmDelete,
     getAuth,
     removeAuth,
-    realmGetSecure
+    realmGetSecure,
+    getLoginChallenge
 }

@@ -3,38 +3,55 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { strings } from '../../../lib/i18n';
 import Axios from 'axios';
+import ReactLoading from "react-loading";
+import { strings } from '../../../lib/i18n';
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.change = this.change.bind(this);
         this.loginSubmit = this.loginSubmit.bind(this);
-        this.state = { isAuthed: false ,pubkey:'', sig:'', error:'', counter: 0 };
+        this.getChallenge = this.getChallenge.bind(this);
+        this.state = {
+            fetching: false,
+            pubkey: '',
+            uid: null,
+            challenge: null,
+            signature: '',
+            error: '',
+        };
     }
 
     change(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+
+    validate(auth) {
+        let { pubkey, uid, signature, challenge } = auth;
+        if (!pubkey || !uid || !signature || !challenge) {
+            return 1;
+        }
+        return null;
+    }
+
     loginSubmit(e) {
         e.preventDefault();
-        let errors = this.validate();
+        let { pubkey, challenge, uid, signature } = this.state;
+        let auth = { pubkey, challenge, uid, signature };
+        let errors = this.validate(auth);
         if (Number.isInteger(errors)) {
             this.setState({ error: strings().auth.errors[errors] });
             return;
         }
-        this.verifySignature({ pubkey: this.state.pubkey, challenge: this.props.challenge, signature: this.state.sig });
+        console.log('verify auth:');
+        console.log(auth);
+        this.verifySignature(auth);
     }
 
     verifySignature(auth) {
-        const { pubkey, challenge, signature } = auth;
-        Axios.post('/sig_verify', {
-            pubkey: pubkey,
-            challenge: challenge,
-            signature: signature
-        }).then(response => {
+        Axios.post('/sig_verify', auth).then(response => {
             if (response.data && !(response.data.status && response.data.status == 'error')) {
                 localStorage.setItem('jwt', response.data);
                 this.props.router.push('/dashboard');
@@ -46,28 +63,59 @@ class LoginForm extends React.Component {
         });
     }
 
-    validate() {
-        if (!this.state.sig || !this.state.pubkey) {
-            return 1;
+    getChallenge(e) {
+        e.preventDefault();
+        this.setState({ fetching: true })
+        Axios.get('/get_login_challenge').then(res => {
+            if (res.data) {
+                let { uid, challenge } = res.data;
+                if (uid && challenge) {
+                    this.setState({ fetching: false, uid, challenge });
+                } else {
+                    this.setState({ fetching: false });
+                }
+            } else {
+                this.setState({ fetching: false });
+            }
+        }).catch(e => {
+            console.log(e);
+            this.setState({ fetching: false, error: 'Error getting challenge.' });
+        });
+    }
+
+    showError(error) {
+        if (error) {
+            return (<div className="error">{ error }</div>);
         }
         return null;
     }
 
+    showChallenge(fetching, challenge) {
+        if (fetching) {
+            return (<ReactLoading type="balls" color="#ccc" />);
+        }
+        if (challenge) {
+            return challenge;
+        }
+        return (<button onClick={ this.getChallenge }>Get Challenge</button>);
+    }
+
     render() {
+        let { fetching, pubkey, error, challenge, signature } = this.state;
         return (
             <form className="login__form" onSubmit={ this.loginSubmit }>
-                <div className={ this.state.error.length > 0 ? "error" : "error false" }>{ this.state.error }</div>
+                { this.showError(error) }
                 <label className="login__label">
                     <span>Public Key:</span>
-                    <input className="login__text" type="text" name="pubkey" value={ this.state.pubkey } onChange={ this.change } />
+                    <input className="login__text" type="text" name="pubkey" value={ pubkey } onChange={ this.change } />
                 </label>
                 <label className="login__label">
                     <span>Challenge:</span>
-                    <div className="challenge">{ this.props.challenge }</div>
+                    <div className="challenge">{ this.showChallenge(fetching, challenge) }</div>
                 </label>
                 <label className="login__label">
                     <span>Signature:</span>
-                    <textarea className="login__textarea" type="password" name="sig" value={ this.state.sig } onChange={ this.change }></textarea>
+                    <textarea className="login__textarea" type="password" name="signature" value={ signature } onChange={ this.change }></textarea>
                 </label>
                 <input className="login__submit" type="submit" value="Submit" />
             </form>
@@ -78,7 +126,6 @@ class LoginForm extends React.Component {
 export default withRouter(LoginForm);
 
 LoginForm.propTypes = {
-    challenge: PropTypes.string.isRequired,
     router: PropTypes.shape({
         push: PropTypes.func.isRequired
     }).isRequired
