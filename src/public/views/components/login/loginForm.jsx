@@ -78,7 +78,8 @@ class LoginForm extends React.Component {
 export default withRouter(LoginForm);
 
 LoginForm.propTypes = {
-  router: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
+    challenge: PropTypes.string.isRequired,
+    router: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired
 };

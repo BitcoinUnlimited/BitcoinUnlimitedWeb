@@ -64,8 +64,12 @@ class BlogPost extends React.Component {
         return (date) ? (<div className="date my1">{ formatDate(new Date(date)) }</div>) : null;
     }
 
+    displayOrgTitle(author) {
+        return (author && author.org_title) ? `, ${author.org_title}` : '';
+    }
+
     displayAuthor(author) {
-        return (author && author.displayname) ? (<div className="author mb1 italics">By { author.displayname }</div>) : null;
+        return (author && author.displayname) ? (<div className="author mb1 italics">By { author.displayname }{ this.displayOrgTitle(author) }</div>) : null;
     }
 
     displaySubtitle(subtitle) {
