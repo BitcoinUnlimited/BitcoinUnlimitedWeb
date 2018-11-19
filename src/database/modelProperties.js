@@ -20,6 +20,8 @@ const extraFieldInfo = {
     url: { label: 'Link', placeholder: 'URL', description: '' },
     pubkey: { label: 'Public BCH or BTC Address', description: '', readonly: true },
     displayname: { label: 'Name, alias or pseudonom', placeholder: 'Display name', description: '' },
+    org_title: { label: 'Title or Position', placeholder: '', description: 'This will be visible below the display name' },
+    social_media: { label: 'Social media', placeholder: 'Handle', description: '' },
     email: { label: 'Email', description: 'Optionally add your contact email.' },
     icon_img_64: { label: 'User Image', description: 'The image should have an equal height/width and be no greater than 100px wide.' },
     bio_editor:  { label: 'Bio', description: 'A short biography or statement of purpose.' },

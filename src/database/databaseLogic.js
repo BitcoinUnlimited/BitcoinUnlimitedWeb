@@ -8,7 +8,13 @@ import { getDBSchema, getAuthSchema } from './realmSchema.js';
 import { realmDatabase, authDatabase } from './realmDB.js';
 import { setProtocolValues } from './modelProtocols.js';
 import { fixAddressFormat, messageVerify, jwtSecret } from './verifySignature.js';
-import { resErr, eToStr, resErrList, resSuccess, toInt, isDef, isStr, checkDate, isOptional, isArr, isEmptyObj, hasKey, relativeImgPath, getKeyForType } from '../helpers/helpers.js';
+import {
+    resErr, eToStr, resErrList,
+    resSuccess, toInt, isDef,
+    isStr, checkDate, isOptional,
+    isArr, isEmptyObj, hasKey,
+    getKeyForType
+} from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 
 const buildDBErr = idx => strings().database.errors[idx];
@@ -305,44 +311,6 @@ const realmDelete = data => {
     return realmDeleteUid(realmType, data[key], key);
 }
 
-const checkPath = (path, fileType = '') => {
-    let pathArr = path.split('/').filter(dir => dir !== '');
-    for (var i = 0; i < pathArr.length; i++) {
-        let segment = '/' + pathArr.filter((p, idx) => idx <= i).join('/');
-        if (segment.indexOf('.' + fileType) !== -1) break;
-        if (!fs.existsSync(segment)) {
-            try {
-                fs.mkdirSync(segment);
-            } catch(e) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-const getStaticFiles = (dir) => new Promise((resolve, reject) => {
-    try {
-        if (checkPath(dir)) {
-            let results = [];
-            fs.readdirSync(dir).forEach(file => {
-                file = dir + '/' + file;
-                let stat = fs.statSync(file);
-                if (stat && stat.isDirectory()) {
-                    getStaticFiles(file).then(result => results.push(result));
-                } else {
-                    results.push(relativeImgPath(file));
-                }
-            });
-            resolve(results);
-        } else {
-            reject(`Path ${dir} was not created.`);
-        }
-    } catch(e) {
-        reject(rejectWithLog(eToStr(e)));
-    }
-});
-
 module.exports = {
     realmBackup,
     isAdmin,
@@ -354,7 +322,5 @@ module.exports = {
     realmDelete,
     getAuth,
     removeAuth,
-    checkPath,
-    getStaticFiles,
     realmGetSecure
 }

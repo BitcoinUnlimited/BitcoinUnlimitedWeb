@@ -39,7 +39,6 @@ const monthName = idx => ['January','February','March','April','May','June','Jul
 const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`;
 const formatDateFull = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 const saveDateFormat = date => `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-const relativeImgPath = fullPath => fullPath.split('/public').pop();
 
 const getUid = () => uuidv4();
 const getLocalstorageKey = key => ('localStorage' in window) ? localStorage.getItem(key) : false;
@@ -101,14 +100,6 @@ const getKeyForType = name => {
     return schema.primaryKey;
 }
 
-const toBase64 = image => new Promise((resolve, reject) => {
-    let reader = new FileReader();
-    reader.onloadend = () => {
-        resolve(reader.result);
-    }
-    reader.readAsDataURL(image);
-});
-
 module.exports = {
     resObject,
     eToStr,
@@ -131,11 +122,9 @@ module.exports = {
     formatDate,
     formatDateFull,
     saveDateFormat,
-    relativeImgPath,
     getUid,
     getDBSchemas,
     getSchema,
-    toBase64,
     getDBModel,
     setLocalstorageKey,
     getLocalstorageKey,

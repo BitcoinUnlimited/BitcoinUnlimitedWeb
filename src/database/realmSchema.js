@@ -66,8 +66,10 @@ const UserSchema = {
     properties: {
         pubkey: 'string',
         created: {type: 'date', default: new Date()},
-        displayname: 'string?',
         icon_img_64: 'string?',
+        displayname: 'string?',
+        org_title: 'string?',
+        social_media: 'string?',
         bio_editor: 'string?'
     }
 }
