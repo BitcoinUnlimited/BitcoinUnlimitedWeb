@@ -57,7 +57,8 @@ class LogList extends React.Component {
         if (!logs && !fetching) {
             return (
                 <div className="log-list">
-                    <button onClick={this.showLogs}>Show Logs</button>
+                    <h2>Database Logs</h2>
+                    <div className="link underline basic-link" onClick={this.showLogs}>Show Logs</div>
                 </div>
             );
         } else if (!logs && fetching) {
@@ -69,7 +70,8 @@ class LogList extends React.Component {
         }
         return (
             <div className="log-list">
-                <button onClick={this.showLogs}>Refresh Logs</button>
+                <h2>Database Logs</h2>
+                <div className="link underline basic-link" onClick={this.showLogs}>Refresh Logs</div>
                 <table className="table table-bordered table-sm">
                     <thead className="thead-dark">
                         <tr>

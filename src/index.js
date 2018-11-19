@@ -11,18 +11,19 @@ import bodyParser from 'body-parser';
 import Busboy from 'busboy';
 import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
-
-import { isAdmin, signatureVerify, validateAuth,
+import {
+    isAdmin, signatureVerify, validateAuth,
     getSecure, typeIsValid, realmGet,
     realmGetSecure, realmSave, realmDelete,
     getAuth, removeAuth, getLogs,
-    realmBackup, checkPath, realmLog
+    realmBackup, realmLog
 } from './database/databaseLogic.js';
-
-import { resErr, resSuccess, eToStr,
-    isEmptyObj, isImage64, toBase64,
-    getKeyForType, saveDateFormat
+import {
+    resErr, resSuccess, eToStr,
+    isEmptyObj, isImage64, getKeyForType,
+    saveDateFormat, isStr
 } from './helpers/helpers.js';
+import { checkPath, getStaticFiles, buildLinks } from './helpers/fileHelpers.js';
 
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
@@ -95,6 +96,14 @@ app.get('/get/secure/:type/:uid?', jwtMiddleware(), (req, res) => {
             res.json(resErr(`getSecure(${type}): ${eToStr(e)}`));
         })
     }
+});
+
+app.get('/get_static_files', jwtMiddleware(), (req, res) => {
+    getStaticFiles(staticFilesDir).then(result => {
+        res.send(result);
+    }).catch(e => {
+        res.send(resErr(eToStr(e)));
+    })
 });
 
 app.get('/get_backup', jwtMiddleware(), (req, res) => {

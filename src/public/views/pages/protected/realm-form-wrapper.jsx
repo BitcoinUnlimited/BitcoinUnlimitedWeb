@@ -10,7 +10,8 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import Axios from 'axios';
 import { strings } from '../../../lib/i18n';
-import { getDBModel, toBase64, isEmptyObj, isDef, getUid, isImage64, getLocalstorageKey } from '../../../../helpers/helpers.js';
+import { getDBModel, isEmptyObj, isDef, getUid, isImage64, getLocalstorageKey } from '../../../../helpers/helpers.js';
+import { toBase64 } from '../../../../helpers/fileHelpers.js';
 import Base from '../../base.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
 

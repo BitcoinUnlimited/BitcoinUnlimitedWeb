@@ -1,6 +1,6 @@
 
 .content-list,
-.log-list
+.log-list table
     font-size: 14px
 
 .log-list button,
@@ -8,7 +8,9 @@
     margin: 0
 
 #dashboard .blog-list,
-#dashboard .content-list
+#dashboard .content-list,
+#dashboard .static-files,
+#dashboard .log-list
     margin-bottom: 40px
     clear: both
     border-left: 1px solid #333333
@@ -31,7 +33,6 @@
 .content-row .title a
     color: #000000
     text-decoration: none
-    border-bottom: 1px solid #000
 
 .blog-row .date,
 .content-row .date,
@@ -43,3 +44,30 @@
 
 a.edit-link
     color: $orange
+
+.basic-link
+    display: inline-block
+    margin: 10px
+    cursor: pointer
+
+.log-list .basic-Link
+    margin-bottom: 20px
+
+ul.files-list
+    list-style-type: none
+    border: 1px solid #cccccc
+    padding: 0
+
+ul.files-list li
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 4px;
+
+ul.files-list li:last-child
+    border-bottom: none
+
+ul.files-list li a
+    display: inline-block;
+    margin: 10px;
+    color: #000;
+    text-decoration: none;
+    font-size: 13px;

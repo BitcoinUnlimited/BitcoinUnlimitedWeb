@@ -10,6 +10,7 @@ import LogList from '../../components/protected/LogList.jsx';
 import AdminList from '../../components/protected/AdminList.jsx';
 import AdminBlogList from '../../components/protected/AdminBlogList.jsx';
 import AdminAlertList from '../../components/protected/AdminAlertList.jsx';
+import StaticFiles from '../../components/protected/StaticFiles.jsx';
 
 import { isStr } from '../../../../helpers/helpers.js';
 
@@ -48,6 +49,7 @@ class Dashboard extends React.Component {
                 <AdminBlogList />
                 <AdminAlertList />
                 <AdminList />
+                <StaticFiles />
                 <LogList />
                 <button onClick={this.getBackup}>Backup Database</button>
                 {this.showBackupUrl()}
