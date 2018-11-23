@@ -17,7 +17,7 @@ class Post extends React.Component {
         return (
             <div id={this.props.name}>
                 <Header active={this.props.name} />
-                <div className="center">
+                <div className="center blog-body">
                     {this.displayBanner(banner)}
                     <div className="container-blog">
                         <div className='pb4'>
