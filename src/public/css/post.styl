@@ -22,14 +22,14 @@
 .container-blog .body-content ol
     font-size: 18px
     line-height: 1.5em
-    width: 54%
+    width: 64%
     min-width: 340px
     display: block
     margin: 1em auto
     text-align: left
 
 .container-blog .body-content pre
-    width: 54%
+    width: 64%
     min-width: 340px
     display: block
     margin: 1em auto
@@ -40,9 +40,9 @@
     border-radius: 3px
 
 .container-blog .title,
-.container-blog .subtitle
+.container-blog .subtitle,
 .container-blog .author
-    width: 54%
+    width: 64%
     min-width: 340px
     display: block
     margin: 1em auto
@@ -139,3 +139,29 @@
     margin: 12px 0 6px
     font-size: 18px
     line-height: 1.5em;
+
+@media (max-width: 1100px)
+
+    #react-app .body-content blockquote
+        min-height: 0
+        margin: 20px 0
+        padding: 40px 0
+        font-size: 20px
+        line-height: 1.5em
+
+    .container-blog .body-content p,
+    .container-blog .body-content ul,
+    .container-blog .body-content ol,
+    .container-blog .body-content pre,
+    .container-blog .title,
+    .container-blog .subtitle,
+    .container-blog .author
+        width: 80%
+        min-width: 300px
+        display: block
+        margin: 20px auto
+
+@media (max-width: 768px)
+    .section__container.container-bloglist
+        width: 80%
+        min-width: 300px
