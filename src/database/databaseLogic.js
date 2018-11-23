@@ -4,6 +4,7 @@ import Realm from 'realm';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import Promise from 'promise';
+import uuidv4 from 'uuid/v4';
 import { getDBSchema, getAuthSchema } from './realmSchema.js';
 import { realmDatabase, authDatabase } from './realmDB.js';
 import { setProtocolValues } from './modelProtocols.js';
@@ -13,7 +14,7 @@ import {
     resSuccess, toInt, isDef,
     isStr, checkDate, isOptional,
     isArr, isEmptyObj, hasKey,
-    getKeyForType, getUid
+    getKeyForType
 } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 
@@ -182,7 +183,7 @@ const getChallengeString = _ => {
 
 const getLoginChallenge = _ => new Promise((resolve, reject) => {
     realmWrite(authDatabase, realm => {
-        let saved = realm.create('Challenge', { uid: getUid(), challenge: getChallengeString() });
+        let saved = realm.create('Challenge', { uid: uuidv4(), challenge: getChallengeString() });
         if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
         resolve(saved);
     }).then(res => resolve(res)).catch(e => {

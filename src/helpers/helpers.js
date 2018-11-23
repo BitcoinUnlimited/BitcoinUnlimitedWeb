@@ -1,5 +1,4 @@
 'use strict';
-import uuidv4 from 'uuid/v4';
 import { EditorState } from 'draft-js';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 import { getModelPropInfo } from '../database/modelProperties.js';
@@ -40,7 +39,6 @@ const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${d
 const formatDateFull = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 const saveDateFormat = date => `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
 
-const getUid = () => uuidv4();
 const getLocalstorageKey = key => ('localStorage' in window) ? localStorage.getItem(key) : false;
 const setLocalstorageKey = (key, value) => ('localStorage' in window) ? localStorage.setItem(key, value) : false;
 
@@ -122,7 +120,6 @@ module.exports = {
     formatDate,
     formatDateFull,
     saveDateFormat,
-    getUid,
     getDBSchemas,
     getSchema,
     getDBModel,
