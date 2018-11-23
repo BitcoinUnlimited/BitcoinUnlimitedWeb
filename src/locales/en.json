@@ -555,12 +555,12 @@
         },
         "bitcoincashreleasecandidate": {
             "title": "Bitcoin Cash (BCH) Release Candidate",
-            "download": "Download the latest Bitcoin Cash compatible release of Bitcoin Unlimited",
+            "download": "Download the latest Bitcoin Unlimited Cash release.",
             "version": "v1.5.1.0-rc1",
             "date": "Nov 23, 2018",
-            "notes": "This is an early release of software that implements Bitcoin Cash, compliant with the latest activated protocol upgrade (May 15, 2018) and implements features as defined in the ABC and SV specifications for the contentious Nov 15, 2018 network upgrades. For the activation of such features and BIP135 miner voting scheme see ",
+            "notes": "This software implements both the ABC and BSV Nov 15, 2018 protocol upgrades.  For the activation of such features and BIP135 miner voting scheme see ",
             "notes2": "",
-            "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  Bitcoin Cash is a better bitcoin, delivering onchain scalability that has resulted in penny transaction fees and fast confirmations."
+            "warning": "Although this software has passed normal QA tests, it is currently undergoing longevity testing to validate stability.  If you are looking for the most stable software, use the Official Release."
         },
         
         "windows": "Windows",

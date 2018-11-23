@@ -11,11 +11,11 @@ class BitcoinCashReleaseCandidate extends React.Component {
         var latestVersion = "1.5.1.0";
         return (
             <div className='lh-copy py1'>
-                <p>{ strings().download.bitcoincash.download } ({latestVersion}, {strings().download.bitcoincash.date})<br /> <i>({ strings().download.bitcoincash.notes } 
+                <p>{ strings().download.bitcoincashreleasecandidate.download } ({latestVersion}, {strings().download.bitcoincashreleasecandidate.date})<br /> <i>({ strings().download.bitcoincashreleasecandidate.notes } 
                 <a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/bip135-guide.md">BIP 135 voting guide</a>)</i>: </p>
-                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.5.0.2.md">Release Notes</a></p>
-                <p><i>{strings().download.bitcoincash.notes2}</i></p>
-                <p><strong>{strings().download.bitcoincash.warning}</strong></p>
+                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.5.1.0.md">Release Notes</a></p>
+                <p><i>{strings().download.bitcoincashreleasecandidate.notes2}</i></p>
+                <p><strong>{strings().download.bitcoincashreleasecandidate.warning}</strong></p>
 
                 <Release
                     osx64={'/downloads/BUcash-' + latestVersion + '-osx64.tar.gz'}
@@ -36,7 +36,7 @@ class BitcoinCashReleaseCandidate extends React.Component {
                     arm64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-arm64.tar.gz'}
                     arm32={'/downloads/BUcash-' + latestVersion + '-arm32.tar.gz'}
                     arm32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-arm32.tar.gz'}
-                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.5.0.2'>
+                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.5.1.0-rc1'>
 
                     <SignaturesBitcoinCashRC />
                 </Release>
