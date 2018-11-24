@@ -555,7 +555,7 @@
         },
         "bitcoincashreleasecandidate": {
             "title": "Bitcoin Cash (BCH) Release Candidate",
-            "download": "Download the latest Bitcoin Unlimited Cash release.",
+            "download": "Download the latest Bitcoin Unlimited Cash release candidate.",
             "version": "v1.5.1.0-rc1",
             "date": "Nov 23, 2018",
             "notes": "This software implements both the ABC and BSV Nov 15, 2018 protocol upgrades.  For the activation of such features and BIP135 miner voting scheme see ",
