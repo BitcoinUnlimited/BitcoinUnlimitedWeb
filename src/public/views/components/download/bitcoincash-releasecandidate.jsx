@@ -11,7 +11,7 @@ class BitcoinCashReleaseCandidate extends React.Component {
         var latestVersion = "1.5.1.0";
         return (
             <div className='lh-copy py1'>
-                <p>{ strings().download.bitcoincashreleasecandidate.download } ({latestVersion}, {strings().download.bitcoincashreleasecandidate.date})<br /> <i>({ strings().download.bitcoincashreleasecandidate.notes } 
+                <p>{ strings().download.bitcoincashreleasecandidate.download } ({latestVersion}, {strings().download.bitcoincashreleasecandidate.date})<br /> <i>({ strings().download.bitcoincashreleasecandidate.notes }
                 <a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/bip135-guide.md">BIP 135 voting guide</a>)</i>: </p>
                 <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.5.1.0.md">Release Notes</a></p>
                 <p><i>{strings().download.bitcoincashreleasecandidate.notes2}</i></p>
