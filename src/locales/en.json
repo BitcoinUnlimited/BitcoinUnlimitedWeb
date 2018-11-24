@@ -553,6 +553,16 @@
             "notes2": "",
             "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  Bitcoin Cash is a better bitcoin, delivering onchain scalability that has resulted in penny transaction fees and fast confirmations."
         },
+        "bitcoincashreleasecandidate": {
+            "title": "Bitcoin Cash (BCH) Release Candidate",
+            "download": "Download the latest Bitcoin Unlimited Cash release candidate.",
+            "version": "v1.5.1.0-rc1",
+            "date": "Nov 23, 2018",
+            "notes": "This software implements both the ABC and BSV Nov 15, 2018 protocol upgrades.  For the activation of such features and BIP135 miner voting scheme see ",
+            "notes2": "",
+            "warning": "Although this software has passed normal QA tests, it is currently undergoing longevity testing to validate stability.  If you are looking for the most stable software, use the Official Release."
+        },
+        
         "windows": "Windows",
         "linux": "Linux",
         "osx": "Mac OSX",
@@ -568,6 +578,7 @@
         "source": "source code",
         "notes": {
             "title": "Release Notes",
+            "releasenotes_buc_1_5_1_0": "BUcash 1.5.1.0-rc1: Release notes are ",
             "releasenotes_buc_1_5_0_2": "BUcash 1.5.0.2: Release notes are ",
             "releasenotes_buc_1_5_0_1": "BUcash 1.5.0.1: Release notes are ",
             "releasenotes_buc_1_5_0_0": "BUcash 1.5.0.0: Release notes are ",

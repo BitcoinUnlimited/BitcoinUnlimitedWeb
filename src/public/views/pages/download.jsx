@@ -5,6 +5,7 @@ import { strings } from '../../lib/i18n';
 
 import OfficialRelease from '../components/download/official-release.jsx';
 import BitcoinCashRelease from '../components/download/bitcoincash-release.jsx';
+import BitcoinCashReleaseCandidate from '../components/download/bitcoincash-releasecandidate.jsx';
 import InstallInstructions from '../components/download/install-instructions.jsx';
 import ReleaseNotes from '../components/download/releaseNotes.jsx';
 import OlderReleases from '../components/download/olderReleases.jsx';
@@ -15,11 +16,11 @@ import Section from '../components/section.jsx';
 class Download extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selectedSection: this.props.params.section || 'bitcoincash' };
+        this.state = { selectedSection: this.props.params.section || 'bitcoincashreleasecandidate' };
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ selectedSection: nextProps.params.section || 'bitcoincash' })
+        this.setState({ selectedSection: nextProps.params.section || 'bitcoincashreleasecandidate' })
     }
 
     render() {
@@ -29,6 +30,11 @@ class Download extends React.Component {
                 title={ strings().download.title }
                 subtitle={ strings().download.subtitle }>
 
+                <Section
+                    key='bitcoincashreleasecandidate'
+                    expanded={ this.state.selectedSection === 'bitcoincashreleasecandidate'}
+                    title={ strings().download.bitcoincashreleasecandidate.title }
+                    body={ <BitcoinCashReleaseCandidate /> } />
                 <Section
                     key='bitcoincash'
                     expanded={ this.state.selectedSection === 'bitcoincash'}
