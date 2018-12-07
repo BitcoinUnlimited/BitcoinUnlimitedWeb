@@ -4,16 +4,16 @@ import React from 'react';
 import { strings } from '../../../lib/i18n';
 
 import Release from './release.jsx'
-import SignaturesBitcoinCashRC from './signatures_BUcash1-5-1-0-rc1.jsx'
+import SignaturesBitcoinCashRC from './signatures_BUcash1-5-1-0-rc2.jsx'
 
 class BitcoinCashReleaseCandidate extends React.Component {
     render() {
-        var latestVersion = "1.5.1.0";
+        var latestVersion = "1.5.1.0rc2";
         return (
             <div className='lh-copy py1'>
                 <p>{ strings().download.bitcoincashreleasecandidate.download } ({latestVersion}, {strings().download.bitcoincashreleasecandidate.date})<br /> <i>({ strings().download.bitcoincashreleasecandidate.notes }
                 <a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/bip135-guide.md">BIP 135 voting guide</a>)</i>: </p>
-                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.5.1.0.md">Release Notes</a></p>
+                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.5.1.0-rc2.md">Release Notes</a></p>
                 <p><i>{strings().download.bitcoincashreleasecandidate.notes2}</i></p>
                 <p><strong>{strings().download.bitcoincashreleasecandidate.warning}</strong></p>
 
@@ -36,7 +36,7 @@ class BitcoinCashReleaseCandidate extends React.Component {
                     arm64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-arm64.tar.gz'}
                     arm32={'/downloads/BUcash-' + latestVersion + '-arm32.tar.gz'}
                     arm32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-arm32.tar.gz'}
-                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.5.1.0-rc1'>
+                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.5.1.0-rc2'>
 
                     <SignaturesBitcoinCashRC />
                 </Release>
