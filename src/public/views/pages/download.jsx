@@ -16,11 +16,11 @@ import Section from '../components/section.jsx';
 class Download extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selectedSection: this.props.params.section || 'bitcoincashreleasecandidate' };
+        this.state = { selectedSection: this.props.params.section || 'bitcoincash' };
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ selectedSection: nextProps.params.section || 'bitcoincashreleasecandidate' })
+        this.setState({ selectedSection: nextProps.params.section || 'bitcoincash' })
     }
 
     render() {
@@ -30,11 +30,13 @@ class Download extends React.Component {
                 title={ strings().download.title }
                 subtitle={ strings().download.subtitle }>
 
+{/*
                 <Section
                     key='bitcoincashreleasecandidate'
                     expanded={ this.state.selectedSection === 'bitcoincashreleasecandidate'}
                     title={ strings().download.bitcoincashreleasecandidate.title }
                     body={ <BitcoinCashReleaseCandidate /> } />
+*/}                    
                 <Section
                     key='bitcoincash'
                     expanded={ this.state.selectedSection === 'bitcoincash'}
