@@ -14,7 +14,7 @@ import {
     resSuccess, toInt, isDef,
     isStr, checkDate, isOptional,
     isArr, isEmptyObj, hasKey,
-    getKeyForType
+    getKeyForType, realmTypeHasProps
 } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 
@@ -35,10 +35,10 @@ const getDatabaseType = type => {
 }
 
 /*
- * 7200 === 2 hrs
- * todo: add interface for role 0 to adjust value
- */
-const authExiprationSeconds = 7200;
+* 7200 === 2 hrs
+* todo: add interface for role 0 to adjust value
+*/
+const authExiprationSeconds = (process && process.env.AUTH_EXPIRE) ? process.env.AUTH_EXPIRE : 7200;
 
 const isSuperAdmin = pubkey => (process.env.DB_ADMIN_PUBKEY.indexOf(pubkey) !== -1);
 
@@ -61,13 +61,20 @@ const realmFetch = (db, fn) => new Promise((resolve, reject) => {
         } catch(e) {
             reject(e);
         }
-    }).catch(e => reject(e));
+    }).catch(e => {
+        reject(e);
+    });
 });
 
 const realmBackup = _ => new Promise((resolve, reject) => {
     let promiseMap = getDBSchema().map(schema => {
         return realmFetch(realmDatabase, realm => {
-            return realm.objects(schema.name);
+            let objects = realm.objects(schema.name);
+            let results = [];
+            Object.keys(objects).map(key => {
+                results.push(objects[key]);
+            });
+            return (results.length > 0) ? { [schema.name]: results } : { [schema.name]: false };
         }).then(res => {
             return res;
         });
@@ -77,11 +84,77 @@ const realmBackup = _ => new Promise((resolve, reject) => {
     });
 });
 
+const getBackupJSON = path => new Promise((resolve, reject) => {
+    fs.readFile(path, 'utf8', (e, res) => {
+        if (e) throw e;
+        let backupJSON = JSON.parse(res);
+        resolve(backupJSON);
+    });
+});
+
+const formatBackupJSON = backupJSON => {
+    let backup = {};
+    backupJSON.map(obj => {
+        return Object.keys(obj).map(key => {
+            let row = obj[key];
+            // false is skipped
+            if (row) {
+                backup[key] = row;
+            }
+        });
+    });
+    return backup;
+}
+
+const revertSchema = backupJSON => new Promise((resolve, reject) => {
+    // format things
+    let backup = formatBackupJSON(backupJSON);
+    // for each schema type
+    let promiseMap = getDBSchema().map(schema => {
+        return realmWrite(realmDatabase, realm => {
+            // delete all objects
+            let objects = realm.objects(schema.name);
+            realm.delete(objects);
+            // revert to json
+            let didUpdate = false;
+            Object.keys(backup).map(key => {
+                if (schema.name === key) {
+                    let typeContentArray = backup[key];
+                    typeContentArray.map(content => {
+                        realm.create(schema.name, content, true);
+                        didUpdate = true;
+                    });
+                }
+            });
+            return didUpdate;
+        }).then(res => {
+            return res;
+        }).catch(e => {
+            throw e;
+        });
+    });
+    Promise.all(promiseMap).then(results => {
+        resolve(true);
+    }).catch(e => {
+        reject(e);
+    });
+});
+
+const revertDatabase = path => new Promise((resolve, reject) => {
+    getBackupJSON(path).then(backupJSON => {
+        revertSchema(backupJSON).then(result => {
+            resolve(result);
+        }).catch(e => {
+            throw e;
+        });
+    }).catch(e => reject(e));
+});
+
 /*
- * Log messages are not editable post creation
- * data (object):
- * {status: ['success' or 'error'], description: 'log message'}
- */
+* Log messages are not editable post creation
+* data (object):
+* {status: ['success' or 'error'], description: 'log message'}
+*/
 const realmLog = data => {
     if (data) {
         realmWrite(authDatabase, realm => {
@@ -174,7 +247,7 @@ const getChallengeString = _ => {
 
     let wordArr = strings().auth.wordpool.split(' ');
     let challenge = '',
-        wordCount = 12;
+    wordCount = 12;
     for (var i=0; i < wordCount; i++) {
         challenge += ' ' + wordArr[Math.floor(Math.random()*wordArr.length)];
     }
@@ -202,7 +275,7 @@ const signatureVerify = data => new Promise((resolve, reject) => {
         } else {
             isAdmin(pubkey).then(res => {
                 if (messageVerify(data)) {
-                    const expires = Math.floor(Date.now() / 1000) + authExiprationSeconds;
+                    const expires = Math.floor(Date.now() / 1000) + Number(authExiprationSeconds);
                     insertAuth({ pubkey, challenge, signature, expires }).then(res => {
                         if (!res.pubkey || !res.challenge || !res.signature || !res.expires) throw 'Missing required jwt data.';
                         const token = jwt.sign({
@@ -289,21 +362,25 @@ const realmSave = data => new Promise((resolve, reject) => {
 });
 
 /*
- * Optionally pass start and end indexes (pagination)
- */
+* Optionally pass start and end indexes (pagination)
+*/
 const realmGetAll = (db, realmType, query = '') => new Promise((resolve, reject) => {
     let { ordered = 'DESC', start = '', end = '' } = query;
     realmFetch(db, realm => {
         let result;
-        if (ordered !== 'DESC') {
-            result = realm.objects(realmType).sorted('created', false).filtered('published == true');
+        if (realmTypeHasProps(realmType, ['created', 'published'])) {
+            if (ordered !== 'DESC') {
+                result = realm.objects(realmType).sorted('created', false).filtered('published == true');
+            } else {
+                result = realm.objects(realmType).sorted('created', true).filtered('published == true');
+            }
         } else {
-            result = realm.objects(realmType).sorted('created', true).filtered('published == true');
+            result = realm.objects(realmType);
         }
-        if (result && start && end) {
+        /*if (result && start && end) {
             // todo: result.length limts for start, end pagination
             result = result.slice(start, end);
-        }
+        }*/
         if (!result || isEmptyObj(result)) {
             realmLog(`No results for ${realmType}. ${(ordered) ? ordered : ''} ${(start && end) ? start + '-' + end : ''}`);
         }
@@ -357,5 +434,6 @@ module.exports = {
     getAuth,
     removeAuth,
     realmGetSecure,
-    getLoginChallenge
+    getLoginChallenge,
+    revertDatabase
 }

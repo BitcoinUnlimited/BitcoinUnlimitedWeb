@@ -22,6 +22,7 @@ const isArr = prop => (checkRealmType(prop, '[]')) ? true : false;
 const isText = prop => (checkRealmType(prop, 'string')) ? true : false;
 const isBool = prop => (checkRealmType(prop, 'bool')) ? true : false;
 const isDate = prop => (checkRealmType(prop, 'date')) ? true : false;
+const isRealmType = prop => (prop[0] === prop[0].toUpperCase()) ? true : false;
 // check keys for input type specifiers
 const isUid = key => (key.indexOf('uid') !== -1) ? true : false;
 const isEditor = key => (key.indexOf('editor') !== -1) ? true : false;
@@ -33,18 +34,36 @@ const isFileInput = key => (isFile(key) || isImage(key)) ? true : false;
 
 const isEmptyObj = obj => Object.keys(obj).length === 0;
 const isEmptyArr = arr => arr.length === 0;
+
 const hasKey = (obj, key) => Object.keys(obj).indexOf(key) !== -1;
+const hasAllKeys = (obj, keys) => {
+    let hasAll = true;
+    keys.map(key => {
+        if (!hasKey(obj, key)) {
+            hasAll = false;
+        }
+    });
+    return hasAll;
+}
+
 const monthName = idx => ['January','February','March','April','May','June','July','August','September','October','November','December'].filter((month, i) => i == idx)[0];
 const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`;
 const formatDateFull = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-const saveDateFormat = date => `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+const saveDateFormat = date => `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
 
 const getLocalstorageKey = key => ('localStorage' in window) ? localStorage.getItem(key) : false;
 const setLocalstorageKey = (key, value) => ('localStorage' in window) ? localStorage.setItem(key, value) : false;
 
 const getDBSchemas = type => (type == 'Auth') ? getAuthSchema() : getDBSchema();
 const getSchema = (name, db = '') => getDBSchemas(db).filter(schema => schema.name === name)[0];
+// automatically set on content creation
 const readOnlyKeys = key => ['created', 'updated'].indexOf(key) !== -1;
+// check a schema for a specific property
+const realmTypeHasProps = (type, prop) => {
+    let schema = getSchema(type) || getSchema(type, 'Auth');
+    let props = schema.properties;
+    return (Array.isArray(prop)) ? hasAllKeys(props, prop) : hasKey(props, prop);
+}
 
 const getModelPropType = (propKey, propType, primaryKey) => {
     // key checking
@@ -65,6 +84,12 @@ const getRealmType = modelType => {
     let results = getDBSchemas().filter(schema => modelType.indexOf(schema.name) !== -1);
     return results.length > 0 ? results[0].name : false;
 }
+
+const getKeyForType = name => {
+    let schema = getSchema(name) || getSchema(name, 'Auth');
+    return schema.primaryKey;
+}
+
 /*
  * Builds info about each property on a decalred schema.
  *
@@ -82,8 +107,13 @@ const getDBModel = name => {
         let schemaString = props[propKey];
         let prop = { name: propKey, realmType: getRealmType(schemaString), error: '' };
         prop.required = (!isOptional(schemaString)) ? true : false;
-        prop.type = getModelPropType(propKey, schemaString, primaryKey);
-        if (prop.type === 'file') {
+        if (!prop.realmType) {
+            prop.type = getModelPropType(propKey, schemaString, primaryKey);
+        } else {
+            prop.type = 'selectrealm';
+            prop.typePrimaryKey = getKeyForType(prop.realmType);
+        }
+        if (prop.type === 'file' || prop.type === 'selectrealm') {
             prop.fetching = false;
         }
         prop.value = (prop.type === 'editor') ? EditorState.createEmpty() : '';
@@ -91,11 +121,6 @@ const getDBModel = name => {
         model[propKey] = prop;
     });
     return model;
-}
-
-const getKeyForType = name => {
-    let schema = getSchema(name) || getSchema(name, 'Auth');
-    return schema.primaryKey;
 }
 
 module.exports = {
@@ -117,6 +142,7 @@ module.exports = {
     isEmptyObj,
     isEmptyArr,
     hasKey,
+    realmTypeHasProps,
     formatDate,
     formatDateFull,
     saveDateFormat,

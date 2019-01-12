@@ -1,5 +1,9 @@
 'use strict';
 
+/*
+ * Optionally override the input type with the 'input' property.
+ */
+
 const extraFieldInfo = {
     title: { label: 'Title', placeholder: 'Title', description: 'The title of the post or content.' },
     subtitle: { label: 'Subtitle', placeholder: 'Subtitle', description: 'A small description used in a list view.' },
@@ -11,7 +15,7 @@ const extraFieldInfo = {
     created: { label: 'Created Date', description: '' },
     updated: { label: 'Updated Date', description: '' },
     expires: { label: 'Expiration Date', description: 'Set a time limit for this content to be visible.' },
-    author: { label: 'Content Author', description: '' },
+    author: { label: 'Content Author', description: '', optionName: 'displayname' },
     tags: { label: 'Terms', description: 'List terms, separated with commas.' },
     published: { label: 'Publish Content', description: 'Leave unchecked for draft mode.' },
     billboard_img: { label: 'Billboard Image', description: 'This banner image will go behind the title, subtitle and link.' },
@@ -25,7 +29,8 @@ const extraFieldInfo = {
     email: { label: 'Email', description: 'Optionally add your contact email.' },
     icon_img_64: { label: 'User Image', description: 'The image should have an equal height/width and be no greater than 100px wide.' },
     bio_editor:  { label: 'Bio', description: 'A short biography or statement of purpose.' },
-    alert_type: { label: 'Alert type', placeholder: 'announce', description: `Set to: 'announce', 'alert' or 'security'. Defaults to announce.`},
+    alert_type: { label: 'Alert type', placeholder: 'announce', description: `Set to: 'announce', 'alert' or 'security'. Defaults to announce.`,
+        input: 'select', options: { announce: 'Announce', alert: 'Alert', security: 'Security' } },
     message_editor: { label: 'Message', description: 'The content that will be displayed.', toolbar: 'simplified' }
 }
 

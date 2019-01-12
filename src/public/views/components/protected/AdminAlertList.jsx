@@ -14,6 +14,7 @@ class AdminAlertList extends React.Component {
             schema: null,
             fetching: false,
             alertList: {},
+            refreshKey: this.props.refreshKey
         }
     }
 
@@ -48,10 +49,19 @@ class AdminAlertList extends React.Component {
         return (<div className="content-group">{results}</div>);
     }
 
+    componentWillReceiveProps(nextProps) {
+        let { refreshKey } = this.props;
+        let { refreshKey: nextKey } = nextProps;
+        if (refreshKey && nextKey && refreshKey !== nextKey) {
+            this.getAdminAlertList(refreshKey);
+        }
+    }
+
     componentDidMount() {
+        let { refreshKey } = this.props;
         let schema = getSchema('Alert');
         this.setState({ schema });
-        this.getAdminAlertList();
+        this.getAdminAlertList(refreshKey);
     }
 
     render() {

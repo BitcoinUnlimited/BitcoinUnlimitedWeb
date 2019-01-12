@@ -11,6 +11,7 @@ import AdminList from '../../components/protected/AdminList.jsx';
 import AdminBlogList from '../../components/protected/AdminBlogList.jsx';
 import AdminAlertList from '../../components/protected/AdminAlertList.jsx';
 import StaticFiles from '../../components/protected/StaticFiles.jsx';
+import DatabaseBackup from '../../components/protected/DatabaseBackup.jsx';
 
 import { isStr } from '../../../../helpers/helpers.js';
 
@@ -18,47 +19,29 @@ class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.getBackup = this.getBackup.bind(this);
+        this.refresh = this.refresh.bind(this);
         this.state = {
-            backupUrl: null
+            refreshKey: 1
         }
     }
 
-    getBackup() {
-        if ('localStorage' in window) {
-            let jwt = localStorage.getItem('jwt');
-            if (jwt) {
-                this.setState({ backupUrl: null });
-                Axios.get('/get_backup', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
-                    if (isStr(res.data)) {
-                        this.setState({ backupUrl: res.data })
-                    }
-                });
-            }
-        }
-    }
-
-    showBackupUrl() {
-        let { backupUrl } = this.state;
-        return (backupUrl) ? (<a className='underline link' href={backupUrl} download>Download Backup</a>) : null;
+    refresh() {
+        this.setState({ refreshKey: Math.random() });
     }
 
     render() {
         return (
             <Admin name="dashboard" title={ strings().dashboard.title } >
-                <AdminBlogList />
-                <AdminAlertList />
+                <AdminBlogList refreshKey={ this.state.refreshKey } />
+                <AdminAlertList refreshKey={ this.state.refreshKey } />
                 <AdminList />
                 <StaticFiles />
                 <LogList />
-                <button onClick={this.getBackup}>Backup Database</button>
-                {this.showBackupUrl()}
+                <DatabaseBackup refresh={ this.refresh } />
             </Admin>
         );
     }
 }
-
-// <ContentList realmType={realmType} order="AES || DESC" start=0 end=5 />
 
 export default withRouter(Dashboard);
 

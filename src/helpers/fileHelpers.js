@@ -1,6 +1,8 @@
 'use strict';
 
 import fs from 'fs';
+import path from 'path';
+import { isStr } from './helpers.js';
 
 const checkPath = (path, fileType = '') => {
     let pathArr = path.split('/').filter(dir => dir !== '');
@@ -22,7 +24,14 @@ const relativeImgPath = fullPath => {
     return '/static' + fullPath.split('/assets').pop();
 }
 
-const getStaticFiles = (dir) => new Promise((resolve, reject) => {
+const checkBackupPath = (dir, staticPath) => new Promise((resolve, reject) => {
+    if (!isStr(dir) || !isStr(staticPath)) reject('Directory not specified.');
+    if (staticPath.indexOf('/static/') == -1) reject('Incorrect path specified.');
+    let backupPath = path.join(dir, '/', staticPath.split('/static/')[1]);
+    resolve(backupPath);
+});
+
+const getStaticFiles = dir => new Promise((resolve, reject) => {
     try {
         if (checkPath(dir)) {
             let results = [];
@@ -62,5 +71,6 @@ module.exports = {
     checkPath,
     relativeImgPath,
     getStaticFiles,
+    checkBackupPath,
     toBase64
 }
