@@ -22,7 +22,8 @@ class RealmFormWrapper extends React.Component {
             splash: '',
             uid: this.props.params.uid || '',
             realmType: this.props.params.realmType || '',
-            realmModel: null
+            realmModel: null,
+            fetching: false
         }
         this.removeSplash = this.removeSplash.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
@@ -183,9 +184,82 @@ class RealmFormWrapper extends React.Component {
         this.setState({ realmModel });
     }
 
+    setModelOptions(realmModel, data) {
+        let model = realmModel;
+        data.map(item => {
+            if (item !== false) {
+                Object.keys(item).map(key => {
+                    model[key].options = item[key];
+                });
+            }
+        });
+        return model;
+    }
+
+    getOptionDisplayName(item) {
+        let { fieldInfo: { optionName } } = item;
+        return optionName || 'name';
+    }
+
+    optionalizeResult(item, data) {
+        let options = {};
+        Object.keys(data).map(k => {
+            let kRow = data[k];
+            options[kRow[item.typePrimaryKey]] = kRow[this.getOptionDisplayName(item)];
+        });
+        return options;
+    }
+
+    fetchOptionsPromise(key, item) {
+        return new Promise((resolve, reject) => {
+            Axios.get(`/api/get/${ item.realmType }`).then(res => {
+                if (!isEmptyObj(res.data)) {
+                    resolve({ [key]: this.optionalizeResult(item, res.data) });
+                } else {
+                    resolve('hidden');
+                }
+            });
+        });
+    }
+
+    fetchAllOptions(realmModel) {
+        let optionPromises = Object.keys(realmModel).map(key => {
+            if (realmModel[key].realmType !== false) {
+                let result = this.fetchOptionsPromise(key, realmModel[key]);
+                if (result === 'hidden') {
+                    realmModel[key].type = 'hidden';
+                    return false;
+                } else {
+                    return result;
+                }
+            } else {
+                return false;
+            }
+        });
+        Promise.all(optionPromises).then(result => {
+            let model = this.setModelOptions(realmModel, result);
+            this.setState({ realmModel: model, fetching: false });
+        });
+    }
+
+    hasRealmTypes(model) {
+        let shouldFetch = [];
+        Object.keys(model).map(key => {
+            if (model[key].realmType !== false) {
+                shouldFetch = true;
+            }
+        });
+        return shouldFetch;
+    }
+
     getModel(realmType) {
         let realmModel = getDBModel(realmType);
-        this.setState({ realmModel });
+        if (this.hasRealmTypes(realmModel)) {
+            this.setState({ fetching: true });
+            this.fetchAllOptions(realmModel);
+        } else {
+            this.setState({ realmModel });
+        }
     }
 
     getUidData(realmType, uid) {
@@ -246,23 +320,40 @@ class RealmFormWrapper extends React.Component {
         return this.inputChange;
     }
 
+    getInputInfo(input, key) {
+        return (input && input.fieldInfo && input.fieldInfo[key]) ? input.fieldInfo[key] : null;
+    }
+
+    getInputFetching(input) {
+        return (input.type === 'file' || input.type === 'selectrealm') ? input.fetching : false;
+    }
+
+    setValueToPrimaryKey(input) {
+        let { value: { [input.typePrimaryKey]: optionValue } } = input;
+        return optionValue || null;
+    }
+
     buildInput(prop, idx) {
         let { realmModel } = this.state;
         let input = realmModel[prop];
+        if (input.type === 'selectrealm' && input.value) {
+            input.value = this.setValueToPrimaryKey(input) || input.value;
+        }
         return (
             <InputElement
                 key={idx}
-                inputType={input.type}
-                inputLabel={(input.fieldInfo) ? ((input.fieldInfo.label) ? input.fieldInfo.label: null) : null}
+                inputType={ this.getInputInfo(input, 'input') || input.type}
+                inputOptions={ input.options || this.getInputInfo(input, 'options') }
+                inputLabel={ this.getInputInfo(input, 'label') }
                 inputName={input.name}
                 inputValue={input.value}
-                inputToolbar={(input.fieldInfo) ? ((input.fieldInfo.toolbar) ? input.fieldInfo.toolbar: null) : null}
-                inputPlaceholder={(input.fieldInfo) ? ((input.fieldInfo.placeholder) ? input.fieldInfo.placeholder: null) : null}
+                inputToolbar={ this.getInputInfo(input, 'toolbar') }
+                inputPlaceholder={ this.getInputInfo(input, 'placeholder') }
                 inputChange={this.getChangeFn(input.name, input.type)}
-                inputFetching={(input.type === 'file') ? input.fetching : false}
+                inputFetching={ this.getInputFetching(input) }
                 inputRemove={this.fileRemove(input.name, input.type)}
                 inputError={(input.error) ? input.error : null}
-                inputDescription={(input.fieldInfo) ? ((input.fieldInfo.description) ? input.fieldInfo.description: null) : null}
+                inputDescription={ this.getInputInfo(input, 'description') }
             />
         );
     }
@@ -313,9 +404,9 @@ class RealmFormWrapper extends React.Component {
     }
 
     render() {
-        let { realmModel } = this.state;
+        let { realmModel, fetching } = this.state;
         let { params: { realmType } } = this.props;
-        if (!realmType || !realmModel) {
+        if (!realmType || !realmModel || fetching) {
             return (
                 <Base name="schema-update">
                     <ReactLoading type="balls" color="#ccc" />

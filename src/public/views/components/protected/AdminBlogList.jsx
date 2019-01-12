@@ -14,13 +14,14 @@ class AdminBlogList extends React.Component {
             schema: null,
             fetching: false,
             blogList: {},
+            refreshKey: this.props.refreshKey
         }
     }
 
-    getAdminBlogList() {
+    getAdminBlogList(key) {
         let jwt = getLocalstorageKey('jwt');
         if (jwt) {
-            this.setState({ fetching: true, blogList: {} });
+            this.setState({ fetching: true, blogList: {}, refreshKey: key });
             Axios.get('/get/secure/Post', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: blogList } = res;
                 if (blogList) {
@@ -59,10 +60,19 @@ class AdminBlogList extends React.Component {
         return (<div className="blog-group">{results}</div>);
     }
 
+    componentWillReceiveProps(nextProps) {
+        let { refreshKey } = this.props;
+        let { refreshKey: nextKey } = nextProps;
+        if (refreshKey && nextKey && refreshKey !== nextKey) {
+            this.getAdminBlogList(refreshKey);
+        }
+    }
+
     componentDidMount() {
+        let { refreshKey } = this.props;
         let schema = getSchema('Post');
         this.setState({ schema });
-        this.getAdminBlogList();
+        this.getAdminBlogList(refreshKey);
     }
 
     render() {

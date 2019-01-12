@@ -16,19 +16,23 @@ import {
     getSecure, typeIsValid, realmGet,
     realmGetSecure, realmSave, realmDelete,
     getAuth, removeAuth, getLogs,
-    realmBackup, realmLog, getLoginChallenge
+    realmBackup, realmLog, getLoginChallenge,
+    revertDatabase
 } from './database/databaseLogic.js';
 import {
     resErr, resSuccess, eToStr,
     isEmptyObj, isImage64, getKeyForType,
     saveDateFormat, isStr
 } from './helpers/helpers.js';
-import { checkPath, getStaticFiles, buildLinks } from './helpers/fileHelpers.js';
+import { checkPath, getStaticFiles, buildLinks,
+    checkBackupPath
+} from './helpers/fileHelpers.js';
 
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 
 const staticFilesDir = path.join(__dirname, '../assets');
+const backupDir = path.join(staticFilesDir, '/backups');
 
 const passportOpts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -128,6 +132,27 @@ app.get('/get_backup', jwtMiddleware(), (req, res) => {
     })
 });
 
+app.get('/get_backup_list', jwtMiddleware(), (req, res) => {
+    getStaticFiles(backupDir).then(result => {
+        res.send(result);
+    }).catch(e => {
+        res.send(resErr(eToStr(e)));
+    })
+});
+
+app.post('/revert_database', jwtMiddleware(), (req, res) => {
+    const { revertPath } = req.body;
+    checkBackupPath(staticFilesDir, revertPath).then(path => {
+        revertDatabase(path).then(result => {
+            res.send(result);
+        }).catch(e => {
+            throw e;
+        });
+    }).catch(e => {
+        res.send(resErr(eToStr(e)));
+    });
+});
+
 app.post('/sig_verify', (req, res) => {
     signatureVerify(req.body).then(result => res.json(result)).catch(e => res.json(resErr(e)));
 });
@@ -191,6 +216,9 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
         busboy.on('finish', function() {
             if (!fields.realmType) throw 'realmType not specified.';
             if (!typeIsValid(fields.realmType)) throw 'Invalid realmType specified.';
+
+            console.log(fields);
+
             realmSave(fields).then(result => res.json(result)).catch(e => {
                 res.json(resErr(e));
             })

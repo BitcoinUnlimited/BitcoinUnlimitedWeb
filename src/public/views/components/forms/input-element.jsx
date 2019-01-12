@@ -9,10 +9,12 @@ import Axios from 'axios';
 import { isImage, eToStr } from '../../../../helpers/helpers.js';
 
 class InputElement extends React.Component {
+
     constructor(props) {
         super(props);
         this.wysiwygFileUpload = this.wysiwygFileUpload.bind(this);
     }
+
     wysiwygFileUpload(file) {
         return new Promise((resolve, reject) => {
             const formData = new FormData();
@@ -31,6 +33,7 @@ class InputElement extends React.Component {
             reject(eToStr(e));
         });
     }
+
     getLabel() {
         let label = this.props.inputLabel;
         if (label) {
@@ -38,6 +41,7 @@ class InputElement extends React.Component {
         }
         return null;
     }
+
     getDescription() {
         let description = this.props.inputDescription;
         if (description) {
@@ -45,6 +49,7 @@ class InputElement extends React.Component {
         }
         return null;
     }
+
     getError() {
         let error = this.props.inputError;
         if (error) {
@@ -52,6 +57,7 @@ class InputElement extends React.Component {
         }
         return null;
     }
+
     getRemoveBtn() {
         let { inputValue } = this.props;
         if (inputValue) {
@@ -60,18 +66,21 @@ class InputElement extends React.Component {
         }
         return null;
     }
+
     getFileType(inputName, inputChange) {
         if (isImage(inputName)) {
             return (<input type="file" accept="image/*" name={inputName} onChange={inputChange} />);
         }
         return (<input type="file" accept=".exe,.zip,.gz,.pdf,.json" name={inputName} onChange={inputChange} />);
     }
+
     getReactLoading(isFetching) {
         if (isFetching) {
             return (<ReactLoading type="balls" color="#ccc" />);
         }
-        return;
+        return null;
     }
+
     getFilePreview(inputName, inputValue) {
         if (isImage(inputName)) {
             return (<div className="image-preview"><img src={inputValue} /></div>);
@@ -131,18 +140,41 @@ class InputElement extends React.Component {
         return (this.getError()) ? 'input-error' : '';
     }
 
+    buildOptions(options) {
+        return Object.keys(options).map((key, i) => (<option key={ i } value={ key }>{ options[key] }</option>));
+    }
+
+    buildSelect(inputType) {
+        let { inputName, inputValue, inputChange, inputOptions } = this.props;
+        return (
+            <select name={inputName} value={inputValue} onChange={inputChange}>
+                { this.buildOptions(inputOptions) }
+            </select>
+        );
+    }
+
     render() {
-        let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching, inputToolbar } = this.props;
-        if (!inputType || !inputName || !inputChange) {
+        let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching, inputToolbar, inputOptions } = this.props;
+        if (!inputType || !inputName || !inputChange || (inputType === 'select' && !inputOptions) ) {
             return null;
         }
-        if (inputType === 'hidden' || inputType === 'primaryKey') {
+        if (inputType === 'hidden') {
             return (
                 <input
                     type="hidden"
                     name={inputName}
                     value={inputValue}
                 />
+            );
+        }
+        if (inputType === 'select' || inputType === 'selectrealm') {
+            return (
+                <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
+                    { this.getLabel() }
+                    { this.buildSelect() }
+                    { this.getDescription() }
+                    { this.getError() }
+                </fieldset>
             );
         }
         if (inputType === 'editor') {

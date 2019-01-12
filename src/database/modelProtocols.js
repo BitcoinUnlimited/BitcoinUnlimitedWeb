@@ -42,10 +42,10 @@ protocol.setPublished = data => {
 }
 
 protocol.setAuthor = data => {
-    if (data.pubkey) {
+    if (data.author) {
+        data.author = { pubkey: data.author };
+    } else if (data.pubkey) {
         data.author = { pubkey: data.pubkey };
-    } else {
-        delete data.author;
     }
     delete data.pubkey;
     return data;
