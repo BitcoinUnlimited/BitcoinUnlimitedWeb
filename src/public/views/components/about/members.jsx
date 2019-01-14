@@ -38,7 +38,7 @@ class Members extends React.Component {
 
     renderModalBody() {
         if (this.state.selectedMember) {
-            return (<MemberModal member={this.state.selectedMember} />)
+            return (<MemberModal member={ this.state.selectedMember } />)
         }
     }
 
@@ -46,13 +46,13 @@ class Members extends React.Component {
         return (
             <div className='pt3'>
                 <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onRequestClose={this.closeModal}
+                  isOpen={ this.state.modalIsOpen }
+                  onRequestClose={ this.closeModal }
                   className='modal--content'
                   overlayClassName='modal--overlay'
                   contentLabel="Member Modal"
                 >
-                  {this.renderModalBody()}
+                  { this.renderModalBody() }
                 </Modal>
 
                 <div>
@@ -60,9 +60,9 @@ class Members extends React.Component {
                         MEMBERS.map((member) => {
                             return(
                                 <Member
-                                    member={member}
-                                    key={member.avatar}
-                                    modalFunc={this.openMemberModal} />
+                                    member={ member }
+                                    key={ member.avatar }
+                                    modalFunc={ this.openMemberModal } />
                             )
                         })
                     }

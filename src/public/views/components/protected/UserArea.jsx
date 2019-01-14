@@ -18,17 +18,17 @@ class UserArea extends React.Component {
         return (name) ? name : pubkey.substr(0, 6) + '..';
     }
     getIconLink(pubkey, icon) {
-        return (<Link to={`/update/User/${pubkey}`}><img className="icon" src={icon} /></Link>);
+        return (<Link to={ `/update/User/${pubkey}` }><img className="icon" src={ icon } /></Link>);
     }
     getDefaultLink(pubkey) {
-        return (<Link to={`/update/User/${pubkey}`}><div className="icon"><UserIcon width="20" height="20" /></div></Link>);
+        return (<Link to={ `/update/User/${pubkey}` }><div className="icon"><UserIcon width="20" height="20" /></div></Link>);
     }
     getUserIcon() {
         let { user: { icon_img_64: icon, pubkey } } = this.state;
         if (pubkey) {
             return (
                 <div className="user-header">
-                    {(icon) ? this.getIconLink(pubkey, icon) : this.getDefaultLink(pubkey)}
+                    { (icon) ? this.getIconLink(pubkey, icon) : this.getDefaultLink(pubkey) }
                 </div>
             );
         }

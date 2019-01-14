@@ -96,11 +96,11 @@ class DatabaseBackup extends React.Component {
         if (files.length > 0) {
             let results = files.reverse().map((path, key) => {
                 let pathName = formatDateFull(this.formatPath(path));
-                return (<option key={key} value={ path }>{ pathName }</option>);
+                return (<option key={ key } value={ path }>{ pathName }</option>);
             });
             return (
                 <div className="revert-database">
-                    <button onClick={this.revertDatabase}>Revert Database</button>
+                    <button onClick={ this.revertDatabase }>Revert Database</button>
                     <select onChange={ this.onChangePath } value={ revertPath || "" }>
                         <option value="">Select backup</option>
                         { results }
@@ -120,7 +120,7 @@ class DatabaseBackup extends React.Component {
         return (
             <div className="backup-area">
             <div className="backup-database">
-            <button onClick={this.getBackup}>Backup Database</button>
+            <button onClick={ this.getBackup }>Backup Database</button>
             { this.showBackupUrl() }
             </div>
             { this.buildFileSelect() }

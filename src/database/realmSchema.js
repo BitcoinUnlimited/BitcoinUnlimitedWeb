@@ -125,6 +125,7 @@ const PostSchema = {
         title: 'string',
         subtitle: 'string?',
         header_img: 'string?',
+        caption_editor: 'string?',
         body_editor: 'string',
         published: {type: 'bool', default: false},
         author: 'User?',

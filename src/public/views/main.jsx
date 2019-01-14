@@ -27,31 +27,31 @@ import Dashboard from './pages/protected/dashboard.jsx';
 import RealmFormWrapper from './pages/protected/realm-form-wrapper.jsx';
 
 ReactDOM.render((
-    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
+    <Router onUpdate={ () => window.scrollTo(0, 0) } history={ browserHistory }>
         <Route path='/'>
-            <IndexRoute component={Index} />
-            <Route path='index' component={Index} />
-            <Route path="solutions(/:section)" component={Solutions} />
-            <Route path='technologies(/:section)' component={Technologies} />
-            <Route path='about(/:section)' component={About} />
-            <Route path='donate' component={Donate} />
-            <Route path='resources(/:section)' component={Resources} />
-            <Route path='faq(/:section)' component={Faq} />
-            <Route path='download(/:section)' component={Download} />
-            <Route path='emergent-consensusBU' component={EmergentConsensusBU} />
-            <Route path='emergent-consensus' component={EmergentConsensus} />
-            <Route path='cash-development-plan' component={DevelopTestingAccord} />
-            <Route path='login' component={Login} />
-            <Route component={Auth}>
-                <Route path='dashboard' component={Dashboard} />
-                <Route path='create/:realmType' component={RealmFormWrapper} />
-                <Route path='update/:realmType/:uid' component={RealmFormWrapper} />
+            <IndexRoute component={ Index } />
+            <Route path='index' component={ Index } />
+            <Route path="solutions(/:section)" component={ Solutions } />
+            <Route path='technologies(/:section)' component={ Technologies } />
+            <Route path='about(/:section)' component={ About } />
+            <Route path='donate' component={ Donate } />
+            <Route path='resources(/:section)' component={ Resources } />
+            <Route path='faq(/:section)' component={ Faq } />
+            <Route path='download(/:section)' component={ Download } />
+            <Route path='emergent-consensusBU' component={ EmergentConsensusBU } />
+            <Route path='emergent-consensus' component={ EmergentConsensus } />
+            <Route path='cash-development-plan' component={ DevelopTestingAccord } />
+            <Route path='login' component={ Login } />
+            <Route component={ Auth }>
+                <Route path='dashboard' component={ Dashboard } />
+                <Route path='create/:realmType' component={ RealmFormWrapper } />
+                <Route path='update/:realmType/:uid' component={ RealmFormWrapper } />
             </Route>
-            <Route path='blog' component={BlogList} />
-            <Route path='blog/:uid' component={BlogPost} />
-            <Route path='content/:uid' component={ContentDisplay} />
-            <Route path='not-found' component={NotFound} />
-            <Route path='*' component={NotFound} />
+            <Route path='blog' component={ BlogList } />
+            <Route path='blog/:uid' component={ BlogPost } />
+            <Route path='content/:uid' component={ ContentDisplay } />
+            <Route path='not-found' component={ NotFound } />
+            <Route path='*' component={ NotFound } />
         </Route>
     </Router>
 ), document.getElementById('react-app'));

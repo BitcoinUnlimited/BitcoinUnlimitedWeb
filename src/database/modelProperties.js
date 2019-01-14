@@ -2,6 +2,7 @@
 
 /*
  * Optionally override the input type with the 'input' property.
+ * If 'select' is specified also specify an 'options' parameter.
  */
 
 const extraFieldInfo = {
@@ -9,6 +10,7 @@ const extraFieldInfo = {
     subtitle: { label: 'Subtitle', placeholder: 'Subtitle', description: 'A small description used in a list view.' },
     name: { label: 'Content Name', description: 'Administrative identifier.' },
     header_img: { label: 'Billboard Image', description: 'This image will go above the post.' },
+    caption_editor: { label: 'Billboard Caption', description: 'Displayed under the banner image.', toolbar: 'simplified' },
     upload_file: { label: 'File Upload', description: 'Supported types are: .exe,.zip,.gz,.pdf,.json. The upload will be available from the static files directory.' },
     misc_data: { label: 'Data', description: 'Store JSON data for ad hoc interpretation.' },
     body_editor: { label: 'Content', description: 'This image will go above the post.' },

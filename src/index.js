@@ -216,9 +216,6 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
         busboy.on('finish', function() {
             if (!fields.realmType) throw 'realmType not specified.';
             if (!typeIsValid(fields.realmType)) throw 'Invalid realmType specified.';
-
-            console.log(fields);
-
             realmSave(fields).then(result => res.json(result)).catch(e => {
                 res.json(resErr(e));
             })

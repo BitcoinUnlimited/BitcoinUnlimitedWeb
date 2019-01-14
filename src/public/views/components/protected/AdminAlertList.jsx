@@ -39,10 +39,10 @@ class AdminAlertList extends React.Component {
         let results = Object.keys(alertList).map((key, idx) => {
             let alert = alertList[key];
             return (
-                <div className="content-row" key={idx}>
+                <div className="content-row" key={ idx }>
                     <h4 className="title">{ alert.name }</h4>
                     <div className="date">{ formatDateFull(new Date(alert.created)) }</div>
-                    <Link className="link edit-link" to={`/update/Alert/${alert.uid}`}>Edit »</Link>
+                    <Link className="link edit-link" to={ `/update/Alert/${alert.uid}` }>Edit »</Link>
                 </div>
             );
         });
@@ -83,7 +83,7 @@ class AdminAlertList extends React.Component {
         return (
             <div className="content-list">
                 <h2>Alert List</h2>
-                {this.buildAlertList()}
+                { this.buildAlertList() }
             </div>
         );
     }

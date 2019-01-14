@@ -37,7 +37,7 @@ class InputElement extends React.Component {
     getLabel() {
         let label = this.props.inputLabel;
         if (label) {
-            return (<legend className="input-label">{label}</legend>);
+            return (<legend className="input-label">{ label }</legend>);
         }
         return null;
     }
@@ -45,7 +45,7 @@ class InputElement extends React.Component {
     getDescription() {
         let description = this.props.inputDescription;
         if (description) {
-            return (<div className="description">{description}</div>);
+            return (<div className="description">{ description }</div>);
         }
         return null;
     }
@@ -53,7 +53,7 @@ class InputElement extends React.Component {
     getError() {
         let error = this.props.inputError;
         if (error) {
-            return (<div className="error-msg">{error}</div>);
+            return (<div className="error-msg">{ error }</div>);
         }
         return null;
     }
@@ -62,16 +62,16 @@ class InputElement extends React.Component {
         let { inputValue } = this.props;
         if (inputValue) {
             let { inputRemove } = this.props;
-            return (<button onClick={inputRemove}>Remove</button>);
+            return (<button onClick={ inputRemove }>Remove</button>);
         }
         return null;
     }
 
     getFileType(inputName, inputChange) {
         if (isImage(inputName)) {
-            return (<input type="file" accept="image/*" name={inputName} onChange={inputChange} />);
+            return (<input type="file" accept="image/*" name={ inputName } onChange={ inputChange } />);
         }
-        return (<input type="file" accept=".exe,.zip,.gz,.pdf,.json" name={inputName} onChange={inputChange} />);
+        return (<input type="file" accept=".exe,.zip,.gz,.pdf,.json" name={ inputName } onChange={ inputChange } />);
     }
 
     getReactLoading(isFetching) {
@@ -83,9 +83,9 @@ class InputElement extends React.Component {
 
     getFilePreview(inputName, inputValue) {
         if (isImage(inputName)) {
-            return (<div className="image-preview"><img src={inputValue} /></div>);
+            return (<div className="image-preview"><img src={ inputValue } /></div>);
         }
-        return (<div className="clear file-preview"><a className='underline link' href={inputValue} download>{inputValue}</a></div>);
+        return (<div className="clear file-preview"><a className='underline link' href={ inputValue } download>{ inputValue }</a></div>);
     }
 
     getToolbar(toolbar) {
@@ -147,7 +147,7 @@ class InputElement extends React.Component {
     buildSelect(inputType) {
         let { inputName, inputValue, inputChange, inputOptions } = this.props;
         return (
-            <select name={inputName} value={inputValue} onChange={inputChange}>
+            <select name={ inputName } value={ inputValue } onChange={ inputChange }>
                 { this.buildOptions(inputOptions) }
             </select>
         );
@@ -162,8 +162,8 @@ class InputElement extends React.Component {
             return (
                 <input
                     type="hidden"
-                    name={inputName}
-                    value={inputValue}
+                    name={ inputName }
+                    value={ inputValue }
                 />
             );
         }
@@ -180,60 +180,60 @@ class InputElement extends React.Component {
         if (inputType === 'editor') {
             return (
                 <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
-                    {this.getLabel()}
+                    { this.getLabel() }
                     <Editor
-                        editorState={inputValue}
-                        onEditorStateChange={inputChange}
-                        toolbar={this.getToolbar(inputToolbar)}
+                        editorState={ inputValue }
+                        onEditorStateChange={ inputChange }
+                        toolbar={ this.getToolbar(inputToolbar) }
                     />
-                    {this.getDescription()}
-                    {this.getError()}
+                    { this.getDescription() }
+                    { this.getError() }
                 </fieldset>
             );
         }
         if (inputType === 'checkbox') {
             return (
                 <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
-                    {this.getLabel()}
+                    { this.getLabel() }
                     <input
                         type="checkbox"
-                        name={inputName}
-                        checked={inputValue}
-                        onChange={inputChange}
+                        name={ inputName }
+                        checked={ inputValue }
+                        onChange={ inputChange }
                     />
-                    {this.getDescription()}
-                    {this.getError()}
+                    { this.getDescription() }
+                    { this.getError() }
                 </fieldset>
             );
         }
         if (inputType === 'file') {
             return (
                 <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
-                    {this.getLabel()}
+                    { this.getLabel() }
                     <div className="file-upload">
-                        {this.getFileType(inputName, inputChange)}
+                        { this.getFileType(inputName, inputChange) }
                     </div>
-                    {this.getReactLoading(inputFetching)}
-                    {this.getFilePreview(inputName, inputValue)}
-                    {this.getDescription()}
-                    {this.getError()}
-                    {this.getRemoveBtn()}
+                    { this.getReactLoading(inputFetching) }
+                    { this.getFilePreview(inputName, inputValue) }
+                    { this.getDescription() }
+                    { this.getError() }
+                    { this.getRemoveBtn() }
                 </fieldset>
             );
         }
         if (inputType === 'text') {
             return (
                 <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
-                    {this.getLabel()}
+                    { this.getLabel() }
                     <input
-                        type={inputType}
-                        name={inputName}
-                        value={inputValue}
-                        placeholder={(inputPlaceholder) ? inputPlaceholder : inputName}
-                        onChange={inputChange}
+                        type={ inputType }
+                        name={ inputName }
+                        value={ inputValue }
+                        placeholder={ (inputPlaceholder) ? inputPlaceholder : inputName }
+                        onChange={ inputChange }
                     />
-                    {this.getDescription()}
-                    {this.getError()}
+                    { this.getDescription() }
+                    { this.getError() }
                 </fieldset>
             );
         }
@@ -241,31 +241,31 @@ class InputElement extends React.Component {
             let formattedDate = (inputValue.indexOf('T') !== -1) ? inputValue.split('T')[0] : inputValue;
             return (
                 <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
-                    {this.getLabel()}
+                    { this.getLabel() }
                     <input
-                        type={inputType}
-                        name={inputName}
-                        value={formattedDate}
-                        onChange={inputChange}
+                        type={ inputType }
+                        name={ inputName }
+                        value={ formattedDate }
+                        onChange={ inputChange }
                     />
-                    {this.getDescription()}
-                    {this.getError()}
+                    { this.getDescription() }
+                    { this.getError() }
                 </fieldset>
             );
         }
         if (inputType === 'textarea') {
             return (
                 <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
-                    {this.getLabel()}
+                    { this.getLabel() }
                     <textarea
                         className="textarea"
-                        name={inputName}
-                        placeholder={(inputPlaceholder) ? inputPlaceholder : null}
-                        value={inputValue}
-                        onChange={inputChange}>
+                        name={ inputName }
+                        placeholder={ (inputPlaceholder) ? inputPlaceholder : null }
+                        value={ inputValue }
+                        onChange={ inputChange }>
                     ></textarea>
-                    {this.getDescription()}
-                    {this.getError()}
+                    { this.getDescription() }
+                    { this.getError() }
                 </fieldset>
             );
         }

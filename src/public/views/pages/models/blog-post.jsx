@@ -87,17 +87,16 @@ class BlogPost extends React.Component {
                 </Post>
             );
         }
-        console.log(post);
-        let { header_img, title, subtitle, created, author } = post;
+        let { header_img, caption_editor, title, subtitle, created, author } = post;
         return (
-            <Post name="blog" banner={ header_img }>
-                {this.displayTitle(title)}
-                {this.displayAuthor(author)}
-                {this.displayCreated(created)}
-                {this.displaySubtitle(subtitle)}
-                {/* HTML stored in the database is created in the secure auth area and is presumed to be safe */}
-                <div className="body-content" dangerouslySetInnerHTML={{ __html: post.body_editor }}></div>
-                <Link className="link underline" to="/blog" onClick={this.goTop}>« Back to Blog</Link>
+            <Post name="blog" banner={ header_img } caption={ caption_editor }>
+                { this.displayTitle(title) }
+                { this.displayAuthor(author) }
+                { this.displayCreated(created) }
+                { this.displaySubtitle(subtitle) }
+                { /* HTML stored in the database is created in the secure auth area and is presumed to be safe */ }
+                <div className="body-content" dangerouslySetInnerHTML={ { __html: post.body_editor } }></div>
+                <Link className="link underline" to="/blog" onClick={ this.goTop }>« Back to Blog</Link>
             </Post>
         );
     }

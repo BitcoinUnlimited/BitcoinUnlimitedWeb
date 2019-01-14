@@ -100,35 +100,35 @@ class AdminList extends React.Component {
     buildHeader() {
         let { schema: { properties: props } } = this.state;
         let results = Object.keys(props).map((propName, idx) => {
-            return (<th key={idx} scope="col">{propName}</th>);
+            return (<th key={ idx } scope="col">{ propName }</th>);
         });
-        return (<tr>{results}<th scope="col">Edit</th></tr>);
+        return (<tr>{ results }<th scope="col">Edit</th></tr>);
     }
 
     displayAdmins(adminList, newAdmin) {
         let results = Object.keys(adminList).map((key, idx) => {
             let { pubkey, role } = adminList[key];
             return (
-                <tr key={idx}>
+                <tr key={ idx }>
                   <th scope="row">{ pubkey }</th>
                   <td>{ role }</td>
-                  <td><button data-pubkey={pubkey} onClick={this.removeAdmin}>Remove</button></td>
+                  <td><button data-pubkey={ pubkey } onClick={ this.removeAdmin }>Remove</button></td>
                 </tr>
             );
         });
         return (
             <tbody>
-                {results}
+                { results }
                 <tr>
                     <th scope="row">
                         <label className="clear">Add Pubkey:</label>
-                        <input type="text" name="pubkey" placeholder="Pubkey" value={newAdmin.pubkey} onChange={this.inputChange}/>
+                        <input type="text" name="pubkey" placeholder="Pubkey" value={ newAdmin.pubkey } onChange={ this.inputChange }/>
                     </th>
                     <td>
                         <label className="clear">Role:</label>
-                        <input type="text" name="role" placeholder="(available soon)" value={newAdmin.role} onChange={this.inputChange} disabled/>
+                        <input type="text" name="role" placeholder="(available soon)" value={ newAdmin.role } onChange={ this.inputChange } disabled/>
                     </td>
-                    <td><button onClick={this.addAdmin}>Add</button></td>
+                    <td><button onClick={ this.addAdmin }>Add</button></td>
                 </tr>
             </tbody>
         );

@@ -6,15 +6,15 @@ import React from 'react';
 class MemberModal extends React.Component {
     renderImage() {
         if (this.props.member.photoUrl) {
-            return (<img className='member__image pb1' src={ '../' + this.props.member.photoUrl} alt={this.props.member.name} />)
+            return (<img className='member__image pb1' src={ '../' + this.props.member.photoUrl} alt={ this.props.member.name } />)
         } else {
-            return (<img className='member__image' src='../img/about/generic.png' alt={this.props.member.name} />)
+            return (<img className='member__image' src='../img/about/generic.png' alt={ this.props.member.name } />)
         }
     }
 
     renderTitle() {
         if (this.props.member.title) {
-            return ( <div> {this.props.member.title} </div> )
+            return ( <div> { this.props.member.title } </div> )
         } else {
             return
         }
@@ -43,7 +43,7 @@ class MemberModal extends React.Component {
         )
     }
 
-    makeParagraph(string, index) { return <p key={index}>{string}</p> }
+    makeParagraph(string, index) { return <p key={ index }>{ string }</p> }
 
     stringsToParagraphs(strings) {
         return strings.map((string, i) => this.makeParagraph(string, i))
@@ -53,13 +53,11 @@ class MemberModal extends React.Component {
         return (
             <div className='p2 pb3 center'>
                 { this.renderImage() }
-
                 <div className='py1'>
-                    <div> {this.props.member.avatar} </div>
-                    <div> {this.props.member.name} </div>
+                    <div>{ this.props.member.avatar }</div>
+                    <div>{ this.props.member.name }</div>
                     { this.renderTitle() }
                 </div>
-
                 { this.renderBody() }
             </div>
         )

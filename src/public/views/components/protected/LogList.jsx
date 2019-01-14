@@ -35,11 +35,11 @@ class LogList extends React.Component {
         if (logs) {
             let results = Object.keys(logs).map(key => {
                 let log = logs[key];
-                return (<Log key={key} item={log} />);
+                return (<Log key={ key } item={ log } />);
             });
             return (
                 <tbody>
-                    {results}
+                    { results }
                 </tbody>
             );
         }
@@ -58,7 +58,7 @@ class LogList extends React.Component {
             return (
                 <div className="log-list">
                     <h2>Database Logs</h2>
-                    <div className="link underline basic-link" onClick={this.showLogs}>Show Logs</div>
+                    <div className="link underline basic-link" onClick={ this.showLogs }>Show Logs</div>
                 </div>
             );
         } else if (!logs && fetching) {
@@ -71,7 +71,7 @@ class LogList extends React.Component {
         return (
             <div className="log-list">
                 <h2>Database Logs</h2>
-                <div className="link underline basic-link" onClick={this.showLogs}>Refresh Logs</div>
+                <div className="link underline basic-link" onClick={ this.showLogs }>Refresh Logs</div>
                 <table className="table table-bordered table-sm">
                     <thead className="thead-dark">
                         <tr>

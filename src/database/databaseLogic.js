@@ -239,12 +239,11 @@ const isAdmin = pubkey => new Promise((resolve, reject) => {
     }
 });
 
-const isTesting = true;
+const isTesting = process.env.DEBUG || false;
+const testString = 'hello, world';
 
 const getChallengeString = _ => {
-
-    if (isTesting) return 'hello, world';
-
+    if (isTesting.toLowerCase() === 'true') return testString;
     let wordArr = strings().auth.wordpool.split(' ');
     let challenge = '',
     wordCount = 12;
