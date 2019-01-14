@@ -76,7 +76,7 @@ class Auth extends React.Component {
         }
         return (
             <div>
-                {this.props.children}
+                { this.props.children }
             </div>
         );
     }

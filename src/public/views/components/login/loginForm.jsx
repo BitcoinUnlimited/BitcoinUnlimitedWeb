@@ -45,8 +45,6 @@ class LoginForm extends React.Component {
             this.setState({ error: strings().auth.errors[errors] });
             return;
         }
-        console.log('verify auth:');
-        console.log(auth);
         this.verifySignature(auth);
     }
 

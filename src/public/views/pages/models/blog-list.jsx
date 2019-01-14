@@ -53,12 +53,12 @@ class BlogList extends React.Component {
                     <div className="hover-bg-gradient"></div>
                     <h4 className="title">{ post.title }</h4>
                     <div className="date">{ formatDate(new Date(post.created)) }</div>
-                    {this.getAuthorDisplay(post)}
+                    { this.getAuthorDisplay(post) }
                     <div className="subtitle">{ post.subtitle }</div>
                 </Link>
             );
         });
-        return (<div className="blog-group">{results}</div>);
+        return (<div className="blog-group">{ results }</div>);
     }
 
     componentDidMount() {
@@ -84,7 +84,7 @@ class BlogList extends React.Component {
         }
         return (
             <Page name="bloglist" title="The Bitcoin Unlimited Blog" >
-                {this.buildBlogList()}
+                { this.buildBlogList() }
             </Page>
         );
     }

@@ -19,22 +19,22 @@ class MobileHeader extends React.Component {
                 </div>
                 <div className="right">
                     <Menu className='center' isOpen={false} right>
-                        <RadiumLink className='block my3 dim btn--primary' to='/download'>{strings().header.download.title}</RadiumLink>
-                        <RadiumLink className='block my3 dim btn--secondary' to='/donate'>{strings().header.donate}</RadiumLink>
+                        <RadiumLink className='block my3 dim btn--primary' to='/download'>{ strings().header.download.title }</RadiumLink>
+                        <RadiumLink className='block my3 dim btn--secondary' to='/donate'>{ strings().header.donate }</RadiumLink>
                         <div>
-                            <RadiumLink className='white header__link' to='/solutions'>{strings().header.solutions.title}</RadiumLink>
+                            <RadiumLink className='white header__link' to='/solutions'>{ strings().header.solutions.title }</RadiumLink>
                         </div>
                         <div>
-                            <RadiumLink className='white header__link' to='/technologies'>{strings().header.technologies.title}</RadiumLink>
+                            <RadiumLink className='white header__link' to='/technologies'>{ strings().header.technologies.title }</RadiumLink>
                         </div>
                         <div>
-                            <RadiumLink className='white header__link' to='/resources'>{strings().header.resources.title}</RadiumLink>
+                            <RadiumLink className='white header__link' to='/resources'>{ strings().header.resources.title }</RadiumLink>
                         </div>
                         <div>
-                            <RadiumLink className='white header__link' to='/faq'>{strings().header.faq.title}</RadiumLink>
+                            <RadiumLink className='white header__link' to='/faq'>{ strings().header.faq.title }</RadiumLink>
                         </div>
                         <div>
-                            <RadiumLink className='white header__link' to='/about'>{strings().header.about.title}</RadiumLink>
+                            <RadiumLink className='white header__link' to='/about'>{ strings().header.about.title }</RadiumLink>
                         </div>
                         <div>
                             <RadiumLink className='white header__link' to='/blog'>Blog</RadiumLink>

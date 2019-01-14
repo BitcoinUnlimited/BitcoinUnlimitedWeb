@@ -17,8 +17,8 @@ class Admin extends React.Component {
 
     render() {
         return (
-            <div id={this.props.name}>
-                <Header active={this.props.name} />
+            <div id={ this.props.name }>
+                <Header active={ this.props.name } />
                 <div className="p2 py4 center">
                     { this.getTitle(this.props.title) }
                     { this.getSubtitle(this.props.subtitle) }

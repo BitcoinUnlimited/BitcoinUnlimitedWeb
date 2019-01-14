@@ -23,18 +23,18 @@ class Slider extends React.Component {
                 <div id="sequence">
                     <ul className="sequence-canvas">
                         <li className="bg2">
-                            <h2 className="title">{strings().slider.cryptography}</h2>
-                            <h3 className="subtitle">{strings().slider.cryptographyText}</h3>
+                            <h2 className="title">{ strings().slider.cryptography }</h2>
+                            <h3 className="subtitle">{ strings().slider.cryptographyText }</h3>
                         </li>
 
                         <li className="bg1">
-                            <h2 className="title">{strings().slider.vires}</h2>
-                            <h3 className="subtitle">{strings().slider.viresText}</h3>
+                            <h2 className="title">{ strings().slider.vires }</h2>
+                            <h3 className="subtitle">{ strings().slider.viresText }</h3>
                         </li>
 
                         <li className="bg3">
-                            <h2 className="title">{strings().slider.free}</h2>
-                            <h3 className="subtitle">{strings().slider.freeText}</h3>
+                            <h2 className="title">{ strings().slider.free }</h2>
+                            <h3 className="subtitle">{ strings().slider.freeText }</h3>
                         </li>
 
                     </ul>

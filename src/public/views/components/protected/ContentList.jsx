@@ -1,5 +1,7 @@
 'use strict';
 
+/*Area under development*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
@@ -24,11 +26,8 @@ class ContentList extends React.Component {
     }
 
     getContent(pubkey) {
-
         // ?order=desc&start=0&end=10 /start && end for pagination
-
         // if (desc) = .sorted('created', true); == most recent first, else sorted('created');
-
         // let jwt = getLocalstorageKey('jwt');
         // let { realmType } = this.props;
         // if (jwt) {
@@ -48,11 +47,11 @@ class ContentList extends React.Component {
         if (logs) {
             let results = Object.keys(logs).map(key => {
                 let log = logs[key];
-                return (<Log key={key} item={log} />);
+                return (<Log key={ key } item={ log } />);
             });
             return (
                 <tbody>
-                    {results}
+                    { results }
                 </tbody>
             );
         }
@@ -62,15 +61,14 @@ class ContentList extends React.Component {
     showContent(e) {
         e.preventDefault();
         this.setState({ fetching: true, results: null });
-        this.getContent();
+        //this.getContent();
     }
 
     componentDidUpdate() {
-        console.log('componentDidUpdate');
+        //console.log('componentDidUpdate');
     }
 
     componentDidMount() {
-        console.log('componentDidMount');
         let { realmType, order = 'DESC', limit = 0 } = this.props;
         this.setState({ realmType, order, limit });
     }
@@ -82,9 +80,9 @@ class ContentList extends React.Component {
     buildHeader() {
         let { realmType, model: { properties: props } } = this.state;
         let results = Object.keys(props).map((propName, idx) => {
-            return (<th key={idx} scope="col">{propName}</th>);
+            return (<th key={ idx } scope="col">{ propName }</th>);
         });
-        return (<tr>{results}<th scope="col">Edit</th></tr>);
+        return (<tr>{ results }<th scope="col">Edit</th></tr>);
     }
 
     render() {
@@ -100,7 +98,7 @@ class ContentList extends React.Component {
         }
         return (
             <div className="content-list">
-                <button onClick={this.showContent}>Refresh { realmType }</button>
+                <button onClick={ this.showContent }>Refresh { realmType }</button>
                 <table className="table table-bordered table-sm">
                     <thead className="thead-dark">
                         { this.buildHeader() }

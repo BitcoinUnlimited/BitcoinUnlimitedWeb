@@ -30,13 +30,13 @@ class AnnounceBanner extends React.Component {
             return null;
         } else {
             return (
-                <div className={`alert__banner center absolute ${(close) ? 'close' : ''}`}>
+                <div className={ `alert__banner center absolute ${(close) ? 'close' : ''}` }>
                     <div className="relative p3">
                         <div className='section__container center'>
                             <div className='inline bold underline m1'>Announcement:</div>
-                            {this.props.message}
+                            { this.props.message }
                         </div>
-                        <div className="alert-close" onClick={this.removeModal}>X</div>
+                        <div className="alert-close" onClick={ this.removeModal }>X</div>
                     </div>
                 </div>
             )

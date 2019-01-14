@@ -205,7 +205,8 @@ class RealmFormWrapper extends React.Component {
         let options = {};
         Object.keys(data).map(k => {
             let kRow = data[k];
-            options[kRow[item.typePrimaryKey]] = kRow[this.getOptionDisplayName(item)];
+            let rowKey = kRow[item.typePrimaryKey];
+            options[rowKey] = kRow[this.getOptionDisplayName(item)] || rowKey;
         });
         return options;
     }
@@ -341,18 +342,18 @@ class RealmFormWrapper extends React.Component {
         }
         return (
             <InputElement
-                key={idx}
-                inputType={ this.getInputInfo(input, 'input') || input.type}
+                key={ idx }
+                inputType={ this.getInputInfo(input, 'input') || input.type }
                 inputOptions={ input.options || this.getInputInfo(input, 'options') }
                 inputLabel={ this.getInputInfo(input, 'label') }
-                inputName={input.name}
-                inputValue={input.value}
+                inputName={ input.name}
+                inputValue={ input.value}
                 inputToolbar={ this.getInputInfo(input, 'toolbar') }
                 inputPlaceholder={ this.getInputInfo(input, 'placeholder') }
-                inputChange={this.getChangeFn(input.name, input.type)}
+                inputChange={ this.getChangeFn(input.name, input.type) }
                 inputFetching={ this.getInputFetching(input) }
-                inputRemove={this.fileRemove(input.name, input.type)}
-                inputError={(input.error) ? input.error : null}
+                inputRemove={ this.fileRemove(input.name, input.type) }
+                inputError={ (input.error) ? input.error : null }
                 inputDescription={ this.getInputInfo(input, 'description') }
             />
         );
@@ -370,7 +371,7 @@ class RealmFormWrapper extends React.Component {
         let { splash } = this.state;
         if (splash) {
             return (
-                <div className="splash">{splash} <div className="remove-btn" onClick={this.removeSplash}>x</div></div>
+                <div className="splash">{splash} <div className="remove-btn" onClick={ this.removeSplash }>x</div></div>
             );
         }
         return null;
@@ -417,14 +418,14 @@ class RealmFormWrapper extends React.Component {
         return (
             <Base name={realmType}>
                 <div className="form-wrapper">
-                    {this.getSplash()}
-                    <h2 className="form-title">{this.getTitle()}</h2>
+                    { this.getSplash() }
+                    <h2 className="form-title">{ this.getTitle() }</h2>
                     <form className="post__form" onSubmit={ this.formSubmit } encType="multipart/form-data">
-                        {this.getLinkForType(realmType, uid)}
-                        {Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx))}
-                        <input type="hidden" value={realmType} />
+                        { this.getLinkForType(realmType, uid) }
+                        { Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx)) }
+                        <input type="hidden" value={ realmType } />
                         <input type="submit" value="Save" />
-                        {(uid) ? (<button onClick={this.deleteConfirm}>Delete</button>) : null}
+                        { (uid) ? (<button onClick={ this.deleteConfirm}>Delete</button>) : null }
                     </form>
                 </div>
             </Base>

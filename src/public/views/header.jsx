@@ -77,9 +77,9 @@ class Header extends React.Component {
         });
         let links = modelNames.map((name, idx) => {
             if (name === currentName) {
-                return (<Link key={idx} className='link active' to={`/create/${name}`}>Create {name}</Link>);
+                return (<Link key={ idx } className='link active' to={ `/create/${name}` }>Create { name }</Link>);
             } else {
-                return (<Link key={idx} className='link' to={`/create/${name}`}>Create {name}</Link>);
+                return (<Link key={ idx } className='link' to={ `/create/${name}` }>Create { name }</Link>);
             }
         });
         return links;
@@ -98,8 +98,8 @@ class Header extends React.Component {
         if (user) {
             return (
                 <div className="btn">
-                    {this.getDashboardLink()}
-                    {this.showCreateLinks()}
+                    { this.getDashboardLink() }
+                    { this.showCreateLinks() }
                 </div>
             );
         }

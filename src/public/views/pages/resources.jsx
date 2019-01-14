@@ -27,25 +27,25 @@ class Resources extends React.Component {
             <Page name="resources" title={ strings().resources.title } subtitle={ strings().resources.subtitle } >
                 <Section
                     key='technical'
-                    expanded={ this.state.selectedSection === 'technical'}
+                    expanded={ this.state.selectedSection === 'technical' }
                     title={ strings().resources.technical.title }
                     body={ <Technical /> } />
 
                 <Section
                     key='non-technical'
-                    expanded={ this.state.selectedSection === 'non-technical'}
+                    expanded={ this.state.selectedSection === 'non-technical' }
                     title={ strings().resources.nonTechnical.title }
                     body={ <NonTechnical /> } />
 
                 <Section
                     key='nolnet'
-                    expanded={ this.state.selectedSection === 'nolnet'}
+                    expanded={ this.state.selectedSection === 'nolnet' }
                     title={ strings().resources.nolNet.title }
                     body={ <NolNet /> } />
 
                 <Section
                     key='buips'
-                    expanded={ this.state.selectedSection === 'buips'}
+                    expanded={ this.state.selectedSection === 'buips' }
                     title={ strings().resources.buips.title }
                     body={ <Buips /> } />
 
@@ -57,13 +57,13 @@ class Resources extends React.Component {
 
                 <Section
                     key='nodes'
-                    expanded={ this.state.selectedSection === 'nodes'}
+                    expanded={ this.state.selectedSection === 'nodes' }
                     title={ strings().resources.nodes.title }
                     body={ <a className='dim black' href="/nodes/">Bitcoin Cash nodes counting</a> } />
 
                 <Section
                     key='nakamoto'
-                    expanded={ this.state.selectedSection === 'nakamoto'}
+                    expanded={ this.state.selectedSection === 'nakamoto' }
                     title={ strings().resources.nakamotostudies.title }
                     body={ <NsInfo /> } />
             </Page>

@@ -46,14 +46,14 @@ class AdminBlogList extends React.Component {
         let results = Object.keys(blogList).map((key, idx) => {
             let post = blogList[key];
             return (
-                <div className="blog-row" key={idx}>
+                <div className="blog-row" key={ idx }>
                     <h4 className="title">
-                        <Link to={`/blog/${post.uid}`}>{ post.title }</Link>
+                        <Link to={ `/blog/${post.uid}` }>{ post.title }</Link>
                     </h4>
                     <div className="date">{ formatDate(new Date(post.created)) }</div>
-                    {this.getAuthorDisplay(post)}
+                    { this.getAuthorDisplay(post) }
                     <div className="subtitle">{ post.subtitle }</div>
-                    <Link className="link edit-link" to={`/update/Post/${post.uid}`}>Edit »</Link>
+                    <Link className="link edit-link" to={ `/update/Post/${post.uid}` }>Edit »</Link>
                 </div>
             );
         });
@@ -94,7 +94,7 @@ class AdminBlogList extends React.Component {
         return (
             <div className="blog-list">
                 <h2>Blog List</h2>
-                {this.buildBlogList()}
+                { this.buildBlogList() }
             </div>
         );
     }
