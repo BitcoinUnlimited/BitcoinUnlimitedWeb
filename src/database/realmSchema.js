@@ -83,6 +83,20 @@ const UserSchema = {
     }
 }
 
+const DataSchema = {
+    name: 'Data',
+    primaryKey: 'uid',
+    properties: {
+        uid: {type: 'string', default: uuidv4()},
+        created: {type: 'date', default: new Date()},
+        updated: {type: 'date', optional: true, default: new Date()},
+        name: 'string?',
+        upload_file: 'string?',
+        misc_data: 'string?',
+        published: {type: 'bool', default: false}
+    }
+}
+
 const AlertSchema = {
     name: 'Alert',
     primaryKey: 'uid',
@@ -106,11 +120,13 @@ const HeroSchema = {
         name: 'string?',
         title: 'string',
         billboard_img: 'string?',
+        caption_editor: 'string?',
         subtitle_editor: 'string?',
         urltext: 'string?',
         url: 'string?',
         published: {type: 'bool', default: false},
-        author: 'User?'
+        author: 'User?',
+        tags: 'string?'
     }
 }
 
@@ -133,22 +149,8 @@ const PostSchema = {
     }
 }
 
-const DataSchema = {
-    name: 'Data',
-    primaryKey: 'uid',
-    properties: {
-        uid: {type: 'string', default: uuidv4()},
-        created: {type: 'date', default: new Date()},
-        updated: {type: 'date', optional: true, default: new Date()},
-        name: 'string?',
-        upload_file: 'string?',
-        misc_data: 'string?',
-        published: {type: 'bool', default: false}
-    }
-}
-
 const getDBSchema = () => {
-    return [UserSchema, HeroSchema, PostSchema, AlertSchema, DataSchema];
+    return [UserSchema, DataSchema, HeroSchema, PostSchema, AlertSchema];
 }
 
 const getAuthSchema = () => {
