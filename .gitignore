@@ -8,3 +8,4 @@ package-lock.json
 *.realm.lock
 *.realm.management
 assets
+databases
