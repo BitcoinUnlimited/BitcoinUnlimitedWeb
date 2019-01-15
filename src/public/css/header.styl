@@ -1,10 +1,34 @@
 
 .alert__banner
     background-color: $near-black
+    opacity: 1
     color: $orange
+    opacity: 0.95
+    position: absolute
+    width: 100%
+    transition: all 0.15s ease-in
+
+.alert__banner.close
+    opacity:0
+    margin-top: 20px
+
+.alert__banner p
+    color: white
+    font-weight: bold
+    line-height: 1.6em
+
+.alert__banner .message-text
+    display: inline-block
+
+.alert__banner .message-text a
+    color: white
+    line-height: 1.15
+    text-decoration: none
+    border-bottom: 1px solid white
+    padding-bottom: 1px
 
 .header--mobile
-  display: none;
+  display: none
 
 .header__container
     height: 110px
@@ -26,10 +50,6 @@
 .header__link
     text-decoration: none
     transition: color .15s ease-in
-    -webkit-transition: color .15s ease-in
-    -moz-transition: color .15s ease-in
-    -o-transition: color .15s ease-in
-    -ms-transition: color .15s ease-in
 
 .header__link:hover
     color: currentColor
@@ -37,10 +57,6 @@
     padding-bottom: 1px
     text-decoration: none
     transition: color .15s ease-in
-    -webkit-transition: color .15s ease-in
-    -moz-transition: color .15s ease-in
-    -o-transition: color .15s ease-in
-    -ms-transition: color .15s ease-in
 
 .header__link:active
     color: currentColor
@@ -48,10 +64,6 @@
     padding-bottom: 1px
     text-decoration: none
     transition: color .15s ease-in
-    -webkit-transition: color .15s ease-in
-    -moz-transition: color .15s ease-in
-    -o-transition: color .15s ease-in
-    -ms-transition: color .15s ease-in
 
 .header__link:focus
     color: currentColor
@@ -59,20 +71,74 @@
     padding-bottom: 1px
     text-decoration: none
     transition: color .15s ease-in
-    -webkit-transition: color .15s ease-in
-    -moz-transition: color .15s ease-in
-    -o-transition: color .15s ease-in
-    -ms-transition: color .15s ease-in
 
-@media (max-width: 1050px)
+.user-header
+    float: right
+    width: 36px
+    height: 36px
+    margin-top: 4px
+    text-align: center
+    line-height: 14px
+    margin-left: 13px
+    font-size: 12px
+
+.user-header img
+    width: 100%
+    height: auto
+    border-radius: 50%
+
+.user-header .icon
+    width: 36px
+    height: 36px
+    background-color: #efefef
+    border-radius: 50%
+    border: 3px solid #fff
+    transition: border .15s ease-in
+    cursor: pointer
+
+.user-header .icon:hover
+    border: 3px solid $orange
+
+.user-header .icon svg
+    margin-top: 6px
+
+.user-header a.user-edit
+    font-size: 10px
+    color: #000
+    display: block
+    line-height: 12px
+    overflow: hidden
+
+.alert-close
+    position: absolute
+    bottom: 10px
+    right: 10px
+    width: 20px
+    height: 20px
+    border: 1px solid rgba(255, 123, 0, .5)
+    border-radius: 4px
+    line-height: 20px
+    color: rgba(255, 123, 0, .5)
+    cursor: pointer
+    transition: all 0.15s ease-in
+
+.alert-close:hover
+    color: $orange
+    border: 1px solid $orange
+
+@media (max-width: 1150px)
+    .user-header
+        display: none
+
+@media (max-width: 1100px)
     .font-thin
         font-weight: normal
 
     .header--web
-        display: none;
+        display: none
 
     .header--mobile
-        display: block;
+        display: block
 
     .header__logo
         padding: 30px 40px

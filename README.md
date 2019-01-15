@@ -45,3 +45,16 @@ npm install bitcoin-unlimited-web --save
 ```javascript
 var BitcoinUnlimitedWeb = require('bitcoin-unlimited-web');
 ```
+
+## Environment configuration
+
+Make sure to update the following .env files:
+
+```bash
+JWT_SECRET=[yourSecretPassphrase]
+DB_NAME=[mainDatabaseName].realm
+DB_AUTH_NAME=[authDatabaseName].realm
+DB_ADMIN_PUBKEY=The pubkey(s) with super admin privileges. The super admin can add other pubkeys via the dashboard interface. Separate with commas.
+AUTH_EXPIRE=[seconds]
+DEBUG=[true or TRUE]
+```

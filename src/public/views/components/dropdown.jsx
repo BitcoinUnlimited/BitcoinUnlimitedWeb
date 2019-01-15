@@ -8,10 +8,10 @@ class Dropdown extends React.Component {
         return (
             <div className="dropdown__container">
                 <div className="dropdown__title">
-                    {this.props.title}
+                    { this.props.title }
                 </div>
                 <div className="dropdown__content">
-                    {this.props.children}
+                    { this.props.children }
                 </div>
             </div>
         );

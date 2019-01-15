@@ -25,25 +25,25 @@ class About extends React.Component {
             <Page name="about" title={ strings().about.title } subtitle={ strings().about.subtitle } >
                 <Section
                     key='organization'
-                    expanded={ this.state.selectedSection === 'organization'}
+                    expanded={ this.state.selectedSection === 'organization' }
                     title={ strings().about.organization.title }
                     body={ <Organization /> } />
 
                 <Section
                     key='members'
-                    expanded={ this.state.selectedSection === 'members'}
+                    expanded={ this.state.selectedSection === 'members' }
                     title={ strings().about.members.title }
                     body={ <Members /> } />
 
                 <Section
                     key='join'
-                    expanded={ this.state.selectedSection === 'join'}
+                    expanded={ this.state.selectedSection === 'join' }
                     title={ strings().about.join.title }
                     body={ <Join /> } />
 
                 <Section
                     key='contact'
-                    expanded={ this.state.selectedSection === 'contact'}
+                    expanded={ this.state.selectedSection === 'contact' }
                     title={ strings().about.contact.title }
                     body={ <Contact /> } />
             </Page>

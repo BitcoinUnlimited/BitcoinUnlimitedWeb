@@ -1,6 +1,7 @@
 
 // this contains styling specific to the site.
 
+@require 'expressions'
 @require 'colors'
 @require 'header'
 @require 'footer'
@@ -10,18 +11,63 @@
 @require 'post'
 @require 'burger-menu'
 @require 'dropdown'
+@require 'login'
+@require 'dashboard'
+@require 'form'
+
+.clear
+    clear: both
 
 .icon--center
     position: relative
     top: 5px
 
 .banner
-    height: 8px
-    background: linear-gradient(90deg, #f5b547, #e67e22)
+    min-height: 8px
+    background: linear-gradient(90deg, $lt_orange, $orange)
+    z-index: 10
+
+.banner .btn
+    background-color: transparent
+    margin: 10px 0
+    padding: 0 10px;
+    overflow: hidden
+    float: left
+    clear: both
+    margin-left: 50%
+    border-left: 1px solid rgba(255, 255, 255, .2);
+    border-right: 1px solid rgba(255, 255, 255, .2);
+    transform: translateX(-50%)
+
+.banner .btn .link
+    display: block
+    float: left
+    margin: 2px 6px
+    padding-bottom: 1px
+    color: white
+    cursor: pointer
+    font-size: 14px
+    border-radius: 4px
+    padding: 6px
+    cursor: pointer
+    transition: all .05s linear
+
+.banner .btn .link:hover
+    margin-top: 4px
+    margin-bottom: 0
+    background: rgba(255, 255, 255, 0.25)
+
+.banner .btn .link.active
+    background: rgba(255, 255, 255, 0.25)
 
 .section__container
     width: 64%
     min-width: 340px
+    display: inline-block
+
+.section__editor
+    width: 74%
+    min-width: 440px
     display: inline-block
 
 .section__filler
@@ -67,15 +113,22 @@
     -ms-transform: translate(-50%, -50%)
 
 pre
-  display: block
-  padding: 10px
-  margin: 0 0 10px
-  font-size: 14px
-  line-height: 1.4
-  word-break: break-all
-  word-wrap: break-word
-  color: #333
-  background-color: #f5f5f5
-  border: 1px solid #ccc
-  border-radius: 4px
-  overflow: auto
+    display: block
+    padding: 10px
+    margin: 0 0 10px
+    font-size: 14px
+    line-height: 1.4
+    word-break: break-all
+    word-wrap: break-word
+    color: #333
+    background-color: #f5f5f5
+    border: 1px solid #ccc
+    border-radius: 4px
+    overflow: auto
+
+.full-width
+    padding: 40px 0
+
+@media (max-width: 768px)
+    .banner .btn
+        display: none
