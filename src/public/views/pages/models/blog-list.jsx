@@ -27,7 +27,6 @@ class BlogList extends React.Component {
             if (blogList && !blogList.status) {
                 this.setState({ fetching: false, blogList });
             } else if (blogList && blogList.status) {
-                console.log(`Status: ${blogList.status}`);
                 this.setState({ fetching: false });
             }
         }).catch(e => {
@@ -47,7 +46,6 @@ class BlogList extends React.Component {
         let { blogList } = this.state;
         let results = Object.keys(blogList).map((key, idx) => {
             let post = blogList[key];
-            console.log(post);
             return (
                 <Link className="blog-row" key={idx} to={`/blog/${post.uid}`}>
                     <div className="hover-bg-gradient"></div>
