@@ -31,7 +31,9 @@ import { checkPath, getStaticFiles, buildLinks,
 import passport from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 
+// Declares the /static path files directory
 const staticFilesDir = path.join(__dirname, '../assets');
+// Declares where database content backups are stored
 const backupDir = path.join(staticFilesDir, '/backups');
 
 const passportOpts = {
@@ -39,6 +41,10 @@ const passportOpts = {
     secretOrKey: process.env.JWT_SECRET,
 }
 
+/*
+ * jwtStrategy is passed to the passport instance, which is used by our
+ * jwtMiddleware function to validate protected paths
+ */
 const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
     isAdmin(payload.pubkey).then(res => {
         getAuth(payload.pubkey).then(auth => {
@@ -78,6 +84,9 @@ app.get('/downloads/:file', (req, res) => {
     res.redirect('/components/bitcoin-unlimited-web-downloads/' + req.params.file);
 });
 
+/*
+ * This sets our staticFilePath to be accessible via the http://domain.com/static path
+ */
 if (checkPath(staticFilesDir)) {
     app.use('/static', express.static(staticFilesDir));
 }
@@ -87,6 +96,9 @@ app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+/*
+ * Returns the 12 word challenge on the /login path
+ */
 app.get('/get_login_challenge', (req, res) => {
     getLoginChallenge().then(result => {
         res.send(result)
@@ -95,8 +107,15 @@ app.get('/get_login_challenge', (req, res) => {
     });
 });
 
+/*
+ * called from /public/views/pages/protected/auth.jsx.
+ * See main.jsx to view routes protected by Auth.jsx.
+ */
 app.get('/user_auth', jwtMiddleware(), (req, res) => (req.user) ? res.json(req.user) : res.json('Req.user is not set in /user_auth'));
 
+/*
+ * Get data securely (requires jwt middleware).
+ */
 app.get('/get/secure/:type/:uid?', jwtMiddleware(), (req, res) => {
     let { params: { type, uid } } = req;
     if (!type || !typeIsValid(type)) {
@@ -110,6 +129,10 @@ app.get('/get/secure/:type/:uid?', jwtMiddleware(), (req, res) => {
     }
 });
 
+/*
+ * Gets a list of all available static files within the specified
+ * staticFilesDir location.
+ */
 app.get('/get_static_files', jwtMiddleware(), (req, res) => {
     getStaticFiles(staticFilesDir).then(result => {
         res.send(result);
@@ -118,6 +141,10 @@ app.get('/get_static_files', jwtMiddleware(), (req, res) => {
     })
 });
 
+/*
+ * If this path is accessed and the jwt middleware validates it will create a
+ * new snapshot of the database, returning the path after a successful save.
+ */
 app.get('/get_backup', jwtMiddleware(), (req, res) => {
     let backupName = '/' + saveDateFormat(new Date()) + '.json';
     realmBackup().then(result => {
@@ -132,6 +159,9 @@ app.get('/get_backup', jwtMiddleware(), (req, res) => {
     })
 });
 
+/*
+ * Returns a list of all database backups
+ */
 app.get('/get_backup_list', jwtMiddleware(), (req, res) => {
     getStaticFiles(backupDir).then(result => {
         res.send(result);
@@ -140,6 +170,10 @@ app.get('/get_backup_list', jwtMiddleware(), (req, res) => {
     })
 });
 
+/*
+ * Reverts the current database to the snapshot at the revertPath location.
+ * Returns true if the operatoin was successful.
+ */
 app.post('/revert_database', jwtMiddleware(), (req, res) => {
     const { revertPath } = req.body;
     checkBackupPath(staticFilesDir, revertPath).then(path => {
@@ -153,10 +187,16 @@ app.post('/revert_database', jwtMiddleware(), (req, res) => {
     });
 });
 
+/*
+ * Verifies the user-generated signature for the 12 word login challenge.
+ */
 app.post('/sig_verify', (req, res) => {
     signatureVerify(req.body).then(result => res.json(result)).catch(e => res.json(resErr(e)));
 });
 
+/*
+ * Insecure data call to retrieve all published == true data.
+ */
 app.get('/api/get/:type/:uid?', (req, res) => {
     let { params: { type, uid } } = req;
     let { query } = req;
@@ -167,6 +207,12 @@ app.get('/api/get/:type/:uid?', (req, res) => {
     }
 });
 
+/*
+ * Securely remove data from the database.
+ * Used in:
+ * /public/views/components/protected/AdminList.jsx
+ * /public/views/pages/protected/realm-form-wrapper.jsx
+ */
 app.post('/api/delete', jwtMiddleware(), (req, res) => {
     const { realmType } = req.body;
     if (!realmType || !typeIsValid(realmType)) {
@@ -181,6 +227,9 @@ app.post('/api/delete', jwtMiddleware(), (req, res) => {
     }
 });
 
+/*
+ * Handles file uploads and stores them in the staticFilePath.
+ */
 app.post('/api/upload', jwtMiddleware(), (req, res) => {
     try {
         let busboy = new Busboy({ headers: req.headers });
@@ -203,6 +252,9 @@ app.post('/api/upload', jwtMiddleware(), (req, res) => {
     }
 });
 
+/*
+ * Handles database create and update operations.
+ */
 app.post('/api/upsert', jwtMiddleware(), (req, res) => {
     try {
         let busboy = new Busboy({ headers: req.headers });

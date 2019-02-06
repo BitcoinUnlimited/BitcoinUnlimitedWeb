@@ -65,6 +65,10 @@ const realmTypeHasProps = (type, prop) => {
     return (Array.isArray(prop)) ? hasAllKeys(props, prop) : hasKey(props, prop);
 }
 
+/*
+ * Determines the input field type for a given realmModel property.
+ * This is used in the dynamic form creation process.
+ */
 const getModelPropType = (propKey, propType, primaryKey) => {
     // key checking
     if (propKey === primaryKey || readOnlyKeys(propKey) || isUid(propKey)) return 'hidden';
@@ -79,12 +83,21 @@ const getModelPropType = (propKey, propType, primaryKey) => {
     return 'hidden';
 }
 
+/*
+ * Determines if the property value is a realmType association.
+ * (select dropdown input)
+ */
 const getRealmType = modelType => {
     modelType = isStr(modelType) ? modelType : modelType.type;
     let results = getDBSchemas().filter(schema => modelType.indexOf(schema.name) !== -1);
     return results.length > 0 ? results[0].name : false;
 }
 
+/*
+ * Returns the primaryKey for a specific realmType.
+ * Primary keys may be different across database models, but is generally
+ * the 'uid' property. View more at /src/database/realmSchema.js
+ */
 const getKeyForType = name => {
     let schema = getSchema(name) || getSchema(name, 'Auth');
     return schema.primaryKey;
@@ -92,8 +105,8 @@ const getKeyForType = name => {
 
 /*
  * Builds info about each property on a decalred schema.
- *
- * realmType is used for model to model associations
+ * realmType is used for model to model associations.
+ * This data is then used to build forms and provide other schema information.
  */
 const getDBModel = name => {
     let schema = getSchema(name) || getSchema(name,'Auth');
@@ -105,6 +118,7 @@ const getDBModel = name => {
     let model = {};
     Object.keys(props).map(propKey => {
         let schemaString = props[propKey];
+        // declare initial model object values
         let prop = { name: propKey, realmType: getRealmType(schemaString), error: '' };
         prop.required = (!isOptional(schemaString)) ? true : false;
         if (!prop.realmType) {
@@ -117,6 +131,7 @@ const getDBModel = name => {
             prop.fetching = false;
         }
         prop.value = (prop.type === 'editor') ? EditorState.createEmpty() : '';
+        // Adds extra field information from /src/database/modelProperties.js
         prop.fieldInfo = getModelPropInfo(propKey);
         model[propKey] = prop;
     });

@@ -415,8 +415,12 @@ const realmGet = data => {
     return (uid) ? realmGetUid(db, realmType, getKeyForType(realmType), uid) : realmGetAll(db, realmType, query);
 }
 
+/* 
+ * Delete operation
+ */
 const realmDelete = data => {
     const { realmType } = data;
+    // get the correct primaryKey for this realmType
     const key = getKeyForType(realmType);
     return realmDeleteUid(realmType, data[key], key);
 }

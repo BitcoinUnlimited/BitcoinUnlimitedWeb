@@ -42,6 +42,7 @@ ReactDOM.render((
             <Route path='emergent-consensus' component={ EmergentConsensus } />
             <Route path='cash-development-plan' component={ DevelopTestingAccord } />
             <Route path='login' component={ Login } />
+            // All paths within Auth require JWT authentication via Passport middleware. See /src/index.js.
             <Route component={ Auth }>
                 <Route path='dashboard' component={ Dashboard } />
                 <Route path='create/:realmType' component={ RealmFormWrapper } />
