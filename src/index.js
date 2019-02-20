@@ -41,9 +41,10 @@ const passportOpts = {
     secretOrKey: process.env.JWT_SECRET,
 }
 
-/*
- * jwtStrategy is passed to the passport instance, which is used by our
- * jwtMiddleware function to validate protected paths
+/**
+ * [jwtStrategy jwtStrategy is passed to the passport instance, which is used by the
+ * jwtMiddleware function to validate protected paths]
+ * @type {Strategy}
  */
 const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
     isAdmin(payload.pubkey).then(res => {
@@ -66,6 +67,10 @@ const jwtStrategy = new Strategy(passportOpts, (payload, next) => {
 
 passport.use(jwtStrategy);
 
+/**
+ * [jwtMiddleware Middleware helper function.]
+ * @return {Object} [Passport auth object.]
+ */
 const jwtMiddleware = () => passport.authenticate('jwt', { session: false });
 
 let app = express();
@@ -278,6 +283,9 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
     }
 });
 
+/*
+ * Catch-all for non-explicit paths.
+ */
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
