@@ -13,7 +13,7 @@ import jwt from 'jsonwebtoken';
 import { strings } from './public/lib/i18n';
 import {
     isAdmin, signatureVerify, validateAuth,
-    getSecure, typeIsValid, realmGet,
+    getSecure, typeIsValid, typeIsValidPublic, realmGet,
     realmGetSecure, realmSave, realmDelete,
     getAuth, removeAuth, getLogs,
     realmBackup, realmLog, getLoginChallenge,
@@ -200,7 +200,7 @@ app.post('/sig_verify', (req, res) => {
 app.get('/api/get/:type/:uid?', (req, res) => {
     let { params: { type, uid } } = req;
     let { query } = req;
-    if (!type || !typeIsValid(type)) {
+    if (!type || !typeIsValidPublic(type)) {
         res.redirect('/not-found');
     } else {
         realmGet({ realmType: type, uid, query }).then(result => res.json(result)).catch(e => res.json(resErr(e)));
