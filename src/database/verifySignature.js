@@ -34,6 +34,5 @@ const messageVerify = message => {
 
 module.exports = {
     fixAddressFormat,
-    messageVerify,
-    testSomething
+    messageVerify
 }
