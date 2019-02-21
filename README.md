@@ -17,7 +17,9 @@ npm install
 npm run build
 ```
 
-This build targets NodeJS versions 6 and 8. Use `n` to switch between NodeJS versions. `npm install n`.
+This build targets NodeJS versions 6 and 8. Use `n` to switch between NodeJS versions. `npm install -g n`.
+
+More info can be found at `https://www.npmjs.com/package/n`.
 
 To automatically rebuild and restart the server upon changes to `src`, use both `npm run watch` and `npm run nodemon`.
 
