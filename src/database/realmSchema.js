@@ -8,6 +8,7 @@ import uuidv4 from 'uuid/v4';
  * - All content should have a created date for optional ASC/DESC sorting
  * - Image types should have a key suffixed with _img.
  * - Text that needs an editor input should have a key suffixed with _editor.
+ * - Text that needs a textarea should use the _data suffix in the property name.
  * - Realm model associations should include the optional ? identifier.
  *
  * Additional rules are available at: https://realm.io/docs/javascript/latest/#models
@@ -18,7 +19,6 @@ import uuidv4 from 'uuid/v4';
  * Make sure to update modelProtocols.js with preprocessing
  */
 
- /* Admin */
 const AuthSchema = {
     name: 'Auth',
     primaryKey: 'pubkey',
@@ -130,6 +130,7 @@ const HeroSchema = {
     }
 }
 
+
 const PostSchema = {
     name: 'Post',
     primaryKey: 'uid',
@@ -141,6 +142,7 @@ const PostSchema = {
         title: 'string',
         subtitle: 'string?',
         header_img: 'string?',
+        video_data: 'string?',
         caption_editor: 'string?',
         body_editor: 'string',
         published: {type: 'bool', default: false},
@@ -149,11 +151,19 @@ const PostSchema = {
     }
 }
 
-const getDBSchema = () => {
+/**
+ * [getDBSchema Builds an array of the public database schemas.]
+ * @return {undefined} []
+ */
+const getDBSchema = _ => {
     return [UserSchema, DataSchema, HeroSchema, PostSchema, AlertSchema];
 }
 
-const getAuthSchema = () => {
+/**
+ * [getAuthSchema Builds an array of the auth (secure) schemas.]
+ * @return {undefined} []
+ */
+const getAuthSchema = _ => {
     return [AuthSchema, LogSchema, AdminSchema, RoleSchema, ChallengeSchema];
 }
 

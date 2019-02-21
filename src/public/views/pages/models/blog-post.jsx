@@ -9,6 +9,10 @@ import { strings } from '../../../lib/i18n';
 import Post from '../../post.jsx'
 import { formatDate } from '../../../../helpers/helpers.js';
 
+/**
+ * [BlogPost This is the main component for displaying blog posts.]
+ * @extends React
+ */
 class BlogPost extends React.Component {
     constructor(props) {
         super(props);
@@ -51,9 +55,13 @@ class BlogPost extends React.Component {
             if (!uid) this.redirectToBlog();
             this.setState({ post: res.data, fetching: false });
         }).catch(e => {
-            console.log(e);
             this.redirectToBlog();
         });
+    }
+
+    displayVideo(video_embed) {
+        { /* HTML stored in the database is created in the secure auth area and is presumed to be safe */ }
+        return (video_embed) ? (<div className="video-embed" dangerouslySetInnerHTML={ { __html: video_embed } }></div>) : null;
     }
 
     displayTitle(title) {
@@ -87,9 +95,10 @@ class BlogPost extends React.Component {
                 </Post>
             );
         }
-        let { header_img, caption_editor, title, subtitle, created, author } = post;
+        let { header_img, caption_editor, title, video_data, subtitle, created, author } = post;
         return (
             <Post name="blog" banner={ header_img } caption={ caption_editor }>
+                { this.displayVideo(video_data) }
                 { this.displayTitle(title) }
                 { this.displayAuthor(author) }
                 { this.displayCreated(created) }

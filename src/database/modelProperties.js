@@ -3,8 +3,9 @@
 /*
  * Optionally override the input type with the 'input' property.
  * If 'select' is specified also specify an 'options' parameter.
+ *
+ * Set labels and descriptions for the create/update form below.
  */
-
 const extraFieldInfo = {
     title: { label: 'Title', placeholder: 'Title', description: 'The title of the post or content.' },
     subtitle: { label: 'Subtitle', placeholder: 'Subtitle', description: 'A small description used in a list view.' },
@@ -33,9 +34,15 @@ const extraFieldInfo = {
     bio_editor:  { label: 'Bio', description: 'A short biography or statement of purpose.' },
     alert_type: { label: 'Alert type', placeholder: 'announce', description: `Set to: 'announce', 'alert' or 'security'. Defaults to announce.`,
         input: 'select', options: { announce: 'Announce', alert: 'Alert', security: 'Security' } },
-    message_editor: { label: 'Message', description: 'The content that will be displayed.', toolbar: 'simplified' }
+    message_editor: { label: 'Message', description: 'The content that will be displayed.', toolbar: 'simplified' },
+    video_data: { label: 'Video Embed', description: 'Optionally add a video to be placed at the top above the title.' }
 }
 
+/**
+ * [getModelPropInfo Helper to get a property from extraFieldInfo.]
+ * @param  {String} key [Key to get.]
+ * @return {String}     [Extra data.]
+ */
 const getModelPropInfo = key => {
     let { [key]: fieldData } = extraFieldInfo;
     return (fieldData) ? fieldData : false;

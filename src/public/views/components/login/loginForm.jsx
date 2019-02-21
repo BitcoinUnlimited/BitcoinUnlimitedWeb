@@ -49,6 +49,7 @@ class LoginForm extends React.Component {
     }
 
     verifySignature(auth) {
+        // Makes a call to verify the users input signature
         Axios.post('/sig_verify', auth).then(response => {
             if (response.data && !(response.data.status && response.data.status == 'error')) {
                 localStorage.setItem('jwt', response.data);
@@ -64,6 +65,10 @@ class LoginForm extends React.Component {
     getChallenge(e) {
         e.preventDefault();
         this.setState({ fetching: true })
+        /*
+         * Call to the function that builds a random 12 word challenge
+         * Uses, 'hello, world' if DEBUG=true is specified in the /.env file.
+         */
         Axios.get('/get_login_challenge').then(res => {
             if (res.data) {
                 let { uid, challenge } = res.data;

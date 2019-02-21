@@ -8,6 +8,10 @@ import ReactLoading from "react-loading";
 import Axios from 'axios';
 import { isImage, eToStr } from '../../../../helpers/helpers.js';
 
+/**
+ * [InputElement Builds individual input elements. Used in /pages/realm-form-wrapper.jsx]
+ * @extends React
+ */
 class InputElement extends React.Component {
 
     constructor(props) {
@@ -15,6 +19,10 @@ class InputElement extends React.Component {
         this.wysiwygFileUpload = this.wysiwygFileUpload.bind(this);
     }
 
+    /**
+     * [wysiwygFileUpload This handles WYSIWYG image uploads and stores them to the static file directory.]
+     * @param  {Object} file [The file object.]
+     */
     wysiwygFileUpload(file) {
         return new Promise((resolve, reject) => {
             const formData = new FormData();
@@ -88,6 +96,11 @@ class InputElement extends React.Component {
         return (<div className="clear file-preview"><a className='underline link' href={ inputValue } download>{ inputValue }</a></div>);
     }
 
+    /**
+     * [getToolbar Returns a simplified or larger toolbar depending on the settings in database/modelProperties.js]
+     * @param  {String} toolbar [Toolbar type.]
+     * @return {Object}         [The WYSIWYG toolbar options object.]
+     */
     getToolbar(toolbar) {
         if (toolbar === 'simplified') {
             return {
@@ -153,6 +166,10 @@ class InputElement extends React.Component {
         );
     }
 
+    /**
+     * [render Switches the returned input markup based on the inputType
+     * and other optional properties.]
+     */
     render() {
         let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching, inputToolbar, inputOptions } = this.props;
         if (!inputType || !inputName || !inputChange || (inputType === 'select' && !inputOptions) ) {

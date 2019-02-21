@@ -25,10 +25,22 @@ class Dashboard extends React.Component {
         }
     }
 
+    /**
+     * [refresh When a child element needs to update another child element
+     * this refresh method is called to update them instantly. When the refreshKey
+     * is changed, the child elements check if the new key is the same as the previous
+     * key. If they are different, it will update the UI, fetching new data.
+     * This is mainly used when reverting database snapshot versions.]
+     */
     refresh() {
         this.setState({ refreshKey: Math.random() });
     }
 
+    /**
+     * [render This JSX file is a wrapper for the admin dashboard.
+     * It pulls in elements from other files and manages when those other
+     * files should update with the refresh() token.]
+     */
     render() {
         return (
             <Admin name="dashboard" title={ strings().dashboard.title } >

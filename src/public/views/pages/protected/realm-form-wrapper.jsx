@@ -15,6 +15,11 @@ import { toBase64 } from '../../../../helpers/fileHelpers.js';
 import Base from '../../base.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
 
+/**
+ * [RealmFormWrapper This react component is used as a wrapper for all realmType create and update forms.
+ * It builds form elements from the schema properties (and additional info) and handles the current state.]
+ * @extends React
+ */
 class RealmFormWrapper extends React.Component {
     constructor(props) {
         super(props);

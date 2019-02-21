@@ -6,8 +6,9 @@
 import { EditorState } from 'draft-js';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 import { getModelPropInfo } from '../database/modelProperties.js';
-
-
+/*
+ * Low level basic helpers and error checking.
+ */
 const resObject = (status = 'log', message = '') => ({ status, message });
 const eToStr = e => (isObj(e)) ? JSON.stringify(e) : e;
 const resErr = e => ({ status: 'error', message: `${eToStr(e)}` });

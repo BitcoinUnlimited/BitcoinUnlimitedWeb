@@ -22,6 +22,7 @@ class BlogList extends React.Component {
 
     getBlogList() {
         this.setState({ fetching: true, blogList: {} });
+        // Fetches all blog posts to be displayed
         Axios.get('/api/get/Post').then(res => {
             let { data: blogList } = res;
             if (blogList && !blogList.status) {

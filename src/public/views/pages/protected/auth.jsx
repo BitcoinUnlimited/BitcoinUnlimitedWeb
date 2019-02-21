@@ -16,6 +16,9 @@ class Auth extends React.Component {
         }
     }
 
+    /**
+     * [removeJwtAndRedirect Auth failures are redirected to /login and have thier localStorage credentials removed.]
+     */
     removeJwtAndRedirect() {
         if ('localStorage' in window) {
             localStorage.removeItem('jwt');
@@ -27,6 +30,11 @@ class Auth extends React.Component {
     getUser(pubkey) {
         let jwt = getLocalstorageKey('jwt');
         if (jwt) {
+            /*
+             * The second layer of the auth process gets the user's info from the secure auth database.
+             * If the token is correct and the user is authed, the user object is stored in
+             * local storage and the user is then sent to the page they had requested within the auth area.
+             */
             Axios.get(`/get/secure/User/${pubkey}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: { pubkey: userPubkey } } = res;
                 if (userPubkey) {
@@ -46,6 +54,11 @@ class Auth extends React.Component {
         if (!jwt) {
             this.removeJwtAndRedirect();
         } else {
+            /*
+             * Uses the user's token to attempt to authenticate.
+             * Auth failures remove the user's JWT and redirects them to the login.
+             * This is the first step in the auth process, getUser is called to verify the user's JWT.
+             */
             Axios.get('/user_auth', { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: { pubkey } } = res;
                 if (pubkey) {
@@ -59,6 +72,9 @@ class Auth extends React.Component {
         }
     }
 
+    /**
+     * [componentDidMount Authenticates the user on mount.]
+     */
     componentDidMount() {
         this.authenticateUser();
     }
