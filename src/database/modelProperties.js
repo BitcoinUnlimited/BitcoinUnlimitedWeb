@@ -35,7 +35,7 @@ const extraFieldInfo = {
     alert_type: { label: 'Alert type', placeholder: 'announce', description: `Set to: 'announce', 'alert' or 'security'. Defaults to announce.`,
         input: 'select', options: { announce: 'Announce', alert: 'Alert', security: 'Security' } },
     message_editor: { label: 'Message', description: 'The content that will be displayed.', toolbar: 'simplified' },
-    video_data: { label: 'Video Embed', description: 'Optionally add a video to be placed at the top above the title.' }
+    video_data: { label: 'Video Embed', description: 'Optionally add a video to be placed at the top above the title. Warning: this field takes raw HTML.' }
 }
 
 /**
