@@ -17,6 +17,8 @@ npm install
 npm run build
 ```
 
+This build targets NodeJS versions 6 and 8. Use `n` to switch between NodeJS versions. `npm install n`.
+
 To automatically rebuild and restart the server upon changes to `src`, use both `npm run watch` and `npm run nodemon`.
 
 Open `http://localhost:8080` to view your website.
@@ -46,11 +48,21 @@ npm install bitcoin-unlimited-web --save
 var BitcoinUnlimitedWeb = require('bitcoin-unlimited-web');
 ```
 
+## Using the administrator dashboard
+
+One installed, the administrative dashboard can be used to create blog posts, alert banners, manage other administrators and store backups of the current database snapshot.
+
+A database revert feature is also available to choose between different database snapshot backups.
+
 ## Environment configuration
 
-Make sure to update the following .env files:
+Make sure to update the following .env file:
 
-JWT_SECRET=[yourSecretPassphrase]
-DB_NAME=[mainDatabaseName].realm
-DB_AUTH_NAME=[authDatabaseName].realm
+```bash
+JWT_SECRET=[yourSecretPassphrase] (required)
+DB_NAME=[mainDatabaseName].realm (optional)
+DB_AUTH_NAME=[authDatabaseName].realm (optional)
 DB_ADMIN_PUBKEY=The pubkey(s) with super admin privileges. The super admin can add other pubkeys via the dashboard interface. Separate with commas.
+AUTH_EXPIRE=[seconds] (JWT expiration time)
+DEBUG=[true or TRUE] (sets the login challenge to 'hello, world')
+```
