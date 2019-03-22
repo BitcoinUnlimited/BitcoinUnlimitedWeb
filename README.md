@@ -52,7 +52,7 @@ var BitcoinUnlimitedWeb = require('bitcoin-unlimited-web');
 
 ## Using the administrator dashboard
 
-One installed, the administrative dashboard can be used to create blog posts, alert banners, manage other administrators and store backups of the current database snapshot.
+Once installed, the administrative dashboard can be used to create blog posts, alert banners, manage other administrators and store backups of the current database snapshot.
 
 A database revert feature is also available to choose between different database snapshot backups.
 
