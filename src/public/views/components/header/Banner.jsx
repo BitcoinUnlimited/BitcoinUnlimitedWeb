@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import Axios from 'axios';
 import ReactLoading from "react-loading";
 import { strings } from '../../../lib/i18n';

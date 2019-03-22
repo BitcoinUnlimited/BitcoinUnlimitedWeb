@@ -79,7 +79,7 @@ class InputElement extends React.Component {
         if (isImage(inputName)) {
             return (<input type="file" accept="image/*" name={ inputName } onChange={ inputChange } />);
         }
-        return (<input type="file" accept=".exe,.zip,.gz,.pdf,.json" name={ inputName } onChange={ inputChange } />);
+        return (<input type="file" accept=".zip,.gz,.pdf,.json" name={ inputName } onChange={ inputChange } />);
     }
 
     getReactLoading(isFetching) {

@@ -21,6 +21,7 @@ import { strings } from '../public/lib/i18n';
 const buildDBErr = idx => strings().database.errors[idx];
 const buildAuthErr = idx => strings().auth.errors[idx];
 const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
+const authDefaultExpire = 3600;
 
 /**
  * [typeIsValid Check if the type is in either the public or private auth database.]
@@ -36,9 +37,7 @@ const typeIsValid = type => {
  * @param  {String} type [Type to check.]
  * @return {Boolean}      [Returns true/false.]
  */
-const typeIsValidPublic = type => {
-    return getDBSchema().filter(schema => schema.name === type).length > 0;
-}
+const typeIsValidPublic = type => getDBSchema().filter(schema => schema.name === type).length > 0;
 
 /**
  * [isAuthTypeDB Check if the type is from the Auth database.]
@@ -75,13 +74,13 @@ const checkPublicDatabase = type => {
 /**
  * [authExiprationSeconds Returns the amount of time an authenticated user has before expiring.]
  */
-const authExiprationSeconds = (process && process.env.AUTH_EXPIRE) ? process.env.AUTH_EXPIRE : 7200;
+const authExiprationSeconds = (process && process.env.AUTH_EXPIRE) ? process.env.AUTH_EXPIRE : authDefaultExpire;
 /**
- * [isSuperAdmin Returns boolean value if the pubkey is a super admin set in the environment variables at /.env]
+ * [pubkeyIsSuperAdmin Returns boolean value if the pubkey is a super admin set in the environment variables at /.env]
  * @param  {String}  pubkey [The users public key.]
  * @return {Boolean}        [true/false.]
  */
-const isSuperAdmin = pubkey => (process.env.DB_ADMIN_PUBKEY.indexOf(pubkey) !== -1);
+const pubkeyIsSuperAdmin = pubkey => (process.env.DB_ADMIN_PUBKEY.indexOf(pubkey) !== -1);
 
 /**
  * [realmWrite Wrapper for write transactions.]
@@ -350,7 +349,7 @@ const realmGetSecure = (realmType, uid) => {
  * @return {Boolean}        [Promise resolves true or false.]
  */
 const isAdmin = pubkey => new Promise((resolve, reject) => {
-    if (isSuperAdmin(pubkey)) {
+    if (pubkeyIsSuperAdmin(pubkey)) {
         resolve(true);
     } else {
         realmFetch(authDatabase, realm => {
@@ -519,6 +518,9 @@ const checkRequiredParams = (realmType, data) => {
  */
 const realmSave = data => new Promise((resolve, reject) => {
     let { realmType } = data;
+    if (!getSchemaProps(realmType)) {
+        reject('Schema not found.');
+    }
     let errorCheck = checkRequiredParams(realmType, data);
     if (errorCheck !== true) {
         reject(errorCheck);

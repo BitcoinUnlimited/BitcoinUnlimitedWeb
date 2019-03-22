@@ -19,6 +19,9 @@ import uuidv4 from 'uuid/v4';
  * Make sure to update modelProtocols.js with preprocessing
  */
 
+/*
+ * The AuthSchema is used to store logins and validate middleware JWT tokens.
+ */
 const AuthSchema = {
     name: 'Auth',
     primaryKey: 'pubkey',
@@ -30,6 +33,9 @@ const AuthSchema = {
     }
 }
 
+/*
+ * Used for event, error and exception handling.
+ */
 const LogSchema = {
     name: 'Log',
     primaryKey: 'uid',
@@ -41,6 +47,10 @@ const LogSchema = {
     }
 }
 
+/*
+ * This is used to verify that a user logging in is permitted to login.
+ * Super admins are able to add pubkeys via the admin dashboard.
+ */
 const AdminSchema = {
     name: 'Admin',
     primaryKey: 'pubkey',
@@ -50,6 +60,10 @@ const AdminSchema = {
     }
 }
 
+/*
+ * This is currently unused but can be used to add content create/edit
+ * permission tiers.
+ */
 const RoleSchema = {
     name: 'Role',
     primaryKey: 'rid',
@@ -59,6 +73,11 @@ const RoleSchema = {
     }
 }
 
+/*
+ * When a user clicks to receive a login challenge that challenge is temporarily
+ * stored to verify that the user's correct signature is validating a challenge
+ * created by the app, rather than a challenge of the user's choice.
+ */
 const ChallengeSchema = {
     name: 'Challenge',
     primaryKey: 'uid',
@@ -68,7 +87,11 @@ const ChallengeSchema = {
     }
 }
 
-/* Public */
+/* Public Database (separate) */
+
+/*
+ * Used for the public display of author information
+ */
 const UserSchema = {
     name: 'User',
     primaryKey: 'pubkey',
@@ -83,6 +106,9 @@ const UserSchema = {
     }
 }
 
+/*
+ * Used to upload files and for other future purposes.
+ */
 const DataSchema = {
     name: 'Data',
     primaryKey: 'uid',
@@ -97,6 +123,9 @@ const DataSchema = {
     }
 }
 
+/*
+ * Used to override alert banners.
+ */
 const AlertSchema = {
     name: 'Alert',
     primaryKey: 'uid',
@@ -110,6 +139,9 @@ const AlertSchema = {
     }
 }
 
+/*
+ * Currently not used. Will be used to override homepage feature images and text.
+ */
 const HeroSchema = {
     name: 'Hero',
     primaryKey: 'uid',
@@ -130,7 +162,9 @@ const HeroSchema = {
     }
 }
 
-
+/*
+ * Used to store content for the new Blog area of the site.
+ */
 const PostSchema = {
     name: 'Post',
     primaryKey: 'uid',
