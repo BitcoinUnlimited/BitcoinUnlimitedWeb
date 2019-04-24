@@ -3,17 +3,17 @@
 import React from 'react';
 import { strings } from '../../../lib/i18n';
 
-const CHECKSUMS =  `{ 'files': { 'BUcash-1.6.0.0-arm32.tar.gz': '141b7b997c666e4a9f5f1e7a2f8f373b0e7249f126f67ab6425e7da5df499916',
-             'BUcash-1.6.0.0-arm64.tar.gz': '8f4c031e92e6a1c3793b9b34ee2613b53cfa19de7bfbc3285cf50981929618b8',
-             'BUcash-1.6.0.0-linux32.tar.gz': 'b944270128d12c14413a69623c9f6e07edd613b70b84a64c28a0411dd7d3f65b',
-             'BUcash-1.6.0.0-linux64.tar.gz': '214abab7e5bc2b4df13aed33d14dd4e7935fa9106a4e92994412ffcb9df8fe98',
-             'BUcash-1.6.0.0-osx.dmg': 'd3130ae6a341f1c50efcc2c24f227b2528909b7637c6aceceedb35754f569c90',
-             'BUcash-1.6.0.0-osx.tar.gz': '867188ec83102e63ae982d2e9cf4eb8d9c3e3133b64c61a6d1464dde193b4a99',
-             'BUcash-1.6.0.0-osx64.tar.gz': 'fc557cc9380ec3f010cca365d7b10a2e1c119ed7d45d18c0a3b4b5e5b95815c3',
-             'BUcash-1.6.0.0-win32-setup.exe': 'e723648a99ba9446a8d6a2b4992d3f5f738f2bf516207902b5b88b0fadef66e3',
-             'BUcash-1.6.0.0-win32.zip': '06a68ad475c17f893949cd5c7b77b939c3509e78b51d2698f292c0edaa2b1a5a',
-             'BUcash-1.6.0.0-win64-setup.exe': 'c2d61d09f3381757f9c51d83400aaab8d91f012a093fdc7cbe9de6565ebf6f39',
-             'BUcash-1.6.0.0-win64.zip': '3d315316c656ad5dc3121e9983438c3c83d474c8af90933118f76e59c73d3730'},
+const CHECKSUMS =  `{ 'files': { 'BUcash-1.6.0.0-arm32.tar.gz': 'c1407a676750ee11619f624239d007ea85f3bb410c9eaee9370ad015f90be08e',
+             'BUcash-1.6.0.0-arm64.tar.gz': 'd52fff6276f08b6ce416a116213105f36aa96a77a810d614921492a63fb57ece',
+             'BUcash-1.6.0.0-linux32.tar.gz': '37170693f8fc5b26810bbd03bea06d7065d544f0d92aa40d0e68281481e7da28',
+             'BUcash-1.6.0.0-linux64.tar.gz': '8e8b6af109ed73d799aa37db2ac0b4c29fdeea28998693d1d1d7d85d9f7e8930',
+             'BUcash-1.6.0.0-osx.dmg': '225c8709bfdac9c5b8fb19f24dc37c2762ee6ff6fc7128bf32199b3d78f72722',
+             'BUcash-1.6.0.0-osx.tar.gz': '8d565d7f3481995f6678e0ad0b4494580935feee06d344dddfb18e1776d5bbb3',
+             'BUcash-1.6.0.0-osx64.tar.gz': 'ad012b2909c7df37139a58056dfde1e22dc9e4a5304ec15664f509e7d299711d',
+             'BUcash-1.6.0.0-win32-setup.exe': 'd86257e37e68bf2f43b8b5fdcaca1616a6f6e0c1c28582b8ed91ee2d6cecf9f4',
+             'BUcash-1.6.0.0-win32.zip': '0170ddb294e6cc68f0d53ba0c64fe4b81475b112c395aeea7e8300f0aa954eae',
+             'BUcash-1.6.0.0-win64-setup.exe': 'c3a7827634606f62504478c595565b609f4a6811647cb56e87b46f0ed946dc01',
+             'BUcash-1.6.0.0-win64.zip': 'a256e755a712f34a627e68245e5118e79e7c0f9c1f4f3e61968d95a8cd9a3b6a'},
   'program': 'Bitcoin Unlimited Cash',
   'version': '1.6.0.0'}`;
 
@@ -47,13 +47,18 @@ class SignaturesBitcoinCash extends React.Component {
                     {strings().download.signatures.andrew}<br/>
                     bitcoincash:qq9wwnuw4eukyh5g34ckg5vk4aaxnvr04vkspyv850<br/>
                     (legacy address format: 1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3)<br/>
-                    {strings().download.signatures.signature}:<br />Gz48YtztTZ0N4TaizHi/idfBitVWLkXsP4k4F/q50knEdARaJJEdxuAprzLUyp9IrA/MXFAEq9WiKhIH9eTsaAU=
+                    {strings().download.signatures.signature}:<br />HCCIDbhYfviorm9Lv0lw0R88+B0QHCZGHargUeC/0cbBOTkB5bcPYcUn7u/iHGYZ4DaIy968loT4Qx4mEdyF4sY=
                     <br/><br/>
                     {strings().download.signatures.sickpig}<br/>
                     bitcoincash:qrdvmdluf2s5cf08wcp9h2ja8lqt5peq35y56z4s7s<br/>
                     (legacy address format: 1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)<br/>
-                    {strings().download.signatures.signature}:<br />
+                    {strings().download.signatures.signature}:<br />H1ghB8FwuGuK2n46YAzOnpsN4cBjZXvnXHAZ0YthT08EBya/OCu6xCeqKbAyWwXACWBzq6SUPtrFmy9At/lgJrg=
                     <br/><br/>
+                    {strings().download.signatures.griffith}<br/>
+                    bitcoincash:qrupj2nuskyg4dmdrpnytjs4p8s6av542cuja2qdzy<br/>
+                    (legacy address format: 1Pcpj8sR5adRNMi8rZ1Zi7rg6GPqcmFHAz)<br/>
+                    {strings().download.signatures.signature}:<br />TBD
+                    <br/>
                     <br/>
                 </div>
             </div>
