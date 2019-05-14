@@ -156,7 +156,7 @@
             "url" : "Nakamotostudies.org",
             "body" : "\"NSI is curating and organizing the best primary and secondary source material available on the history of Bitcoin (BCH) and (BTC) and its future.\" - Nakamoto Studies Institute"
         },
-	"nodes": {
+        "nodes": {
             "title" : "Bitcoin cash nodes counting",
             "url"   : "cashnodes.io",
             "body1" : "Bitcoin cash nodes counting: per implementation type, version and geographic region"
