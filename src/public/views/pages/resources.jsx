@@ -59,7 +59,7 @@ class Resources extends React.Component {
                     key='nodes'
                     expanded={ this.state.selectedSection === 'nodes' }
                     title={ strings().resources.nodes.title }
-                    body={ <a className='dim black' href="/nodes/">Bitcoin Cash nodes counting</a> } />
+                    body={  <CashNodes />  } />
 
                 <Section
                     key='nakamoto'

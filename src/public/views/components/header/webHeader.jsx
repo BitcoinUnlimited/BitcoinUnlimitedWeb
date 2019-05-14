@@ -15,7 +15,7 @@ class WebHeader extends React.Component {
                     <Link to='/'><img src='/img/bitcoin-unlimited.png' className='header__logo'/></Link>
                 </div>
                 <div className="right">
-                    <Dropdown title={ <Link className='non-decorated black inline-block mx2 py2' to='/solutions'>{ strings().header.solutions.title}</Link> }>
+                    <Dropdown title={ <Link className='non-decorated black inline-block mx2 py2' to='/solutions'>{ strings().header.solutions.title }</Link> }>
                         <Link className='non-decorated black block p2' to='/solutions/users'>{ strings().header.solutions.users }</Link>
                         <Link className='non-decorated black block p2' to='/solutions/nodes'>{ strings().header.solutions.nodes }</Link>
                         <Link className='non-decorated black block p2' to='/solutions/miners'>{ strings().header.solutions.miners }</Link>
@@ -28,14 +28,14 @@ class WebHeader extends React.Component {
                         <Link className='non-decorated black block p2' to='/technologies/parallel-validation'>{ strings().header.technologies.parallelValidation }</Link>
                     </Dropdown>
 
-                    <Dropdown title={<Link className='non-decorated black inline-block mx2 py2' to='/resources'>{strings().header.resources.title}</Link>}>
-                        <Link className='non-decorated black block p2' to='/resources/technical'>{strings().header.resources.technical}</Link>
-                        <Link className='non-decorated black block p2' to='/resources/non-technical'>{strings().header.resources.nonTechnical}</Link>
-                        <Link className='non-decorated black block p2' to='/resources/nolnet'>{strings().header.resources.nolNet}</Link>
-                        <Link className='non-decorated black block p2' to='/resources/buips'>{strings().header.resources.buips}</Link>
-                        <a className='non-decorated black block p2' href='/voting/'>{strings().header.resources.buvweb}</a>
-                        <a className='non-decorated black block p2' target='_blank' href='https://cashnodes.io/'>{strings().header.resources.nodes}</a>
-                        <a className='non-decorated black block p2' target='_blank' href='https://nakamotostudies.org/'>{strings().resources.nakamotostudies.url}</a>
+                    <Dropdown title={<Link className='non-decorated black inline-block mx2 py2' to='/resources'>{ strings().header.resources.title }</Link>}>
+                        <Link className='non-decorated black block p2' to='/resources/technical'>{ strings().header.resources.technical }</Link>
+                        <Link className='non-decorated black block p2' to='/resources/non-technical'>{ strings().header.resources.nonTechnical }</Link>
+                        <Link className='non-decorated black block p2' to='/resources/nolnet'>{ strings().header.resources.nolNet }</Link>
+                        <Link className='non-decorated black block p2' to='/resources/buips'>{ strings().header.resources.buips }</Link>
+                        <a className='non-decorated black block p2' href='/voting/'>{ strings().header.resources.buvweb }</a>
+                        <a className='non-decorated black block p2' target='_blank' href='https://cashnodes.io/'>{ strings().header.resources.nodes }</a>
+                        <a className='non-decorated black block p2' target='_blank' href='https://nakamotostudies.org/'>{ strings().resources.nakamotostudies.url }</a>
                     </Dropdown>
 
                     <Dropdown title={ <Link className='non-decorated black inline-block mx2 py2' to='/faq'>{ strings().header.faq.title }</Link> }>
