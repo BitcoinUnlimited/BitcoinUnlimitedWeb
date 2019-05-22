@@ -6,32 +6,38 @@ The Bitcoin Unlimited website, hosted at https://bitcoinunlimited.info
 
 ## Getting Started
 
-This is a node.js project requiring the npm package manager.
+This is a node.js project requiring the yarn package manager.
 
 The following will install and build the project.
 
 ```bash
 git clone git@github.com:BitcoinUnlimited/BitcoinUnlimitedWeb.git
 cd BitcoinUnlimitedWeb
-npm install
-npm run build
+yarn install
+yarn run build
 ```
 
-This build targets NodeJS versions 6 and 8. Use `n` to switch between NodeJS versions. `npm install -g n`.
+Optionally install, build and start the local server with a single script.
+
+```bash
+yarn run setup
+```
+
+This build targets NodeJS versions 6 and 8. Use `n` and `npm` to switch between NodeJS versions. `npm install -g n`.
 
 More info can be found at `https://www.npmjs.com/package/n`.
 
-To automatically rebuild and restart the server upon changes to `src`, use both `npm run watch` and `npm run nodemon`.
+To automatically rebuild and restart the server upon changes to `src`, use both `yarn run watch` and `yarn run nodemon`.
 
 Open `http://localhost:8080` to view your website.
 
 ## Development scripts
 
-* `npm start`: Start the server
-* `npm run bower`: Install the bower dependencies
-* `npm run build`: Build the project into the `.dist` folder
-* `npm run watch`: Watch the `src` directory for changes, and rebuild when changed
-* `npm run nodemon`: Use nodemon to run the server and restart when `.dist` is changed
+* `yarn setup`: Install, build and start the server.
+* `yarn start`: Start the server
+* `yarn run build`: Build the project into the `.dist` folder
+* `yarn run watch`: Watch the `src` directory for changes, and rebuild when changed
+* `yarn run nodemon`: Use nodemon to run the server and restart when `.dist` is changed
 
 ### Adding a page
 
@@ -52,19 +58,19 @@ var BitcoinUnlimitedWeb = require('bitcoin-unlimited-web');
 
 ## Using the administrator dashboard
 
-Once installed, the administrative dashboard can be used to create blog posts, alert banners, manage other administrators and store backups of the current database snapshot.
+Once installed, the administrative dashboard can be used to create blog posts, override static alert banners, manage administrators and store backups of the current database snapshot.
 
 A database revert feature is also available to choose between different database snapshot backups.
 
 ## Environment configuration
 
-Make sure to update the following .env file:
+For security purposes update your version `.env` file:
 
 ```bash
 JWT_SECRET=[yourSecretPassphrase] (required)
 DB_NAME=[mainDatabaseName].realm (optional)
-DB_AUTH_NAME=[authDatabaseName].realm (optional)
-DB_ADMIN_PUBKEY=The pubkey(s) with super admin privileges. The super admin can add other pubkeys via the dashboard interface. Separate with commas.
-AUTH_EXPIRE=[seconds] (JWT expiration time)
+DB_AUTH_NAME=[authDatabaseName].realm (optional, but should be changed)
+DB_ADMIN_PUBKEY=The pubkey(s) with super admin privileges. The "super" admin can add other pubkeys via the dashboard interface. Separate pubkeys with commas and exclude spaces.
+AUTH_EXPIRE=[seconds] (JavaScript Web Token expiration time)
 DEBUG=[true or TRUE] (sets the login challenge to 'hello, world')
 ```
