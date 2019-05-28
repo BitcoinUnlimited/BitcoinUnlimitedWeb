@@ -22,6 +22,10 @@ const buildDBErr = idx => strings().database.errors[idx];
 const buildAuthErr = idx => strings().auth.errors[idx];
 const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
 const authDefaultExpire = 3600;
+const clearChallengeObj = {
+    'countdown': 600000, // 10 minute interval
+    'isRunning': false
+}
 
 /**
  * [typeIsValid Check if the type is in either the public or private auth database.]
@@ -389,6 +393,34 @@ const getChallengeString = _ => {
 }
 
 /**
+ * Trunicate the Challenge table in the Auth database
+ */
+const clearAllChallenges = _ => {
+    if (clearChallengeObj.isRunning) {
+        realmWrite(authDatabase, realm => {
+            // fetch and delete all challenges
+            let allChallenges = realm.objects('Challenge');
+            realm.delete(allChallenges);
+            // reset clear challenge state
+            clearChallengeObj.isRunning = false;
+        }).catch(e => {
+            clearChallengeObj.isRunning = false;
+            rejectWithLog(eToStr(e))
+        });
+    }
+}
+
+/**
+ * Check if a challenge countdown is running and if not, create one
+ */
+const cleanupChallenges = _ => {
+    if (clearChallengeObj && !clearChallengeObj.isRunning) {
+        clearChallengeObj.isRunning = true;
+        setTimeout(clearAllChallenges, clearChallengeObj.countdown);
+    }
+}
+
+/**
  * [getLoginChallenge Stores the challenge in the database for future authentication.]
  * @param  {undefined} _ [ignored param]
  * @return {RealmDatabase Object}   [Saved Challenge object.]
@@ -397,6 +429,8 @@ const getLoginChallenge = _ => new Promise((resolve, reject) => {
     realmWrite(authDatabase, realm => {
         let saved = realm.create('Challenge', { uid: uuidv4(), challenge: getChallengeString() });
         if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
+        // Cleanup challenges
+        cleanupChallenges();
         resolve(saved);
     }).then(res => resolve(res)).catch(e => {
         reject(rejectWithLog(eToStr(e)));
