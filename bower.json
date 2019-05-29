@@ -1,6 +1,0 @@
-{
-  "name": "bitcoin-unlimited-web",
-  "dependencies": {
-    "bitcoin-unlimited-web-downloads": "*"
-  }
-}

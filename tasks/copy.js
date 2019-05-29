@@ -29,20 +29,7 @@ module.exports = function(grunt) {
                         '**/*.sig'
                     ],
                     dest: '.dist/'
-                },
-                {
-                    expand: true,
-                    cwd: 'node_modules/BitcoinUnlimitedWebDownloads',
-                    src: [
-                        '**/*.exe',
-                        '**/*.zip',
-                        '**/*.gz',
-                        '**/*.dmg',
-                        '**/*.sig',
-                        '**/*.json',
-                    ],
-                    dest: './.dist/public/components/bitcoin-unlimited-web-downloads/'
-                },
+                }
             ]
         }
     };

@@ -16,9 +16,10 @@
     }
   ],
   "scripts": {
-    "setup": "yarn install && yarn run build && yarn run nodemon",
+    "setup": "npm run build && npm run nodemon",
     "start": "node index.js",
-    "build": "grunt build",
+    "build": "grunt build && npm run downloads",
+    "downloads": "./downloads.sh",
     "prepublish": "grunt clean",
     "watch": "grunt watch",
     "nodemon": "nodemon index.js"
@@ -62,7 +63,6 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "BitcoinUnlimitedWebDownloads": "https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads.git",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.3.13",

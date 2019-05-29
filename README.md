@@ -6,38 +6,33 @@ The Bitcoin Unlimited website, hosted at https://bitcoinunlimited.info
 
 ## Getting Started
 
-This is a node.js project requiring the yarn package manager.
+This is a node.js project requiring the npm package manager.
 
 The following will install and build the project.
 
 ```bash
 git clone git@github.com:BitcoinUnlimited/BitcoinUnlimitedWeb.git
 cd BitcoinUnlimitedWeb
-yarn install
-yarn run build
-```
-
-Optionally install, build and start the local server with a single script.
-
-```bash
-yarn run setup
+npm install
+npm run build
 ```
 
 This build targets NodeJS versions 6 and 8. Use `n` and `npm` to switch between NodeJS versions. `npm install -g n`.
 
 More info can be found at `https://www.npmjs.com/package/n`.
 
-To automatically rebuild and restart the server upon changes to `src`, use both `yarn run watch` and `yarn run nodemon`.
+To automatically rebuild and restart the server upon changes to `src`, use both `npm run watch` and `npm run nodemon`.
 
 Open `http://localhost:8080` to view your website.
 
 ## Development scripts
 
-* `yarn setup`: Install, build and start the server.
-* `yarn start`: Start the server
-* `yarn run build`: Build the project into the `.dist` folder
-* `yarn run watch`: Watch the `src` directory for changes, and rebuild when changed
-* `yarn run nodemon`: Use nodemon to run the server and restart when `.dist` is changed
+* `npm setup`: Install, build and start the server.
+* `npm start`: Start the server
+* `npm run build`: Build the project into the `.dist` folder
+* `npm run downloads`: Build or update the BitcoinUnlimitedWebDownloads.
+* `npm run watch`: Watch the `src` directory for changes, and rebuild when changed
+* `npm run nodemon`: Use nodemon to run the server and restart when `.dist` is changed
 
 ### Adding a page
 
