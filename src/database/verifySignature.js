@@ -1,9 +1,7 @@
 'use strict';
 
-import Bitcore from 'bitcore-lib';
-import Message from 'bitcore-message';
+import { Message } from 'bitcore-lib';
 import AddrFormat from 'bchaddrjs';
-import { strings } from '../public/lib/i18n';
 
 /**
  * [fixAddressFormat Converts Bitcoin Cash and Bitpay addresses to legacy addresses before verifiation.]
@@ -26,7 +24,7 @@ const messageVerify = message => {
     let { challenge, pubkey, signature } = message;
     const fixedPubKey = fixAddressFormat(pubkey);
     try {
-        return Message(challenge).verify(fixedPubKey, signature);
+        return new Message(challenge).verify(fixedPubKey, signature);
     } catch(e) {
         return false;
     }

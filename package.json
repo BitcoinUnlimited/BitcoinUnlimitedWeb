@@ -42,7 +42,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bchaddrjs": "^0.2.1",
-    "bitcore-message": "^1.0.4",
+    "bitcore-lib": "^8.3.3",
     "body-parser": "^1.18.3",
     "busboy": "^0.2.14",
     "dotenv": "^6.0.0",
