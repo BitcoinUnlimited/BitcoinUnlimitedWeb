@@ -11,7 +11,7 @@ then
     git pull
     cd ..
 else
-    git clone $repo
+    git clone --depth 1 $repo
 fi
 # Clear existing web downloads and copy them to the components path
 rm -rf $components
