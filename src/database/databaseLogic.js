@@ -427,11 +427,15 @@ const cleanupChallenges = _ => {
  */
 const getLoginChallenge = _ => new Promise((resolve, reject) => {
     realmWrite(authDatabase, realm => {
-        let saved = realm.create('Challenge', { uid: uuidv4(), challenge: getChallengeString() });
-        if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
-        // Cleanup challenges
-        cleanupChallenges();
-        resolve(saved);
+        let challengeString = getChallengeString();
+        if (challengeString) {
+            let saved = realm.create('Challenge', { uid: uuidv4(), challenge: challengeString });
+            if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
+            cleanupChallenges();
+            resolve(saved);
+        } else {
+            reject(rejectWithLog(`Encountered an error building the challenge.`));
+        }
     }).then(res => resolve(res)).catch(e => {
         reject(rejectWithLog(eToStr(e)));
     });

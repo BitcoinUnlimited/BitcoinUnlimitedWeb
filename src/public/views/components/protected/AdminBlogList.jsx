@@ -34,6 +34,21 @@ class AdminBlogList extends React.Component {
         }
     }
 
+    getPreviewText(post) {
+        if (post && !post.published) {
+            return (<span className="preview"> Preview »</span>);
+        }
+        return (<span className="preview"> View »</span>);
+    }
+
+    getPublishedDisplay(post) {
+        if (post) {
+            let pubText = (post.published) ? "Published" : "Unpublished";
+            return (<div className="published-status">{ pubText }</div>);
+        }
+        return null;
+    }
+
     getAuthorDisplay(post) {
         if (post && post.author && post.author.displayname) {
             return (<div className="author">By { post.author.displayname }</div>);
@@ -48,8 +63,9 @@ class AdminBlogList extends React.Component {
             return (
                 <div className="blog-row" key={ idx }>
                     <h4 className="title">
-                        <Link to={ `/blog/${post.uid}` }>{ post.title }</Link>
+                        <Link to={ `/blog/${post.uid}` }>{ post.title } { this.getPreviewText(post) }</Link>
                     </h4>
+                    { this.getPublishedDisplay(post) }
                     <div className="date">{ formatDate(new Date(post.created)) }</div>
                     { this.getAuthorDisplay(post) }
                     <div className="subtitle">{ post.subtitle }</div>

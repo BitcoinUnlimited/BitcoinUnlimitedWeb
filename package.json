@@ -20,7 +20,7 @@
     "start": "node index.js",
     "build": "grunt build && npm run downloads",
     "downloads": "./downloads.sh",
-    "prepublish": "grunt clean",
+    "prepare": "grunt clean",
     "watch": "grunt watch",
     "nodemon": "nodemon index.js"
   },

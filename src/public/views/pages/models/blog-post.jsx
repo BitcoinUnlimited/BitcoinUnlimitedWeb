@@ -7,7 +7,7 @@ import Axios from 'axios';
 import ReactLoading from 'react-loading';
 import { strings } from '../../../lib/i18n';
 import Post from '../../post.jsx'
-import { formatDate } from '../../../../helpers/helpers.js';
+import { formatDate, getLocalstorageKey } from '../../../../helpers/helpers.js';
 
 /**
  * [BlogPost This is the main component for displaying blog posts.]
@@ -49,6 +49,30 @@ class BlogPost extends React.Component {
     }
 
     getPost(uid) {
+        let jwt = getLocalstorageKey('jwt');
+        if (jwt) {
+            this.getSecurePost(uid, jwt);
+        } else {
+            this.getPublicPost(uid);
+        }
+    }
+
+    getSecurePost(uid, jwt) {
+        if (jwt) {
+            this.setState({ fetching: true, post: null, uid: uid });
+            Axios.get(`/get/secure/Post/${uid}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
+                let { data: { uid, published } } = res;
+                if (!uid) this.props.router.push('/login');
+                this.setState({ post: res.data, fetching: false });
+            }).catch(e => {
+                this.props.router.push('/login');
+            });
+        } else {
+            this.props.router.push('/login');
+        }
+    }
+
+    getPublicPost(uid) {
         this.setState({ fetching: true, post: null, uid: uid });
         Axios.get(`/api/get/Post/${uid}`).then(res => {
             let { data: { uid, published } } = res;

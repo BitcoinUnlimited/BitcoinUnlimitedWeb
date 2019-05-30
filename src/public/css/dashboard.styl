@@ -27,6 +27,11 @@
     background-color: #f7f7f7
     border-radius: 4px
     margin-bottom: 6px
+    position: relative;
+    overflow: hidden;
+
+#dashboard .blog-row
+    padding-top: 40px;
 
 .blog-row .title,
 .content-row .title
@@ -38,6 +43,22 @@
 .content-row .title a
     color: #000000
     text-decoration: none
+
+.blog-row .title a span.preview
+    text-decoration: underline
+    color: $orange
+    margin-right: 6px
+    font-size: 16px
+
+#dashboard .published-status
+    background-color: #ccc
+    padding: 6px 8px
+    margin-bottom: 10px
+    position: absolute
+    top: 0
+    left: 0
+    border-bottom-right-radius: 4px
+    font-size: 12px
 
 .blog-row .date,
 .content-row .date,
