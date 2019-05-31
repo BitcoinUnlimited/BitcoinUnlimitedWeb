@@ -13,11 +13,14 @@ class LoginForm extends React.Component {
         this.change = this.change.bind(this);
         this.loginSubmit = this.loginSubmit.bind(this);
         this.getChallenge = this.getChallenge.bind(this);
+        this.copyChallenge = this.copyChallenge.bind(this);
+        this.getCopyButton = this.getCopyButton.bind(this);
         this.state = {
             fetching: false,
             pubkey: '',
             uid: null,
             challenge: null,
+            copy: 'Copy',
             signature: '',
             error: '',
         };
@@ -26,7 +29,6 @@ class LoginForm extends React.Component {
     change(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
-
 
     validate(auth) {
         let { pubkey, uid, signature, challenge } = auth;
@@ -93,14 +95,37 @@ class LoginForm extends React.Component {
         return null;
     }
 
+    copyEnabled() {
+        return document && document.queryCommandSupported('copy');
+    }
+
+    copyChallenge(e) {
+        e.preventDefault();
+        document.getElementById('challenge-text').select();
+        document.execCommand('copy');
+        this.setState({ copy: 'Copied' })
+    }
+
+    getCopyButton() {
+        if (this.copyEnabled()) {
+            return (<button onClick={ this.copyChallenge }>{ this.state.copy }</button>);
+        }
+        return null;
+    }
+
     showChallenge(fetching, challenge) {
         if (fetching) {
             return (<ReactLoading type="balls" color="#ccc" />);
         }
         if (challenge) {
-            return challenge;
+            return (
+                <div className="challenge-result">
+                    <textarea id="challenge-text" value={ challenge } readOnly="readOnly" />
+                    { this.getCopyButton() }
+                </div>
+            );
         }
-        return (<button onClick={ this.getChallenge }>Get Challenge</button>);
+        return (<button className="get-challenge" onClick={ this.getChallenge }>Get Challenge</button>);
     }
 
     render() {
@@ -114,7 +139,7 @@ class LoginForm extends React.Component {
                 </label>
                 <label className="login__label">
                     <span>Challenge:</span>
-                    <div className="challenge">{ this.showChallenge(fetching, challenge) }</div>
+                    { this.showChallenge(fetching, challenge) }
                 </label>
                 <label className="login__label">
                     <span>Signature:</span>

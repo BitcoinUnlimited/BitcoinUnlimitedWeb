@@ -384,7 +384,7 @@ const testString = 'hello, world';
 const getChallengeString = _ => {
     if (isTesting.toLowerCase() === 'true') return testString;
     let wordArr = strings().auth.wordpool.split(' ');
-    let challenge = '',
+    let challenge = 'bitcoinunlimited.info/login:',
     wordCount = 12;
     for (var i=0; i < wordCount; i++) {
         challenge += ' ' + wordArr[Math.floor(Math.random()*wordArr.length)];
