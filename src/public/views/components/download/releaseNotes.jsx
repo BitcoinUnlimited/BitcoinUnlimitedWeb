@@ -8,7 +8,7 @@ class ReleaseNotes extends React.Component {
         return (
             <ul>
                 <li className='pb1'>
-                    {strings().download.notes.releasenotes_buc_1_6_0_0} <a className='link--underline dim black' target='_blank' href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.6.0md'>{strings().download.notes.here}</a>.
+                    {strings().download.notes.releasenotes_buc_1_6_0_0} <a className='link--underline dim black' target='_blank' href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.6.0.md'>{strings().download.notes.here}</a>.
                 </li>
                 <li className='pb1'>
                     {strings().download.notes.releasenotes_buc_1_5_1_0} <a className='link--underline dim black' target='_blank' href='https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.5.1.0.md'>{strings().download.notes.here}</a>.
