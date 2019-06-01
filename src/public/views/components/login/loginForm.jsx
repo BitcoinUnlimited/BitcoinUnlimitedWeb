@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ReactLoading from "react-loading";
+import CountdownTimer from "./countdownTimer.jsx";
 import { strings } from '../../../lib/i18n';
 
 class LoginForm extends React.Component {
@@ -15,8 +16,12 @@ class LoginForm extends React.Component {
         this.getChallenge = this.getChallenge.bind(this);
         this.copyChallenge = this.copyChallenge.bind(this);
         this.getCopyButton = this.getCopyButton.bind(this);
+        this.clearError = this.clearError.bind(this);
+        this.refreshButton = this.refreshButton.bind(this);
         this.state = {
             fetching: false,
+            countdown: false,
+            timeleft: null,
             pubkey: '',
             uid: null,
             challenge: null,
@@ -73,9 +78,15 @@ class LoginForm extends React.Component {
          */
         Axios.get('/get_login_challenge').then(res => {
             if (res.data) {
-                let { uid, challenge } = res.data;
-                if (uid && challenge) {
-                    this.setState({ fetching: false, uid, challenge });
+                let { challenge, challengeExpires } = res.data;
+                if (challenge && challenge.uid && challenge.challenge && challengeExpires) {
+                    this.setState({
+                        fetching: false,
+                        countdown: true,
+                        timeleft: challengeExpires,
+                        uid: challenge.uid,
+                        challenge: challenge.challenge
+                    });
                 } else {
                     this.setState({ fetching: false });
                 }
@@ -83,14 +94,21 @@ class LoginForm extends React.Component {
                 this.setState({ fetching: false });
             }
         }).catch(e => {
-            console.log(e);
             this.setState({ fetching: false, error: 'Error getting challenge.' });
         });
     }
 
+    clearError() {
+        this.setState({ error: null })
+    }
+
     showError(error) {
         if (error) {
-            return (<div className="error">{ error }</div>);
+            return (
+                <div className="error">{ error }
+                    <span className="clear-error" onClick={ this.clearError }>X</span>
+                </div>
+            );
         }
         return null;
     }
@@ -109,6 +127,18 @@ class LoginForm extends React.Component {
     getCopyButton() {
         if (this.copyEnabled()) {
             return (<button onClick={ this.copyChallenge }>{ this.state.copy }</button>);
+        }
+        return null;
+    }
+
+    refreshButton() {
+        this.setState({ countdown: false, challenge: false, timeleft: false });
+    }
+
+    showCountdown() {
+        let { countdown, timeleft } = this.state;
+        if (countdown && timeleft) {
+            return (<CountdownTimer seconds={ timeleft } callback={ this.refreshButton } />)
         }
         return null;
     }
@@ -139,6 +169,7 @@ class LoginForm extends React.Component {
                 </label>
                 <label className="login__label">
                     <span>Challenge:</span>
+                    { this.showCountdown() }
                     { this.showChallenge(fetching, challenge) }
                 </label>
                 <label className="login__label">

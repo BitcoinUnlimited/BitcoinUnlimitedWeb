@@ -23,7 +23,7 @@ const buildAuthErr = idx => strings().auth.errors[idx];
 const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
 const authDefaultExpire = 3600;
 const clearChallengeObj = {
-    'countdown': 600000, // 10 minute interval
+    'countdown': process.env.CHALLENGE_EXPIRE || 600, // 10 minute interval default
     'isRunning': false
 }
 
@@ -416,7 +416,7 @@ const clearAllChallenges = _ => {
 const cleanupChallenges = _ => {
     if (clearChallengeObj && !clearChallengeObj.isRunning) {
         clearChallengeObj.isRunning = true;
-        setTimeout(clearAllChallenges, clearChallengeObj.countdown);
+        setTimeout(clearAllChallenges, clearChallengeObj.countdown * 1000);
     }
 }
 
@@ -432,7 +432,7 @@ const getLoginChallenge = _ => new Promise((resolve, reject) => {
             let saved = realm.create('Challenge', { uid: uuidv4(), challenge: challengeString });
             if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
             cleanupChallenges();
-            resolve(saved);
+            resolve({ challenge: saved, challengeExpires: clearChallengeObj.countdown });
         } else {
             reject(rejectWithLog(`Encountered an error building the challenge.`));
         }
