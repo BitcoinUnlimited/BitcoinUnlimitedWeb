@@ -183,7 +183,7 @@ class OfficialRelease extends React.Component {
                 arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bitcoinUnlimited-1.0.2.0-arm32.tar.gz'
                 source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/v1.0.2.0'>
 
-                <Signatures1014 />
+                <Signatures1020 />
             </Release>
         )
     }
@@ -201,7 +201,7 @@ class OfficialRelease extends React.Component {
                 arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bitcoinUnlimited-1.0.1.4-arm32.tar.gz'
                 source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/v1.0.1.4'>
 
-                <Signatures1020 />
+                <Signatures1014 />
             </Release>
         )
     }
