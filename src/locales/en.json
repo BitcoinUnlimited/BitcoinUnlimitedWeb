@@ -536,7 +536,7 @@
     },
     "download": {
         "title": "Download",
-        "subtitle": "The Bitcoin Unlimited project maintains an enhanced version of the Bitcoin Core \"Satoshi\" client.",
+        "subtitle": "The Bitcoin Unlimited project maintains a client for the Bitcoin Cash (BCH) network.",
         "latest": {
             "title": "Official Bitcoin (BTC) Release",
             "download": "Download the latest standard release of Bitcoin Unlimited",
