@@ -1,5 +1,6 @@
 .dist
 .idea
+.env-local
 node_modules
 src/public/components
 .DS_Store
