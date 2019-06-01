@@ -173,27 +173,16 @@ class OfficialRelease extends React.Component {
     renderV1030Body() {
         return (
                 <Release
-                    osx64={'/downloads/bitcoinUnlimited-' + latestVersion + '-osx64.tar.gz'}
-                    osx64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx64.tar.gz'}
-                    osx32={'/downloads/bitcoinUnlimited-' + latestVersion + '-osx.tar.gz'}
-                    osx32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx.tar.gz'}
-                    osxDmg={'/downloads/bitcoinUnlimited-' + latestVersion + '-osx.dmg'}
-                    osxDmgMirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx.dmg'}
-                    windows64Exe={'/downloads/bitcoinUnlimited-' + latestVersion + '-win64-setup.exe'}
-                    windows64Zip={'/downloads/bitcoinUnlimited-' + latestVersion + '-win64.zip'}
-                    windows64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-win64-setup.exe'}
-                    windows32Exe={'/downloads/bitcoinUnlimited-' + latestVersion + '-win32-setup.exe'}
-                    windows32Zip={'/downloads/bitcoinUnlimited-' + latestVersion + '-win32.zip'}
-                    windows32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-win32-setup.exe'}
-                    linux64={'/downloads/bitcoinUnlimited-' + latestVersion + '-linux64.tar.gz'}
-                    linux64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-linux64.tar.gz'}
-                    linux32={'/downloads/bitcoinUnlimited-' + latestVersion + '-linux32.tar.gz'}
-                    linux32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-linux32.tar.gz'}
-                    arm64={'/downloads/bitcoinUnlimited-' + latestVersion + '-arm64.tar.gz'}
-                    arm64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-arm64.tar.gz'}
-                    arm32={'/downloads/bitcoinUnlimited-' + latestVersion + '-arm32.tar.gz'}
-                    arm32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-arm32.tar.gz'}
-                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/tree/BitcoinCore1.0'>
+                    osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx64.tar.gz'
+                    osx32'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx.tar.gz'
+                    osxDmg'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx.dmg'
+                    windows64Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-win64-setup.exe'
+                    windows32Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-win32-setup.exe'
+                    linux64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-linux64.tar.gz'
+                    linux32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-linux32.tar.gz'
+                    arm64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-arm64.tar.gz'
+                    arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-arm32.tar.gz'
+                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/v1.0.3.0'>
 
                     <Signatures1030 />
                 </Release>
