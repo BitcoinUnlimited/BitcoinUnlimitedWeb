@@ -413,6 +413,11 @@ class OfficialRelease extends React.Component {
                     expanded={ false } />
 
                 <Section
+                    title='v1.0.3.0'
+                    body={ this.renderV1030Body() }
+                    expanded={ false } />
+
+                <Section
                     title='v1.0.2.0'
                     body={ this.renderV1020Body() }
                     expanded={ false } />
