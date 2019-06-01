@@ -174,8 +174,8 @@ class OfficialRelease extends React.Component {
         return (
                 <Release
                     osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx64.tar.gz'
-                    osx32'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx.tar.gz'
-                    osxDmg'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx.dmg'
+                    osx32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx.tar.gz'
+                    osxDmg='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-osx.dmg'
                     windows64Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-win64-setup.exe'
                     windows32Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-win32-setup.exe'
                     linux64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/bitcoinUnlimited-1.0.3.0-linux64.tar.gz'
