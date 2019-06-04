@@ -18,8 +18,8 @@ sudo apt-get install software-properties-common                               #o
 sudo add-apt-repository ppa:bitcoin-unlimited/bu-ppa                          #     this is not needed if your wallet will use the new
 sudo apt-get update                                                           #     format, or if you're not going to use a wallet at all
 sudo apt-get install libdb4.8-dev libdb4.8++-dev
-git clone https://github.com/BitcoinUnlimited/BitcoinUnlimited.git BU
-cd BU
+git clone https://github.com/BitcoinUnlimited/BitcoinUnlimited.git
+cd BitcoinUnlimited
 git checkout release
 ./autogen.sh
 ./configure
