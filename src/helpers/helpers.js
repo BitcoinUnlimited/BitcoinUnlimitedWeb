@@ -4,6 +4,7 @@
  * This file holds misc. helper functions that are used by other js and jsx files.
  */
 import { EditorState } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 import { getModelPropInfo } from '../database/modelProperties.js';
 /*
@@ -68,7 +69,7 @@ const monthName = idx => ['January','February','March','April','May','June','Jul
 const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`;
 const formatDateFull = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 const saveDateFormat = date => `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-
+const buildDraftJSMarkup = editor => draftToHtml(JSON.parse(editor));
 /*
  * Local storage key helpers
  */
@@ -190,5 +191,6 @@ module.exports = {
     getDBModel,
     setLocalstorageKey,
     getLocalstorageKey,
-    getKeyForType
+    getKeyForType,
+    buildDraftJSMarkup
 }

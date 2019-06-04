@@ -166,6 +166,16 @@ class InputElement extends React.Component {
         );
     }
 
+    getInputState() {
+        let { inputState, inputName, inputType } = this.props;
+        if (inputState) {
+            return (
+                <button onClick={ e => inputState(e, inputName, inputType) }>Debug</button>
+            );
+        }
+        return null;
+    }
+
     /**
      * [render Switches the returned input markup based on the inputType
      * and other optional properties.]
@@ -205,6 +215,7 @@ class InputElement extends React.Component {
                     />
                     { this.getDescription() }
                     { this.getError() }
+                    { this.getInputState() }
                 </fieldset>
             );
         }

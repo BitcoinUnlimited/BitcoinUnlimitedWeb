@@ -14,7 +14,7 @@ const extraFieldInfo = {
     caption_editor: { label: 'Billboard Caption', description: 'Displayed under the banner image.', toolbar: 'simplified' },
     upload_file: { label: 'File Upload', description: 'Supported types are: .exe,.zip,.gz,.pdf,.json. The upload will be available from the static files directory.' },
     misc_data: { label: 'Data', description: 'Store JSON data for ad hoc interpretation.' },
-    body_editor: { label: 'Content', description: 'This image will go above the post.' },
+    body_editor: { label: 'Content', description: 'The main content.' },
     created: { label: 'Created Date', description: '' },
     updated: { label: 'Updated Date', description: '' },
     expires: { label: 'Expiration Date', description: 'Set a time limit for this content to be visible.' },

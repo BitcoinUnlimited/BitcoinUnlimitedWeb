@@ -7,7 +7,6 @@ import ReactLoading from "react-loading";
 import { EditorState, convertFromRaw, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
 import Axios from 'axios';
 import { strings } from '../../../lib/i18n';
 import { getDBModel, isEmptyObj, isDef, getUid, isImage64, getLocalstorageKey } from '../../../../helpers/helpers.js';
@@ -36,6 +35,7 @@ class RealmFormWrapper extends React.Component {
         this.imageChange = this.imageChange.bind(this);
         this.fileUpload = this.fileUpload.bind(this);
         this.deleteConfirm = this.deleteConfirm.bind(this);
+        this.logInputState = this.logInputState.bind(this);
     }
 
     removeJwtAndRedirect() {
@@ -47,7 +47,7 @@ class RealmFormWrapper extends React.Component {
     }
 
     addFormValue(formData, key, prop) {
-        (prop.type !== 'editor') ? formData.append(key, prop.value) : formData.append(key, draftToHtml(convertToRaw(prop.value.getCurrentContent())));
+        return (prop.type !== 'editor') ? formData.append(key, prop.value) : formData.append(key, JSON.stringify(convertToRaw(prop.value.getCurrentContent())));
     }
 
     buildFormData() {
@@ -167,26 +167,29 @@ class RealmFormWrapper extends React.Component {
     }
 
     convertToEditor(content) {
-        const blocksFromHtml = htmlToDraft(content);
-        const { contentBlocks, entityMap } = blocksFromHtml;
-        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-        return EditorState.createWithContent(contentState);
+        if (content) {
+            return EditorState.createWithContent(convertFromRaw(JSON.parse(content)));
+        } else {
+            return EditorState.createEmpty();
+        }
     }
 
     setValues(values) {
-        let realmModel = this.state.realmModel;
-        Object.keys(realmModel).map(key => {
-            let val = values[key];
-            if (val) {
-                let modelRow = realmModel[key];
-                if (modelRow.type === 'editor' && val) {
-                    realmModel[key].value = this.convertToEditor(val);
-                } else {
-                    realmModel[key].value = val;
+        let { realmModel } = this.state;
+        if (realmModel) {
+            Object.keys(realmModel).map(key => {
+                let val = values[key];
+                if (val) {
+                    let modelRow = realmModel[key];
+                    if (modelRow.type === 'editor' && val) {
+                        realmModel[key].value = this.convertToEditor(val);
+                    } else {
+                        realmModel[key].value = val;
+                    }
                 }
-            }
-        });
-        this.setState({ realmModel });
+            });
+            this.setState({ realmModel });
+        }
     }
 
     setModelOptions(realmModel, data) {
@@ -308,8 +311,26 @@ class RealmFormWrapper extends React.Component {
         if (realmType && uid) this.getUidData(realmType, uid);
     }
 
+    logInputState(e, name, type) {
+        e.preventDefault();
+        if (type === 'editor') {
+            let { realmModel: model } = this.state;
+            if (model) {
+                let prop = model[name];
+                if (prop) {
+                    let obj = convertToRaw(prop.value.getCurrentContent());
+                    let markup = draftToHtml(obj);
+                    let raw = JSON.stringify(obj);
+                    console.log(obj);
+                    console.log(raw);
+                    console.log(markup);
+                }
+            }
+        }
+    }
+
     editorStateChange(e, name) {
-        let realmModel = this.state.realmModel;
+        let { realmModel } = this.state;
         realmModel[name].value = e;
         this.setState({ realmModel });
     }
@@ -321,9 +342,11 @@ class RealmFormWrapper extends React.Component {
             } else {
                 return this.fileUpload;
             }
+        } else if (type === 'editor') {
+            return (e) => this.editorStateChange(e, name);
+        } else {
+            return this.inputChange;
         }
-        if (type === 'editor') return (e) => this.editorStateChange(e, name);
-        return this.inputChange;
     }
 
     getInputInfo(input, key) {
@@ -360,6 +383,7 @@ class RealmFormWrapper extends React.Component {
                 inputRemove={ this.fileRemove(input.name, input.type) }
                 inputError={ (input.error) ? input.error : null }
                 inputDescription={ this.getInputInfo(input, 'description') }
+                inputState={ this.logInputState }
             />
         );
     }

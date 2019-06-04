@@ -5,12 +5,20 @@ import { Link } from 'react-router';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
 import Section from './components/section.jsx';
+import { buildDraftJSMarkup } from '../../helpers/helpers.js';
 
 class Post extends React.Component {
 
     displayCaption(caption) {
         /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
-        return (caption) ? (<div className="caption-wrapper" dangerouslySetInnerHTML={ { __html: caption } }></div>) : null;
+        if (caption) {
+            let markup = buildDraftJSMarkup(caption);
+            if (markup) {
+                /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
+                return (<div className="caption-wrapper" dangerouslySetInnerHTML={ { __html: markup } }></div>);
+            }
+        }
+        return null;
     }
 
     displayBanner(banner, caption) {

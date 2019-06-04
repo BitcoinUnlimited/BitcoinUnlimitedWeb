@@ -7,7 +7,7 @@ import Axios from 'axios';
 import ReactLoading from 'react-loading';
 import { strings } from '../../../lib/i18n';
 import Post from '../../post.jsx'
-import { formatDate, getLocalstorageKey } from '../../../../helpers/helpers.js';
+import { formatDate, getLocalstorageKey, buildDraftJSMarkup } from '../../../../helpers/helpers.js';
 
 /**
  * [BlogPost This is the main component for displaying blog posts.]
@@ -22,6 +22,17 @@ class BlogPost extends React.Component {
             uid: null,
             post: null
         }
+    }
+
+    displayBody(body_editor) {
+        if (body_editor) {
+            let markup = buildDraftJSMarkup(body_editor);
+            if (markup) {
+                /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
+                return (<div className="body-content" dangerouslySetInnerHTML={ { __html: markup } }></div>);
+            }
+        }
+        return null;
     }
 
     goTop() {
@@ -65,6 +76,7 @@ class BlogPost extends React.Component {
                 if (!uid) this.props.router.push('/login');
                 this.setState({ post: res.data, fetching: false });
             }).catch(e => {
+                console.log(e);
                 this.props.router.push('/login');
             });
         } else {
@@ -84,8 +96,14 @@ class BlogPost extends React.Component {
     }
 
     displayVideo(video_embed) {
-        { /* HTML stored in the database is created in the secure auth area and is presumed to be safe */ }
-        return (video_embed) ? (<div className="video-embed" dangerouslySetInnerHTML={ { __html: video_embed } }></div>) : null;
+        if (video_embed) {
+            let markup = buildDraftJSMarkup(video_embed);
+            if (markup) {
+                /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
+                return (<div className="video-embed" dangerouslySetInnerHTML={ { __html: markup } }></div>);
+            }
+        }
+        return null;
     }
 
     displayTitle(title) {
@@ -119,7 +137,7 @@ class BlogPost extends React.Component {
                 </Post>
             );
         }
-        let { header_img, caption_editor, title, video_data, subtitle, created, author } = post;
+        let { body_editor, header_img, caption_editor, title, video_data, subtitle, created, author } = post;
         return (
             <Post name="blog" banner={ header_img } caption={ caption_editor }>
                 { this.displayVideo(video_data) }
@@ -127,8 +145,7 @@ class BlogPost extends React.Component {
                 { this.displayAuthor(author) }
                 { this.displayCreated(created) }
                 { this.displaySubtitle(subtitle) }
-                { /* HTML stored in the database is created in the secure auth area and is presumed to be safe */ }
-                <div className="body-content" dangerouslySetInnerHTML={ { __html: post.body_editor } }></div>
+                { this.displayBody(body_editor) }
                 <Link className="link underline" to="/blog" onClick={ this.goTop }>« Back to Blog</Link>
             </Post>
         );
