@@ -193,7 +193,7 @@
     },
     {
         "number": "BUIP025",
-        "title": "BU "Bronze Sponsor" at Scaling Bitcoin, Milan, Italy",
+        "title": "BU 'Bronze Sponsor' at Scaling Bitcoin, Milan, Italy",
         "proposer": "Andrew Clifford",
         "submitted": "2016-09-10",
         "status": "passed crowdfunded",
@@ -297,7 +297,7 @@
     },
     {
         "number": "BUIP038",
-        "title": "Revert "sticky gate"",
+        "title": "Revert 'sticky gate'",
         "proposer": "Tom Harding (Sponsor: freetrader)",
         "submitted": "2016-11-27",
         "status": "closed",
@@ -465,7 +465,7 @@
     },
     {
         "number": "BUIP059",
-        "title": "Make "sticky gate" optional (disabled by default)",
+        "title": "Make 'sticky gate' optional (disabled by default)",
         "proposer": "freetrader",
         "submitted": "2017-05-21",
         "status": "draft",
@@ -553,7 +553,7 @@
     },
     {
         "number": "BUIP071",
-        "title": "Make Bitcoin Cash the "Release" Version of Bitcoin Unlimited",
+        "title": "Make Bitcoin Cash the 'Release' Version of Bitcoin Unlimited",
         "proposer": "Peter Rizun (@Peter R)",
         "submitted": "2017-11-13",
         "status": "passed",
@@ -681,7 +681,7 @@
     },
     {
         "number": "BUIP087",
-        "title": "Utilization of "cash" denomination",
+        "title": "Utilization of 'cash' denomination",
         "proposer": "@Ken Shishido",
         "submitted": "2018-03-18",
         "status": "passed",
