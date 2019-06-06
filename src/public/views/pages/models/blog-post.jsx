@@ -114,12 +114,29 @@ class BlogPost extends React.Component {
         return (date) ? (<div className="date my1">{ formatDate(new Date(date)) }</div>) : null;
     }
 
-    displayOrgTitle(author) {
-        return (author && author.org_title) ? `, ${author.org_title}` : '';
+    showAuthorName(name) {
+        return (name) ? `By ${ name }` : '';
+    }
+
+    showAuthorTitle(name, org_title) {
+        return (name && org_title) ? `, ${ org_title }` : '';
+    }
+
+    showAuthorIcon(image_data) {
+        return (image_data) ? (<div className="author-icon"><img src={ image_data } /></div>) : null;
     }
 
     displayAuthor(author) {
-        return (author && author.displayname) ? (<div className="author mb1 italics">By { author.displayname }{ this.displayOrgTitle(author) }</div>) : null;
+        if (author) {
+            let { displayname, org_title, icon_img_64 } = author;
+            return (
+                <div className="author">
+                    { this.showAuthorIcon(icon_img_64) }
+                    <span>{ this.showAuthorName(displayname) }{ this.showAuthorTitle(displayname, org_title) }</span>
+                </div>
+            );
+        }
+        return null;
     }
 
     displaySubtitle(subtitle) {

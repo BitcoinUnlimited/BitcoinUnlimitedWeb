@@ -116,7 +116,7 @@ class InputElement extends React.Component {
             }
         } else {
             return {
-                options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'history', 'remove'],
+                options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'image', 'history', 'remove'],
                 inline: {
                     inDropdown: true,
                     options: ['bold', 'italic', 'underline', 'strikethrough']

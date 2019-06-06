@@ -9,7 +9,9 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import Axios from 'axios';
 import { strings } from '../../../lib/i18n';
-import { getDBModel, isEmptyObj, isDef, getUid, isImage64, getLocalstorageKey } from '../../../../helpers/helpers.js';
+import {
+    getDBModel, isEmptyObj, isDef, getUid, isImage64, getLocalstorageKey
+} from '../../../../helpers/helpers.js';
 import { toBase64 } from '../../../../helpers/fileHelpers.js';
 import Base from '../../base.jsx';
 import InputElement from '../../components/forms/input-element.jsx';
@@ -22,13 +24,6 @@ import InputElement from '../../components/forms/input-element.jsx';
 class RealmFormWrapper extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            splash: '',
-            uid: this.props.params.uid || '',
-            realmType: this.props.params.realmType || '',
-            realmModel: null,
-            fetching: false
-        }
         this.removeSplash = this.removeSplash.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
         this.inputChange = this.inputChange.bind(this);
@@ -36,6 +31,14 @@ class RealmFormWrapper extends React.Component {
         this.fileUpload = this.fileUpload.bind(this);
         this.deleteConfirm = this.deleteConfirm.bind(this);
         this.logInputState = this.logInputState.bind(this);
+        this.setModelValues = this.setModelValues.bind(this);
+        this.state = {
+            splash: '',
+            uid: this.props.params.uid || '',
+            realmType: this.props.params.realmType || '',
+            realmModel: null,
+            fetching: false
+        }
     }
 
     removeJwtAndRedirect() {
@@ -174,28 +177,27 @@ class RealmFormWrapper extends React.Component {
         }
     }
 
-    setValues(values) {
-        let { realmModel } = this.state;
-        if (realmModel) {
-            Object.keys(realmModel).map(key => {
+    setModelValues(model, values) {
+        if (model && values) {
+            Object.keys(model).map(key => {
                 let val = values[key];
                 if (val) {
-                    let modelRow = realmModel[key];
+                    let modelRow = model[key];
                     if (modelRow.type === 'editor' && val) {
-                        realmModel[key].value = this.convertToEditor(val);
+                        model[key].value = this.convertToEditor(val);
                     } else {
-                        realmModel[key].value = val;
+                        model[key].value = val;
                     }
                 }
             });
-            this.setState({ realmModel });
+            this.setState({ realmModel: model, fetching: false });
         }
     }
 
-    setModelOptions(realmModel, data) {
+    setModelOptions(realmModel, result) {
         let model = realmModel;
-        data.map(item => {
-            if (item !== false) {
+        result.map(item => {
+            if (isDef(item) && item !== false) {
                 Object.keys(item).map(key => {
                     model[key].options = item[key];
                 });
@@ -209,45 +211,41 @@ class RealmFormWrapper extends React.Component {
         return optionName || 'name';
     }
 
-    optionalizeResult(item, data) {
+    optionalizeResult(item, result) {
         let options = {};
-        Object.keys(data).map(k => {
-            let kRow = data[k];
+        Object.keys(result).map(k => {
+            let kRow = result[k];
             let rowKey = kRow[item.typePrimaryKey];
             options[rowKey] = kRow[this.getOptionDisplayName(item)] || rowKey;
         });
         return options;
     }
 
-    fetchOptionsPromise(key, item) {
-        return new Promise((resolve, reject) => {
-            Axios.get(`/api/get/${ item.realmType }`).then(res => {
-                if (!isEmptyObj(res.data)) {
-                    resolve({ [key]: this.optionalizeResult(item, res.data) });
-                } else {
-                    resolve('hidden');
-                }
-            });
-        });
-    }
-
     fetchAllOptions(realmModel) {
         let optionPromises = Object.keys(realmModel).map(key => {
             if (realmModel[key].realmType !== false) {
-                let result = this.fetchOptionsPromise(key, realmModel[key]);
-                if (result === 'hidden') {
-                    realmModel[key].type = 'hidden';
-                    return false;
-                } else {
-                    return result;
-                }
+                return new Promise((resolve, reject) => {
+                    let item = realmModel[key];
+                    // fetch all of the type, build it as a list of options
+                    Axios.get(`/api/get/${ item.realmType }`).then(res => {
+                        if (!isEmptyObj(res.data)) {
+                            resolve({ [key]: this.optionalizeResult(item, res.data) });
+                        } else {
+                            resolve(false);
+                        }
+                    });
+                });
             } else {
-                return false;
+                return Promise.resolve(false);
             }
         });
         Promise.all(optionPromises).then(result => {
             let model = this.setModelOptions(realmModel, result);
-            this.setState({ realmModel: model, fetching: false });
+            this.getUidData(model);
+        }).catch(e => {
+            this.setSplash(`There was an error fetching realmType data. See console for error details.`);
+            console.log(e);
+            this.setState({ realmModel, fetching: false });
         });
     }
 
@@ -263,24 +261,38 @@ class RealmFormWrapper extends React.Component {
 
     getModel(realmType) {
         let realmModel = getDBModel(realmType);
-        if (this.hasRealmTypes(realmModel)) {
-            this.setState({ fetching: true });
-            this.fetchAllOptions(realmModel);
-        } else {
-            this.setState({ realmModel });
+        if (realmModel) {
+            if (this.hasRealmTypes(realmModel)) {
+                this.setState({ fetching: true });
+                // Fetch data from realmType fields
+                this.fetchAllOptions(realmModel);
+            } else {
+                // This sets the default model for schemas that have no realmType fields
+                this.setState({ realmModel, fetching: false });
+            }
         }
     }
 
-    getUidData(realmType, uid) {
+    getUidData(model) {
+        let { params: { realmType, uid } } = this.props;
+        if (!uid) {
+            this.setState({ realmModel: model, fetching: false, uid: '' });
+            return;
+        }
         let jwt = getLocalstorageKey('jwt');
         if (jwt) {
             Axios.get(`/get/secure/${realmType}/${uid}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
                 let { data: { status }} = res;
                 if (status !== 'error') {
-                    this.setValues(res.data);
+                    this.setModelValues(model, res.data);
                 } else {
-                    this.getModel(realmType);
+                    this.setSplash(`There was an error fetching ${realmType} ${uid}. See console for error details.`);
+                    this.setState({ realmModel: model, fetching: false, uid: '' });
                 }
+            }).catch(e => {
+                this.setSplash(`There was an error fetching ${realmType} ${uid}. See console for error details.`);
+                console.log(e);
+                this.setState({ realmModel: model, fetching: false, uid: '' });
             });
         } else {
             this.removeJwtAndRedirect();
@@ -288,27 +300,29 @@ class RealmFormWrapper extends React.Component {
     }
 
     componentDidUpdate(previousProps) {
-        let { params: { realmType: currentType, uid: currentUid }, route: { path: currentPath } } = this.props;
-        let { params: { realmType: previousType, uid: previousUid }, route: { path: previousPath } } = previousProps;
-        if (!currentType || !previousType || !currentPath || !previousPath) return;
-        if (previousType !== currentType || currentPath !== previousPath) {
-            this.getModel(currentType);
-        }
-        if (currentUid) {
-            if (!previousUid) {
-                this.getUidData(currentType, currentUid);
-            } else {
-                if (currentUid !== previousUid) {
-                    this.getUidData(currentType, currentUid);
-                }
+        let { params: { realmType: currentType, uid: currentUid }, location: { pathname: currentPath } } = this.props;
+        let { params: { realmType: previousType, uid: previousUid }, location: { pathname: previousPath } } = previousProps;
+        if (!currentPath || !previousPath || !currentType || !previousType) return;
+        // if the path is not the same
+        // update model or the object if necessary
+        if (currentPath !== previousPath) {
+            if (!currentType || !previousType || currentType !== previousType) {
+                // Update the model
+                this.getModel(currentType);
+            } else if (currentUid !== previousUid) {
+                // update the data
+                let { realmModel } = this.state;
+                this.getUidData(realmModel);
             }
         }
     }
 
     componentDidMount() {
-        let { params: { realmType, uid } } = this.props;
-        if (realmType) this.getModel(realmType);
-        if (realmType && uid) this.getUidData(realmType, uid);
+        let { params: { realmType } } = this.props;
+        let { realmModel } = this.state;
+        if (realmType && !realmModel) {
+            this.getModel(realmType);
+        }
     }
 
     logInputState(e, name, type) {
@@ -434,7 +448,7 @@ class RealmFormWrapper extends React.Component {
     }
 
     render() {
-        let { realmModel, fetching } = this.state;
+        let { realmModel, fetching, uid } = this.state;
         let { params: { realmType } } = this.props;
         if (!realmType || !realmModel || fetching) {
             return (
@@ -443,7 +457,6 @@ class RealmFormWrapper extends React.Component {
                 </Base>
             );
         }
-        let { uid } = this.state;
         return (
             <Base name={realmType}>
                 <div className="form-wrapper">
@@ -454,7 +467,7 @@ class RealmFormWrapper extends React.Component {
                         { Object.keys(realmModel).map((prop, idx) => this.buildInput(prop, idx)) }
                         <input type="hidden" value={ realmType } />
                         <input type="submit" value="Save" />
-                        { (uid) ? (<button onClick={ this.deleteConfirm}>Delete</button>) : null }
+                        { (uid) ? (<button onClick={ this.deleteConfirm }>Delete</button>) : null }
                     </form>
                 </div>
             </Base>
