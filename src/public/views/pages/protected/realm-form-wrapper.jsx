@@ -300,20 +300,12 @@ class RealmFormWrapper extends React.Component {
     }
 
     componentDidUpdate(previousProps) {
-        let { params: { realmType: currentType, uid: currentUid }, location: { pathname: currentPath } } = this.props;
-        let { params: { realmType: previousType, uid: previousUid }, location: { pathname: previousPath } } = previousProps;
-        if (!currentPath || !previousPath || !currentType || !previousType) return;
-        // if the path is not the same
-        // update model or the object if necessary
+        let { params: { realmType: currentType }, location: { pathname: currentPath } } = this.props;
+        let { location: { pathname: previousPath } } = previousProps;
+        if (!currentPath || !previousPath || !currentType) return;
+        // Update model or the object if necessary
         if (currentPath !== previousPath) {
-            if (!currentType || !previousType || currentType !== previousType) {
-                // Update the model
-                this.getModel(currentType);
-            } else if (currentUid !== previousUid) {
-                // update the data
-                let { realmModel } = this.state;
-                this.getUidData(realmModel);
-            }
+            this.getModel(currentType);
         }
     }
 
@@ -321,6 +313,7 @@ class RealmFormWrapper extends React.Component {
         let { params: { realmType } } = this.props;
         let { realmModel } = this.state;
         if (realmType && !realmModel) {
+            // Fetch the model
             this.getModel(realmType);
         }
     }
