@@ -64,17 +64,17 @@ protocol.setPublished = data => {
 }
 
 /**
- * [setAuthor Set the author, defaulting to pubkey value if no author is specified.]
+ * [setPublisher Set the author, defaulting to pubkey value if no author is specified.]
  * @param {Object} data [Object to be updated.]
  * @return {Object}      [Modified Object ready for next operation or to be saved.]
  */
-protocol.setAuthor = data => {
-    if (data.author) {
-        data.author = { pubkey: data.author };
-    } else if (data.pubkey) {
-        data.author = { pubkey: data.pubkey };
+protocol.setPublisher = data => {
+    if (data.publisher) {
+        data.publisher = { pubkey: data.publisher };
+    } else if (data.userpubkey) {
+        data.publisher = { pubkey: data.userpubkey };
     }
-    delete data.pubkey;
+    delete data.userpubkey;
     return data;
 }
 
@@ -146,7 +146,7 @@ const runOps = (ops, data) => {
  * @return {Object}  [The data post-changes.]
  */
 protocol.Post = data => {
-    let ops = ['setPrimaryKey', 'setCreated', 'setAuthor', 'setPublished', 'setUpdated'];
+    let ops = ['setPrimaryKey', 'setCreated', 'setPublisher', 'setPublished', 'setUpdated'];
     return runOps(ops, data);
 }
 
@@ -156,7 +156,7 @@ protocol.Post = data => {
  * @return {Object}  [The data post-changes.]
  */
 protocol.Hero = data => {
-    let ops = ['setPrimaryKey', 'setCreated', 'setAuthor', 'setPublished', 'setUpdated'];
+    let ops = ['setPrimaryKey', 'setCreated', 'setPublisher', 'setPublished', 'setUpdated'];
     return runOps(ops, data);
 }
 

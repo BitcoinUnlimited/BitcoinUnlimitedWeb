@@ -85,8 +85,12 @@ class RealmFormWrapper extends React.Component {
             Axios.post('/api/upsert', data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
                 if (res && res.data) {
                     window.scrollTo(0, 0);
-                    this.setSplash(`Updated ${this.state.realmType}.`);
-                    this.postSave(res.data);
+                    if (res.data.status && res.data.status == 'error') {
+                        this.setSplash(`Error: ${ res.data.message }.`);
+                    } else {
+                        this.setSplash(`Updated ${this.state.realmType}.`);
+                        this.postSave(res.data);
+                    }
                 }
             }).catch(e => {
                 this.setSplash(`There was an error updating your ${this.state.realmType}. See console for details.`);

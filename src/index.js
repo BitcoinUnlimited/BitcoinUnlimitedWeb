@@ -142,7 +142,7 @@ app.get('/get_static_files', jwtMiddleware(), (req, res) => {
     getStaticFiles(staticFilesDir).then(result => {
         res.send(result);
     }).catch(e => {
-        res.send(resErr(eToStr(e)));
+        res.send(resErr(e));
     })
 });
 
@@ -160,7 +160,7 @@ app.get('/get_backup', jwtMiddleware(), (req, res) => {
     }).then(val => {
         res.send('/static/backups' + backupName);
     }).catch(e => {
-        res.send(resErr(`getBackup(): ${e}`));
+        res.send(resErr(`getBackup(): ${eToStr(e)}`));
     })
 });
 
@@ -171,7 +171,7 @@ app.get('/get_backup_list', jwtMiddleware(), (req, res) => {
     getStaticFiles(backupDir).then(result => {
         res.send(result);
     }).catch(e => {
-        res.send(resErr(eToStr(e)));
+        res.send(resErr(e));
     })
 });
 
@@ -188,7 +188,7 @@ app.post('/revert_database', jwtMiddleware(), (req, res) => {
             throw e;
         });
     }).catch(e => {
-        res.send(resErr(eToStr(e)));
+        res.send(resErr(e));
     });
 });
 
@@ -222,11 +222,14 @@ app.post('/api/delete', jwtMiddleware(), (req, res) => {
     const { realmType } = req.body;
     if (!realmType || !typeIsValid(realmType)) {
         res.json(resErr('Invalid Type.'))
+    } else if (!req.user || !req.user.pubkey) {
+        res.json(resErr('Admin error. Please log in.'));
     } else {
         const typePrimaryKey = getKeyForType(realmType);
         if (!req.body[typePrimaryKey]) {
             res.json(resErr(`Missing ${typePrimaryKey}.`))
         } else {
+            req.body.userpubkey = req.user.pubkey;
             realmDelete(req.body).then(result => res.json(result)).catch(e => res.json(resErr(e)));
         }
     }
@@ -265,19 +268,21 @@ app.post('/api/upsert', jwtMiddleware(), (req, res) => {
         let busboy = new Busboy({ headers: req.headers });
         let fields = {};
         if (req.user && req.user.pubkey) {
-            fields.pubkey = req.user.pubkey;
+            fields.userpubkey = req.user.pubkey;
+            busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+                fields[fieldname] = val;
+            });
+            busboy.on('finish', function() {
+                if (!fields.realmType) throw 'realmType not specified.';
+                if (!typeIsValid(fields.realmType)) throw 'Invalid realmType specified.';
+                realmSave(fields).then(result => res.json(result)).catch(e => {
+                    res.json(resErr(e));
+                })
+            });
+            req.pipe(busboy);
+        } else {
+            throw 'Please login.';
         }
-        busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
-            fields[fieldname] = val;
-        });
-        busboy.on('finish', function() {
-            if (!fields.realmType) throw 'realmType not specified.';
-            if (!typeIsValid(fields.realmType)) throw 'Invalid realmType specified.';
-            realmSave(fields).then(result => res.json(result)).catch(e => {
-                res.json(resErr(e));
-            })
-        });
-        req.pipe(busboy);
     } catch(e) {
         res.json({status: 'error', message: eToStr(e)});
     }

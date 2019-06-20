@@ -114,27 +114,36 @@ class BlogPost extends React.Component {
         return (date) ? (<div className="date my1">{ formatDate(new Date(date)) }</div>) : null;
     }
 
-    showAuthorName(name) {
+    showPublisherName(name) {
         return (name) ? `By ${ name }` : '';
     }
 
-    showAuthorTitle(name, org_title) {
+    showPublisherTitle(name, org_title) {
         return (name && org_title) ? `, ${ org_title }` : '';
     }
 
-    showAuthorIcon(image_data) {
+    showPublisherIcon(image_data) {
         return (image_data) ? (<div className="author-icon"><img src={ image_data } /></div>) : null;
     }
 
-    displayAuthor(author) {
-        if (author) {
-            let { displayname, org_title, icon_img_64 } = author;
+    displayPublisher(publisher) {
+        if (publisher) {
+            let { displayname, org_title, icon_img_64 } = publisher;
             return (
                 <div className="author">
-                    { this.showAuthorIcon(icon_img_64) }
-                    <span>{ this.showAuthorName(displayname) }{ this.showAuthorTitle(displayname, org_title) }</span>
+                    { this.showPublisherIcon(icon_img_64) }
+                    <span>{ this.showPublisherName(displayname) }{ this.showPublisherTitle(displayname, org_title) }</span>
                 </div>
             );
+        }
+        return null;
+    }
+
+    displayAuthor(author, publisher) {
+        if (author) {
+            return (<div className="author"><span>{ author }</span></div>);
+        } else if (publisher) {
+            return this.displayPublisher(publisher);
         }
         return null;
     }
@@ -154,12 +163,12 @@ class BlogPost extends React.Component {
                 </Post>
             );
         }
-        let { body_editor, header_img, caption_editor, title, video_data, subtitle, created, author } = post;
+        let { body_editor, header_img, caption_editor, title, video_data, subtitle, created, author, publisher } = post;
         return (
             <Post name="blog" banner={ header_img } caption={ caption_editor }>
                 { this.displayVideo(video_data) }
                 { this.displayTitle(title) }
-                { this.displayAuthor(author) }
+                { this.displayAuthor(author, publisher) }
                 { this.displayCreated(created) }
                 { this.displaySubtitle(subtitle) }
                 { this.displayBody(body_editor) }

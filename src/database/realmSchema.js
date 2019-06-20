@@ -83,7 +83,8 @@ const ChallengeSchema = {
     primaryKey: 'uid',
     properties: {
         uid: 'string',
-        challenge: 'string'
+        challenge: 'string',
+        signed: {type: 'bool', default: false}
     }
 }
 
@@ -157,7 +158,7 @@ const HeroSchema = {
         urltext: 'string?',
         url: 'string?',
         published: {type: 'bool', default: false},
-        author: 'User?',
+        publisher: 'User?',
         tags: 'string?'
     }
 }
@@ -179,8 +180,9 @@ const PostSchema = {
         video_data: 'string?',
         caption_editor: 'string?',
         body_editor: 'string',
+        author: 'string?',
+        publisher: 'User?',
         published: {type: 'bool', default: false},
-        author: 'User?',
         tags: 'string?'
     }
 }

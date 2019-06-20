@@ -29,7 +29,6 @@ class AdminBlogList extends React.Component {
                 }
             }).catch(e => {
                 this.setState({ fetching: false, blogList: {} });
-                console.log(e);
             });
         }
     }
@@ -50,8 +49,8 @@ class AdminBlogList extends React.Component {
     }
 
     getAuthorDisplay(post) {
-        if (post && post.author && post.author.displayname) {
-            return (<div className="author">By { post.author.displayname }</div>);
+        if (post && post.author) {
+            return (<div className="author">By { post.author.displayname || post.author.pubkey }</div>);
         }
         return null;
     }

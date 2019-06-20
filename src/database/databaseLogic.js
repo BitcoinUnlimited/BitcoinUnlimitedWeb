@@ -273,7 +273,7 @@ const insertAuth = data => new Promise((resolve, reject) => {
         }).then(_ => {
             realmLog(resSuccess(`Added User ${pubkey}`, 'insertAuth()'));
         }).catch(e => {
-            realmLog(resErr(eToStr(e)));
+            realmLog(resErr(e));
         });
         resolve(res);
     }).catch(e => reject(e));
@@ -332,7 +332,9 @@ const realmGetSecureUid = (db, realmType, key, uid) => new Promise((resolve, rej
         const { "0": result } = realm.objects(realmType).filtered(predicate);
         if (!result || isEmptyObj(result)) throw `No results found for uid: ${uid} in ${realmType}.`;
         return result;
-    }).then(res => resolve(res)).catch(e => reject(rejectWithLog(eToStr(e))));
+    }).then(res => resolve(res)).catch(e => {
+        reject(rejectWithLog(eToStr(e)))
+    });
 });
 
 /**
@@ -549,6 +551,39 @@ const checkRequiredParams = (realmType, data) => {
 }
 
 /**
+ * [checkAuthorPolicyConditions Returns true if the check should be skipped.]
+ * @param  {[type]} realmType [The realmType name.]
+ * @param  {[type]} data      [The data to be saved.]
+ * @return {[type]}           [Resolved promise, true or false.]
+ */
+const checkAuthorPolicyConditions = (realmType, data) => {
+    const authorCheckTypes = ['Post', 'Hero'];
+    return authorCheckTypes.indexOf(realmType) === -1 || !isDef(data.uid) || pubkeyIsSuperAdmin(data.userpubkey);
+}
+
+/**
+ * [authorPolicy Check the author policy before saving.]
+ * @param  {[type]} realmType [The realmType name.]
+ * @param  {[type]} data      [The data to be saved.]
+ * @return {[type]}           [Resolved promise, true or false.]
+ */
+const authorPolicy = (realmType, data) => new Promise((resolve, reject) => {
+    if (checkAuthorPolicyConditions(realmType, data)) {
+        resolve(true);
+    } else {
+        realmGetSecure(realmType, data.uid).then(res => {
+            if (res && res.publisher && data.userpubkey === res.publisher.pubkey) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        }).catch(e => {
+            resolve(false);
+        });
+    }
+});
+
+/**
  * [realmSave Wrapper for setting protocol values before being saved. This handles default values and some other object-specific changes.
  * Custom values or new pre-save operations can be declared in database/modelProtocols.js.]
  * @param  {Object} data [The pre-save data to be altered before saving.]
@@ -563,19 +598,27 @@ const realmSave = data => new Promise((resolve, reject) => {
     if (errorCheck !== true) {
         reject(errorCheck);
     } else {
-        setProtocolValues(realmType, data).then(res => {
-            let db = getDatabaseType(realmType);
-            realmWrite(db, realm => {
-                let saved = realm.create(realmType, res, true);
-                if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
-                return saved;
-            }).then(res => resolve(res)).catch(e => {
-                reject(rejectWithLog(eToStr(e)));
-            });
+        authorPolicy(realmType, data).then(res => {
+            if (res) {
+                setProtocolValues(realmType, data).then(res => {
+                    let db = getDatabaseType(realmType);
+                    realmWrite(db, realm => {
+                        let saved = realm.create(realmType, res, true);
+                        if (!saved || isEmptyObj(saved)) throw `${realmType} not saved.`;
+                        return saved;
+                    }).then(res => resolve(res)).catch(e => {
+                        reject(rejectWithLog(eToStr(e)));
+                    });
+                }).catch(e => {
+                    reject(rejectWithLog(eToStr(e)));
+                }); // required parameter check
+            } else {
+                reject('Invalid author');
+            }
         }).catch(e => {
-            reject(rejectWithLog(eToStr(e)));
-        });
-    } // required parameter check
+            reject('Invalid author');
+        }); // check if the type can only be updated by own authors (and super admins)
+    }
 });
 
 /**
@@ -636,13 +679,21 @@ const realmGetUid = (db, realmType, key, uid) => new Promise((resolve, reject) =
  * @param  {String} key       [The unique id for the object.]
  * @return {Promise}           [Promose resolve success message or rejected.]
  */
-const realmDeleteUid = (realmType, uid, key) => new Promise((resolve, reject) => {
-    let db = getDatabaseType(realmType);
-    realmGetSecureUid(db, realmType, key, uid).then(res => {
-        realmWrite(db, realm => {
-            realm.delete(res);
-        }).then(res => resolve(resSuccess())).catch(e => reject(e));
-    }).catch(e => reject(rejectWithLog(eToStr(e))));
+const realmDeleteUid = (realmType, uid, key, data) => new Promise((resolve, reject) => {
+    authorPolicy(realmType, data).then(res => {
+        if (res) {
+            let db = getDatabaseType(realmType);
+            realmGetSecureUid(db, realmType, key, uid).then(res => {
+                realmWrite(db, realm => {
+                    realm.delete(res);
+                }).then(res => resolve(resSuccess())).catch(e => reject(e));
+            }).catch(e => reject(rejectWithLog(eToStr(e))));
+        } else {
+            reject('Invalid author');
+        }
+    }).catch(e => {
+        reject('Invalid author');
+    }); // check if the type can only be updated by own authors (and super admins)
 });
 
 /**
@@ -668,7 +719,7 @@ const realmDelete = data => {
     const { realmType } = data;
     // get the correct primaryKey for this realmType
     const key = getKeyForType(realmType);
-    return realmDeleteUid(realmType, data[key], key);
+    return realmDeleteUid(realmType, data[key], key, data);
 }
 
 module.exports = {
