@@ -176,6 +176,7 @@ const PostSchema = {
         name: 'string?',
         title: 'string',
         subtitle: 'string?',
+        thumbnail_img: 'string?',
         header_img: 'string?',
         video_data: 'string?',
         caption_editor: 'string?',

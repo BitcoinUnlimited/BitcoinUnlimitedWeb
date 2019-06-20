@@ -37,8 +37,23 @@ class BlogList extends React.Component {
     }
 
     getAuthorDisplay(post) {
-        if (post && post.author && post.author.displayname) {
-            return (<div className="author">By { post.author.displayname }</div>);
+        if (post && post.author) {
+            return (<div className="author">{ post.author }</div>);
+        }
+        return null;
+    }
+
+    shouldShowThumbnails(blogList) {
+        let results = Object.keys(blogList).filter(key => {
+            let post = blogList[key];
+            return !post.thumbnail_img;
+        });
+        return results.length === 0;
+    }
+
+    getThumbnailDisplay(show, post) {
+        if (show) {
+            return (<div className="thumbnail-container"><img className="thumbnail" src={ post.thumbnail_img } /></div>);
         }
         return null;
     }

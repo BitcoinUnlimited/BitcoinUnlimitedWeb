@@ -48,11 +48,15 @@ class AdminBlogList extends React.Component {
         return null;
     }
 
-    getAuthorDisplay(post) {
-        if (post && post.author) {
-            return (<div className="author">By { post.author.displayname || post.author.pubkey }</div>);
+    getPublisherDisplay(post) {
+        if (post && post.publisher) {
+            return (<div className="author">Publisher: { post.publisher.displayname || post.publisher.pubkey }</div>);
         }
         return null;
+    }
+
+    getListInfo() {
+        return (<div className="type-info">The ability to edit or remove blog posts is limited to the original author and the main site administrator.</div>);
     }
 
     buildBlogList() {
@@ -65,14 +69,14 @@ class AdminBlogList extends React.Component {
                         <Link to={ `/blog/${post.uid}` }>{ post.title } { this.getPreviewText(post) }</Link>
                     </h4>
                     { this.getPublishedDisplay(post) }
+                    { this.getPublisherDisplay(post) }
                     <div className="date">{ formatDate(new Date(post.created)) }</div>
-                    { this.getAuthorDisplay(post) }
                     <div className="subtitle">{ post.subtitle }</div>
                     <Link className="link edit-link" to={ `/update/Post/${post.uid}` }>Edit »</Link>
                 </div>
             );
         });
-        return (<div className="blog-group">{results}</div>);
+        return (<div className="blog-group">{ results }{ this.getListInfo() }</div>);
     }
 
     componentWillReceiveProps(nextProps) {
