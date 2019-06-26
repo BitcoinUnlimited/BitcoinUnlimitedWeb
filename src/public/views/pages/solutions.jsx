@@ -34,25 +34,25 @@ class Solutions extends React.Component {
 
                 <Section
                     key='users'
-                    expanded={ this.state.selectedSection === 'users'}
+                    expanded={ this.state.selectedSection === 'users' }
                     title={ <UsersTitle /> }
                     body={ <Users /> } />
 
                 <Section
                     key='nodes'
-                    expanded={ this.state.selectedSection === 'nodes'}
+                    expanded={ this.state.selectedSection === 'nodes' }
                     title={ <NodesTitle /> }
                     body={ <Nodes /> } />
 
                 <Section
                     key='miners'
-                    expanded={ this.state.selectedSection === 'miners'}
+                    expanded={ this.state.selectedSection === 'miners' }
                     title={ <MinersTitle /> }
                     body={ <Miners /> } />
 
                 <Section
                     key='investors'
-                    expanded={ this.state.selectedSection === 'investors'}
+                    expanded={ this.state.selectedSection === 'investors' }
                     title={ <InvestorsTitle /> }
                     body={ <Investors /> } />
             </Page>

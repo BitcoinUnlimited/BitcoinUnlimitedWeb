@@ -1,10 +1,10 @@
 language: node_js
 node_js:
-- '6'
+- '8'
 install:
-- npm install
+- yarn install
 script:
-- npm run build
+- yarn run build
 notifications:
   email: false
 deploy:
@@ -14,4 +14,4 @@ deploy:
     secure: hycwcI0XH4meQCXmetDw/BgoDIj0apUP5J/iPNnTlP7V7qkexAhOgPEOPKx1q37QqhKD1C/lRFYNN94I9yCTjsSKxOCOKxqcgjYU5uw+xt0yBVRj5oyqGPBI6sRbZVuZ+FByva8ZU4ahxUk8pT77+K7VC9IDBCpG8UJ57hAnxfBq7/svlntNZhBGHKf5GD+1E71Hf4LtyuV5ODNZQJEEtZRL4lCHZzz+Qa/igQi4HEx5qYwKr0rPEu8gApzQo4q5qSE+wtH4s/ID2zHa4NJ3NpIZeP0AsUzv9p7v3AnJMwhh7EXYsi0XekIRdg5nexIHDReXCFies5sG2Asm1r2959e25Ugm/B8db7Nx3HOXXcW7OVKew96JC9M2RegMmsazFF/g5SqooxGEuU/P/l/Tlf2s+1wlv52bDc2GKqXIZAAvwiFCmPmd5/cNOKypm+Vxsq5XEc+vTd5UM2HQ2M5GpTVBMjMr8zkXkc1UIwMxD6dVQnMqllLccjPsiFO2Y38/GH1Gr5+tb5Zd50DdowNQkmiyOnFfQOE0q91UDyjBOTx0Ekr7LIeqLTPnSSIwTw2lVz+H027H/D3KAh3vPRroI4R6/6uJNppGVaF6XVhxH7B6rSX4lAg6MHwFcxCS8tC/gSKcgxR7ZagIKMx2s6cEHKZ3baVJC6kflrBlD2n/Q94=
   on:
     tags: true
-    node: '6'
+    node: '8'

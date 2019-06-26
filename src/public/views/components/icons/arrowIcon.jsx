@@ -20,7 +20,6 @@ class ArrowIcon extends React.Component {
         )
     }
 
-
     render() {
         if (this.props.expanded === true) {
             return this.expandedArrow()
@@ -34,6 +33,5 @@ ArrowIcon.propTypes = {
   expanded: PropTypes.bool,
   onClick: PropTypes.func
 };
-
 
 export default ArrowIcon

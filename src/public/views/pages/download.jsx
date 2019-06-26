@@ -39,31 +39,31 @@ class Download extends React.Component {
 */}                    
                 <Section
                     key='bitcoincash'
-                    expanded={ this.state.selectedSection === 'bitcoincash'}
+                    expanded={ this.state.selectedSection === 'bitcoincash' }
                     title={ strings().download.bitcoincash.title }
                     body={ <BitcoinCashRelease /> } />
 {/*
                 <Section
                     key='latest'
-                    expanded={ this.state.selectedSection === 'latest'}
+                    expanded={ this.state.selectedSection === 'latest' }
                     title={ strings().download.latest.title }
                     body={ <OfficialRelease /> } />
 */}
                 <Section
                     key='installation'
-                    expanded={ this.state.selectedSection === 'installation'}
+                    expanded={ this.state.selectedSection === 'installation' }
                     title={ strings().download.installation.title }
                     body={ <InstallInstructions /> } />
 
                 <Section
                     key='notes'
-                    expanded={ this.state.selectedSection === 'notes'}
+                    expanded={ this.state.selectedSection === 'notes' }
                     title={ strings().download.notes.title }
                     body={ <ReleaseNotes /> } />
 
                 <Section
                     key='older'
-                    expanded={ this.state.selectedSection === 'older'}
+                    expanded={ this.state.selectedSection === 'older' }
                     title={ strings().download.older.title }
                     body={ <OlderReleases /> } />
             </Page>

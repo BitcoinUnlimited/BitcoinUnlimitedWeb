@@ -1,6 +1,14 @@
 .dist
 .idea
+.env-local
 node_modules
 src/public/components
 .DS_Store
 package-lock.json
+yarn.lock
+*.realm
+*.realm.lock
+*.realm.management
+assets
+databases
+BitcoinUnlimitedWebDownloads

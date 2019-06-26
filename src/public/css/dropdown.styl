@@ -11,14 +11,17 @@
 
 .dropdown__content
     display: none
+    overflow: hidden
     position: absolute
     background-color: #f9f9f9
     min-width: 220px
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+    box-shadow: 0 2px 16px 1px rgba(0,0,0,0.14)
+    border-radius: 4px
     z-index: 1
 
 .dropdown__content a:hover
-    background-color: #f1f1f1
+    background-color: #fd9400
+    color: #fff
 
 .dropdown__container:hover .dropdown__content
     display: block
@@ -28,3 +31,12 @@
     -moz-transition: translateX(-50%)
     -o-transition: translateX(-50%)
     -ms-transition: translateX(-50%)
+    animation: slideDown 0.15s
+
+@keyframes slideDown
+    0%
+        top: 85%;
+        opacity: 0;
+    100%
+        top: 100%;
+        opacity: 1;

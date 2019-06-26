@@ -1,13 +1,17 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 import WebHeader from './components/header/webHeader.jsx'
 import MobileHeader from './components/header/mobileHeader.jsx'
-import SecurityBanner from './components/header/securityBanner.jsx'
-import AnnounceBanner from './components/header/announceBanner.jsx'
-import AlertBanner from './components/header/alertBanner.jsx'
+import Banner from './components/header/Banner.jsx'
+import { getLocalstorageKey, getDBSchemas } from '../../helpers/helpers.js';
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     renderSecurityMessage() {
         return
         //return (
@@ -45,9 +49,61 @@ class Header extends React.Component {
         //            Bitcoin network upgrade to 2MB max block size at block 494,784
         //          </a>
         //        </p>
-
         //     </div>
         //)
+    }
+
+    getType() {
+        if (this.renderSecurityMessage()) {
+            return 'Security alert:';
+        } else if (this.renderAlertMessage()) {
+            return 'ALERT:';
+        }
+        return 'Announcement:';
+    }
+
+    getMessage() {
+        return this.renderSecurityMessage() || this.renderAlertMessage() || this.renderAnnounceMessage();
+    }
+
+    showCreateLinks() {
+        let models = getDBSchemas();
+        let modelNames = [];
+        let { active: currentName = '' } = this.props;
+        models.map(model => {
+            if (model.name !== 'User') {
+                modelNames.push(model.name);
+            }
+        });
+        let links = modelNames.map((name, idx) => {
+            if (name === currentName) {
+                return (<Link key={ idx } className='link active' to={ `/create/${name}` }>Create { name }</Link>);
+            } else {
+                return (<Link key={ idx } className='link' to={ `/create/${name}` }>Create { name }</Link>);
+            }
+        });
+        return links;
+    }
+
+    getDashboardLink() {
+        let { active: currentName = '' } = this.props;
+        if (currentName === 'dashboard') {
+            return (<Link className='link active' to='/dashboard'>Dashboard</Link>);
+        }
+        return (<Link className='link' to='/dashboard'>Dashboard</Link>);
+    }
+
+    showAdminBar() {
+        let user = getLocalstorageKey('user');
+        if (user) {
+            return (
+                <div className="btn">
+                    { this.getDashboardLink() }
+                    { this.showCreateLinks() }
+                </div>
+            );
+        }
+        return;
     }
 
     render() {
@@ -55,10 +111,8 @@ class Header extends React.Component {
             <div>
                 <WebHeader />
                 <MobileHeader />
-                <div className='banner'></div>
-                <SecurityBanner message={ this.renderSecurityMessage() }/>
-                <AnnounceBanner message={ this.renderAnnounceMessage() }/>
-                <AlertBanner message={ this.renderAlertMessage() }/>
+                <div className='banner'>{ this.showAdminBar() }<div className="clear"></div></div>
+                <Banner message={ this.getMessage() } type={ this.getType() }/>
             </div>
         );
     }

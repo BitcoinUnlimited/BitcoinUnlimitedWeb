@@ -15,7 +15,7 @@ class AlertBanner extends React.Component {
                     <div className='section__container center'>
                         <div className='inline bold underline'>ALERT:</div>
                         &nbsp;
-                        {this.props.message}
+                        { this.props.message }
                     </div>
                 </div>
             )

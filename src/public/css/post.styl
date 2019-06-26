@@ -1,5 +1,4 @@
 
-
 .post__container
     width: 65%
 
@@ -9,3 +8,222 @@
 
 .post__image-label
     width: 80%
+
+.container-blog
+    width: 100%
+
+.banner-bar
+    position: relative
+    overflow: hidden
+
+.blog-body .banner-img,
+.banner-img
+    display: block
+    width: 100%
+
+.blog-body .video-embed
+    margin:20px
+    padding:0
+
+.blog-body .caption-wrapper
+    line-height: 16px
+    text-align: left
+    font-size: 12px
+    border-top-right-radius: 8px
+    max-width: 36%
+    position: absolute
+    bottom: 0
+    background-color: rgba(0, 0, 0, 0.22)
+
+.blog-body .caption-wrapper p
+    padding: 0 20px
+    color: #a9a9a9
+
+.container-blog .h1,
+.container-blog .h2,
+.container-blog .h3
+    font-weight: bold
+
+.container-blog .body-content p,
+.container-blog .body-content ul,
+.container-blog .body-content ol
+    font-size: 18px
+    line-height: 1.5em
+    width: 100%
+    min-width: 340px
+    display: block
+    margin: 1em auto
+    text-align: left
+
+.container-blog .body-content pre
+    width: 95%
+    min-width: 340px
+    display: block
+    text-align: left
+
+.container-blog .body-content img
+    margin: 2% 6% 2% 6%
+    border-radius: 3px
+
+.container-blog .title,
+.container-blog .subtitle,
+.container-blog .author,
+.container-blog .body-content
+    width: 46%
+    min-width: 340px
+    display: block
+    margin: 20px auto
+
+.container-blog .title
+    margin: 45px auto 0
+
+.container-blog .subtitle
+    border-top: 1px solid #efefef
+    border-bottom: 1px solid #efefef
+    padding: 30px 0
+    font-weight: normal
+    margin: 30px auto
+
+.container-blog .title
+    margin-bottom: 0
+
+.container-blog .date
+    font-size: 12px
+    font-style: italic
+
+.container-blog .author
+    font-size: 15px
+    font-weight: bold
+    margin-bottom: 0
+
+.container-blog .author .author-icon
+    width: 60px
+    height: 60px
+    overflow: hidden
+    border-radius: 50%
+    margin: 10px auto
+    img
+        width: 100%
+        height: auto
+
+#react-app blockquote
+    display: block
+    width: 100%
+    margin: 36px 0
+    text-align: center !important
+    background-color: #ff7b00
+    color: white
+    font-size: 26px
+    border: 0
+    font-weight: bold
+    min-height: 100px
+    line-height: 100px
+    border-radius: 10px
+
+#react-app blockquote .public-DraftStyleDefault-ltr
+#react-app blockquote .public-DraftStyleDefault-ltr span
+    margin: 0
+    text-align: center
+
+.container-bloglist .blog-group
+    border: none
+
+.container-bloglist .blog-row
+    display: block
+    position: relative
+    padding: 20px 20px 18px
+    border-left: 4px solid #ff7b00
+    margin-bottom: 10px
+    transition: background 1.2s ease-in
+    cursor: pointer
+    border-top-left-radius: 6px
+    border-bottom-left-radius: 6px
+    background: transparent
+    border-top: none
+    text-decoration: none
+    color: #000
+
+.container-bloglist .blog-row .hover-bg-gradient
+    position: absolute
+    background: linear-gradient(90deg,#ff7b00,#ffb32f)
+    width: 100%
+    height: 100%
+    padding: 0
+    margin: 0
+    top: 0
+    left: 0
+    border-top-right-radius: 6px
+    border-bottom-right-radius: 6px
+    z-index: -10
+    opacity: 0
+    transition: opacity 0.2s linear
+
+.container-bloglist .blog-row:hover .hover-bg-gradient
+    opacity: 1
+
+.container-bloglist .blog-row .title
+    margin: 0
+    font-size: 30px
+    margin-bottom: 6px
+
+.container-bloglist .blog-row .date,
+.container-bloglist .blog-row .author
+    font-size: 14px
+    color: #8e8e8e
+    transition: color 0.15s linear
+
+.container-bloglist .blog-row:hover .date,
+.container-bloglist .blog-row:hover .author
+    color: #000
+
+.container-bloglist .blog-row .subtitle
+    margin: 12px 0 6px
+    font-size: 18px
+    line-height: 1.5em
+
+@media (max-width: 1100px)
+
+    #react-app .body-content blockquote
+        min-height: 0
+        margin: 20px 0
+        padding: 40px 0
+        font-size: 20px
+        line-height: 1.5em
+
+    .container-blog .body-content p,
+    .container-blog .body-content ul,
+    .container-blog .body-content ol,
+    .container-blog .body-content pre,
+    .container-blog .title,
+    .container-blog .subtitle,
+    .container-blog .author
+        width: 80%
+        min-width: 300px
+        display: block
+        margin: 20px auto
+
+@media (max-width: 768px)
+    .page-wrapper
+        padding-top: 2rem
+        padding-bottom: 2rem
+
+    .page-wrapper .page-title
+        font-size: 24px
+        font-weight: bold
+
+    .section__container.container-bloglist
+        width: 80%
+        min-width: 300px
+
+    .container-bloglist .blog-row .title
+        font-size: 20px
+
+    .container-bloglist .blog-row .subtitle
+        font-size: 16px
+        line-height: 1.2em
+
+    .blog-body .caption-wrapper
+        max-width: 100%
+        width: 100%
+        border-top-right-radius: 0
+        font-size: 11px
