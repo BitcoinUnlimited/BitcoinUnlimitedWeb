@@ -19,7 +19,7 @@ class Admin extends React.Component {
         return (
             <div id={ this.props.name }>
                 <Header active={ this.props.name } />
-                <div className="p2 py4 center">
+                <div className="p2 py3rem center">
                     { this.getTitle(this.props.title) }
                     { this.getSubtitle(this.props.subtitle) }
                     { this.props.intro ? <div className='pb2 pt1 lh-copy'>{this.props.intro}</div> : '' }

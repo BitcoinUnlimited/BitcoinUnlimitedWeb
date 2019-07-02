@@ -74,7 +74,7 @@ class Banner extends React.Component {
         let { close, hide, fetching, type, message } = this.state;
         let isClosed = getLocalstorageKey('banner-state') || false;
         if (fetching) {
-            <div className={ `alert__banner center absolute ${(close) ? 'close' : ''}` }>
+            <div className={ `alert__banner center ${(close) ? 'close' : ''}` }>
                 <div className="relative p3">
                     <div className='section__container center'>
                         <ReactLoading type="balls" color="#ccc" />
@@ -86,7 +86,7 @@ class Banner extends React.Component {
             return null;
         }
         return (
-            <div className={ `alert__banner center absolute ${(close) ? 'close' : ''}` }>
+            <div className={ `alert__banner center ${(close) ? 'close' : ''}` }>
                 <div className="relative p3">
                     <div className='section__container center'>
                         <div className='inline bold underline m1'>{ type }</div>
