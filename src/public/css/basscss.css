@@ -482,6 +482,10 @@
   padding: 2rem;
 }
 
+.p4 {
+  padding: 1.5rem;
+}
+
 .pt3 {
   padding-top: 2rem;
 }
@@ -536,6 +540,11 @@
 .px4 {
   padding-left: 4rem;
   padding-right: 4rem;
+}
+
+.py3rem {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .col {
