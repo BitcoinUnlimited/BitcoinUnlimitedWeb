@@ -236,7 +236,7 @@
         "title": "Website updates",
         "proposer": "Jerry Chan",
         "submitted": "2016-09-29",
-        "status": "passed",
+        "status": "closed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/030.mediawiki"
     },
     {
@@ -737,10 +737,10 @@
     },
     {
         "number": "BUIP093",
-        "title": "Specification - Graphene Relay",
+        "title": "Graphene v.2 Improvements and Extensions",
         "proposer": "George Bissias (@bissias) and Brian Levine (@b-lev)",
-        "submitted": "2018-08-21",
-        "status": "draft",
+        "submitted": "2018-09-21",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/093.mediawiki"
     },
     {
