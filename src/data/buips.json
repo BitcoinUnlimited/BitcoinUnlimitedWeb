@@ -132,7 +132,7 @@
         "title": "Datastream Compression",
         "proposer": "Peter Tschipper",
         "submitted": "03/20/2016",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/017.mediawiki"
     },
     {
@@ -148,7 +148,7 @@
         "title": "New Members for Election #1",
         "proposer": "Andrew Clifford",
         "submitted": "2016-04-29",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/019.mediawiki"
     },
     {
@@ -244,7 +244,7 @@
         "title": "New Members for Election #2",
         "proposer": "Andrew Clifford (solex)",
         "submitted": "2016-09-30",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/031.mediawiki"
     },
     {
@@ -284,7 +284,7 @@
         "title": "New Members for Election #3",
         "proposer": "Andrew Clifford",
         "submitted": "2016-11-05",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/036.mediawiki"
     },
     {
@@ -332,7 +332,7 @@
         "title": "New Members for Election #4",
         "proposer": "Andrew Clifford",
         "submitted": "2016-12-16",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/042.mediawiki"
     },
     {
@@ -380,7 +380,7 @@
         "title": "New Members for Election #5",
         "proposer": "Andrew Clifford (@solex)",
         "submitted": "2017-03-09",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/048.mediawiki"
     },
     {
@@ -420,7 +420,7 @@
         "title": "Tweakable client DoS responses",
         "proposer": "freetrader",
         "submitted": "2017-05-01",
-        "status": "passed",
+        "status": "closed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/053.mediawiki"
     },
     {
@@ -476,7 +476,7 @@
         "title": "New Members for Election #6",
         "proposer": "Andrew Clifford (@solex)",
         "submitted": "2017-05-22",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/060.mediawiki"
     },
     {
@@ -532,7 +532,7 @@
         "title": "New Members for Election #7",
         "proposer": "Andrew Clifford (@solex)",
         "submitted": "2017-09-09",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/067.mediawiki"
     },
     {
@@ -542,6 +542,14 @@
         "submitted": "2017-11-01",
         "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/068.mediawiki"
+    },
+    {
+        "number": "BUIP069",
+        "title": "Academic paper - Mining, Taxation and Public Goods in Bitcoin",
+        "proposer": "Nicolai Dimitri (@Nic)",
+        "submitted": "2018-08-01",
+        "status": "closed",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/069.mediawiki"
     },
     {
         "number": "BUIP070",
@@ -628,7 +636,7 @@
         "title": "New Members for Election #8",
         "proposer": "Andrew Clifford (@solex)",
         "submitted": "2017-11-24",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/080.mediawiki"
     },
     {
@@ -644,7 +652,7 @@
         "title": "opt-in malleability fix",
         "proposer": "Gal Buki (@torusJKL)",
         "submitted": "2017-12-25",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/082.mediawiki"
     },
     {
@@ -714,7 +722,7 @@
     {
         "number": "BUIP091",
         "title": "Move the official BU repository and issue tracker to GitLab",
-        "proposer": "Peter Rizun (@Peter R)",
+        "proposer": "Gal Buki (@torusJKL)",
         "submitted": "2018-08-06",
         "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/091.mediawiki"
@@ -722,18 +730,10 @@
     {
         "number": "BUIP092",
         "title": "Workshop on Instant Transactions for Bitcoin",
-        "proposer": "Gal Buki (@torusJKL)",
+        "proposer": "Peter Rizun (@Peter R)",
         "submitted": "2018-08-01",
         "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/092.mediawiki"
-    },
-    {
-        "number": "BUIP069",
-        "title": "Academic paper - Mining, Taxation and Public Goods in Bitcoin",
-        "proposer": "Nicolai Dimitri (@Nic)",
-        "submitted": "2018-08-01",
-        "status": "closed",
-        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/069.mediawiki"
     },
     {
         "number": "BUIP093",
@@ -772,7 +772,7 @@
         "title": "New Members For Election #10",
         "proposer": "Andrew Clifford (@solex)",
         "submitted": "2018-08-21",
-        "status": "draft",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/097.mediawiki"
     },
     {
@@ -780,7 +780,7 @@
         "title": "Bitcoin Unlimited's Strategy for the November 2018 Hard Fork",
         "proposer": "Andrew Stone (@theZerg)",
         "submitted": "2018-08-21",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/098.mediawiki"
     },
     {
@@ -788,7 +788,7 @@
         "title": "Set the default value of max blocksize cap (hard limit) to 10 terabyte",
         "proposer": "Norway",
         "submitted": "2018-08-27",
-        "status": "draft",
+        "status": "closed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/101.mediawiki"
     },
     {
@@ -796,7 +796,7 @@
         "title": "Let's Build BCH! Hackathon @ Satoshi's Coffee-house",
         "proposer": "Will C. (Bitcoin Cash Association Mod, sponsor: @solex",
         "submitted": "2018-09-21",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/103.mediawiki"
     },
     {
@@ -804,7 +804,7 @@
         "title": "BUIP104: Re-elect Peter Rizun for BU Secretary",
         "proposer": "Peter Rizun",
         "submitted": "2018-09-22",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/104.mediawiki"
     },
     {
@@ -812,7 +812,7 @@
         "title": "New Members For Election #11",
         "proposer": "Andrew Clifford (@solex)",
         "submitted": "2018-09-22",
-        "status": "draft",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/105.mediawiki"
     },
     {
@@ -868,7 +868,7 @@
         "title": "BUIP112: New Members for Election #12",
         "proposer": "solex",
         "submitted": "2019-01-11",
-        "status": "passed",
+        "status": "voted",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/112.mediawiki"
     },
     {
@@ -985,7 +985,7 @@
     },
     {
         "number": "BUIP127",
-        "title": "BUIP127: Planet-on-a-LAN stress test model network",
+        "title": "BUIP127: Partially re-weight funds, 50% BTC to BCH",
         "proposer": "Jonathan Toomim",
         "submitted": "2019-06-05",
         "status": "draft",
