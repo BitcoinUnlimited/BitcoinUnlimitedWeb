@@ -5,7 +5,7 @@ components=".dist/public/components/bitcoin-unlimited-web-downloads"
 downloads="BitcoinUnlimitedWebDownloads"
 repo="https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads.git"
 # Clone or pull latest from BitcoinUnlimitedWebDownloads
-if [ -a $downloads/.git ]
+if [ -e $downloads/.git ]
 then
     cd $downloads
     git pull
