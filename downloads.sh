@@ -14,6 +14,13 @@ else
     git clone --depth 1 $repo
 fi
 # Clear existing web downloads and copy them to the components path
-rm -rf $components
-mkdir -p $components
-cp -a $downloads/. $components/
+if [ -f /usr/bin/rsync ]
+then
+  mkdir -p $components
+  rsync -a --delete --exclude=.git $downloads/. $components/
+else
+  rm -rf $components
+  mkdir -p $components
+  cp -a $downloads/. $components/
+  rm -rf $components/.git
+fi
