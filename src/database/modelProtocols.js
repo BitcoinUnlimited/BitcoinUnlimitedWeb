@@ -37,8 +37,8 @@ protocol.setPrimaryKey = data => {
  * @return {Object}      [Modified Object ready for next operation or to be saved.]
  */
 protocol.setCreated = data => {
-    if (data.created === '') {
-        delete data.created;
+    if (!data.created) {
+        data.created = new Date();
     }
     return data;
 }
