@@ -4,15 +4,15 @@ import React from 'react';
 import { strings } from '../../../lib/i18n';
 
 import Release from './release.jsx'
-import SignaturesBitcoinCash from './signatures_BUcash1-6-0-0.jsx'
+import SignaturesBitcoinCash from './signatures_BUcash1-6-0-1.jsx'
 
 class BitcoinCashRelease extends React.Component {
     render() {
-        var latestVersion = "1.6.0.0";
+        var latestVersion = "1.6.0.1";
         return (
             <div className='lh-copy py1'>
-                <p>{ strings().download.bitcoincash.download } ({latestVersion}, {strings().download.bitcoincash.date})<br /> <i>({ strings().download.bitcoincash.notes })</i></p> 
-                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.6.0.md">Release Notes</a></p>
+                <p>{ strings().download.bitcoincash.download } ({latestVersion}, {strings().download.bitcoincash.date})<br /> <i>({ strings().download.bitcoincash.notes })</i></p>
+                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.6.0.1.md">Release Notes</a></p>
                 <p><i>{strings().download.bitcoincash.notes2}</i></p>
                 <p><strong>{strings().download.bitcoincash.warning}</strong></p>
 
@@ -35,7 +35,7 @@ class BitcoinCashRelease extends React.Component {
                     arm64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-arm64.tar.gz'}
                     arm32={'/downloads/BUcash-' + latestVersion + '-arm32.tar.gz'}
                     arm32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-arm32.tar.gz'}
-                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.6.0.0'>
+                    source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.6.0.1'>
                     <SignaturesBitcoinCash />
                 </Release>
             </div>
