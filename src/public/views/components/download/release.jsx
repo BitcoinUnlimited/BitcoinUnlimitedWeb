@@ -65,6 +65,11 @@ class Release extends React.Component {
                         <a className='dim black' href={this.props.linux32}>({strings().download.tar})</a>&nbsp;
                         { this.props.linux32Mirror ? <a className='dim black' href={this.props.linux32Mirror}>({strings().download.mirror})</a> : '' }
                     </div>
+                    <div>
+                        electrs Ubuntu 18.04 &nbsp;
+                        <a className='dim black' href={this.props.electrs64}>({strings().download.tar})</a>&nbsp;
+                        { this.props.electrs64Mirror ? <a className='dim black' href={this.props.electrs64Mirror}>({strings().download.mirror})</a> : '' }
+                    </div>
                 </div>
             </div>
         )

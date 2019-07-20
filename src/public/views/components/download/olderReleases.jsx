@@ -28,9 +28,27 @@ import SignaturesBUcash1500 from './signatures_BUcash1-5-0-0.jsx'
 import SignaturesBUcash1501 from './signatures_BUcash1-5-0-1.jsx'
 import SignaturesBUcash1502 from './signatures_BUcash1-5-0-2.jsx'
 import SignaturesBUcash1510 from './signatures_BUcash1-5-1-0.jsx'
-
+import SignaturesBUcash1600 from './signatures_BUcash1-6-0-0.jsx'
 
 class OfficialRelease extends React.Component {
+    renderVBUcash1600Body() {
+        return (
+            <Release
+                osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-osx64.tar.gz'
+                osx32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-osx.tar.gz'
+                osxDmg='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-osx.dmg'
+                windows64Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-win64-setup.exe'
+                windows32Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-win32-setup.exe'
+                linux64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-linux64.tar.gz'
+                linux32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-linux32.tar.gz'
+                arm64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-arm64.tar.gz'
+                arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.0-arm32.tar.gz'
+                source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/bucash1.6.0.0'>
+
+                <SignaturesBUcash1600 />
+            </Release>
+        )
+    }
     renderVBUcash1510Body() {
         return (
             <Release
@@ -457,6 +475,11 @@ class OfficialRelease extends React.Component {
     render() {
         return (
             <div className="pt2">
+                <Section
+                    title='BUcash-1.6.0.0'
+                    body={ this.renderVBUcash1600Body() }
+                    expanded={ false } />
+
                 <Section
                     title='BUcash-1.5.1.0'
                     body={ this.renderVBUcash1510Body() }
