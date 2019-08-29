@@ -206,7 +206,9 @@
             "slack": "Slack",
             "irc": "#btc on IRC",
             "issues": "Issues Tracker",
-            "gpgkeysintro": "please use this GPG keys to communicate sensible info with BU developers"
+            "gpgkeysintro": "please use this GPG keys to communicate sensible info with BU developers",
+            "twitter1": "Follow us on twitter",
+            "twitter2": "@BitcoinUnlimit"
         }
     },
     "faq": {

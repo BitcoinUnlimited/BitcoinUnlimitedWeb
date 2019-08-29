@@ -68,6 +68,10 @@ class Contact extends React.Component {
                         </li>
                     </ul>
                 </li>
+                <div className='pt3'>
+                    <img className='icon--center pr1' src="../../img/twitter.png" alt="Twitter" />
+                    { strings().about.contact.twitter1 } <a className='link--underline dim black' href="https://twitter.com/BitcoinUnlimit" target="_blank">{ strings().about.contact.twitter2 }</a>
+                </div>
             </ul>
         );
     }
