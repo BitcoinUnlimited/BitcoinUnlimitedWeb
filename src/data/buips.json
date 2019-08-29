@@ -991,4 +991,20 @@
         "status": "draft",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/127.mediawiki"
     }
+    {
+        "number": "BUIP128",
+        "title": "BUIP128: Fund the Developer",
+        "proposer": "Andrew Stone",
+        "submitted": "2019-08-11",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/128.mediawiki"
+    },
+    {
+        "number": "BUIP129",
+        "title": "BUIP129: Finish and Productize the BU voting system",
+        "proposer": "Andrew Stone",
+        "submitted": "2019-08-11",
+        "status": "draft",
+        "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/129.mediawiki"
+    }
 ]
