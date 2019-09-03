@@ -12,7 +12,7 @@ class WebHeader extends React.Component {
         return (
             <div className='header--web header__container--web clearfix'>
                 <div className="left">
-                    <Link to='/'><img src='/img/bitcoin-unlimited.png' className='header__logo'/></Link>
+                    <Link to='/'><img src='/img/bitcoin-unlimited-green.png' className='header__logo'/></Link>
                 </div>
                 <div className="right">
                     <Dropdown title={ <Link className='non-decorated black inline-block mx2 py2' to='/solutions'>{ strings().header.solutions.title }</Link> }>
