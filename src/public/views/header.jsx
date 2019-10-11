@@ -30,8 +30,8 @@ class Header extends React.Component {
         return (
              <div className='inline-block'>
                <p>
-                  <a title="Download BUCash 1.6.0.1" href="/download" className="link--underline white bold">
-                    BU Bitcoin Cash (BCH) release 1.6.0.1 is available
+                  <a title="Download BUCash 1.7.0.0" href="/download" className="link--underline white bold">
+                    BU Bitcoin Cash (BCH) release 1.7.0.0 is available
                   </a>
                </p>
              </div>
