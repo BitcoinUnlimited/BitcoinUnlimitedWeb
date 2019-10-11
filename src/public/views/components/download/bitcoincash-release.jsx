@@ -12,7 +12,7 @@ class BitcoinCashRelease extends React.Component {
         return (
             <div className='lh-copy py1'>
                 <p>{ strings().download.bitcoincash.download } ({latestVersion}, {strings().download.bitcoincash.date})<br /> <i>({ strings().download.bitcoincash.notes })</i></p>
-                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.7.0.0.md">Release Notes</a></p>
+                <p><a href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/blob/dev/doc/release-notes/release-notes-bucash1.7.0.md">Release Notes</a></p>
                 <p><i>{strings().download.bitcoincash.notes2}</i></p>
                 <p><strong>{strings().download.bitcoincash.warning}</strong></p>
 
