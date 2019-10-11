@@ -32,7 +32,7 @@ import SignaturesBUcash1600 from './signatures_BUcash1-6-0-0.jsx'
 import SignaturesBUcash1601 from './signatures_BUcash1-6-0-1.jsx'
 
 class OfficialRelease extends React.Component {
-    renderVBUcash1600Body() {
+    renderVBUcash1601Body() {
         return (
             <Release
                 osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/BUcash-1.6.0.1-osx64.tar.gz'
