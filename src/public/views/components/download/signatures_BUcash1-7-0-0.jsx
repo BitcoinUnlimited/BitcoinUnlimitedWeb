@@ -47,17 +47,17 @@ class SignaturesBitcoinCash extends React.Component {
                     {strings().download.signatures.andrew}<br/>
                     bitcoincash:qq9wwnuw4eukyh5g34ckg5vk4aaxnvr04vkspyv850<br/>
                     (legacy address format: 1zerg12nRXZ41Pw4tfCTqgtdiJx6D1We3)<br/>
-                    {strings().download.signatures.signature}:<br />HKFjN/PO5xqG8qma/kVnOkOOO9BotqWRU8xkmWoBDUiXBedfxzsn/k5L4l5MYi/v8srym6BjiAPr0b99wF6+zEg=
+                    {strings().download.signatures.signature}: <br/> HKFjN/PO5xqG8qma/kVnOkOOO9BotqWRU8xkmWoBDUiXBedfxzsn/k5L4l5MYi/v8srym6BjiAPr0b99wF6+zEg=
                     <br/><br/>
                     {strings().download.signatures.sickpig}<br/>
                     bitcoincash:qrdvmdluf2s5cf08wcp9h2ja8lqt5peq35y56z4s7s<br/>
                     (legacy address format: 1LwvkQTWmotqTosgBcK8kFPCKzW2BPiE1G)<br/>
-                    {strings().download.signatures.signature}:<br />
+                    {strings().download.signatures.signature}: <br/> HzBDCJo97RIZvzMA0LjYl/bXA6LB/igNmFUozaoAA0Xaf06gOwoPy/WVEokuXqNgHfoM5iSviWwq8byz07Thun8=
                     <br/><br/>
                     {strings().download.signatures.griffith}<br/>
                     bitcoincash:qrupj2nuskyg4dmdrpnytjs4p8s6av542cuja2qdzy<br/>
                     (legacy address format: 1Pcpj8sR5adRNMi8rZ1Zi7rg6GPqcmFHAz)<br/>
-                    {strings().download.signatures.signature}:<br />TBD
+                    {strings().download.signatures.signature}: <br/> Hw0u8xe199/ea+LohmvighkHQTnL/r38geU0UyOoBnH3c2Ql4sKirqoG52UsNoPRDXFgvQ3wbTKP//TPtF6TM2g=
                     <br/>
                     <br/>
                 </div>
