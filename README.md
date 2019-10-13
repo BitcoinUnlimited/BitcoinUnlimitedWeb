@@ -59,7 +59,9 @@ A database revert feature is also available to choose between different database
 
 ## Environment configuration
 
-For security purposes update your version `.env` file:
+Copy the example.env file and rename it to .env.
+
+For security purposes update `DB_ADMIN_PUBKEY` and `JWT_SECRET` in your `.env` file.
 
 ```bash
 JWT_SECRET=[yourSecretPassphrase] (required)
