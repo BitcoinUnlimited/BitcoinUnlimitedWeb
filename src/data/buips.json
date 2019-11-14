@@ -972,7 +972,7 @@
         "title": "Remove Norway from membership",
         "proposer": "freetrader",
         "submitted": "2019-05-21",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/125.mediawiki"
     },
     {
@@ -980,7 +980,7 @@
         "title": "Planet-on-a-LAN stress test model network",
         "proposer": "Jonathan Toomim",
         "submitted": "2019-05-13",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/126.mediawiki"
     },
     {
@@ -988,7 +988,7 @@
         "title": "Partially re-weight funds, 50% BTC to BCH",
         "proposer": "Jonathan Toomim",
         "submitted": "2019-06-05",
-        "status": "draft",
+        "status": "closed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/127.mediawiki"
     },
     {
@@ -996,7 +996,7 @@
         "title": "Fund the Developer",
         "proposer": "Andrew Stone",
         "submitted": "2019-08-11",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/128.mediawiki"
     },
     {
@@ -1004,7 +1004,7 @@
         "title": "Finish and Productize the BU voting system",
         "proposer": "Andrew Stone",
         "submitted": "2019-08-11",
-        "status": "draft",
+        "status": "passed",
         "href": "https://github.com/BitcoinUnlimited/BUIP/blob/master/129.mediawiki"
     }
 ]
