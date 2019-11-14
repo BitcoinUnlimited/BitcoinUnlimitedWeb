@@ -5,22 +5,27 @@ components=".dist/public/components/bitcoin-unlimited-web-downloads"
 downloads="BitcoinUnlimitedWebDownloads"
 repo="https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads.git"
 # Clone or pull latest from BitcoinUnlimitedWebDownloads
+GIT_PULL_RES=""
 if [ -e $downloads/.git ]
 then
-    cd $downloads
-    git pull
-    cd ..
+  cd $downloads
+  GIT_PULL_RES=`git pull`
+  cd ..
 else
     git clone --depth 1 $repo
 fi
-# Clear existing web downloads and copy them to the components path
-if [ -f /usr/bin/rsync ]
+# skip IO operation in case there's non binaries updates
+if [ "$GIT_PULL_RES" != "Already up-to-date." ]
 then
-  mkdir -p $components
-  rsync -a --delete --exclude=.git $downloads/. $components/
-else
-  rm -rf $components
-  mkdir -p $components
-  cp -a $downloads/. $components/
-  rm -rf $components/.git
+  # Clear existing web downloads and copy them to the components path
+  if [ -f /usr/bin/rsync ]
+  then
+      mkdir -p $components
+      rsync -a --delete --exclude=.git $downloads/. $components/
+  else
+      rm -rf $components
+      mkdir -p $components
+      cp -a $downloads/. $components/
+      rm -rf $components/.git
+  fi
 fi
