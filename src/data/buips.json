@@ -801,7 +801,7 @@
     },
     {
         "number": "BUIP104",
-        "title": "BUIP104: Re-elect Peter Rizun for BU Secretary",
+        "title": "Re-elect Peter Rizun for BU Secretary",
         "proposer": "Peter Rizun",
         "submitted": "2018-09-22",
         "status": "passed",
@@ -817,7 +817,7 @@
     },
     {
         "number": "BUIP106",
-        "title": "BUIP106: License Bitcoin Unlimited software under GPLv3",
+        "title": "License Bitcoin Unlimited software under GPLv3",
         "proposer": "freetrader",
         "submitted": "2018-12-07",
         "status": "draft",
@@ -825,7 +825,7 @@
     },
     {
         "number": "BUIP107",
-        "title": "BUIP107: Sell the BCH portion of BU's funds for BSV",
+        "title": "Sell the BCH portion of BU's funds for BSV",
         "proposer": "Windowly",
         "submitted": "2018-12-15",
         "status": "closed",
@@ -833,7 +833,7 @@
     },
     {
         "number": "BUIP108",
-        "title": "BUIP108: Support for the BCH and BSV chains",
+        "title": "Support for the BCH and BSV chains",
         "proposer": "torusJKL",
         "submitted": "2018-12-30",
         "status": "closed",
@@ -841,7 +841,7 @@
     },
     {
         "number": "BUIP109",
-        "title": "BUIP109: Andrew Stone for Developer",
+        "title": "Andrew Stone for Developer",
         "proposer": "Andrew Stone",
         "submitted": "2018-12-30",
         "status": "passed",
@@ -849,7 +849,7 @@
     },
     {
         "number": "BUIP110",
-        "title": "BUIP110: Funded Development, aka Devpool2",
+        "title": "Funded Development, aka Devpool2",
         "proposer": "solex",
         "submitted": "2018-12-31",
         "status": "passed",
@@ -857,7 +857,7 @@
     },
     {
         "number": "BUIP111",
-        "title": "BUIP111: Use BTC over BCH or BSV",
+        "title": "Use BTC over BCH or BSV",
         "proposer": "torusJKL",
         "submitted": "2019-01-01",
         "status": "draft",
@@ -865,7 +865,7 @@
     },
     {
         "number": "BUIP112",
-        "title": "BUIP112: New Members for Election #12",
+        "title": "New Members for Election #12",
         "proposer": "solex",
         "submitted": "2019-01-11",
         "status": "voted",
@@ -873,7 +873,7 @@
     },
     {
         "number": "BUIP113",
-        "title": "BUIP113: Support Bitcoin SV with an Official Implementation",
+        "title": "Support Bitcoin SV with an Official Implementation",
         "proposer": "Griffith",
         "submitted": "2019-04-14",
         "status": "closed",
@@ -881,7 +881,7 @@
     },
     {
         "number": "BUIP114",
-        "title": "BUIP114: Drop support for the BSV HF Config Parameters in BUCash",
+        "title": "Drop support for the BSV HF Config Parameters in BUCash",
         "proposer": "Griffith",
         "submitted": "2019-03-27",
         "status": "passed",
@@ -889,7 +889,7 @@
     },
     {
         "number": "BUIP115",
-        "title": "BUIP115: Drop support for BTC",
+        "title": "Drop support for BTC",
         "proposer": "Griffith",
         "submitted": "2019-03-27",
         "status": "passed",
@@ -897,7 +897,7 @@
     },
     {
         "number": "BUIP116",
-        "title": "BUIP116: Articles of Federation Clarification",
+        "title": "Articles of Federation Clarification",
         "proposer": "Griffith",
         "submitted": "2019-03-27",
         "status": "closed",
@@ -905,7 +905,7 @@
     },
     {
         "number": "BUIP117",
-        "title": "BUIP117: Open Letter from BU members to the BCH / BSV communities",
+        "title": "Open Letter from BU members to the BCH / BSV communities",
         "proposer": "Christoph Bergmann",
         "submitted": "2019-04-07",
         "status": "draft",
@@ -913,7 +913,7 @@
     },
     {
         "number": "BUIP118",
-        "title": "BUIP118: Implement CashAccount lookup features",
+        "title": "Implement CashAccount lookup features",
         "proposer": "Jonathan Silverblood",
         "submitted": "2019-03-30",
         "status": "passed",
@@ -921,7 +921,7 @@
     },
     {
         "number": "BUIP119",
-        "title": "BUIP119: Implement sending to CashAccount",
+        "title": "Implement sending to CashAccount",
         "proposer": "Jonathan Silverblood",
         "submitted": "2019-03-30",
         "status": "passed",
@@ -929,7 +929,7 @@
     },
     {
         "number": "BUIP120",
-        "title": "BUIP120: Replace LevelDB with an immutable stateless storage design",
+        "title": "Replace LevelDB with an immutable stateless storage design",
         "proposer": "Jonathan Silverblood",
         "submitted": "2019-03-28",
         "status": "passed",
@@ -937,7 +937,7 @@
     },
     {
         "number": "BUIP121",
-        "title": "BUIP121: Create formal BCH specifications",
+        "title": "Create formal BCH specifications",
         "proposer": "Jonathan Silverblood",
         "submitted": "2019-04-01",
         "status": "passed",
@@ -945,7 +945,7 @@
     },
     {
         "number": "BUIP122",
-        "title": "BUIP122: Remove Norway from membership",
+        "title": "Remove Norway from membership",
         "proposer": "imaginary_username",
         "submitted": "2019-04-14",
         "status": "closed",
@@ -953,7 +953,7 @@
     },
     {
         "number": "BUIP123",
-        "title": "BUIP123: Remove imaginary username from membership",
+        "title": "Remove imaginary username from membership",
         "proposer": "bitsko",
         "submitted": "2019-04-14",
         "status": "closed",
@@ -961,7 +961,7 @@
     },
     {
         "number": "BUIP124",
-        "title": "BUIP124: New Members for Election #13",
+        "title": "New Members for Election #13",
         "proposer": "solex",
         "submitted": "2019-05-03",
         "status": "voted",
@@ -969,7 +969,7 @@
     },
     {
         "number": "BUIP125",
-        "title": "BUIP125: Remove Norway from membership",
+        "title": "Remove Norway from membership",
         "proposer": "freetrader",
         "submitted": "2019-05-21",
         "status": "draft",
@@ -977,7 +977,7 @@
     },
     {
         "number": "BUIP126",
-        "title": "BUIP126: Planet-on-a-LAN stress test model network",
+        "title": "Planet-on-a-LAN stress test model network",
         "proposer": "Jonathan Toomim",
         "submitted": "2019-05-13",
         "status": "draft",
@@ -985,7 +985,7 @@
     },
     {
         "number": "BUIP127",
-        "title": "BUIP127: Partially re-weight funds, 50% BTC to BCH",
+        "title": "Partially re-weight funds, 50% BTC to BCH",
         "proposer": "Jonathan Toomim",
         "submitted": "2019-06-05",
         "status": "draft",
@@ -993,7 +993,7 @@
     },
     {
         "number": "BUIP128",
-        "title": "BUIP128: Fund the Developer",
+        "title": "Fund the Developer",
         "proposer": "Andrew Stone",
         "submitted": "2019-08-11",
         "status": "draft",
@@ -1001,7 +1001,7 @@
     },
     {
         "number": "BUIP129",
-        "title": "BUIP129: Finish and Productize the BU voting system",
+        "title": "Finish and Productize the BU voting system",
         "proposer": "Andrew Stone",
         "submitted": "2019-08-11",
         "status": "draft",
