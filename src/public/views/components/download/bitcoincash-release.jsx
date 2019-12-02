@@ -31,8 +31,6 @@ class BitcoinCashRelease extends React.Component {
                     linux64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-linux64.tar.gz'}
                     linux32={'/downloads/BUcash-' + latestVersion + '-linux32.tar.gz'}
                     linux32Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-linux32.tar.gz'}
-                    electrs64={'/downloads/BUcash-electrs-' + latestVersion + '-ubuntu18_04-linux64.tar.gz'}
-                    linux64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-electrs' + latestVersion + '-ubuntu18_04-linux64.tar.gz'}
                     arm64={'/downloads/BUcash-' + latestVersion + '-arm64.tar.gz'}
                     arm64Mirror={'https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloads/raw/master/BUcash-' + latestVersion + '-arm64.tar.gz'}
                     arm32={'/downloads/BUcash-' + latestVersion + '-arm32.tar.gz'}
