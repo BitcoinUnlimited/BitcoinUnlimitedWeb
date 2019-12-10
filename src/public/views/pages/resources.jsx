@@ -9,8 +9,8 @@ import Technical from '../components/resources/technical.jsx';
 import NonTechnical from '../components/resources/nonTechnical.jsx';
 import NolNet from '../components/resources/nolNet.jsx';
 import Buips from '../components/resources/buips.jsx';
-import NsInfo from '../components/resources/nsInfo.jsx';
 import CashNodes from '../components/resources/cashNodes.jsx';
+import PublicChat from '../components/resources/publicchat.jsx';
 
 class Resources extends React.Component {
     constructor(props) {
@@ -62,10 +62,11 @@ class Resources extends React.Component {
                     body={  <CashNodes />  } />
 
                 <Section
-                    key='nakamoto'
-                    expanded={ this.state.selectedSection === 'nakamoto' }
-                    title={ strings().resources.nakamotostudies.title }
-                    body={ <NsInfo /> } />
+                    key='publicchat'
+                    expanded={ this.state.selectedSection === 'publicchat' }
+                    title={ strings().resources.publicchat.title }
+                    body={  <PublicChat />  } />
+
             </Page>
         );
     }

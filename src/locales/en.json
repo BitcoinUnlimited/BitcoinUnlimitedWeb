@@ -151,15 +151,15 @@
         "buips": {
             "title": "BUIPs (Bitcoin Unlimited Improvement Proposals)"
         },
-        "nakamotostudies": {
-            "title" : "The Satoshi Nakamoto Archive",
-            "url" : "Nakamotostudies.org",
-            "body" : "\"NSI is curating and organizing the best primary and secondary source material available on the history of Bitcoin (BCH) and (BTC) and its future.\" - Nakamoto Studies Institute"
-        },
         "nodes": {
             "title" : "Bitcoin cash nodes counting",
             "url"   : "cashnodes.io",
             "body1" : "Bitcoin cash nodes counting: per implementation type, version and geographic region"
+        },
+        "publicchat": {
+            "title": "Peer-to-Peer Electronic Cash telegram group",
+            "body1" : "The Peer-to-Peer Electronic Cash System Formerly Known as Bitcoin",
+            "body2" : "Public discussion on topics related to p2p ecash including transactions & scripts, the p2p network, mining & consensus, economics, and its social impact."
         }
     },
     "donate": {
