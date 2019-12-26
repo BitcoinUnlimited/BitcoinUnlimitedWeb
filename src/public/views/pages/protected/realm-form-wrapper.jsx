@@ -27,6 +27,7 @@ class RealmFormWrapper extends React.Component {
         this.removeSplash = this.removeSplash.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
         this.inputChange = this.inputChange.bind(this);
+        this.getChangeFn = this.getChangeFn.bind(this);
         this.imageChange = this.imageChange.bind(this);
         this.fileUpload = this.fileUpload.bind(this);
         this.deleteConfirm = this.deleteConfirm.bind(this);
@@ -82,11 +83,11 @@ class RealmFormWrapper extends React.Component {
         e.preventDefault();
         let data = this.buildFormData();
         if (data) {
-            Axios.post('/api/upsert', data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+            Axios.post('/api/upsert', data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` }}).then(res => {
                 if (res && res.data) {
                     window.scrollTo(0, 0);
                     if (res.data.status && res.data.status == 'error') {
-                        this.setSplash(`Error: ${ res.data.message }.`);
+                        this.setSplash(`Error: ${res.data.message}.`);
                     } else {
                         this.setSplash(`Updated ${this.state.realmType}.`);
                         this.postSave(res.data);
@@ -110,18 +111,14 @@ class RealmFormWrapper extends React.Component {
                     this.forceUpdate();
                 }
             default:
-            break;
+                break;
         }
-    }
-
-    editorChange(name) {
-        return this.onEditorChange.bind(name);
     }
 
     inputChange(e) {
         const { name, type } = e.target;
         const value = (type === 'checkbox') ? e.target.checked : e.target.value;
-        let realmModel = this.state.realmModel;
+        let { realmModel } = this.state;
         realmModel[name].value = value;
         this.setState({ realmModel });
     }
@@ -148,7 +145,7 @@ class RealmFormWrapper extends React.Component {
         let { realmModel } = this.state;
         realmModel[name].fetching = true;
         this.setState({ realmModel });
-        Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+        Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }).then(res => {
             let { realmModel } = this.state;
             let { data: { message } } = res;
             if (message) {
@@ -173,26 +170,11 @@ class RealmFormWrapper extends React.Component {
         return null;
     }
 
-    convertToEditor(content) {
-        if (content) {
-            return EditorState.createWithContent(convertFromRaw(JSON.parse(content)));
-        } else {
-            return EditorState.createEmpty();
-        }
-    }
-
     setModelValues(model, values) {
         if (model && values) {
             Object.keys(model).map(key => {
                 let val = values[key];
-                if (val) {
-                    let modelRow = model[key];
-                    if (modelRow.type === 'editor' && val) {
-                        model[key].value = this.convertToEditor(val);
-                    } else {
-                        model[key].value = val;
-                    }
-                }
+                model[key].value = val || '';
             });
             this.setState({ realmModel: model, fetching: false });
         }
@@ -231,7 +213,7 @@ class RealmFormWrapper extends React.Component {
                 return new Promise((resolve, reject) => {
                     let item = realmModel[key];
                     // fetch all of the type, build it as a list of options
-                    Axios.get(`/api/get/${ item.realmType }`).then(res => {
+                    Axios.get(`/api/get/${item.realmType}`).then(res => {
                         if (!isEmptyObj(res.data)) {
                             resolve({ [key]: this.optionalizeResult(item, res.data) });
                         } else {
@@ -285,8 +267,8 @@ class RealmFormWrapper extends React.Component {
         }
         let jwt = getLocalstorageKey('jwt');
         if (jwt) {
-            Axios.get(`/get/secure/${realmType}/${uid}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
-                let { data: { status }} = res;
+            Axios.get(`/get/secure/${realmType}/${uid}`, { headers: { Authorization: `Bearer ${jwt}` }}).then(res => {
+                let { data: { status } } = res;
                 if (status !== 'error') {
                     this.setModelValues(model, res.data);
                 } else {
@@ -329,21 +311,10 @@ class RealmFormWrapper extends React.Component {
             if (model) {
                 let prop = model[name];
                 if (prop) {
-                    let obj = convertToRaw(prop.value.getCurrentContent());
-                    let markup = draftToHtml(obj);
-                    let raw = JSON.stringify(obj);
-                    console.log(obj);
-                    console.log(raw);
-                    console.log(markup);
+                    console.log(prop);
                 }
             }
         }
-    }
-
-    editorStateChange(e, name) {
-        let { realmModel } = this.state;
-        realmModel[name].value = e;
-        this.setState({ realmModel });
     }
 
     getChangeFn(name, type) {
@@ -354,7 +325,11 @@ class RealmFormWrapper extends React.Component {
                 return this.fileUpload;
             }
         } else if (type === 'editor') {
-            return (e) => this.editorStateChange(e, name);
+            return ({ html, text }, e) => {
+                let { realmModel } = this.state;
+                realmModel[name].value = text;
+                this.setState({ realmModel });
+            };
         } else {
             return this.inputChange;
         }
@@ -385,8 +360,8 @@ class RealmFormWrapper extends React.Component {
                 inputType={ this.getInputInfo(input, 'input') || input.type }
                 inputOptions={ input.options || this.getInputInfo(input, 'options') }
                 inputLabel={ this.getInputInfo(input, 'label') }
-                inputName={ input.name}
-                inputValue={ input.value}
+                inputName={ input.name }
+                inputValue={ input.value }
                 inputToolbar={ this.getInputInfo(input, 'toolbar') }
                 inputPlaceholder={ this.getInputInfo(input, 'placeholder') }
                 inputChange={ this.getChangeFn(input.name, input.type) }
@@ -411,7 +386,7 @@ class RealmFormWrapper extends React.Component {
         let { splash } = this.state;
         if (splash) {
             return (
-                <div className="splash">{splash} <div className="remove-btn" onClick={ this.removeSplash }>x</div></div>
+                <div className="splash">{ splash } <div className="remove-btn" onClick={ this.removeSplash }>x</div></div>
             );
         }
         return null;
@@ -475,7 +450,7 @@ class RealmFormWrapper extends React.Component {
 export default withRouter(RealmFormWrapper);
 
 RealmFormWrapper.propTypes = {
-  router: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
+    router: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired
 };

@@ -3,7 +3,7 @@
 /**
  * This file holds misc. helper functions that are used by other js and jsx files.
  */
-import { EditorState } from 'draft-js';
+// import { EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 import { getModelPropInfo } from '../database/modelProperties.js';
@@ -155,7 +155,7 @@ const getDBModel = name => {
         if (prop.type === 'file' || prop.type === 'selectrealm') {
             prop.fetching = false;
         }
-        prop.value = (prop.type === 'editor') ? EditorState.createEmpty() : '';
+        prop.value = '';
         // Adds extra field information from /src/database/modelProperties.js
         prop.fieldInfo = getModelPropInfo(propKey);
         model[propKey] = prop;

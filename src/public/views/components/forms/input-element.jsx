@@ -7,6 +7,8 @@ import { Editor } from 'react-draft-wysiwyg';
 import ReactLoading from "react-loading";
 import Axios from 'axios';
 import { isImage, eToStr } from '../../../../helpers/helpers.js';
+import MdEditor from 'react-markdown-editor-lite';
+import MarkdownIt from 'markdown-it';
 
 /**
  * [InputElement Builds individual input elements. Used in /pages/realm-form-wrapper.jsx]
@@ -17,20 +19,22 @@ class InputElement extends React.Component {
     constructor(props) {
         super(props);
         this.wysiwygFileUpload = this.wysiwygFileUpload.bind(this);
+        this.mdParser = new MarkdownIt();
     }
 
     /**
      * [wysiwygFileUpload This handles WYSIWYG image uploads and stores them to the static file directory.]
      * @param  {Object} file [The file object.]
      */
-    wysiwygFileUpload(file) {
+    wysiwygFileUpload(file, callback) {
         return new Promise((resolve, reject) => {
             const formData = new FormData();
             formData.append('file', file);
-            Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+            Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }).then(res => {
                 let { message } = res.data;
                 if (message) {
-                    resolve({ data: { link: message }});
+                    callback(message);
+                    resolve(true);
                 } else {
                     throw "No path returned.";
                 }
@@ -101,10 +105,11 @@ class InputElement extends React.Component {
      * @param  {String} toolbar [Toolbar type.]
      * @return {Object}         [The WYSIWYG toolbar options object.]
      */
+    /*
     getToolbar(toolbar) {
         if (toolbar === 'simplified') {
             return {
-                options: ['inline','link', 'history'],
+                options: ['inline', 'link', 'history'],
                 inline: {
                     inDropdown: true,
                     options: ['bold', 'italic', 'underline', 'strikethrough']
@@ -140,7 +145,7 @@ class InputElement extends React.Component {
             }
         }
     }
-
+    */
     getWrapperClass(inputName) {
         return (inputName) ? inputName + '__wrapper' : '';
     }
@@ -182,7 +187,7 @@ class InputElement extends React.Component {
      */
     render() {
         let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching, inputToolbar, inputOptions } = this.props;
-        if (!inputType || !inputName || !inputChange || (inputType === 'select' && !inputOptions) ) {
+        if (!inputType || !inputName || !inputChange || (inputType === 'select' && !inputOptions)) {
             return null;
         }
         if (inputType === 'hidden') {
@@ -205,13 +210,18 @@ class InputElement extends React.Component {
             );
         }
         if (inputType === 'editor') {
+            let options = {
+                imageAccept: '.jpg,.jpeg,.png,.tiff'
+            }
             return (
                 <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
                     { this.getLabel() }
-                    <Editor
-                        editorState={ inputValue }
-                        onEditorStateChange={ inputChange }
-                        toolbar={ this.getToolbar(inputToolbar) }
+                    <MdEditor
+                        value={ inputValue }
+                        renderHTML={ (text) => this.mdParser.render(text) }
+                        onChange={ inputChange }
+                        onImageUpload={ this.wysiwygFileUpload }
+                        config={ options }
                     />
                     { this.getDescription() }
                     { this.getError() }
@@ -291,7 +301,7 @@ class InputElement extends React.Component {
                         placeholder={ (inputPlaceholder) ? inputPlaceholder : null }
                         value={ inputValue }
                         onChange={ inputChange }>
-                    ></textarea>
+                        ></textarea>
                     { this.getDescription() }
                     { this.getError() }
                 </fieldset>

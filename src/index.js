@@ -244,7 +244,7 @@ app.post('/api/upload', jwtMiddleware(), (req, res) => {
         let filePath;
         busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
             let type = mimetype.split('/')[1] || mimetype.split('/')[0];
-            filePath = path.join(staticFilesDir, type, filename);
+            filePath = path.join(staticFilesDir, type, filename).replace(/\s/g, '');
             if (checkPath(filePath)) {
                 file.pipe(fs.createWriteStream(filePath));
             }
