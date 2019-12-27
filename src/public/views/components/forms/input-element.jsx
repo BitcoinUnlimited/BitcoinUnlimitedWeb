@@ -1,14 +1,9 @@
 'use strict';
-
-/* WYSIWYS and inspirations from https://jpuri.github.io/react-draft-wysiwyg/#/demo */
-
 import React from 'react';
-import { Editor } from 'react-draft-wysiwyg';
 import ReactLoading from "react-loading";
 import Axios from 'axios';
-import { isImage, eToStr } from '../../../../helpers/helpers.js';
+import { isImage, eToStr, markdownToHTML } from '../../../../helpers/helpers.js';
 import MdEditor from 'react-markdown-editor-lite';
-import MarkdownIt from 'markdown-it';
 
 /**
  * [InputElement Builds individual input elements. Used in /pages/realm-form-wrapper.jsx]
@@ -19,7 +14,6 @@ class InputElement extends React.Component {
     constructor(props) {
         super(props);
         this.wysiwygFileUpload = this.wysiwygFileUpload.bind(this);
-        this.mdParser = new MarkdownIt();
     }
 
     /**
@@ -100,52 +94,6 @@ class InputElement extends React.Component {
         return (<div className="clear file-preview"><a className='underline link' href={ inputValue } download>{ inputValue }</a></div>);
     }
 
-    /**
-     * [getToolbar Returns a simplified or larger toolbar depending on the settings in database/modelProperties.js]
-     * @param  {String} toolbar [Toolbar type.]
-     * @return {Object}         [The WYSIWYG toolbar options object.]
-     */
-    /*
-    getToolbar(toolbar) {
-        if (toolbar === 'simplified') {
-            return {
-                options: ['inline', 'link', 'history'],
-                inline: {
-                    inDropdown: true,
-                    options: ['bold', 'italic', 'underline', 'strikethrough']
-                },
-                link: {
-                    inDropdown: true,
-                    defaultTargetOption: '_blank'
-                }
-            }
-        } else {
-            return {
-                options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'image', 'history', 'remove'],
-                inline: {
-                    inDropdown: true,
-                    options: ['bold', 'italic', 'underline', 'strikethrough']
-                },
-                blockType: {
-                    inDropdown: true,
-                    options: ['Normal', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code']
-                },
-                list: { inDropdown: true },
-                textAlign: { inDropdown: true },
-                link: {
-                    inDropdown: true,
-                    defaultTargetOption: '_blank'
-                },
-                history: { inDropdown: true },
-                image: {
-                    uploadCallback: this.wysiwygFileUpload,
-                    previewImage: true,
-                    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg'
-                }
-            }
-        }
-    }
-    */
     getWrapperClass(inputName) {
         return (inputName) ? inputName + '__wrapper' : '';
     }
@@ -218,7 +166,7 @@ class InputElement extends React.Component {
                     { this.getLabel() }
                     <MdEditor
                         value={ inputValue }
-                        renderHTML={ (text) => this.mdParser.render(text) }
+                        renderHTML={(text) => markdownToHTML(text) }
                         onChange={ inputChange }
                         onImageUpload={ this.wysiwygFileUpload }
                         config={ options }

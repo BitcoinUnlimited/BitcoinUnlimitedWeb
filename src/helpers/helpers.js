@@ -3,10 +3,9 @@
 /**
  * This file holds misc. helper functions that are used by other js and jsx files.
  */
-// import { EditorState } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 import { getModelPropInfo } from '../database/modelProperties.js';
+import MarkdownIt from 'markdown-it';
 /*
  * Low level basic helpers and error checking.
  */
@@ -31,7 +30,6 @@ const isArr = prop => (checkRealmType(prop, '[]')) ? true : false;
 const isText = prop => (checkRealmType(prop, 'string')) ? true : false;
 const isBool = prop => (checkRealmType(prop, 'bool')) ? true : false;
 const isDate = prop => (checkRealmType(prop, 'date')) ? true : false;
-const isRealmType = prop => (prop[0] === prop[0].toUpperCase()) ? true : false;
 /*
  * check keys for input type specifiers
  * These helpers determine the type of input to be displayed on update forms
@@ -44,7 +42,6 @@ const isImage = key => (key.indexOf('_img') !== -1) ? true : false;
 const isFile = key => (key.indexOf('_file') !== -1) ? true : false;
 const isTextarea = key => (key.indexOf('_data') !== -1) ? true : false;
 const isFileInput = key => (isFile(key) || isImage(key)) ? true : false;
-
 const isEmptyObj = obj => Object.keys(obj).length === 0;
 const isEmptyArr = arr => arr.length === 0;
 
@@ -63,13 +60,20 @@ const hasAllKeys = (obj, keys) => {
 }
 
 /*
- * Date formatting helpers
+ * Formatting helpers
  */
 const monthName = idx => ['January','February','March','April','May','June','July','August','September','October','November','December'].filter((month, i) => i == idx)[0];
 const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`;
 const formatDateFull = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 const saveDateFormat = date => `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-const buildDraftJSMarkup = editor => draftToHtml(JSON.parse(editor));
+const markdownToHTML = markdown => {
+    if (markdown && markdown.length > 0) {
+        let mdParser = new MarkdownIt();
+        return mdParser.render(markdown);
+    } else {
+        return '';
+    }
+}
 /*
  * Local storage key helpers
  */
@@ -192,5 +196,5 @@ module.exports = {
     setLocalstorageKey,
     getLocalstorageKey,
     getKeyForType,
-    buildDraftJSMarkup
+    markdownToHTML
 }

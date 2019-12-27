@@ -1,11 +1,9 @@
 'use strict';
 
 import React from 'react';
-import { Link } from 'react-router';
 import Axios from 'axios';
 import ReactLoading from "react-loading";
-import { strings } from '../../../lib/i18n';
-import { getLocalstorageKey, setLocalstorageKey, isStr, buildDraftJSMarkup } from '../../../../helpers/helpers.js';
+import { getLocalstorageKey, setLocalstorageKey, isStr, markdownToHTML } from '../../../../helpers/helpers.js';
 var sanitizeHtml = require('sanitize-html');
 
 class Banner extends React.Component {
@@ -40,7 +38,7 @@ class Banner extends React.Component {
 
     getAlertMarkup(message) {
         if (message) {
-            let markup = buildDraftJSMarkup(message);
+            let markup = markdownToHTML(message);
             if (markup) {
                 return(<span className="message-text" dangerouslySetInnerHTML={ { __html: sanitizeHtml(markup) } }></span>);
             }

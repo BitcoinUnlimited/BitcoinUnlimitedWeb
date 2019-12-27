@@ -4,13 +4,9 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import ReactLoading from "react-loading";
-import { EditorState, convertFromRaw, convertToRaw, ContentState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
 import Axios from 'axios';
-import { strings } from '../../../lib/i18n';
 import {
-    getDBModel, isEmptyObj, isDef, getUid, isImage64, getLocalstorageKey
+    getDBModel, isEmptyObj, isDef, isImage64, getLocalstorageKey
 } from '../../../../helpers/helpers.js';
 import { toBase64 } from '../../../../helpers/fileHelpers.js';
 import Base from '../../base.jsx';
@@ -50,23 +46,13 @@ class RealmFormWrapper extends React.Component {
         this.props.router.push('/login');
     }
 
-    addFormValue(formData, key, prop) {
-        return (prop.type !== 'editor') ? formData.append(key, prop.value) : formData.append(key, JSON.stringify(convertToRaw(prop.value.getCurrentContent())));
-    }
-
     buildFormData() {
         let { realmModel: model } = this.state;
         let formData = new FormData();
         formData.append('realmType', this.props.params.realmType);
         Object.keys(model).map(key => {
             let prop = model[key];
-            if (prop.name === 'uid') {
-                if (prop.value) {
-                    this.addFormValue(formData, key, prop);
-                }
-            } else {
-                this.addFormValue(formData, key, prop);
-            }
+            formData.append(key, prop.value)
         });
         return formData;
     }

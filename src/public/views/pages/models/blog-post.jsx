@@ -5,10 +5,8 @@ import { Link, withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ReactLoading from 'react-loading';
-import { strings } from '../../../lib/i18n';
 import Post from '../../post.jsx'
-import { formatDate, getLocalstorageKey, buildDraftJSMarkup } from '../../../../helpers/helpers.js';
-import MarkdownIt from 'markdown-it'
+import { formatDate, getLocalstorageKey, markdownToHTML } from '../../../../helpers/helpers.js';
 
 /**
  * [BlogPost This is the main component for displaying blog posts.]
@@ -18,7 +16,6 @@ class BlogPost extends React.Component {
     constructor(props) {
         super(props);
         this.goTop = this.goTop.bind(this);
-        this.mdParser = new MarkdownIt(/* Markdown-it options */)
         this.state = {
             fetching: false,
             uid: null,
@@ -28,12 +25,7 @@ class BlogPost extends React.Component {
 
     displayBody(body_editor) {
         if (body_editor) {
-            // let markup = buildDraftJSMarkup(body_editor);
-            // if (markup) {
-            //     /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
-            //     return (<div className="body-content" dangerouslySetInnerHTML={ { __html: markup } }></div>);
-            // }
-            let markup = this.mdParser.render(body_editor)
+            let markup = markdownToHTML(body_editor)
             if (markup) {
                 /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
                 return (<div className="body-content" dangerouslySetInnerHTML={{ __html: markup }}></div>);
@@ -104,7 +96,6 @@ class BlogPost extends React.Component {
 
     displayVideo(video_embed) {
         if (video_embed) {
-            let markup = buildDraftJSMarkup(video_embed);
             if (markup) {
                 /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
                 return (<div className="video-embed" dangerouslySetInnerHTML={{ __html: markup }}></div>);
@@ -114,11 +105,11 @@ class BlogPost extends React.Component {
     }
 
     displayTitle(title) {
-        return (title) ? (<div className="title h1 mt4">{title}</div>) : null;
+        return (title) ? (<div className="title h1 mt4">{ title }</div>) : null;
     }
 
     displayCreated(date) {
-        return (date) ? (<div className="date my1">{formatDate(new Date(date))}</div>) : null;
+        return (date) ? (<div className="date my1">{ formatDate(new Date(date)) }</div>) : null;
     }
 
     showPublisherName(name) {
@@ -130,7 +121,7 @@ class BlogPost extends React.Component {
     }
 
     showPublisherIcon(image_data) {
-        return (image_data) ? (<div className="author-icon"><img src={image_data} /></div>) : null;
+        return (image_data) ? (<div className="author-icon"><img src={ image_data } /></div>) : null;
     }
 
     displayPublisher(publisher) {
@@ -138,8 +129,8 @@ class BlogPost extends React.Component {
             let { displayname, org_title, icon_img_64 } = publisher;
             return (
                 <div className="author">
-                    {this.showPublisherIcon(icon_img_64)}
-                    <span>{this.showPublisherName(displayname)}{this.showPublisherTitle(displayname, org_title)}</span>
+                    { this.showPublisherIcon(icon_img_64) }
+                    <span>{ this.showPublisherName(displayname) }{ this.showPublisherTitle(displayname, org_title) }</span>
                 </div>
             );
         }
@@ -148,7 +139,7 @@ class BlogPost extends React.Component {
 
     displayAuthor(author, publisher) {
         if (author) {
-            return (<div className="author"><span>{author}</span></div>);
+            return (<div className="author"><span>{ author }</span></div>);
         } else if (publisher) {
             return this.displayPublisher(publisher);
         }
@@ -156,7 +147,7 @@ class BlogPost extends React.Component {
     }
 
     displaySubtitle(subtitle) {
-        return (subtitle) ? (<div className="subtitle h3 mt2 mb3">{subtitle}</div>) : null;
+        return (subtitle) ? (<div className="subtitle h3 mt2 mb3">{ subtitle }</div>) : null;
     }
 
     render() {
@@ -173,13 +164,13 @@ class BlogPost extends React.Component {
         let { body_editor, header_img, caption_editor, title, video_data, subtitle, created, author, publisher } = post;
         return (
             <Post name="blog" banner={header_img} caption={caption_editor}>
-                {this.displayVideo(video_data)}
-                {this.displayTitle(title)}
-                {this.displayAuthor(author, publisher)}
-                {this.displayCreated(created)}
-                {this.displaySubtitle(subtitle)}
-                {this.displayBody(body_editor)}
-                <Link className="link underline" to="/blog" onClick={this.goTop}>« Back to Blog</Link>
+                { this.displayVideo(video_data) }
+                { this.displayTitle(title) }
+                { this.displayAuthor(author, publisher) }
+                { this.displayCreated(created) }
+                { this.displaySubtitle(subtitle) }
+                { this.displayBody(body_editor) }
+                <Link className="link underline" to="/blog" onClick={ this.goTop }>« Back to Blog</Link>
             </Post>
         );
     }
