@@ -6,6 +6,7 @@
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 import { getModelPropInfo } from '../database/modelProperties.js';
 import MarkdownIt from 'markdown-it';
+import hljs from 'highlight.js';
 /*
  * Low level basic helpers and error checking.
  */
@@ -66,9 +67,23 @@ const monthName = idx => ['January','February','March','April','May','June','Jul
 const formatDate = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`;
 const formatDateFull = date => `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 const saveDateFormat = date => `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+const getMarkdownOptions = () => {
+    return {
+        html: true,
+        typographer: true,
+        highlight: function (str, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+                try {
+                    return hljs.highlight(lang, str).value;
+                } catch (__) { }
+            }
+            return ''
+        }
+    }
+}
 const markdownToHTML = markdown => {
     if (markdown && markdown.length > 0) {
-        let mdParser = new MarkdownIt();
+        let mdParser = new MarkdownIt(getMarkdownOptions());
         return mdParser.render(markdown);
     } else {
         return '';

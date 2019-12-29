@@ -4,7 +4,6 @@ import ReactLoading from "react-loading";
 import Axios from 'axios';
 import { isImage, eToStr, markdownToHTML } from '../../../../helpers/helpers.js';
 import MdEditor from 'react-markdown-editor-lite';
-
 /**
  * [InputElement Builds individual input elements. Used in /pages/realm-form-wrapper.jsx]
  * @extends React
