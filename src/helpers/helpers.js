@@ -6,6 +6,10 @@
 import { getDBSchema, getAuthSchema, getTypeForm } from '../database/realmSchema.js';
 import { getModelPropInfo } from '../database/modelProperties.js';
 import MarkdownIt from 'markdown-it';
+import deflist from 'markdown-it-deflist';
+import abbr from 'markdown-it-abbr';
+import subscript from 'markdown-it-sub';
+import superscript from 'markdown-it-sup';
 import hljs from 'highlight.js';
 /*
  * Low level basic helpers and error checking.
@@ -83,7 +87,11 @@ const getMarkdownOptions = () => {
 }
 const markdownToHTML = markdown => {
     if (markdown && markdown.length > 0) {
-        let mdParser = new MarkdownIt(getMarkdownOptions());
+        let mdParser = new MarkdownIt(getMarkdownOptions())
+            .use(deflist)
+            .use(abbr)
+            .use(subscript)
+            .use(superscript);
         return mdParser.render(markdown);
     } else {
         return '';

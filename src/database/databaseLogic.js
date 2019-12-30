@@ -8,18 +8,16 @@ import uuidv4 from 'uuid/v4';
 import { getDBSchema, getAuthSchema } from './realmSchema.js';
 import { realmDatabase, authDatabase } from './realmDB.js';
 import { setProtocolValues } from './modelProtocols.js';
-import { fixAddressFormat, messageVerify, jwtSecret } from './verifySignature.js';
+import { messageVerify } from './verifySignature.js';
 import {
     resErr, eToStr, resErrList,
-    resSuccess, toInt, isDef,
-    isStr, checkDate, isOptional,
-    isArr, isEmptyObj, hasKey,
+    resSuccess, isDef, isStr, 
+    checkDate, isOptional, 
+    isEmptyObj, hasKey,
     getKeyForType, realmTypeHasProps
 } from '../helpers/helpers.js';
 import { strings } from '../public/lib/i18n';
 
-const buildDBErr = idx => strings().database.errors[idx];
-const buildAuthErr = idx => strings().auth.errors[idx];
 const validateAuth = auth => isDef(auth.expires) && checkDate(auth.expires);
 const authDefaultExpire = 3600;
 const clearChallengeObj = {
