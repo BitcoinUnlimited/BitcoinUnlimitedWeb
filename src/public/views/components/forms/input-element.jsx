@@ -35,7 +35,7 @@ class InputElement extends React.Component {
                 reject(eToStr(e));
             });
         }).catch(e => {
-            reject(eToStr(e));
+            console.log(e);
         });
     }
 
