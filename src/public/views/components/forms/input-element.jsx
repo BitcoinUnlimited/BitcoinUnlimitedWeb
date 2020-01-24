@@ -32,10 +32,12 @@ class InputElement extends React.Component {
                     throw "No path returned.";
                 }
             }).catch(e => {
+                alert(eToStr(e));
                 reject(eToStr(e));
             });
         }).catch(e => {
             console.log(e);
+            alert(e);
         });
     }
 
