@@ -14,6 +14,7 @@ The following will install and build the project.
 git clone git@github.com:BitcoinUnlimited/BitcoinUnlimitedWeb.git
 cd BitcoinUnlimitedWeb
 npm install
+npm install grunt -g
 npm run build
 ```
 
