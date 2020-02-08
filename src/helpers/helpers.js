@@ -10,6 +10,7 @@ import deflist from 'markdown-it-deflist';
 import abbr from 'markdown-it-abbr';
 import subscript from 'markdown-it-sub';
 import superscript from 'markdown-it-sup';
+import markdownItLatex from 'markdown-it-latex';
 import hljs from 'highlight.js';
 /*
  * Low level basic helpers and error checking.
@@ -91,7 +92,8 @@ const markdownToHTML = markdown => {
             .use(deflist)
             .use(abbr)
             .use(subscript)
-            .use(superscript);
+            .use(superscript)
+            .use(markdownItLatex);
         return mdParser.render(markdown);
     } else {
         return '';
