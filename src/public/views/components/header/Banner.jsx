@@ -3,8 +3,7 @@
 import React from 'react';
 import Axios from 'axios';
 import ReactLoading from "react-loading";
-import { getLocalstorageKey, setLocalstorageKey, isStr, markdownToHTML } from '../../../../helpers/helpers.js';
-var sanitizeHtml = require('sanitize-html');
+import { getLocalstorageKey, setLocalstorageKey, markdownToHTML } from '../../../../helpers/helpers.js';
 
 class Banner extends React.Component {
     constructor(props) {
@@ -40,7 +39,7 @@ class Banner extends React.Component {
         if (message) {
             let markup = markdownToHTML(message);
             if (markup) {
-                return(<span className="message-text" dangerouslySetInnerHTML={ { __html: sanitizeHtml(markup) } }></span>);
+                return(<span className="message-text" dangerouslySetInnerHTML={ { __html: markup } }></span>);
             }
         }
         return null;
