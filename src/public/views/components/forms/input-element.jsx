@@ -1,13 +1,9 @@
 'use strict';
-
-/* WYSIWYS and inspirations from https://jpuri.github.io/react-draft-wysiwyg/#/demo */
-
 import React from 'react';
-import { Editor } from 'react-draft-wysiwyg';
 import ReactLoading from "react-loading";
 import Axios from 'axios';
-import { isImage, eToStr } from '../../../../helpers/helpers.js';
-
+import { isImage, eToStr, markdownToHTML } from '../../../../helpers/helpers.js';
+import MdEditor from 'react-markdown-editor-lite';
 /**
  * [InputElement Builds individual input elements. Used in /pages/realm-form-wrapper.jsx]
  * @extends React
@@ -23,22 +19,25 @@ class InputElement extends React.Component {
      * [wysiwygFileUpload This handles WYSIWYG image uploads and stores them to the static file directory.]
      * @param  {Object} file [The file object.]
      */
-    wysiwygFileUpload(file) {
+    wysiwygFileUpload(file, callback) {
         return new Promise((resolve, reject) => {
             const formData = new FormData();
             formData.append('file', file);
-            Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}`}}).then(res => {
+            Axios.post('/api/upload', formData, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } }).then(res => {
                 let { message } = res.data;
                 if (message) {
-                    resolve({ data: { link: message }});
+                    callback(message);
+                    resolve(true);
                 } else {
                     throw "No path returned.";
                 }
             }).catch(e => {
+                alert(eToStr(e));
                 reject(eToStr(e));
             });
         }).catch(e => {
-            reject(eToStr(e));
+            console.log(e);
+            alert(e);
         });
     }
 
@@ -96,51 +95,6 @@ class InputElement extends React.Component {
         return (<div className="clear file-preview"><a className='underline link' href={ inputValue } download>{ inputValue }</a></div>);
     }
 
-    /**
-     * [getToolbar Returns a simplified or larger toolbar depending on the settings in database/modelProperties.js]
-     * @param  {String} toolbar [Toolbar type.]
-     * @return {Object}         [The WYSIWYG toolbar options object.]
-     */
-    getToolbar(toolbar) {
-        if (toolbar === 'simplified') {
-            return {
-                options: ['inline','link', 'history'],
-                inline: {
-                    inDropdown: true,
-                    options: ['bold', 'italic', 'underline', 'strikethrough']
-                },
-                link: {
-                    inDropdown: true,
-                    defaultTargetOption: '_blank'
-                }
-            }
-        } else {
-            return {
-                options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'image', 'history', 'remove'],
-                inline: {
-                    inDropdown: true,
-                    options: ['bold', 'italic', 'underline', 'strikethrough']
-                },
-                blockType: {
-                    inDropdown: true,
-                    options: ['Normal', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code']
-                },
-                list: { inDropdown: true },
-                textAlign: { inDropdown: true },
-                link: {
-                    inDropdown: true,
-                    defaultTargetOption: '_blank'
-                },
-                history: { inDropdown: true },
-                image: {
-                    uploadCallback: this.wysiwygFileUpload,
-                    previewImage: true,
-                    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg'
-                }
-            }
-        }
-    }
-
     getWrapperClass(inputName) {
         return (inputName) ? inputName + '__wrapper' : '';
     }
@@ -182,7 +136,7 @@ class InputElement extends React.Component {
      */
     render() {
         let { inputType, inputName, inputChange, inputValue, inputPlaceholder, inputFetching, inputToolbar, inputOptions } = this.props;
-        if (!inputType || !inputName || !inputChange || (inputType === 'select' && !inputOptions) ) {
+        if (!inputType || !inputName || !inputChange || (inputType === 'select' && !inputOptions)) {
             return null;
         }
         if (inputType === 'hidden') {
@@ -205,13 +159,18 @@ class InputElement extends React.Component {
             );
         }
         if (inputType === 'editor') {
+            let options = {
+                imageAccept: '.jpg,.jpeg,.png,.tiff'
+            }
             return (
                 <fieldset className={`input__wrapper ${this.getWrapperClass(inputName)} ${this.getTypeClass(inputType)} ${this.getErrorClass()}`}>
                     { this.getLabel() }
-                    <Editor
-                        editorState={ inputValue }
-                        onEditorStateChange={ inputChange }
-                        toolbar={ this.getToolbar(inputToolbar) }
+                    <MdEditor
+                        value={ inputValue }
+                        renderHTML={(text) => markdownToHTML(text) }
+                        onChange={ inputChange }
+                        onImageUpload={ this.wysiwygFileUpload }
+                        config={ options }
                     />
                     { this.getDescription() }
                     { this.getError() }
@@ -291,7 +250,7 @@ class InputElement extends React.Component {
                         placeholder={ (inputPlaceholder) ? inputPlaceholder : null }
                         value={ inputValue }
                         onChange={ inputChange }>
-                    ></textarea>
+                        ></textarea>
                     { this.getDescription() }
                     { this.getError() }
                 </fieldset>

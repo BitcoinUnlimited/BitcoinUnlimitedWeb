@@ -5,8 +5,6 @@ import { Link } from 'react-router';
 import Axios from 'axios';
 import ReactLoading from "react-loading";
 import { getLocalstorageKey, getSchema, isEmptyArr, isEmptyObj, formatDate } from '../../../../helpers/helpers.js';
-
-import { strings } from '../../../lib/i18n';
 import Page from '../../page.jsx'
 
 class BlogList extends React.Component {

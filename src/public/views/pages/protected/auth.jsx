@@ -40,6 +40,8 @@ class Auth extends React.Component {
                 if (userPubkey) {
                     localStorage.setItem('user', JSON.stringify(res.data));
                     this.setState({ isAuthed: true });
+                } else {
+                    this.removeJwtAndRedirect();
                 }
             }).catch(e => {
                 console.log(e);

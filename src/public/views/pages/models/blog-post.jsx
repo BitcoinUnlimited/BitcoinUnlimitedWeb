@@ -5,9 +5,8 @@ import { Link, withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ReactLoading from 'react-loading';
-import { strings } from '../../../lib/i18n';
 import Post from '../../post.jsx'
-import { formatDate, getLocalstorageKey, buildDraftJSMarkup } from '../../../../helpers/helpers.js';
+import { formatDate, getLocalstorageKey, markdownToHTML } from '../../../../helpers/helpers.js';
 
 /**
  * [BlogPost This is the main component for displaying blog posts.]
@@ -26,10 +25,10 @@ class BlogPost extends React.Component {
 
     displayBody(body_editor) {
         if (body_editor) {
-            let markup = buildDraftJSMarkup(body_editor);
+            let markup = markdownToHTML(body_editor)
             if (markup) {
                 /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
-                return (<div className="body-content" dangerouslySetInnerHTML={ { __html: markup } }></div>);
+                return (<div className="body-content" dangerouslySetInnerHTML={{ __html: markup }}></div>);
             }
         }
         return null;
@@ -71,7 +70,7 @@ class BlogPost extends React.Component {
     getSecurePost(uid, jwt) {
         if (jwt) {
             this.setState({ fetching: true, post: null, uid: uid });
-            Axios.get(`/get/secure/Post/${uid}`, { headers: { Authorization: `Bearer ${jwt}`}}).then(res => {
+            Axios.get(`/get/secure/Post/${uid}`, { headers: { Authorization: `Bearer ${jwt}` } }).then(res => {
                 let { data: { uid, published } } = res;
                 if (!uid) this.props.router.push('/login');
                 this.setState({ post: res.data, fetching: false });
@@ -97,10 +96,9 @@ class BlogPost extends React.Component {
 
     displayVideo(video_embed) {
         if (video_embed) {
-            let markup = buildDraftJSMarkup(video_embed);
             if (markup) {
                 /* HTML stored in the database is created in the secure auth area and is presumed to be safe */
-                return (<div className="video-embed" dangerouslySetInnerHTML={ { __html: markup } }></div>);
+                return (<div className="video-embed" dangerouslySetInnerHTML={{ __html: markup }}></div>);
             }
         }
         return null;
@@ -115,11 +113,11 @@ class BlogPost extends React.Component {
     }
 
     showPublisherName(name) {
-        return (name) ? `By ${ name }` : '';
+        return (name) ? `By ${name}` : '';
     }
 
     showPublisherTitle(name, org_title) {
-        return (name && org_title) ? `, ${ org_title }` : '';
+        return (name && org_title) ? `, ${org_title}` : '';
     }
 
     showPublisherIcon(image_data) {
@@ -165,7 +163,7 @@ class BlogPost extends React.Component {
         }
         let { body_editor, header_img, caption_editor, title, video_data, subtitle, created, author, publisher } = post;
         return (
-            <Post name="blog" banner={ header_img } caption={ caption_editor }>
+            <Post name="blog" banner={header_img} caption={caption_editor}>
                 { this.displayVideo(video_data) }
                 { this.displayTitle(title) }
                 { this.displayAuthor(author, publisher) }
@@ -181,7 +179,7 @@ class BlogPost extends React.Component {
 export default withRouter(BlogPost);
 
 BlogPost.propTypes = {
-  router: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
+    router: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired
 }

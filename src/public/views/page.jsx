@@ -3,7 +3,6 @@
 import React from 'react';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
-import Section from './components/section.jsx';
 
 class Page extends React.Component {
 

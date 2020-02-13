@@ -2,30 +2,24 @@
 const env = require('dotenv').config();
 
 import path from 'path';
-import Axios from 'axios';
 import fs from 'fs';
-import os from 'os';
 import express from 'express';
 import redirects from './data/redirects.json';
 import bodyParser from 'body-parser';
 import Busboy from 'busboy';
-import jwt from 'jsonwebtoken';
-import { strings } from './public/lib/i18n';
 import {
     isAdmin, signatureVerify, validateAuth,
-    getSecure, typeIsValid, typeIsValidPublic, realmGet,
+    typeIsValid, typeIsValidPublic, realmGet,
     realmGetSecure, realmSave, realmDelete,
-    getAuth, removeAuth, getLogs,
-    realmBackup, realmLog, getLoginChallenge,
-    revertDatabase
+    getAuth, removeAuth, realmBackup, 
+    getLoginChallenge, revertDatabase
 } from './database/databaseLogic.js';
 import {
     resErr, resSuccess, eToStr,
-    isEmptyObj, isImage64, getKeyForType,
-    saveDateFormat, isStr
+    getKeyForType, saveDateFormat
 } from './helpers/helpers.js';
-import { checkPath, getStaticFiles, buildLinks,
-    checkBackupPath
+import { 
+    checkPath, getStaticFiles, checkBackupPath
 } from './helpers/fileHelpers.js';
 
 import passport from 'passport';
@@ -244,7 +238,7 @@ app.post('/api/upload', jwtMiddleware(), (req, res) => {
         let filePath;
         busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
             let type = mimetype.split('/')[1] || mimetype.split('/')[0];
-            filePath = path.join(staticFilesDir, type, filename);
+            filePath = path.join(staticFilesDir, type, filename).replace(/\s/g, '');
             if (checkPath(filePath)) {
                 file.pipe(fs.createWriteStream(filePath));
             }
