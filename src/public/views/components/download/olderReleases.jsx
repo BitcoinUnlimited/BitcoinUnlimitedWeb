@@ -31,8 +31,27 @@ import SignaturesBUcash1510 from './signatures_BUcash1-5-1-0.jsx'
 import SignaturesBUcash1600 from './signatures_BUcash1-6-0-0.jsx'
 import SignaturesBUcash1601 from './signatures_BUcash1-6-0-1.jsx'
 import SignaturesBUcash1700 from './signatures_BUcash1-7-0-0.jsx'
+import SignaturesBCHU1800 from './signatures_bch_unlimited_1-8-0-0.jsx'
 
 class OfficialRelease extends React.Component {
+     renderVBCHU1800Body() {
+         return (
+             <Release
+                 osx64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-osx64.tar.gz'
+                 osx32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-osx.tar.gz'
+                 osxDmg='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-osx.dmg'
+                 windows64Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-win64-setup.exe'
+                 windows32Exe='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-win32-setup.exe'
+                 linux64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-linux64.tar.gz'
+                 linux32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-linux32.tar.gz'
+                 arm64='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-arm64.tar.gz'
+                 arm32='https://github.com/BitcoinUnlimited/BitcoinUnlimitedWebDownloadHistory/raw/master/bch-unlimited-1.8.0.0-arm32.tar.gz'
+                 source='https://github.com/BitcoinUnlimited/BitcoinUnlimited/releases/tag/BCHunlimited1.8.0.0'>
+
+                 <SignaturesBCHU1800 />
+             </Release>
+         )
+     }
     renderVBUcash1700Body() {
         return (
             <Release
@@ -513,6 +532,10 @@ class OfficialRelease extends React.Component {
     render() {
         return (
             <div className="pt2">
+                 <Section
+                     title='BCH-Unlimited-1.8.0.0'
+                     body={ this.renderVBCHU1800Body() }
+                     expanded={ false } />
                 <Section
                     title='BUcash-1.7.0.0'
                     body={ this.renderVBUcash1700Body() }
