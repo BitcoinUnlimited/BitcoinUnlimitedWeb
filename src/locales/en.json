@@ -213,7 +213,8 @@
             "buip4": "Bitcoin Unlimited subsection",
             "buip5": "of the bitco.in forum.",
             "dev1": "Software development happens at our",
-            "dev2": "GitHub team page",
+            "dev2": "GitLab team page",
+	    "open_telegram": "Join our main telegram group",
             "telegram": "We also have a members-only telegram group."
         }
     },
