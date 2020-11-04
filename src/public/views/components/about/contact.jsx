@@ -84,7 +84,12 @@ class Contact extends React.Component {
                 </li>
                 <li className='pb1'>
                     <p>{ strings().about.contact.dev1 }&nbsp;
-                            <a className="link--underline dim black" href="https://github.com/BitcoinUnlimited/BitcoinUnlimited/issues" target="_blank">{ strings().about.contact.dev2 }</a>.
+                            <a className="link--underline dim black" href="https://gitlab.com/bitcoinunlimited/BCHUnlimited/issues" target="_blank">{ strings().about.contact.dev2 }</a>.
+                    </p>
+                </li>
+                <li className='pb1'>
+                    <p>{ strings().about.contact.open_telegram }&nbsp;
+                            <a className="link--underline dim black" href="https://t.me/bitcoinunlimit" target="_blank"> t.me/bitcoinunlimit</a>.
                     </p>
                 </li>
                 <li className='pb1'>
