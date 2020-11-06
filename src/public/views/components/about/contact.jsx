@@ -35,16 +35,6 @@ class Contact extends React.Component {
                          </div>
                       </td>
                    </tr>
-                   <tr>
-                      <td><code>Awemany</code></td>
-                      <td>
-                         <div>
-                            <code>
-                               <span>9D2F</span><span>DC1B</span><span>B501</span><span>2E4B</span><span>E44B</span><span>CAAF</span><span>D78D</span><span>75A4</span><span>6101</span><span>B81F</span>
-                            </code>
-                         </div>
-                      </td>
-                   </tr>
                 </tbody>
             </table>
             <h3>{ strings().about.contact.reach }</h3>
