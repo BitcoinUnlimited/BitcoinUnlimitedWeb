@@ -1,6 +1,6 @@
 'use strict';
 
-const BASH0 = `tar xvf bch-unlimited-1.9.0.1-linux64.tar.gz
+const BASH0 = `tar xvf bch-unlimited-1.9.1.0-linux64.tar.gz
 cd bch-unlimited-1.9.0.1/bin/
 nohup ./bitcoin-qt &
 `;
@@ -11,7 +11,7 @@ sudo apt-get update
 sudo apt-get install bitcoind bitcoin-qt
 `;
 
-const BASH2= `sudo apt-get install git build-essential libtool autotools-dev automake pkg-config
+const BASH2= `sudo apt-get install git build-essential libtool autoconf autotools-dev automake pkg-config
 sudo apt-get install libssl-dev libevent-dev bsdmainutils libboost-all-dev
 sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler #opt: only needed if you want bitcoin-qt
 sudo apt-get install software-properties-common                               #opt: only needed if your wallet uses the old format
