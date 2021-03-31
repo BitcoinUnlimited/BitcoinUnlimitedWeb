@@ -1,7 +1,7 @@
 'use strict';
 
-const BASH0 = `tar xvf bch-unlimited-1.9.1.0-linux64.tar.gz
-cd bch-unlimited-1.9.0.1/bin/
+const BASH0 = `tar xvf bch-unlimited-1.9.1.1-linux64.tar.gz
+cd bch-unlimited-1.9.1.1/bin/
 nohup ./bitcoin-qt &
 `;
 
