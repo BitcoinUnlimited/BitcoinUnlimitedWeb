@@ -556,8 +556,8 @@
         "bitcoincash": {
             "title": "Official Bitcoin Cash (BCH) Release",
             "download": "Download the latest Bitcoin Cash compatible release of BCH Unlimited",
-            "version": "v1.9.1.0",
-            "date": "Feb 18, 2021",
+            "version": "v1.9.1.1",
+            "date": "March 31, 2021",
             "notes": "This release implements Bitcoin Cash Protocol",
             "notes2": "",
             "warning": "NOTE: This release is for Bitcoin Cash, a FORK of Bitcoin that happened on Aug 1,2017!  Bitcoin Cash is a better bitcoin, delivering onchain scalability that has resulted in penny transaction fees and fast confirmations."
@@ -586,6 +586,7 @@
         "source": "source code",
         "notes": {
             "title": "Release Notes",
+            "releasenotes_buc_1_9_1_1": "BCH Unlimited 1.9.1.1: Release notes are ",
             "releasenotes_buc_1_9_1_0": "BCH Unlimited 1.9.1.0: Release notes are ",
             "releasenotes_buc_1_9_0_1": "BCH Unlimited 1.9.0.1: Release notes are ",
             "releasenotes_buc_1_9_0_0": "BCH Unlimited 1.9.0.0: Release notes are ",
