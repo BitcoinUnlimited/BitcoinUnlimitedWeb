@@ -8,10 +8,13 @@ class ReleaseNotes extends React.Component {
         return (
             <ul>
                 <li className='pb1'>
+                    {strings().download.notes.releasenotes_buc_1_9_2_0} <a className='link--underline dim black' target='_blank' href='https://gitlab.com/bitcoinunlimited/BCHUnlimited/-/blob/dev/doc/release-notes/release-notes-1.9.2.md'>{strings().download.notes.here}</a>.
+                </li>
+                <li className='pb1'>
                     {strings().download.notes.releasenotes_buc_1_9_1_1} <a className='link--underline dim black' target='_blank' href='https://gitlab.com/bitcoinunlimited/BCHUnlimited/-/blob/dev/doc/release-notes/release-notes-1.9.1.1.md'>{strings().download.notes.here}</a>.
                 </li>
                 <li className='pb1'>
-                    {strings().download.notes.releasenotes_buc_1_9_1_0} <a className='link--underline dim black' target='_blank' href='https://gitlab.com/bitcoinunlimited/BCHUnlimited/-/blob/dev/doc/release-notes/release-notes-1.9.1.0.md'>{strings().download.notes.here}</a>.
+                    {strings().download.notes.releasenotes_buc_1_9_1_0} <a className='link--underline dim black' target='_blank' href='https://gitlab.com/bitcoinunlimited/BCHUnlimited/-/blob/dev/doc/release-notes/release-notes-1.9.1.md'>{strings().download.notes.here}</a>.
                 </li>
                 <li className='pb1'>
                     {strings().download.notes.releasenotes_buc_1_9_0_1} <a className='link--underline dim black' target='_blank' href='https://gitlab.com/bitcoinunlimited/BCHUnlimited/-/blob/dev/doc/release-notes/release-notes-1.9.0.1.md'>{strings().download.notes.here}</a>.

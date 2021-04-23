@@ -30,8 +30,8 @@ class Header extends React.Component {
         return (
              <div className='inline-block'>
                <p>
-                  <a title="Download BCH Unlimited 1.9.1.1" href="/download" className="link--underline white bold">
-                    BCH Unlimited release 1.9.1.1 is available
+                  <a title="Download BCH Unlimited 1.9.2" href="/download" className="link--underline white bold">
+                    BCH Unlimited release 1.9.2 is available
                   </a>
                </p>
              </div>
