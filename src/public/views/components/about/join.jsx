@@ -11,7 +11,7 @@ class Join extends React.Component {
                 <p className='lh-copy'>
                   { strings().about.join.body.text1 }
                   &nbsp;
-                  <a className='link--underline dim black' href="https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/" target="_blank">
+                  <a className='link--underline dim black' href="https://forum.bitcoinunlimited.info/t/membership-applications-for-bitcoin-unlimited/178" target="_blank">
                       { strings().about.join.body.link1 }
                   </a>
                   &nbsp;
