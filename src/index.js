@@ -11,14 +11,14 @@ import {
     isAdmin, signatureVerify, validateAuth,
     typeIsValid, typeIsValidPublic, realmGet,
     realmGetSecure, realmSave, realmDelete,
-    getAuth, removeAuth, realmBackup, 
+    getAuth, removeAuth, realmBackup,
     getLoginChallenge, revertDatabase
 } from './database/databaseLogic.js';
 import {
     resErr, resSuccess, eToStr,
     getKeyForType, saveDateFormat
 } from './helpers/helpers.js';
-import { 
+import {
     checkPath, getStaticFiles, checkBackupPath
 } from './helpers/fileHelpers.js';
 

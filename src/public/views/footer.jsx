@@ -66,6 +66,7 @@ class Footer extends React.Component {
                             <Link className='block py1 link dim' to='/about/members'>{ strings().header.about.members }</Link>
                             <Link className='block py1 link dim' to='/about/join'>{ strings().header.about.join }</Link>
                             <Link className='block py1 link dim' to='/about/contact'>{ strings().header.about.contact }</Link>
+                            <Link className='block py1 link dim' to='/about/community'>{ strings().header.about.community }</Link>
                         </div>
 
                         <div className='left-align align-top inline-block footer__section'>

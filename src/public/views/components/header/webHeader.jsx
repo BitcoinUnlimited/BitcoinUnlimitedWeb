@@ -53,6 +53,7 @@ class WebHeader extends React.Component {
                         <Link className='non-decorated black block p2' to='/about/members'>{ strings().header.about.members }</Link>
                         <Link className='non-decorated black block p2' to='/about/join'>{ strings().header.about.join }</Link>
                         <Link className='non-decorated black block p2' to='/about/contact'>{ strings().header.about.contact }</Link>
+                        <Link className='non-decorated black block p2' to='/about/community'>{ strings().header.about.community }</Link>
                     </Dropdown>
 
                     <Link className='non-decorated black inline-block mx2 py2' to='/blog'>Blog</Link>

@@ -200,18 +200,19 @@
             "general": "For general inquiries, please contact us at",
             "security": "To report a security issue, please contact us at",
             "reach": "Find us on social media",
-            "gpgkeysintro": "please use this GPG keys to communicate sensitive info with BU developers",
+            "gpgkeysintro": "please use this GPG keys to communicate sensitive info with BU developers"
+        },
+        "community": {
+            "title": "Community resources",
+            "reach": "Find us on social media",
             "twitter1": "Follow",
             "twitter2": "@BitcoinUnlimit",
             "twitter3": "on twitter.",
-            "slack1": "Join our",
-            "slack2": "To join, have one of our 350+ existing participants refer you to us. If you do not know of anyone in our slack, you can also",
-            "slack3": "e-mail us for invitation",
+            "matrix1": "Join us on Matrix BU chat room",
             "buip1": "Our",
             "buip2": "Bitcoin Unlimited Improvement Proposals",
             "buip3": "are discussed at the",
-            "buip4": "Bitcoin Unlimited subsection",
-            "buip5": "of the bitco.in forum.",
+            "buip4": "Bitcoin Unlimited forum",
             "dev1": "Software development happens at our",
             "dev2": "GitLab team page",
 	    "open_telegram": "Join our main telegram group",
@@ -663,7 +664,8 @@
             "organization": "Organization",
             "members": "Members",
             "join": "How to join",
-            "contact": "Contact us"
+            "contact": "Contact us",
+            "community": "Community"
         },
         "faq": {
             "title": "FAQ",
