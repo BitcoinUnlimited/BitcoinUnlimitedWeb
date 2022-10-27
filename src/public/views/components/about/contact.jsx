@@ -48,15 +48,6 @@ class Contact extends React.Component {
                     </a>
                 </li>
                 <li className='pb1'>
-                    <p>{ strings().about.contact.slack1 } <b>Slack chat</b>.</p>
-                    <p>{ strings().about.contact.slack2 }&nbsp;
-                    <a className="link--underline dim black" href="mailto:info@bitcoinunlimited.info?subject=Bitcoin%20Unlimited%20Slack%20Invite&body=Hi%21%0D%0A%0D%0ACould%20you%20please%20invite%20me%20to%20the%20Bitcoin%20Unlimited%20Slack%20group%3F%20My%20email%20address%20is%20%5BINSERT%20EMAIL%20ADDRESS%20HERE%5D.%0D%0A%0D%0AThank%20you%21" target="_blank">
-                        { strings().about.contact.slack3 }
-                        </a>.
-                    </p>
-                    <p>Our slack has a paid subscription and contains full chat history.</p>
-                </li>
-                <li className='pb1'>
                     <p>
 
                         { strings().about.contact.buip1 }&nbsp;
