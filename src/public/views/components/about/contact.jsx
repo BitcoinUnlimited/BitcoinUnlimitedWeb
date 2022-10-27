@@ -8,7 +8,6 @@ class Contact extends React.Component {
     render() {
         return (
             <div>
-            <h3>Direct contact</h3>
             <p>
                 { strings().about.contact.general } <a className='link--underline dim black' href="mailto:info@bitcoinunlimited.info">info@bitcoinunlimited.info</a>
             </p>
@@ -37,46 +36,6 @@ class Contact extends React.Component {
                    </tr>
                 </tbody>
             </table>
-            <h3>{ strings().about.contact.reach }</h3>
-            <ul className='py1'>
-                <li className='pb1'>
-                    <img className='icon--center pr1' src="../../img/twitter.png" alt="Twitter" />&nbsp;
-                    <a className="link--underline dim black" href="https://twitter.com/bitcoinunlimit">
-                        { strings().about.contact.twitter1 }&nbsp;
-                        { strings().about.contact.twitter2 }&nbsp;
-                        { strings().about.contact.twitter3 }
-                    </a>
-                </li>
-                <li className='pb1'>
-                    <p>
-
-                        { strings().about.contact.buip1 }&nbsp;
-                        <b>
-                            { strings().about.contact.buip2 }
-                        </b>&nbsp;
-                        { strings().about.contact.buip3 }&nbsp;
-                        <a className="link--underline dim black"
-                            href="https://bitco.in/forum/forums/bitcoin-unlimited.15/">
-                            { strings().about.contact.buip4 }
-                        </a>&nbsp;
-                        { strings().about.contact.buip5 }
-
-                    </p>
-                </li>
-                <li className='pb1'>
-                    <p>{ strings().about.contact.dev1 }&nbsp;
-                            <a className="link--underline dim black" href="https://gitlab.com/bitcoinunlimited/BCHUnlimited/issues" target="_blank">{ strings().about.contact.dev2 }</a>.
-                    </p>
-                </li>
-                <li className='pb1'>
-                    <p>{ strings().about.contact.open_telegram }&nbsp;
-                            <a className="link--underline dim black" href="https://t.me/bitcoinunlimit" target="_blank"> t.me/bitcoinunlimit</a>.
-                    </p>
-                </li>
-                <li className='pb1'>
-                    <p>{ strings().about.contact.telegram }</p>
-                </li>
-            </ul>
             </div>
         );
     }

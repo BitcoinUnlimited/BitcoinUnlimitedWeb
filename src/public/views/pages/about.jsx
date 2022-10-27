@@ -6,6 +6,7 @@ import Page from '../page.jsx'
 import Section from '../components/section.jsx';
 
 import Contact from '../components/about/contact.jsx'
+import Community from '../components/about/community.jsx'
 import Organization from '../components/about/organization.jsx'
 import Members from '../components/about/members.jsx'
 import Join from '../components/about/join.jsx'
@@ -46,6 +47,11 @@ class About extends React.Component {
                     expanded={ this.state.selectedSection === 'contact' }
                     title={ strings().about.contact.title }
                     body={ <Contact /> } />
+                <Section
+                    key='community'
+                    expanded={ this.state.selectedSection === 'community' }
+                    title={ strings().about.community.title }
+                    body={ <Community /> } />
             </Page>
         );
     }
