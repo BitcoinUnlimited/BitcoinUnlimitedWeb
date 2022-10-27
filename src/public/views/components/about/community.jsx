@@ -21,6 +21,14 @@ class Community extends React.Component {
                 </li>
                 <li className='pb1'>
                     <p>
+                        <img className='icon--center pr1' src="../../img/element.png" alt="Matrix" />&nbsp;
+                        <a className="link--underline dim black" href="https://matrix.to/#/!kaCIXdKPVlaSDHSEGa:matrix.org">
+                            { strings().about.community.matrix1 }&nbsp;
+                        </a>
+                    </p>
+                </li>
+                <li className='pb1'>
+                    <p>
                         { strings().about.community.buip1 }&nbsp;
                         <b>
                             { strings().about.community.buip2 }
