@@ -57,7 +57,7 @@ class SignaturesBitcoinCash extends React.Component {
                     {strings().download.signatures.griffith}<br/>
                     bitcoincash:qrupj2nuskyg4dmdrpnytjs4p8s6av542cuja2qdzy<br/>
                     (legacy address format: 1Pcpj8sR5adRNMi8rZ1Zi7rg6GPqcmFHAz)<br/>
-                    {strings().download.signatures.signature}: <br/> TBD
+                    {strings().download.signatures.signature}: <br/> H3MjR3KwO8OrCQ/8hZ1DMdt1rr3+4CyJItoOTRX7WPCyWEtYMjuZY74XgTRzUHA/VcUNuXmbfgRNveuPUaCvqe8=
                     <br/>
                     <br/>
                 </div>
