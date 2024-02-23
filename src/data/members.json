@@ -59,58 +59,10 @@
         ]
     },
     {
-        "avatar": "chriswilmer",
-        "name": "Dr. Christopher Wilmer",
-        "publicKey": "1KS9pKKfYYvAC4cBh3JkNnrSXYb1EP2dza",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-5#post-28082",
-        "photoUrl": "img/about/Christopher_Wilmer.png",
-        "title": "University Liaison",
-        "bio": [
-            "Prof. Christopher E. Wilmer began using Bitcoin in September 2011, after reading Wired Magazine's infamous article entitled \"The Rise and Fall of Bitcoin.\" Undeterred by Wired's confident view that the Bitcoin experiment was over, Chris bought some bitcoins for $3 each and began learning to use this exciting new technology. In 2014, he co-authored his first book on Bitcoin aimed at the general public, \"Bitcoin for the Befuddled,\" and also started the world's first academic journal for Bitcoin/cryptocurrency related research, called Ledger.",
-            "Prof. Wilmer directs a research lab at the University of Pittsburgh that uses large-scale molecular simulations, run on supercomputers, to understand and design new materials. His research group works closely with experimental chemists and materials scientists to synthesize and test promising materials. In 2012 he co-founded NuMat Technologies and was named by Forbes as one of the 30-Under-30 in Energy Innovation. Recently he was awarded an early career fellowship for promising scientists and engineers from the US National Science Foundation."
-        ]
-    },
-    {
-        "avatar": "Roy Badami",
-        "name": "Roy Badami",
-        "publicKey": "1GfHipP1Wi9kqQwSQiWneusNwTtCiRKP8W",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-2#post-7527"
-    },
-    {
         "avatar": "dgenr8",
         "name": "Tom Harding",
         "publicKey": "1BaKh3EaAjGoaP8BH9AZ4jG7VD3HaC3xoG",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-6#post-31163"
-    },
-    {
-        "avatar": "AdrianX",
-        "name": "",
-        "publicKey": "1d3ePRadbB5xfkMjU7UFvxQ1CrVK5CUKE",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-4#post-15542"
-    },
-    {
-        "avatar": "Bagatell",
-        "name": "",
-        "publicKey": "1VgVjyeCD7yQqitraVvNrZu5tFiaKHDGC",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-3#post-8714"
-    },
-    {
-        "avatar": "torusJKL",
-        "name": "Gal Buki",
-        "publicKey": "1C9Yur3xi5EgJxghonzFo6x2Wt9LDLdMRC",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-8#post-35500"
-    },
-    {
-        "avatar": "bitsko",
-        "name": "",
-        "publicKey": "1Bitsko32RrVBw4FxBRyM7x1bkbognCFFz",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-12#post-44395"
-    },
-    {
-        "avatar": "79b79aa8",
-        "name": "",
-        "publicKey": "13K3dA4fefCUTX6VsNysqmNKfsmR93jhyD",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-12#post-49048"
     },
     {
         "avatar": "Griffith",
@@ -131,27 +83,21 @@
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-15#post-80572"
     },
     {
-        "avatar": "Jonathan Silverblood",
-        "name": "Jonathan Silverblood",
-        "publicKey": "1NWAbNx9sLceMRVR9E2SzMSVrjWajni21D",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-15#post-84618"
-    },
-    {
         "avatar": "dagurval",
         "name": "Dagur Valberg Johannsson",
         "publicKey": "qzxqjtkze0vy96y5xtru2w65mvaftryr55yzmhy8sl (CashAccount dagur#216)",
         "link": "https://forum.bitcoinunlimited.info/t/membership-applications-for-bitcoin-unlimited/178/3"
     },
     {
-        "avatar": "peetah",
-        "name": "Peter Ng",
-        "publicKey": "1KLDAh92hLDws5Snwq6GXbLGwsAqZ91r1m",
-        "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/page-19#post-113128"
-    },
-    {
         "avatar": "jQrgen",
         "name": "Jørgen Svennevik Notland",
         "publicKey": "1GpDCvSuXuS4DUV2DCXxPyS29vw45Z36Sz",
         "link": "https://bitco.in/forum/threads/bitcoin-unlimited-membership-join-us.208/post-113414"
+    }
+    {
+        "avatar": "Dolaned",
+        "name": "Dolaned",
+        "publicKey": "bitcoincash:qzx9q72r2s34kafeglgmhvs8ec5g8x4unut5wn7efj",
+        "link": "https://forum.bitcoinunlimited.info/t/membership-applications-for-bitcoin-unlimited/178/5"
     }
 ]
